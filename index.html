@@ -226,7 +226,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-02-24T00:08:36+08:00" content="2016-02-24">
+            <time itemprop="dateCreated" datetime="2016-02-24T00:23:27+08:00" content="2016-02-24">
               2016-02-24
             </time>
           </span>
@@ -348,7 +348,21 @@ __这些文字会生成`&lt;strong&gt;`__
 <pre><code>加删除线像这样用： ||删除这些||
 </code></pre><p>效果如下：</p>
 <p>加删除线像这样用： </p>
-<h2 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h2><h2 id="效果如下："><a href="#效果如下：" class="headerlink" title="效果如下："></a>效果如下：</h2>
+<h2 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h2><h2 id="效果如下："><a href="#效果如下：" class="headerlink" title="效果如下："></a>效果如下：</h2><p><code>``javascript</code>/**  </p>
+<ul>
+<li><p>按钮普通条件 添加按钮<br>*/<br>$(“#btnAddButtonNorCon”).click(function()<br> var buttonJson = null;<br> $(“#settingButtonList”).find(“li”).each(function(index,li){  </p>
+<pre><code>if($(li).hasClass(&quot;cur&quot;)){  
+    console.log($(li).data(&quot;value&quot;));  
+    buttonJson = $(li).data(&quot;value&quot;);  
+    return false;  
+</code></pre><p> });  </p>
+<p> $ul = $(“#norConItemList”);  </p>
+<pre><code>var selectNorConList = $(&quot;#selectNorConList&quot;).data(&quot;selectNorConList&quot;);  
+commonSelector.buttonNormalConditionSelector($ul,selectNorConList,buttonJson);  
+</code></pre><p>});<br>``</p>
+</li>
+</ul>
+
           
         
       
