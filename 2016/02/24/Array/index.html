@@ -1,0 +1,714 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Blog,Javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="特殊性
+数组的每一项可以保存任何类型的数据
+大小可以动态调整（即随着数据的添加而自动增长容量）
+length属性非只读！
+
+创建数组的基本方式1234567//Array构造函数var colors = new Array();colors = new Array(20);//初始化数组容量colors = new Array(&apos;red&apos;,&apos;blue&apos;,4)//创建包含该三项值的数组//数组字面量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Array">
+<meta property="og:url" content="http://yoursite.com/2016/02/24/Array/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="特殊性
+数组的每一项可以保存任何类型的数据
+大小可以动态调整（即随着数据的添加而自动增长容量）
+length属性非只读！
+
+创建数组的基本方式1234567//Array构造函数var colors = new Array();colors = new Array(20);//初始化数组容量colors = new Array(&apos;red&apos;,&apos;blue&apos;,4)//创建包含该三项值的数组//数组字面量">
+<meta property="og:updated_time" content="2016-02-26T02:00:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Array">
+<meta name="twitter:description" content="特殊性
+数组的每一项可以保存任何类型的数据
+大小可以动态调整（即随着数据的添加而自动增长容量）
+length属性非只读！
+
+创建数组的基本方式1234567//Array构造函数var colors = new Array();colors = new Array(20);//初始化数组容量colors = new Array(&apos;red&apos;,&apos;blue&apos;,4)//创建包含该三项值的数组//数组字面量">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Array | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Array
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-24T00:08:23+08:00" content="2016-02-24">
+              2016-02-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="特殊性"><a href="#特殊性" class="headerlink" title="特殊性"></a>特殊性</h3><ul>
+<li>数组的每一项可以保存任何类型的数据</li>
+<li>大小可以动态调整（即随着数据的添加而自动增长容量）</li>
+<li>length属性非只读！</li>
+</ul>
+<h4 id="创建数组的基本方式"><a href="#创建数组的基本方式" class="headerlink" title="创建数组的基本方式"></a>创建数组的基本方式</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Array构造函数</span></span><br><span class="line"><span class="keyword">var</span> colors = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">20</span>);<span class="comment">//初始化数组容量</span></span><br><span class="line">colors = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">'red'</span>,<span class="string">'blue'</span>,<span class="number">4</span>)<span class="comment">//创建包含该三项值的数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//数组字面量表示</span></span><br><span class="line">colors = [<span class="string">'name'</span>,<span class="number">4</span>,<span class="literal">true</span>];</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="利用length的非只读性、自动更新性"><a href="#利用length的非只读性、自动更新性" class="headerlink" title="利用length的非只读性、自动更新性"></a>利用length的非只读性、自动更新性</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//移除项</span></span><br><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>,<span class="string">'green'</span>,<span class="string">'purple'</span>];</span><br><span class="line">colors.length = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(colors[<span class="number">2</span>])<span class="comment">//undefined;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//添加新项</span></span><br><span class="line">colors[colors.length] = <span class="string">'black'</span>;</span><br><span class="line">colors[colors.length] = <span class="string">'white'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(colors);<span class="comment">//["red", "green", "black", "white"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="数组检测"><a href="#数组检测" class="headerlink" title="数组检测"></a>数组检测</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一般情况下可以使用instanceof(注意：不适用两个以上不同全局执行环境(页面包含多个框架))</span></span><br><span class="line"><span class="built_in">console</span>.log([<span class="string">'time'</span>,<span class="string">'var'</span>] <span class="keyword">instanceof</span> <span class="built_in">Array</span>);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//推荐：</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">Array</span>.isArray([<span class="string">'time'</span>,<span class="string">'var'</span>]))&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"I'm array!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常用转换方法"><a href="#常用转换方法" class="headerlink" title="常用转换方法"></a>常用转换方法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors = [<span class="string">'red'</span>,<span class="string">'green'</span>,<span class="string">'white'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(colors.toString());<span class="comment">//red,green,white</span></span><br><span class="line"><span class="built_in">console</span>.log(colors.join(<span class="string">'-'</span>));<span class="comment">//red-green-white</span></span><br></pre></td></tr></table></figure>
+<h3 id="模拟数据类型"><a href="#模拟数据类型" class="headerlink" title="模拟数据类型"></a>模拟数据类型</h3><h4 id="模拟堆栈-LIFO—last-in-first-out"><a href="#模拟堆栈-LIFO—last-in-first-out" class="headerlink" title="模拟堆栈(LIFO—last in first out)"></a>模拟堆栈(LIFO—last in first out)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> container = [];</span><br><span class="line">container.push(<span class="string">'a'</span>,<span class="string">'b'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(container.pop());<span class="comment">//b</span></span><br><span class="line"><span class="built_in">console</span>.log(container.pop());<span class="comment">//a</span></span><br></pre></td></tr></table></figure>
+<p>应用：反向输出数组的值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> container = [<span class="string">'a'</span>,<span class="string">'b'</span>];</span><br><span class="line"><span class="keyword">var</span> copy = container.slice(<span class="number">0</span>,container.length);</span><br><span class="line"><span class="keyword">while</span>(copy.length != <span class="number">0</span>)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(copy.pop());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="模拟队列-FIFO—first-in-frist-out"><a href="#模拟队列-FIFO—first-in-frist-out" class="headerlink" title="模拟队列(FIFO—first in frist out)"></a>模拟队列(FIFO—first in frist out)</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> container = [];</span><br><span class="line">container.push(<span class="string">'a'</span>,<span class="string">'b'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(container.shift());<span class="comment">//a</span></span><br><span class="line"><span class="built_in">console</span>.log(container.shift());<span class="comment">//b</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//应用：使用unshift往数组前端添加项</span></span><br><span class="line"><span class="keyword">var</span> numContainer = [<span class="string">'2'</span>,<span class="string">'3'</span>];</span><br><span class="line">numContainer.unshift(<span class="string">'1'</span>);<span class="comment">//返回添加后数组长度</span></span><br><span class="line">numContainer.unshift(<span class="string">'0'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(numContainer);<span class="comment">//["0", "1", "2", "3"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="操作数组"><a href="#操作数组" class="headerlink" title="操作数组"></a>操作数组</h3><h4 id="拼接、拷贝数组"><a href="#拼接、拷贝数组" class="headerlink" title="拼接、拷贝数组"></a>拼接、拷贝数组</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> container = [<span class="string">'time'</span>,<span class="string">'money'</span>,<span class="string">'reverse'</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//1. concat 基于当前数组项拼接新数组,不影响原数组</span></span><br><span class="line"><span class="keyword">var</span> copy_container = container.concat();<span class="comment">//copy of array</span></span><br><span class="line"><span class="keyword">var</span> mix_container = container.concat(<span class="string">'yea'</span>,[<span class="string">'haha'</span>,<span class="string">'liu'</span>])<span class="comment">//contact array</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(mix_container);<span class="comment">//["time", "money", "reverse", "yea", "haha", "liu"]</span></span><br><span class="line"><span class="built_in">console</span>.log(copy_container);<span class="comment">//["time", "money", "reverse"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. slice  基于当前数组截取出新数组,不影响原数组</span></span><br><span class="line">copy_container = container.slice(<span class="number">0</span>);<span class="comment">//copy of array</span></span><br><span class="line"><span class="keyword">var</span> slice_array = mix_container.slice(<span class="number">1</span>,<span class="number">2</span>);<span class="comment">// slice of array</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(copy_container);<span class="comment">//["time", "money", "reverse"]</span></span><br><span class="line"><span class="built_in">console</span>.log(slice_array);<span class="comment">//["money"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//3. splice 影响原数组,返回值为包含删除项的数组(若无,则为空数组),有三种用法:</span></span><br><span class="line">container.splice(<span class="number">0</span>,<span class="number">1</span>);<span class="comment">//删除第1项----删除</span></span><br><span class="line"><span class="built_in">console</span>.log(container);<span class="comment">//["money", "reverse"]</span></span><br><span class="line">container.splice(<span class="number">1</span>,<span class="number">0</span>,<span class="string">'lol'</span>);<span class="comment">//把'lol'插入到位置1----插入</span></span><br><span class="line"><span class="built_in">console</span>.log(container);<span class="comment">//["money", "lol", "reverse"]</span></span><br><span class="line">container.splice(<span class="number">1</span>,<span class="number">2</span>,<span class="string">'tt'</span>,<span class="string">'hhh'</span>);<span class="comment">//删除位置1,然后从位置1插入两下----替换</span></span><br><span class="line"><span class="built_in">console</span>.log(container);<span class="comment">//["money", "tt", "hhh"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="排序数组"><a href="#排序数组" class="headerlink" title="排序数组"></a>排序数组</h4><p><strong>reverse()</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="built_in">console</span>.log(values.reverse());<span class="comment">//[5, 4, 3, 2, 1]</span></span><br></pre></td></tr></table></figure>
+<p><strong>sort()</strong></p>
+<p>sort默认情况下，按升序排列数组项，小值位于最前面，大值位于最后面，注意：sort会调用每项的toString转型方法，比较的是字符串，就算是数值，比较的也是字符串！！</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>];</span><br><span class="line">values.sort();</span><br><span class="line"><span class="built_in">console</span>.log(values);<span class="comment">//[0, 1, 10, 15, 5]</span></span><br></pre></td></tr></table></figure>
+<p>自定义排序方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">orderByAsc</span>(<span class="params">val1,val2</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> val1 - val2;</span><br><span class="line">&#125;</span><br><span class="line">values.sort(orderByAsc);</span><br><span class="line"><span class="built_in">console</span>.log(values);<span class="comment">//[0, 1, 5, 10, 15]</span></span><br></pre></td></tr></table></figure>
+<h3 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h3><p><strong>lastIndexOf indexOf</strong> (注意：要求查找的项必须满足严格等于！)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> appleDevs = [<span class="string">'mac'</span>,<span class="string">'ipad'</span>,<span class="string">'iphone'</span>,<span class="string">'ipad'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(appleDevs.lastIndexOf(<span class="string">'ipad'</span>));<span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(appleDevs.lastIndexOf(<span class="string">'ipad'</span>,<span class="number">3</span>));<span class="comment">//3</span></span><br><span class="line"><span class="built_in">console</span>.log(appleDevs.indexOf(<span class="string">'ipad'</span>));<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(appleDevs.indexOf(<span class="string">'ipad'</span>,<span class="number">0</span>));<span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+<h3 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h3><p>自定义迭代回调函数：callBack(item,index,array)</p>
+<p><strong>校样数组项</strong></p>
+<ul>
+<li>every(callBack):每项执行callBack,若每项都返回true,则返回true</li>
+<li>some(callBack):每项执行callBack,若某项返回true,则返回true</li>
+</ul>
+<p><strong>过滤数组项</strong></p>
+<ul>
+<li>filter(callBack):每项执行callBack,返回满足callBack返回true的项组成的数组</li>
+</ul>
+<p><strong>遍历数组项</strong></p>
+<ul>
+<li>forEach(callBack):每项执行callBack,无返回值</li>
+</ul>
+<p><strong>构造数组每项结果集</strong></p>
+<ul>
+<li>map(callBack):每项执行callBack,返回每项执行callBack返回值组成的数组</li>
+</ul>
+<hr>
+<p>注意以上迭代方法，都不会修改数组项的值！</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Blog/" rel="tag">#Blog</a>
+          
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/24/hello-world/" rel="prev" title="hello world">
+                hello world <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ZhengHe" />
+          <p class="site-author-name" itemprop="name">ZhengHe</p>
+          <p class="site-description motion-element" itemprop="description">记录造轮子的点点滴滴，猴赛雷</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">分类</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊性"><span class="nav-number">1.</span> <span class="nav-text">特殊性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数组的基本方式"><span class="nav-number">1.1.</span> <span class="nav-text">创建数组的基本方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用length的非只读性、自动更新性"><span class="nav-number">1.2.</span> <span class="nav-text">利用length的非只读性、自动更新性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组检测"><span class="nav-number">1.3.</span> <span class="nav-text">数组检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用转换方法"><span class="nav-number">1.4.</span> <span class="nav-text">常用转换方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟数据类型"><span class="nav-number">2.</span> <span class="nav-text">模拟数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟堆栈-LIFO—last-in-first-out"><span class="nav-number">2.1.</span> <span class="nav-text">模拟堆栈(LIFO—last in first out)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟队列-FIFO—first-in-frist-out"><span class="nav-number">2.2.</span> <span class="nav-text">模拟队列(FIFO—first in frist out)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作数组"><span class="nav-number">3.</span> <span class="nav-text">操作数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拼接、拷贝数组"><span class="nav-number">3.1.</span> <span class="nav-text">拼接、拷贝数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序数组"><span class="nav-number">3.2.</span> <span class="nav-text">排序数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位置方法"><span class="nav-number">4.</span> <span class="nav-text">位置方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代方法"><span class="nav-number">5.</span> <span class="nav-text">迭代方法</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZhengHe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
