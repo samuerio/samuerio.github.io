@@ -63,13 +63,13 @@
 12var data = &apos;&amp;#123;&quot;name&quot;:&quot;sam&quot;,&quot;age&quot;:25,&quot;isSuccess&quot;:false&amp;#125;&apos;;console.log(eval(&quot;(&quot;+data+&quot;)&quot;));">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS下的JSON解析及序列化">
-<meta property="og:url" content="http://yoursite.com/2016/02/29/JS下的JSON解析及序列化/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/03/01/JS下的JSON解析及序列化/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串
 
 解析JSONeval用法：eval(&amp;quot;(&amp;quot;+JSON+&amp;quot;)&amp;quot;)
 12var data = &apos;&amp;#123;&quot;name&quot;:&quot;sam&quot;,&quot;age&quot;:25,&quot;isSuccess&quot;:false&amp;#125;&apos;;console.log(eval(&quot;(&quot;+data+&quot;)&quot;));">
-<meta property="og:updated_time" content="2016-02-29T12:30:13.000Z">
+<meta property="og:updated_time" content="2016-03-01T01:38:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS下的JSON解析及序列化">
 <meta name="twitter:description" content="JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串
@@ -223,8 +223,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-29T20:30:13+08:00" content="2016-02-29">
-              2016-02-29
+            <time itemprop="dateCreated" datetime="2016-03-01T09:38:07+08:00" content="2016-03-01">
+              2016-03-01
             </time>
           </span>
 
@@ -269,6 +269,9 @@
 </ol>
 <p>可以配置<em>过滤规则</em>，以下以配置过滤函数为例：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsObj = &#123;</span><br><span class="line">    toLower:<span class="string">'HELLO'</span>,</span><br><span class="line">    toUpper:<span class="string">'world'</span>,</span><br><span class="line">    normal:<span class="string">'haha'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonStr = <span class="built_in">JSON</span>.stringify(jsObj,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(key)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toLower'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toLowerCase();</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toUpper'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toUpperCase();</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonStr);</span><br></pre></td></tr></table></figure>
+<h3 id="类自定义序列化规则"><a href="#类自定义序列化规则" class="headerlink" title="类自定义序列化规则"></a>类自定义序列化规则</h3><p>除了上面那种提供<em>过滤函数</em>的方式，类对象还可以实现toJSON接口来定制自身的序列化规则</p>
+<p>举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$.extend(Person,&#123;</span><br><span class="line">    prototype:&#123;</span><br><span class="line">        toJSON:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                age:<span class="keyword">this</span>.age+<span class="number">5</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="keyword">new</span> Person(<span class="string">'sam'</span>,<span class="number">5</span>)));</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -408,7 +411,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析JSON"><span class="nav-number">1.</span> <span class="nav-text">解析JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eval"><span class="nav-number">1.1.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-parse"><span class="nav-number">1.2.</span> <span class="nav-text">JSON.parse</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化JSON"><span class="nav-number">2.</span> <span class="nav-text">序列化JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-stringify"><span class="nav-number">2.1.</span> <span class="nav-text">JSON.stringify</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解析JSON"><span class="nav-number">1.</span> <span class="nav-text">解析JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eval"><span class="nav-number">1.1.</span> <span class="nav-text">eval</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-parse"><span class="nav-number">1.2.</span> <span class="nav-text">JSON.parse</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列化JSON"><span class="nav-number">2.</span> <span class="nav-text">序列化JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-stringify"><span class="nav-number">2.1.</span> <span class="nav-text">JSON.stringify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类自定义序列化规则"><span class="nav-number">2.2.</span> <span class="nav-text">类自定义序列化规则</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
