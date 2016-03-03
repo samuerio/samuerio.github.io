@@ -224,7 +224,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-03T20:28:20+08:00" content="2016-03-03">
+            <time itemprop="dateCreated" datetime="2016-03-03T20:31:12+08:00" content="2016-03-03">
               2016-03-03
             </time>
           </span>
@@ -251,8 +251,7 @@
 
       
         
-          
-            <h2 id="用户授权（sudo）"><a href="#用户授权（sudo）" class="headerlink" title="用户授权（sudo）"></a>用户授权（sudo）</h2><blockquote>
+          <h2 id="用户授权（sudo）"><a href="#用户授权（sudo）" class="headerlink" title="用户授权（sudo）"></a>用户授权（sudo）</h2><blockquote>
 <p>若当前用户没有执行某命令的权限可以使用sudo给其授权</p>
 </blockquote>
 <h2 id="文件-目录授权（chmod）"><a href="#文件-目录授权（chmod）" class="headerlink" title="文件/目录授权（chmod）"></a>文件/目录授权（chmod）</h2><table>
@@ -275,64 +274,11 @@
 </tr>
 </tbody>
 </table>
-<h3 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l file/directory</span><br></pre></td></tr></table></figure>
-<p><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f1ighhgbxkj20vo024t9h.jpg" alt=""></p>
-<p><strong>profile文件，权限信息分析：</strong></p>
-<p>-rwxrwxr-x</p>
-<ol>
-<li>首位<code>-</code>    :    类型</li>
-<li>rwx    :    User</li>
-<li>rwx    :    Group</li>
-<li>r—x    :    Other</li>
-</ol>
-<h3 id="改变权限"><a href="#改变权限" class="headerlink" title="改变权限"></a>改变权限</h3><ul>
-<li><strong>方式一：</strong></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [ugoa..] [+-=] [rwx] file...</span><br></pre></td></tr></table></figure>
-<p>u「user」g「group」o「other」a「all」</p>
-<p><em>eg.</em></p>
-<pre><code>1. chmod -r file : 删除所有用户对file的`r`权限
-2. chmod u +r file : 增加所有用户对file的`r`权限
-3. chmod =r file : 所有用户对file只有`r`权限
-</code></pre><ul>
-<li><strong>方式二:</strong></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod XXX file (chmod -R <span class="number">775</span> directory | chmod <span class="number">775</span> file)</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>权限组合</th>
-<th>二进制数</th>
-<th>十进制数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> 可读可写可执行</td>
-<td>rwx</td>
-<td>111</td>
-<td>7</td>
-</tr>
-<tr>
-<td> 可读可执行</td>
-<td>r-x</td>
-<td>101</td>
-<td>5</td>
-</tr>
-<tr>
-<td> 可读可写</td>
-<td>rw-</td>
-<td>110</td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-<p><em>eg.</em></p>
-<pre><code>1. chmod 777 file : 所有用户对file有rwx权限
-2. chmod 175 file : file创建者对file有x权限，group对file有rwx权限，othor对file有rx权限
-</code></pre>
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/03/Shell下的权限控制/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
