@@ -187,15 +187,168 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/03/Shell下的权限控制/" itemprop="url">
+                  Shell下的权限控制
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-03T20:28:20+08:00" content="2016-03-03">
+              2016-03-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        
-        
-        
       
 
       
-    
+        
+          
+            <h2 id="用户授权（sudo）"><a href="#用户授权（sudo）" class="headerlink" title="用户授权（sudo）"></a>用户授权（sudo）</h2><blockquote>
+<p>若当前用户没有执行某命令的权限可以使用sudo给其授权</p>
+</blockquote>
+<h2 id="文件-目录授权（chmod）"><a href="#文件-目录授权（chmod）" class="headerlink" title="文件/目录授权（chmod）"></a>文件/目录授权（chmod）</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>r</th>
+<th>w</th>
+<th>x</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>含义</td>
+<td>read</td>
+<td>write</td>
+<td>execute</td>
+<td>相应权限未被授予</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l file/directory</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f1ighhgbxkj20vo024t9h.jpg" alt=""></p>
+<p><strong>profile文件，权限信息分析：</strong></p>
+<p>-rwxrwxr-x</p>
+<ol>
+<li>首位<code>-</code>    :    类型</li>
+<li>rwx    :    User</li>
+<li>rwx    :    Group</li>
+<li>r—x    :    Other</li>
+</ol>
+<h3 id="改变权限"><a href="#改变权限" class="headerlink" title="改变权限"></a>改变权限</h3><ul>
+<li><strong>方式一：</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [ugoa..] [+-=] [rwx] file...</span><br></pre></td></tr></table></figure>
+<p>u「user」g「group」o「other」a「all」</p>
+<p><em>eg.</em></p>
+<pre><code>1. chmod -r file : 删除所有用户对file的`r`权限
+2. chmod u +r file : 增加所有用户对file的`r`权限
+3. chmod =r file : 所有用户对file只有`r`权限
+</code></pre><ul>
+<li><strong>方式二:</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod XXX file (chmod -R <span class="number">775</span> directory | chmod <span class="number">775</span> file)</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>权限组合</th>
+<th>二进制数</th>
+<th>十进制数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 可读可写可执行</td>
+<td>rwx</td>
+<td>111</td>
+<td>7</td>
+</tr>
+<tr>
+<td> 可读可执行</td>
+<td>r-x</td>
+<td>101</td>
+<td>5</td>
+</tr>
+<tr>
+<td> 可读可写</td>
+<td>rw-</td>
+<td>110</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p><em>eg.</em></p>
+<pre><code>1. chmod 777 file : 所有用户对file有rwx权限
+2. chmod 175 file : file创建者对file有x权限，group对file有rwx权限，othor对file有rx权限
+</code></pre>
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -284,6 +437,371 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/02/Shell的环境变量/" itemprop="url">
+                  Shell的环境变量
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-02T00:19:06+08:00" content="2016-03-02">
+              2016-03-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>作用于当前shell和任意子shell环境，开机就添加到本地变量中.</p>
+</blockquote>
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><ul>
+<li><em>所有环境变量</em></li>
+</ul>
+<p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1hsycv4w7j20vi0mqqb7.jpg" alt="所有环境变量"></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/02/Shell的环境变量/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/01/JS下的JSON解析及序列化/" itemprop="url">
+                  JS下的JSON解析及序列化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-01T09:38:07+08:00" content="2016-03-01">
+              2016-03-01
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串</p>
+</blockquote>
+<h2 id="解析JSON"><a href="#解析JSON" class="headerlink" title="解析JSON"></a>解析JSON</h2><h3 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h3><p><strong>用法：</strong><code>eval(&quot;(&quot;+JSON+&quot;)&quot;)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":false&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>));</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/01/JS下的JSON解析及序列化/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/28/Oracle数据库的监听器/" itemprop="url">
+                  Oracle数据库的监听器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-28T22:36:10+08:00" content="2016-02-28">
+              2016-02-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>Oracle数据库需要配置监听程序，用于监听<strong>客户端的连接请求</strong></p>
+</blockquote>
+<p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1fenxg9j1j20dk04t0th.jpg" alt=""></p>
+<p>以下为「SID」<code>ZHeOracle</code>数据库的监听器配置过程，有如下两种配置方式：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/28/Oracle数据库的监听器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/02/27/JS监听程序/" itemprop="url">
+                  JS事件监听
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-27T21:34:37+08:00" content="2016-02-27">
+              2016-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="事件监听程序"><a href="#事件监听程序" class="headerlink" title="事件监听程序"></a>事件监听程序</h2><blockquote>
+<p>JS原生的添加事件监听程序的方式有两种，一种是简单粗暴地对属性赋值，另外一种是调用函数addEventListener。</p>
+</blockquote>
+<ol>
+<li><code>DOM.onclick</code></li>
+<li><code>DOM.addEventListener([String] eventType,[EventListener|Function] listener,[boolean] useCapture = false)</code>第三个参数决定调用监听程序的阶段「捕获阶段/冒泡阶段」,默认为「冒泡阶段」。</li>
+</ol>
+<p>相对第一种方式而言，第二种方式更加灵活：可以添加多个处理程序，而且也可以移除事件处理程序。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/02/27/JS监听程序/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -326,7 +844,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
