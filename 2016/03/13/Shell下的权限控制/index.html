@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Shell下的权限控制 · Hexo</title><meta name="description" content="Shell下的权限控制 - ZhengHe"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Shell下的权限控制</h1><div class="post-time">Mar 13, 2016</div><div class="post-content"><h2 id="用户授权（sudo）"><a href="#用户授权（sudo）" class="headerlink" title="用户授权（sudo）"></a>用户授权（sudo）</h2><blockquote>
+<p>若当前用户没有执行某命令的权限可以使用sudo给其授权</p>
+</blockquote>
+<h2 id="文件-目录授权（chmod）"><a href="#文件-目录授权（chmod）" class="headerlink" title="文件/目录授权（chmod）"></a>文件/目录授权（chmod）</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>r</th>
+<th>w</th>
+<th>x</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>含义</td>
+<td>read</td>
+<td>write</td>
+<td>execute</td>
+<td>相应权限未被授予</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h4 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l file/directory</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f1ighhgbxkj20vo024t9h.jpg" alt=""></p>
+<p><strong>profile文件，权限信息分析：</strong></p>
+<p>-rwxrwxr-x</p>
+<ol>
+<li>首位<code>-</code>    :    类型</li>
+<li>rwx    :    User</li>
+<li>rwx    :    Group</li>
+<li>r—x    :    Other</li>
+</ol>
+<h4 id="改变权限"><a href="#改变权限" class="headerlink" title="改变权限"></a>改变权限</h4><ul>
+<li><strong>方式一：</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod [ugoa..] [+-=] [rwx] file...</span><br></pre></td></tr></table></figure>
+<p>u「user」g「group」o「other」a「all」</p>
+<p><em>eg.</em></p>
+<pre><code>1. chmod -r file : 删除所有用户对file的`r`权限
+2. chmod u +r file : 增加所有用户对file的`r`权限
+3. chmod =r file : 所有用户对file只有`r`权限
+</code></pre><ul>
+<li><strong>方式二:</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod XXX file (chmod -R <span class="number">775</span> directory | chmod <span class="number">775</span> file)</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>权限组合</th>
+<th>二进制数</th>
+<th>十进制数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 可读可写可执行</td>
+<td>rwx</td>
+<td>111</td>
+<td>7</td>
+</tr>
+<tr>
+<td> 可读可执行</td>
+<td>r-x</td>
+<td>101</td>
+<td>5</td>
+</tr>
+<tr>
+<td> 可读可写</td>
+<td>rw-</td>
+<td>110</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p><em>eg.</em></p>
+<pre><code>1. chmod 777 file : 所有用户对file有rwx权限
+2. chmod 175 file : file创建者对file有x权限，group对file有rwx权限，othor对file有rx权限
+</code></pre></div></article></div></section><footer><div class="paginator"><a href="/2016/03/13/nginx实现端口重定向/" class="prev">上一篇</a><a href="/2016/03/12/JS下的JSON解析及序列化/" class="next">下一篇</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://yoursite.com">ZhengHe</a>, unless otherwise noted.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
