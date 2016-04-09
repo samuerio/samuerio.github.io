@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhenghe39.com/2016/02/27/JS%E4%BA%8B%E4%BB%B6/</loc>
+    
+    <lastmod>2016-04-09T08:39:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zhenghe39.com/2016/03/14/%E6%B5%85%E8%B0%88JS%E9%97%AD%E5%8C%85%E5%92%8Cthis%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
     
     <lastmod>2016-04-09T08:32:11.000Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://zhenghe39.com/2016/03/13/nginx%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%8F%A3%E9%87%8D%E5%AE%9A%E5%90%91/</loc>
     
     <lastmod>2016-03-13T02:40:54.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhenghe39.com/2016/02/27/JS%E7%9B%91%E5%90%AC%E7%A8%8B%E5%BA%8F/</loc>
-    
-    <lastmod>2016-03-13T02:37:24.000Z</lastmod>
     
   </url>
   
