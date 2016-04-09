@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-04-09T08:32:11.000Z</updated>
+  <updated>2016-04-09T10:04:13.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>content-type影响Java获取前台数据</title>
+    <link href="http://zhenghe39.com/2016/04/09/content-type%E7%9A%84%E6%84%8F%E4%B9%89/"/>
+    <id>http://zhenghe39.com/2016/04/09/content-type的意义/</id>
+    <published>2016-04-09T09:45:37.000Z</published>
+    <updated>2016-04-09T10:04:13.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;content-type&lt;/em&gt;决定文件类型以及编码格式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;GET&quot;&gt;&lt;a href=&quot;#GET&quot; class=&quot;headerlink&quot; title=&quot;GET&quot;&gt;&lt;/a&gt;GET&lt;/h4&gt;&lt;p&gt;当以&lt;code&gt;GET&lt;/code&gt;方式发请求时，无论&lt;code&gt;Content-Type&lt;/code&gt;设置为何值，都不会影响&lt;code&gt;request.getParameter&lt;/code&gt;获取&lt;code&gt;Url&lt;/code&gt;上的参数&lt;/p&gt;
+&lt;h4 id=&quot;POST&quot;&gt;&lt;a href=&quot;#POST&quot; class=&quot;headerlink&quot; title=&quot;POST&quot;&gt;&lt;/a&gt;POST&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;content-type&lt;/code&gt;为&lt;code&gt;application/x-www-form-urlencoded&lt;/code&gt;即「表单提交」时，可以通过&lt;code&gt;request.getParameter&lt;/code&gt;获取参数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;content-type&lt;/code&gt;为&lt;code&gt;application/json;charset=utf-8&lt;/code&gt;时,&lt;code&gt;request.getParameter&lt;/code&gt;是获取不到参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;针对&lt;code&gt;POST&lt;/code&gt;并且&lt;code&gt;content-type&lt;/code&gt;为&lt;code&gt;application/json;charset=utf-8&lt;/code&gt;，通过以下方法获取数据。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;readStringFromRequest&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HttpServletRequest request,String encode)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StringBuffer json = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; StringBuffer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	InputStream in = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		in = request.getInputStream();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		InputStreamReader isr = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; InputStreamReader(in,encode);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		BufferedReader bufferReader = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BufferedReader(isr);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String line = bufferReader.readLine();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(StringUtils.isEmpty(line))&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			line = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		do&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			json.append(line);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			line = bufferReader.readLine();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(line != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				json.append(&lt;span class=&quot;string&quot;&gt;&quot;\n&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(line != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt;(IOException e)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		e.printStackTrace();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;content-type&lt;/em&gt;决定文件类型以及编码格式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;GET&quot;&gt;&lt;a href=&quot;#GET&quot; class=&quot;headerlink&quot; title=&quot;GET&quot;&gt;&lt;/a&gt;GET&lt;/h4&gt;&lt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://zhenghe39.com/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>浅谈JS闭包和this关键字</title>
