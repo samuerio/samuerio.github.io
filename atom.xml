@@ -118,6 +118,111 @@
   </entry>
   
   <entry>
+    <title>同步异步与阻塞非阻塞</title>
+    <link href="http://zhenghe39.com/2016/03/29/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E5%92%8C%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E/"/>
+    <id>http://zhenghe39.com/2016/03/29/同步异步和阻塞非阻塞/</id>
+    <published>2016-03-29T14:14:20.000Z</published>
+    <updated>2016-04-10T08:08:27.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;同步与异步&quot;&gt;&lt;a href=&quot;#同步与异步&quot; class=&quot;headerlink&quot; title=&quot;同步与异步&quot;&gt;&lt;/a&gt;同步与异步&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;同步和异步关注的是&lt;em&gt;消息通信机制&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;同步&lt;/strong&gt;：&lt;em&gt;调用&lt;/em&gt;发出后，没得到结果前，该调用就不返回。&lt;br&gt;&lt;strong&gt;异步&lt;/strong&gt;：&lt;em&gt;调用&lt;/em&gt;发出后，调用就直接返回了(没有返回结果)。调用者不会立即得到结果，而是在&lt;em&gt;调用&lt;/em&gt;发出后，&lt;em&gt;被调用者&lt;/em&gt;通过状态、通知来通知调用者或通过回调函数来处理这个调用。&lt;/p&gt;
+&lt;h3 id=&quot;阻塞与非阻塞&quot;&gt;&lt;a href=&quot;#阻塞与非阻塞&quot; class=&quot;headerlink&quot; title=&quot;阻塞与非阻塞&quot;&gt;&lt;/a&gt;阻塞与非阻塞&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;阻塞和非阻塞关注的是&lt;em&gt;程序在等待调用结果(消息，返回值)&lt;/em&gt;时的状态。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;阻塞&lt;/strong&gt;：调用结果返回前，线程会被挂起&lt;br&gt;&lt;strong&gt;非阻塞&lt;/strong&gt;：不能得到结果之前，该调用不会阻塞当前线程&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;同步与异步&quot;&gt;&lt;a href=&quot;#同步与异步&quot; class=&quot;headerlink&quot; title=&quot;同步与异步&quot;&gt;&lt;/a&gt;同步与异步&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;同步和异步关注的是&lt;em&gt;消息通信机制&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Shell下的文件和路径</title>
+    <link href="http://zhenghe39.com/2016/03/21/Shell%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E8%B7%AF%E5%BE%84/"/>
+    <id>http://zhenghe39.com/2016/03/21/Shell下的文件和路径/</id>
+    <published>2016-03-21T14:04:20.000Z</published>
+    <updated>2016-04-10T08:15:24.000Z</updated>
+    
+    <content type="html">&lt;h4 id=&quot;路径&quot;&gt;&lt;a href=&quot;#路径&quot; class=&quot;headerlink&quot; title=&quot;路径&quot;&gt;&lt;/a&gt;路径&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;改变路径：cd /（/为根目录）&lt;/li&gt;
+&lt;li&gt;浏览路径下的文件：ls -l /home(-l是以列表形式显示）&lt;/li&gt;
+&lt;li&gt;显示当前工作路径：pwd&lt;/li&gt;
+&lt;li&gt;创造目录：mkdir -p(-p代表创造多级目录）&lt;/li&gt;
+&lt;li&gt;删除目录：rmdir&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;文件&quot;&gt;&lt;a href=&quot;#文件&quot; class=&quot;headerlink&quot; title=&quot;文件&quot;&gt;&lt;/a&gt;文件&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;删除：            rm -rf「强制删除」&lt;/li&gt;
+&lt;li&gt;类型：            file「显示文件类型」&lt;/li&gt;
+&lt;li&gt;新建：            touch「新建文件或更新时间戳」&lt;/li&gt;
+&lt;li&gt;复制：            cp filea fileb「当前目录多了fileb」&lt;/li&gt;
+&lt;li&gt;重命名/移动：      mv filea fileb&lt;/li&gt;
+&lt;li&gt;查看：            cat more less head tail「控制台查看文本内容，但无法编辑」&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;路径&quot;&gt;&lt;a href=&quot;#路径&quot; class=&quot;headerlink&quot; title=&quot;路径&quot;&gt;&lt;/a&gt;路径&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;改变路径：cd /（/为根目录）&lt;/li&gt;
+&lt;li&gt;浏览路径下的文件：ls -l /home(-l是以列表形式显示）&lt;/li&gt;
+
+    
+    </summary>
+    
+    
+      <category term="Shell" scheme="http://zhenghe39.com/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vi</title>
+    <link href="http://zhenghe39.com/2016/03/21/Vi/"/>
+    <id>http://zhenghe39.com/2016/03/21/Vi/</id>
+    <published>2016-03-21T13:56:20.000Z</published>
+    <updated>2016-04-10T08:21:23.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;概述：&quot;&gt;&lt;a href=&quot;#概述：&quot; class=&quot;headerlink&quot; title=&quot;概述：&quot;&gt;&lt;/a&gt;概述：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;进入编辑环境:       vi&lt;/li&gt;
+&lt;li&gt;打开/创建:         vi file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;3种模式：&quot;&gt;&lt;a href=&quot;#3种模式：&quot; class=&quot;headerlink&quot; title=&quot;3种模式：&quot;&gt;&lt;/a&gt;3种模式：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;命令模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; &lt;em&gt;跳行&lt;/em&gt;         G「跳到末行」  nG「跳到n行」&lt;br&gt; &lt;em&gt;复制&lt;/em&gt;         yy「复制当前整行」 nyy「复制从当前行开始的n行」&lt;br&gt; &lt;em&gt;黏贴&lt;/em&gt;         p「插入的形式，以当前行的下一行作为插入点」&lt;br&gt; &lt;em&gt;删除&lt;/em&gt;         dd「删除当前行」 ndd「删除从当前行开始的n行」&lt;br&gt; &lt;em&gt;翻页&lt;/em&gt;         ctrl+f「向后翻整页」 ctrl+b「向前翻整页」&lt;br&gt; &lt;em&gt;撤销&lt;/em&gt;         u「取消最近一次的操作」U「取消对当前进行的所有操作」&lt;br&gt; &lt;em&gt;恢复&lt;/em&gt;         ctrl+r「对撤销进行恢复」&lt;br&gt; &lt;em&gt;查询&lt;/em&gt;         /word（自上而下查找） ?word（自下而上查找） n（定位下一个）N（定位上一个)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;输入模式&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;末行模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 替换： %s/old/new/g「替换文件范围内的所有“old”为“new”」&lt;br&gt; 行号： set nu「设置」     set nonu「取消」&lt;br&gt; 退出： q!「强制退出」&lt;br&gt; 保存： wq「保存并退出」    w filename「另存为filename」&lt;br&gt; 追加： r filename「追加filename内容到当前文件中」&lt;br&gt; 打开： e！filename「打开filename，并放弃当前文件的修改」 e filename「打开filename」&lt;br&gt; 帮助： help&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;概述：&quot;&gt;&lt;a href=&quot;#概述：&quot; class=&quot;headerlink&quot; title=&quot;概述：&quot;&gt;&lt;/a&gt;概述：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;进入编辑环境:       vi&lt;/li&gt;
+&lt;li&gt;打开/创建:         vi file&lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+    
+      <category term="vi" scheme="http://zhenghe39.com/tags/vi/"/>
+    
+  </entry>
+  
+  <entry>
     <title>浅谈JS闭包和this关键字</title>
     <link href="http://zhenghe39.com/2016/03/14/%E6%B5%85%E8%B0%88JS%E9%97%AD%E5%8C%85%E5%92%8Cthis%E5%85%B3%E9%94%AE%E5%AD%97/"/>
     <id>http://zhenghe39.com/2016/03/14/浅谈JS闭包和this关键字/</id>
