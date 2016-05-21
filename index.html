@@ -1,1 +1,343 @@
-<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> ZhengHe's house</title><meta name="description" content="记录造轮子的点点滴滴"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link active">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><ul class="home post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2016/04/10/构造Promise返回函数的两种方式/" class="post-title-link">Q构造Deferred的两种方式</a></h2><div class="post-time">Apr 10, 2016</div><div class="post-content"></div><a href="/2016/04/10/构造Promise返回函数的两种方式/" class="read-more">...阅读全文</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2016/04/10/消灭CallBack导致的函数金字塔/" class="post-title-link">消灭CallBack导致的函数金字塔</a></h2><div class="post-time">Apr 10, 2016</div><div class="post-content"></div><a href="/2016/04/10/消灭CallBack导致的函数金字塔/" class="read-more">...阅读全文</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2016/04/09/content-type的意义/" class="post-title-link">content-type影响Java获取前台数据</a></h2><div class="post-time">Apr 9, 2016</div><div class="post-content"></div><a href="/2016/04/09/content-type的意义/" class="read-more">...阅读全文</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2016/03/29/同步异步和阻塞非阻塞/" class="post-title-link">同步异步与阻塞非阻塞</a></h2><div class="post-time">Mar 29, 2016</div><div class="post-content"></div><a href="/2016/03/29/同步异步和阻塞非阻塞/" class="read-more">...阅读全文</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2016/03/21/Shell下的文件和路径/" class="post-title-link">Shell下的文件和路径</a></h2><div class="post-time">Mar 21, 2016</div><div class="post-content"></div><a href="/2016/03/21/Shell下的文件和路径/" class="read-more">...阅读全文</a></article></li></ul></section><footer><div class="paginator"><a href="/page/2/" class="next">下一页</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://zhenghe39.com">ZhengHe</a>, unless otherwise noted.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script><script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a36e15d9e2adec9a21fcdd9f686b1ed2";var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);})();</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ZhengHe&#39;s house</title>
+  <meta name="author" content="ZhengHe">
+  
+  <meta name="description" content="记录造轮子的点点滴滴">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="ZhengHe&#39;s house"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="ZhengHe&#39;s house" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ZhengHe&#39;s house</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-10T07:12:48.000Z"><a href="/2016/04/10/构造Promise返回函数的两种方式/">2016-04-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/10/构造Promise返回函数的两种方式/">Q构造Deferred的两种方式</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="Q-defer"><a href="#Q-defer" class="headerlink" title="Q.defer"></a>Q.defer</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">     * 根据标签获取对应emoji</span><br><span class="line">     * @param tag</span><br><span class="line">     */</span></span><br><span class="line">    getEmoji:<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> deferred = Q.defer();</span><br><span class="line">        conn.open()</span><br><span class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">db</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> db.collection(<span class="string">'emoji'</span>);&#125;)</span><br><span class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">collection</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> collection.find(&#123;tag:tag&#125;).toArray();</span><br><span class="line">            &#125;)</span><br><span class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">searchRs</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(!searchRs.length)&#123;</span><br><span class="line">                    deferred.resolve(NO_FACE_MOOD);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> randomInt = Utils.getRandomInt(<span class="number">0</span>,searchRs.length);</span><br><span class="line">                <span class="keyword">var</span> randomEmoji = searchRs[randomInt].content;</span><br><span class="line">                deferred.resolve(randomEmoji);</span><br><span class="line">            &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err.message);</span><br><span class="line">                deferred.reject(err);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> deferred.promise;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Q-promise"><a href="#Q-promise" class="headerlink" title="Q.promise"></a>Q.promise</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">     * 根据标签获取对应emoji</span><br><span class="line">     * @param tag</span><br><span class="line">     */</span></span><br><span class="line">    getEmoji:<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Q.promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">            conn.open()</span><br><span class="line">                .then(<span class="function"><span class="keyword">function</span>(<span class="params">db</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> db.collection(<span class="string">'emoji'</span>);&#125;)</span><br><span class="line">                .then(<span class="function"><span class="keyword">function</span>(<span class="params">collection</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> collection.find(&#123;tag:tag&#125;).toArray();</span><br><span class="line">                &#125;)</span><br><span class="line">                .then(<span class="function"><span class="keyword">function</span>(<span class="params">searchRs</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(!searchRs.length)&#123;</span><br><span class="line">                        resolve(NO_FACE_MOOD);</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> randomInt = Utils.getRandomInt(<span class="number">0</span>,searchRs.length);</span><br><span class="line">                    <span class="keyword">var</span> randomEmoji = searchRs[randomInt].content;</span><br><span class="line">                    resolve(randomEmoji);</span><br><span class="line">                &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">                    reject(err);</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-10T06:56:15.000Z"><a href="/2016/04/10/消灭CallBack导致的函数金字塔/">2016-04-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/10/消灭CallBack导致的函数金字塔/">消灭CallBack导致的函数金字塔</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性的编程存在适应的困难。传统的编程方式是采用CallBack来协调「用户交互」和「异步任务」，但这种方式会导致嵌套的函数，不仅难以理解，而且开发人员需要仔细分析哪些代码用于应用的业务逻辑，而哪些代码处理异步函数调用，代码结构支离破碎，难以维护。</p>
+</blockquote>
+<h3 id="Promise模式拯救「延迟」引起CallBack"><a href="#Promise模式拯救「延迟」引起CallBack" class="headerlink" title="Promise模式拯救「延迟」引起CallBack"></a>Promise模式拯救「延迟」引起CallBack</h3><p><em>案例1</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodeconfig = (<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> nodeJson = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> privateMethod = </span><br><span class="line">		loadEvent:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> param = <span class="string">"?id=readFlowEvent&amp;appUnid="</span> + APP_UNID;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">var</span> servletUrl = WEB_ROOT + DESINGER_SERVLET;</span><br><span class="line">				servletUrl = servletUrl + param;</span><br><span class="line">	</span><br><span class="line">			<span class="keyword">var</span> loadSuccessFn = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(data.success) &#123;</span><br><span class="line">					<span class="comment">//...</span></span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					parent.mini.error(data.message);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;;</span><br><span class="line">			<span class="comment">// 加载请求servlet</span></span><br><span class="line">			lw.utils.postJson(servletUrl, <span class="literal">null</span>, loadSuccessFn,<span class="literal">null</span>,<span class="literal">false</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> pageInit = &#123;</span><br><span class="line">		initData:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="comment">/**加载事件列表到页面**/</span></span><br><span class="line">			privateMethod.loadEvent();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> pageInit</span><br><span class="line"></span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<p><strong>服务请求</strong>是有延迟、需要异步的，<code>loadEvent</code>是异步任务，但其中既有同步处理逻辑又有异步处理逻辑，不仅不好理解，而且难以查看服务请求来源（异步任务）。</p>
+<p><em>优化</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">var</span> nodeconfig = (<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> nodeJson = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*异步请求*/</span></span><br><span class="line">	<span class="keyword">var</span> service = &#123;</span><br><span class="line">		getEventData:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> Q.promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">var</span> param = <span class="string">"?id=readFlowEvent&amp;appUnid="</span> + APP_UNID;</span><br><span class="line">			</span><br><span class="line">				<span class="keyword">var</span> servletUrl = WEB_ROOT + DESINGER_SERVLET;</span><br><span class="line">				</span><br><span class="line">				servletUrl = servletUrl + param;</span><br><span class="line">				<span class="keyword">var</span> loadSuccessFn = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">					<span class="keyword">if</span>(data.success) &#123;</span><br><span class="line">						resolve(data);</span><br><span class="line">					&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">						reject(data);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;;</span><br><span class="line">				<span class="comment">// 加载请求servlet</span></span><br><span class="line">				lw.utils.postJson(servletUrl, <span class="literal">null</span>, loadSuccessFn,<span class="literal">null</span>,<span class="literal">false</span>);</span><br><span class="line">			&#125;);</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> privateMethod = </span><br><span class="line">		renderEventList:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(data.success) &#123;</span><br><span class="line">				<span class="comment">//...</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> pageInit = &#123;</span><br><span class="line">		initData:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="comment">/**加载事件列表到页面**/</span></span><br><span class="line">			service.getEventData</span><br><span class="line">				.then(privateMethod.renderEventList,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">					parent.mini.error(err.message);</span><br><span class="line">				&#125;);</span><br><span class="line">			privateMethod.renderNodeContent(nodeJson);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> pageInit;</span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
+<p>这里的话是将服务请求(异步任务)都归于<code>service</code>中，并使用Promise模式，返回的deferred用于同步地写入请求到数据后的处理。不仅消除了<code>烦人的callback</code>取而代之使用<code>then</code>，使得同步式编码更顺畅，而且更易于理解。(<strong>注意</strong>:callback会打断同步式编码，应该尽量避免)</p>
+<h3 id="事件注册模式拯救「用户交互」引起的CallBack"><a href="#事件注册模式拯救「用户交互」引起的CallBack" class="headerlink" title="事件注册模式拯救「用户交互」引起的CallBack"></a>事件注册模式拯救「用户交互」引起的CallBack</h3><blockquote>
+<p>这种模式类似Dom和相关事件之间的关系，当Dom被点击，则发射出一个点击事件的’信号’，触发点击事件的监听等。</p>
+</blockquote>
+<p><strong>案例2</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接收客户端信息</span></span><br><span class="line">        myWeixin.receiveMsg(clientMsg.Content[<span class="number">0</span>],clientMsg.MsgType[<span class="number">0</span>],textMsgCallBack);</span><br></pre></td></tr></table></figure>
+<p><em>优化</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//监听客户端文本信息(即:注册[文本信息接受事件])</span></span><br><span class="line">    myWeixin.listener().on(<span class="string">'TextMsg'</span>,onTextMsg);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//接收客户端信息</span></span><br><span class="line">    myWeixin.receiveMsg(clientMsg.Content[<span class="number">0</span>],clientMsg.MsgType[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+<p>事件机制：提前注册「文本信息接受事件」的监听程序，当接受到文本信息时，发出一个文本信息接受事件，调用监听程序。这种写法使得<code>晦涩的回调函数</code>消失代替以<code>事件注册</code>，增加了程序的可读性和灵活性。使用者使用封装的JS对象时，只要关注JS对象提供哪些事件点就好了，不需要关注其中的处理逻辑。</p>
+<p><strong>案例3</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.extend(FlowDesinger,&#123;</span><br><span class="line">	prototype:&#123;</span><br><span class="line">		<span class="comment">/**节点渲染**/</span></span><br><span class="line">		addNode:<span class="function"><span class="keyword">function</span>(<span class="params">curNode</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> $node = $(<span class="string">"&lt;li&gt;&lt;a&gt;&lt;span title='"</span>+curNode.name+<span class="string">"'&gt;"</span>+curNode.name+<span class="string">"&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;"</span>)</span><br><span class="line">							.data(<span class="string">"value"</span>,curNode)</span><br><span class="line">							.attr(<span class="string">"nodeId"</span>,curNode[<span class="string">"unid"</span>])</span><br><span class="line">							.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">							<span class="comment">//点击事件触发内容(非Flow式的代码)</span></span><br><span class="line">							<span class="comment">//...</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种写法非常不推荐！节点渲染是一个「同步」过程，而事件程序的执行是「异步」的，它必须等待事件的发出。将同步和异步逻辑写在一起，不仅打断正常编码思路，而且也会导致后期维护起来异常困难，这里会导致：找节点点击事件监听程序（异步任务）时就不好找/(ㄒoㄒ)/~~</p>
+<p><em>优化</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$.extend(FlowDesinger,&#123;</span><br><span class="line">	prototype:&#123;</span><br><span class="line">		<span class="comment">/**节点渲染**/</span></span><br><span class="line">		addNode:<span class="function"><span class="keyword">function</span>(<span class="params">curNode</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> $node = $(<span class="string">"&lt;li&gt;&lt;a&gt;&lt;span title='"</span>+curNode.name+<span class="string">"'&gt;"</span>+curNode.name+<span class="string">"&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;"</span>)</span><br><span class="line">							.data(<span class="string">"value"</span>,curNode)</span><br><span class="line">							.attr(<span class="string">"nodeId"</span>,curNode[<span class="string">"unid"</span>])；</span><br><span class="line">		$node.on(<span class="string">'click'</span>,<span class="keyword">this</span>.listener().nodeClick);</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="comment">/**事件监听程序,「用户操作」异步任务入口**/</span></span><br><span class="line">		listener:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">			<span class="keyword">return</span> &#123;</span><br><span class="line">				nodeClick:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">					<span class="comment">//点击事件触发内容</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种写法，可以一目了然得知道<code>listener</code>是「用户操作」异步任务入口。分离了同步和异步的代码使得程序层次更加分明，而且可读性和可维护性大大提高！</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-09T09:45:37.000Z"><a href="/2016/04/09/content-type的意义/">2016-04-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/04/09/content-type的意义/">content-type影响Java获取前台数据</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p><em>content-type</em>决定文件类型以及编码格式</p>
+</blockquote>
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>当以<code>GET</code>方式发请求时，无论<code>Content-Type</code>设置为何值，都不会影响<code>request.getParameter</code>获取<code>Url</code>上的参数</p>
+<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><ul>
+<li><code>content-type</code>为<code>application/x-www-form-urlencoded</code>即「表单提交」时，可以通过<code>request.getParameter</code>获取参数</li>
+<li><code>content-type</code>为<code>application/json;charset=utf-8</code>时,<code>request.getParameter</code>是获取不到参数</li>
+</ul>
+<p><em>解决方案</em></p>
+<p><code>POST</code>并且<code>content-type</code>为<code>application/json;charset=utf-8</code>时：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(actionUrl,&#123;</span><br><span class="line">                      method:<span class="string">'POST'</span>,</span><br><span class="line">                      data:<span class="built_in">JSON</span>.stringify(postData),<span class="comment">//这里必须序列化为JSON字符串</span></span><br><span class="line">                      contentType:<span class="string">'application/json; charset=utf-8'</span>,</span><br><span class="line">                      dataType:<span class="string">'json'</span>,</span><br><span class="line">                      success:<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</span><br><span class="line">                          <span class="keyword">if</span>(rs.success)&#123;</span><br><span class="line">                              resolve(rs.content);</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;);</span><br></pre></td></tr></table></figure>
+<p>获取数据：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readStringFromRequest</span><span class="params">(HttpServletRequest request,String encode)</span></span>&#123;</span><br><span class="line">	StringBuffer json = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	InputStream in = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		in = request.getInputStream();</span><br><span class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in,encode);</span><br><span class="line">		BufferedReader bufferReader = <span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">		</span><br><span class="line">		String line = bufferReader.readLine();</span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isEmpty(line))&#123;</span><br><span class="line">			line = <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		do&#123;</span><br><span class="line">			json.append(line);</span><br><span class="line">			line = bufferReader.readLine();</span><br><span class="line">			<span class="keyword">if</span>(line != <span class="keyword">null</span>)&#123;</span><br><span class="line">				json.append(<span class="string">"\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">while</span>(line != <span class="keyword">null</span>);</span><br><span class="line">	&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-29T14:14:20.000Z"><a href="/2016/03/29/同步异步和阻塞非阻塞/">2016-03-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/29/同步异步和阻塞非阻塞/">同步异步与阻塞非阻塞</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><blockquote>
+<p>同步和异步关注的是<em>消息通信机制</em></p>
+</blockquote>
+<p><strong>同步</strong>：<em>调用</em>发出后，没得到结果前，该调用就不返回。<br><strong>异步</strong>：<em>调用</em>发出后，调用就直接返回了(没有返回结果)。调用者不会立即得到结果，而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者或通过回调函数来处理这个调用。</p>
+<h3 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h3><blockquote>
+<p>阻塞和非阻塞关注的是<em>程序在等待调用结果(消息，返回值)</em>时的状态。</p>
+</blockquote>
+<p><strong>阻塞</strong>：调用结果返回前，线程会被挂起<br><strong>非阻塞</strong>：不能得到结果之前，该调用不会阻塞当前线程</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-21T14:04:20.000Z"><a href="/2016/03/21/Shell下的文件和路径/">2016-03-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/21/Shell下的文件和路径/">Shell下的文件和路径</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h4 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h4><ul>
+<li>改变路径：cd /（/为根目录）</li>
+<li>浏览路径下的文件：ls -l /home(-l是以列表形式显示）</li>
+<li>显示当前工作路径：pwd</li>
+<li>创造目录：mkdir -p(-p代表创造多级目录）</li>
+<li>删除目录：rmdir</li>
+</ul>
+<h4 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h4><ul>
+<li>删除：            rm -rf「强制删除」</li>
+<li>类型：            file「显示文件类型」</li>
+<li>新建：            touch「新建文件或更新时间戳」</li>
+<li>复制：            cp filea fileb「当前目录多了fileb」</li>
+<li>重命名/移动：      mv filea fileb</li>
+<li>查看：            cat more less head tail「控制台查看文本内容，但无法编辑」</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+    <a href="/page/2/" class="alignright next">下一頁</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="q" value="site:zhenghe39.com">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Css/">Css</a><small>2</small></li>
+  
+    <li><a href="/tags/Homebrew/">Homebrew</a><small>1</small></li>
+  
+    <li><a href="/tags/Http/">Http</a><small>1</small></li>
+  
+    <li><a href="/tags/JSON/">JSON</a><small>1</small></li>
+  
+    <li><a href="/tags/JavaScript/">JavaScript</a><small>2</small></li>
+  
+    <li><a href="/tags/Oracle/">Oracle</a><small>1</small></li>
+  
+    <li><a href="/tags/Q/">Q</a><small>1</small></li>
+  
+    <li><a href="/tags/Shell/">Shell</a><small>4</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>3</small></li>
+  
+    <li><a href="/tags/vi/">vi</a><small>1</small></li>
+  
+    <li><a href="/tags/数据库/">数据库</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 ZhengHe
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
