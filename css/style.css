@@ -344,6 +344,7 @@ article .entry blockquote:after {
   color: #e0e0e0;
 }
 article .entry blockquote p {
+  color: #575757;
   margin-bottom: 0;
   padding-bottom: 0;
 }
