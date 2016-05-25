@@ -42,8 +42,6 @@ h2 {
 }
 h3 {
   font-size: 1.3em;
-  padding-left: 9px;
-  border-left: 6px solid #ff7e79;
 }
 a {
   text-decoration: none;
@@ -415,7 +413,12 @@ article .entry h3,
 article .entry h4,
 article .entry h5,
 article .entry h6 {
-  font-weight: normal;
+  margin: 40px 10px 20px 0;
+}
+article .entry h3 {
+  font-size: 1.4em;
+  padding-left: 9px;
+  border-left: 6px solid #ff7e79;
 }
 article .entry img,
 article .entry video {
