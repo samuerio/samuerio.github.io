@@ -313,6 +313,7 @@ article .entry .video-container {
   margin-top: 15px;
 }
 article .entry blockquote {
+  font-size: 1.1em;
   border-top: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
   color: #666;
