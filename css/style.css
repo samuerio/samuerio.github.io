@@ -739,7 +739,7 @@ article footer .addthis iframe {
 figure.highlight {
   background: #eee;
   border: 1px solid #ddd;
-  margin-top: 15px;
+  margin: 0 0 20px;
   padding: 7px 15px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
