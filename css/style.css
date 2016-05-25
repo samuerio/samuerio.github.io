@@ -313,30 +313,35 @@ article .entry .video-container {
   margin-top: 15px;
 }
 article .entry blockquote {
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-  color: #666;
-  padding: 10px 25px 25px;
+  font-size: 1em;
+  font-style: normal;
+  padding: 30px 38px;
+  margin: 0 0 15px;
   position: relative;
-  margin: 1.5em 0;
-  background-color: #fafafa;
+  line-height: 1.8;
+  text-indent: 0;
+  border: none;
+  color: #888;
 }
 article .entry blockquote:before,
 article .entry blockquote:after {
+  font-family: Arial, serif;
+  font-size: 3em;
+  line-height: 1em;
+  font-weight: 700;
   position: absolute;
-  color: #c0c0c0;
-  line-height: 1;
-  font-size: 50px;
 }
 article .entry blockquote:before {
   content: "“";
-  top: 3px;
-  left: 0;
+  left: 12px;
+  top: 0;
+  color: #e0e0e0;
 }
 article .entry blockquote:after {
-  content: "„";
-  bottom: 8px;
-  right: 0;
+  content: "”";
+  right: 12px;
+  bottom: -31px;
+  color: #e0e0e0;
 }
 article .entry blockquote p {
   margin-bottom: 0;
