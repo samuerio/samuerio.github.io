@@ -42,6 +42,8 @@ h2 {
 }
 h3 {
   font-size: 1.3em;
+  padding-left: 9px;
+  border-left: 6px solid #ff7e79;
 }
 a {
   text-decoration: none;
