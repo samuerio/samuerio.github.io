@@ -338,6 +338,10 @@ article .entry blockquote:after {
   bottom: 8px;
   right: 0;
 }
+article .entry blockquote p {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 article .entry blockquote footer {
   color: #999;
   line-height: 1.1;
