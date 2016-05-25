@@ -420,6 +420,10 @@ article .entry h3 {
   padding-left: 9px;
   border-left: 6px solid #ff7e79;
 }
+article .entry p {
+  margin: 0 0 20px;
+  padding: 0;
+}
 article .entry img,
 article .entry video {
   max-width: 100%;
