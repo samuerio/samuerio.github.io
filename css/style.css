@@ -380,7 +380,6 @@ article .entry code {
   border-radius: 3px;
 }
 article .entry pre {
-  background: #eee;
   border: 1px solid #ddd;
   margin-top: 15px;
   overflow: auto;
@@ -747,7 +746,6 @@ article footer .addthis iframe {
   color: #258fb8;
 }
 figure.highlight {
-  background: #eee;
   border: 1px solid #ddd;
   margin: 0 0 20px;
   padding: 7px 15px;
@@ -780,7 +778,7 @@ figure.highlight table {
 figure.highlight .gutter {
   color: #999;
   padding-right: 15px;
-  border-right: 1px solid #ddd;
+  border-right: 2px solid #6ce26c;
   text-align: right;
 }
 figure.highlight .code {
