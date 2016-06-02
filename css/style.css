@@ -545,15 +545,16 @@ article footer .addthis iframe {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   margin: 1.5em 0 0.3em 1.5em;
+  margin-top: 0;
   padding: 1.2em 1em 0 1em;
   max-width: 28%;
 }
 .toc-title {
-  font-size: 120%;
+  font-size: 110%;
 }
 #toc {
   line-height: 1em;
-  font-size: 0.9em;
+  font-size: 0.8em;
   float: right;
 }
 #toc .toc {
