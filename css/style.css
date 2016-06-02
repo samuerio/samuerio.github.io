@@ -265,6 +265,7 @@ article header time {
 }
 article header .title {
   font-weight: normal;
+  margin-bottom: 25px;
 }
 article header .title a {
   color: #444;
