@@ -52,6 +52,41 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-03-13T08:21:24.000Z"><a href="/2016/03/13/Css省略号与换行/">2016-03-13</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/13/Css省略号与换行/">Css省略号与换行</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h4 id="英文换行"><a href="#英文换行" class="headerlink" title="英文换行"></a>英文换行</h4><p>默认的换行规则对英文单词不理想（会有英文单词超过边界仍显示的情况），故需要手动进行换行。</p>
+<h4 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h4><p><a href="https://jsfiddle.net/samuerio/gk5847jb/" target="_blank" rel="external">jsfiddle效果展示地址</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">        <span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">30px</span></span></span>;</span><br><span class="line">            <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">60px</span></span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line">        <span class="comment">/*省略号代替超过长度的文本*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">white-space</span>:<span class="value"> nowrap</span></span>;<span class="comment">/*阻止默认的文本换行*/</span></span><br><span class="line">            <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;   <span class="comment">/*隐藏超过容器的部分*/</span></span><br><span class="line">            <span class="rule"><span class="attribute">text-overflow</span>:<span class="value"> ellipsis</span></span>;<span class="comment">/*被隐藏的文本使用省略号代替 */</span></span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*英文单词的换行*/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*强制换行*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test1</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">word-break</span>:<span class="value"> break-all</span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*普通换行:尽量保持英文单词的完整性*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test2</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">word-wrap</span>:<span class="value"> break-word</span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test"</span>&gt;</span>我是超过容器长度的长文本<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span>Execuse me,my name is zhenghe from changle<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test1"</span>&gt;</span>Execuse me,my name is zhenghe from changle<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test2"</span>&gt;</span>Execuse me,my name is zhenghe from changle<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-13T03:22:36.000Z"><a href="/2016/03/13/Shell下的权限控制/">2016-03-13</a></time>
       
       
@@ -208,41 +243,6 @@
           <div class="alignleft">
             <a href="/2016/03/12/JS下的JSON解析及序列化/#more" class="more-link">Read More</a>
           </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-03T12:01:55.000Z"><a href="/2016/03/03/brew link error/">2016-03-03</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/03/brew link error/">brew link error</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>brew安装nginx时报错，解决方法如下</p>
-<p><img src="http://ww1.sinaimg.cn/large/8b826b79jw1f1jxcqaqovj20su08wgqi.jpg" alt=""></p>
-<p><img src="http://ww3.sinaimg.cn/large/8b826b79jw1f1jxd6m1xbj20va08waei.jpg" alt=""></p>
-
-      
-    </div>
-    <footer>
-      
         
         
       

@@ -82,17 +82,18 @@
   </entry>
   
   <entry>
-    <title>content-type影响Java获取前台数据</title>
+    <title>content-type影响request.getParameter获取数据</title>
     <link href="http://zhenghe39.com/2016/04/09/content-type%E7%9A%84%E6%84%8F%E4%B9%89/"/>
     <id>http://zhenghe39.com/2016/04/09/content-type的意义/</id>
     <published>2016-04-09T09:45:37.000Z</published>
-    <updated>2016-04-09T12:51:34.000Z</updated>
+    <updated>2016-06-02T02:22:23.000Z</updated>
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;content-type&lt;/em&gt;决定文件类型以及编码格式&lt;/p&gt;
+    <content type="html">&lt;p&gt;content-type决定了文件类型以及数据的展示方式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.&lt;br&gt;content-type&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h4 id=&quot;GET&quot;&gt;&lt;a href=&quot;#GET&quot; class=&quot;headerlink&quot; title=&quot;GET&quot;&gt;&lt;/a&gt;GET&lt;/h4&gt;&lt;p&gt;当以&lt;code&gt;GET&lt;/code&gt;方式发请求时，无论&lt;code&gt;Content-Type&lt;/code&gt;设置为何值，都不会影响&lt;code&gt;request.getParameter&lt;/code&gt;获取&lt;code&gt;Url&lt;/code&gt;上的参数&lt;/p&gt;
-&lt;h4 id=&quot;POST&quot;&gt;&lt;a href=&quot;#POST&quot; class=&quot;headerlink&quot; title=&quot;POST&quot;&gt;&lt;/a&gt;POST&lt;/h4&gt;&lt;ul&gt;
+&lt;p&gt;Get请求的数据是附着在URL后（即位于HTTP协议头部），而Post提交的数据是放于HTTP包的包体。故content-type只会影响到Post提交的数据。&lt;/p&gt;
+&lt;h3 id=&quot;application-x-www-form-urlencoded&quot;&gt;&lt;a href=&quot;#application-x-www-form-urlencoded&quot; class=&quot;headerlink&quot; title=&quot;application/x-www-form-urlencoded&quot;&gt;&lt;/a&gt;application/x-www-form-urlencoded&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;content-type&lt;/code&gt;为&lt;code&gt;application/x-www-form-urlencoded&lt;/code&gt;即「表单提交」时，可以通过&lt;code&gt;request.getParameter&lt;/code&gt;获取参数&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;content-type&lt;/code&gt;为&lt;code&gt;application/json;charset=utf-8&lt;/code&gt;时,&lt;code&gt;request.getParameter&lt;/code&gt;是获取不到参数&lt;/li&gt;
 &lt;/ul&gt;
@@ -105,10 +106,9 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;content-type&lt;/em&gt;决定文件类型以及编码格式&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;GET&quot;&gt;&lt;a href=&quot;#GET&quot; class=&quot;headerlink&quot; title=&quot;GET&quot;&gt;&lt;/a&gt;GET&lt;/h4&gt;&lt;
+      &lt;p&gt;content-type决定了文件类型以及数据的展示方式&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The purpose of the Content-Type field is to describe the data contained in the body full
     
     </summary>
     
@@ -121,6 +121,35 @@
     <title>同步异步与阻塞非阻塞</title>
     <link href="http://zhenghe39.com/2016/03/29/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E5%92%8C%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E/"/>
     <id>http://zhenghe39.com/2016/03/29/同步异步和阻塞非阻塞/</id>
+    <published>2016-03-29T14:14:20.000Z</published>
+    <updated>2016-05-31T05:27:19.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;同步与异步&quot;&gt;&lt;a href=&quot;#同步与异步&quot; class=&quot;headerlink&quot; title=&quot;同步与异步&quot;&gt;&lt;/a&gt;同步与异步&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;同步和异步关注的是&lt;em&gt;消息通信机制&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;同步&lt;/strong&gt;：&lt;em&gt;调用&lt;/em&gt;发出后，没得到结果前，该调用就不返回。&lt;br&gt;&lt;strong&gt;异步&lt;/strong&gt;：&lt;em&gt;调用&lt;/em&gt;发出后，调用就直接返回了(没有返回结果)。调用者不会立即得到结果，而是在&lt;em&gt;调用&lt;/em&gt;发出后，&lt;em&gt;被调用者&lt;/em&gt;通过状态、通知来通知调用者或通过回调函数来处理这个调用。&lt;/p&gt;
+&lt;h3 id=&quot;阻塞与非阻塞同步异步和阻塞非阻塞&quot;&gt;&lt;a href=&quot;#阻塞与非阻塞同步异步和阻塞非阻塞&quot; class=&quot;headerlink&quot; title=&quot;阻塞与非阻塞同步异步和阻塞非阻塞&quot;&gt;&lt;/a&gt;阻塞与非阻塞&lt;a href=&quot;media/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E5%92%8C%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E.md&quot;&gt;同步异步和阻塞非阻塞&lt;/a&gt;&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;阻塞和非阻塞关注的是&lt;em&gt;程序在等待调用结果(消息，返回值)&lt;/em&gt;时的状态。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;阻塞&lt;/strong&gt;：调用结果返回前，线程会被挂起&lt;br&gt;&lt;strong&gt;非阻塞&lt;/strong&gt;：不能得到结果之前，该调用不会阻塞当前线程&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;同步与异步&quot;&gt;&lt;a href=&quot;#同步与异步&quot; class=&quot;headerlink&quot; title=&quot;同步与异步&quot;&gt;&lt;/a&gt;同步与异步&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;同步和异步关注的是&lt;em&gt;消息通信机制&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>同步异步与阻塞非阻塞</title>
+    <link href="http://zhenghe39.com/2016/03/29/media/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E5%92%8C%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E/"/>
+    <id>http://zhenghe39.com/2016/03/29/media/同步异步和阻塞非阻塞/</id>
     <published>2016-03-29T14:14:20.000Z</published>
     <updated>2016-04-10T08:08:27.000Z</updated>
     

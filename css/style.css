@@ -745,7 +745,7 @@ article footer .addthis iframe {
   color: #258fb8;
 }
 figure.highlight {
-  border: 1px solid #ddd;
+  background-color: #f8f8f8;
   margin: 0 0 20px;
   padding: 7px 15px;
   -webkit-border-radius: 2px;

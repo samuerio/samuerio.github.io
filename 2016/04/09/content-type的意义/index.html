@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>content-type影响Java获取前台数据 | issUn&#39;s Lab</title>
+  <title>content-type影响request.getParameter获取数据 | issUn&#39;s Lab</title>
   <meta name="author" content="issUn">
   
   <meta name="description" content="记录造轮子的点点滴滴">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="content-type影响Java获取前台数据"/>
+  <meta property="og:title" content="content-type影响request.getParameter获取数据"/>
   <meta property="og:site_name" content="issUn&#39;s Lab"/>
 
   
@@ -55,17 +55,18 @@
       
       
   
-    <h1 class="title">content-type影响Java获取前台数据</h1>
+    <h1 class="title">content-type影响request.getParameter获取数据</h1>
   
 
     </header>
     <div class="entry">
       
-        <blockquote>
-<p><em>content-type</em>决定文件类型以及编码格式</p>
+        <p>content-type决定了文件类型以及数据的展示方式</p>
+<blockquote>
+<p>The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.<br>content-type</p>
 </blockquote>
-<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>当以<code>GET</code>方式发请求时，无论<code>Content-Type</code>设置为何值，都不会影响<code>request.getParameter</code>获取<code>Url</code>上的参数</p>
-<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><ul>
+<p>Get请求的数据是附着在URL后（即位于HTTP协议头部），而Post提交的数据是放于HTTP包的包体。故content-type只会影响到Post提交的数据。</p>
+<h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><ul>
 <li><code>content-type</code>为<code>application/x-www-form-urlencoded</code>即「表单提交」时，可以通过<code>request.getParameter</code>获取参数</li>
 <li><code>content-type</code>为<code>application/json;charset=utf-8</code>时,<code>request.getParameter</code>是获取不到参数</li>
 </ul>
