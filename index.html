@@ -62,6 +62,10 @@
     </header>
     <div class="entry">
       
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-defer"><span class="toc-number">1.</span> <span class="toc-text">Q.defer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Q-promise"><span class="toc-number">2.</span> <span class="toc-text">Q.promise</span></a></li></ol>
+        </div>
         <h2 id="Q-defer"><a href="#Q-defer" class="headerlink" title="Q.defer"></a>Q.defer</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">     * 根据标签获取对应emoji</span><br><span class="line">     * @param tag</span><br><span class="line">     */</span></span><br><span class="line">    getEmoji:<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> deferred = Q.defer();</span><br><span class="line">        conn.open()</span><br><span class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">db</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> db.collection(<span class="string">'emoji'</span>);&#125;)</span><br><span class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">collection</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> collection.find(&#123;tag:tag&#125;).toArray();</span><br><span class="line">            &#125;)</span><br><span class="line">            .then(<span class="function"><span class="keyword">function</span>(<span class="params">searchRs</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(!searchRs.length)&#123;</span><br><span class="line">                    deferred.resolve(NO_FACE_MOOD);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> randomInt = Utils.getRandomInt(<span class="number">0</span>,searchRs.length);</span><br><span class="line">                <span class="keyword">var</span> randomEmoji = searchRs[randomInt].content;</span><br><span class="line">                deferred.resolve(randomEmoji);</span><br><span class="line">            &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err.message);</span><br><span class="line">                deferred.reject(err);</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> deferred.promise;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Q-promise"><a href="#Q-promise" class="headerlink" title="Q.promise"></a>Q.promise</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">     * 根据标签获取对应emoji</span><br><span class="line">     * @param tag</span><br><span class="line">     */</span></span><br><span class="line">    getEmoji:<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Q.promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">            conn.open()</span><br><span class="line">                .then(<span class="function"><span class="keyword">function</span>(<span class="params">db</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> db.collection(<span class="string">'emoji'</span>);&#125;)</span><br><span class="line">                .then(<span class="function"><span class="keyword">function</span>(<span class="params">collection</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> collection.find(&#123;tag:tag&#125;).toArray();</span><br><span class="line">                &#125;)</span><br><span class="line">                .then(<span class="function"><span class="keyword">function</span>(<span class="params">searchRs</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(!searchRs.length)&#123;</span><br><span class="line">                        resolve(NO_FACE_MOOD);</span><br><span class="line">                        <span class="keyword">return</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">var</span> randomInt = Utils.getRandomInt(<span class="number">0</span>,searchRs.length);</span><br><span class="line">                    <span class="keyword">var</span> randomEmoji = searchRs[randomInt].content;</span><br><span class="line">                    resolve(randomEmoji);</span><br><span class="line">                &#125;,<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">                    reject(err);</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
@@ -96,6 +100,10 @@
     </header>
     <div class="entry">
       
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise模式拯救「延迟」引起CallBack"><span class="toc-number">1.</span> <span class="toc-text">Promise模式拯救「延迟」引起CallBack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件注册模式拯救「用户交互」引起的CallBack"><span class="toc-number">2.</span> <span class="toc-text">事件注册模式拯救「用户交互」引起的CallBack</span></a></li></ol>
+        </div>
         <blockquote>
 <p>对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性的编程存在适应的困难。传统的编程方式是采用CallBack来协调「用户交互」和「异步任务」，但这种方式会导致嵌套的函数，不仅难以理解，而且开发人员需要仔细分析哪些代码用于应用的业务逻辑，而哪些代码处理异步函数调用，代码结构支离破碎，难以维护。</p>
 </blockquote>
@@ -151,6 +159,10 @@
     </header>
     <div class="entry">
       
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#application-x-www-form-urlencoded"><span class="toc-number">1.</span> <span class="toc-text">application/x-www-form-urlencoded</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#application-json-charset-utf-8"><span class="toc-number">2.</span> <span class="toc-text">application/json;charset=utf-8</span></a></li></ol>
+        </div>
         <p><a href="http://tool.oschina.net/commons" target="_blank" rel="external">Content-type</a>决定了文件类型以及数据的展示方式</p>
 <blockquote>
 <p>The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.<br>content-type</p>
@@ -192,6 +204,10 @@
     </header>
     <div class="entry">
       
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#同步与异步"><span class="toc-number">1.</span> <span class="toc-text">同步与异步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻塞与非阻塞同步异步和阻塞非阻塞"><span class="toc-number">2.</span> <span class="toc-text">阻塞与非阻塞同步异步和阻塞非阻塞</span></a></li></ol>
+        </div>
         <h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><blockquote>
 <p>同步和异步关注的是<em>消息通信机制</em></p>
 </blockquote>
@@ -232,6 +248,10 @@
     </header>
     <div class="entry">
       
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#同步与异步"><span class="toc-number">1.</span> <span class="toc-text">同步与异步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阻塞与非阻塞"><span class="toc-number">2.</span> <span class="toc-text">阻塞与非阻塞</span></a></li></ol>
+        </div>
         <h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><blockquote>
 <p>同步和异步关注的是<em>消息通信机制</em></p>
 </blockquote>

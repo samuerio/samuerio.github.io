@@ -61,6 +61,10 @@
     </header>
     <div class="entry">
       
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise模式拯救「延迟」引起CallBack"><span class="toc-number">1.</span> <span class="toc-text">Promise模式拯救「延迟」引起CallBack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件注册模式拯救「用户交互」引起的CallBack"><span class="toc-number">2.</span> <span class="toc-text">事件注册模式拯救「用户交互」引起的CallBack</span></a></li></ol>
+        </div>
         <blockquote>
 <p>对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性的编程存在适应的困难。传统的编程方式是采用CallBack来协调「用户交互」和「异步任务」，但这种方式会导致嵌套的函数，不仅难以理解，而且开发人员需要仔细分析哪些代码用于应用的业务逻辑，而哪些代码处理异步函数调用，代码结构支离破碎，难以维护。</p>
 </blockquote>
