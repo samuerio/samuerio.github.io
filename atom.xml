@@ -86,9 +86,9 @@
     <link href="http://zhenghe39.com/2016/04/09/content-type%E7%9A%84%E6%84%8F%E4%B9%89/"/>
     <id>http://zhenghe39.com/2016/04/09/content-type的意义/</id>
     <published>2016-04-09T09:45:37.000Z</published>
-    <updated>2016-06-02T02:51:55.000Z</updated>
+    <updated>2016-06-02T04:59:41.000Z</updated>
     
-    <content type="html">&lt;p&gt;content-type决定了文件类型以及数据的展示方式&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://tool.oschina.net/commons&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Content-type&lt;/a&gt;决定了文件类型以及数据的展示方式&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.&lt;br&gt;content-type&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -102,9 +102,9 @@
     
     <summary type="html">
     
-      &lt;p&gt;content-type决定了文件类型以及数据的展示方式&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;http://tool.oschina.net/commons&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Content-type&lt;/a&gt;决定了文件类型以及数据的展示方式&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The purpose of the Content-Type field is to describe the data contained in the body full
+&lt;p&gt;The purpose
     
     </summary>
     
