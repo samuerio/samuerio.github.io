@@ -668,7 +668,7 @@ article footer .addthis iframe {
   font-family: font-icon-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  content: "\f0c9";
+  content: '\f016';
 }
 @media only screen and (min-width: 1024px) {
   .closeaside {
