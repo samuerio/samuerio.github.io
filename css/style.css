@@ -11,7 +11,7 @@
 }
 body {
   background: #eee;
-  color: #817c7c;
+  color: #444;
   font-family: 'Helvetica Neue', 'Helvetica', 'Lucida Grande', Arial, 'Hiragino Sans GB', '微软雅黑', 'WenQuanYi Micro Hei', 'STHeiti', 'SimSun', sans-serif;
   font-size: 16px;
   text-shadow: 0 0 1px transparent;
@@ -268,7 +268,7 @@ article header .title {
   margin-bottom: 25px;
 }
 article header .title a {
-  color: #817c7c;
+  color: #444;
 }
 article header .title a:hover {
   color: #258fb8;
@@ -364,7 +364,7 @@ article .entry blockquote footer a {
   text-decoration: underline;
 }
 article .entry blockquote footer a:hover {
-  color: #817c7c;
+  color: #444;
 }
 article .entry code,
 article .entry pre {
