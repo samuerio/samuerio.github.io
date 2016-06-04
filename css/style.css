@@ -665,10 +665,10 @@ article footer .addthis iframe {
   color: #2ca6cb;
 }
 .closeaside a::before {
-  font-family: "fontawesome-webfont";
+  font: 32px FontAwesome;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  content: '\f016';
+  content: "\f0c9";
 }
 @media only screen and (min-width: 1024px) {
   .closeaside {
