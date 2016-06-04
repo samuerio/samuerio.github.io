@@ -650,7 +650,7 @@ article footer .addthis iframe {
   padding: 0.2em 0.55em;
 }
 .openaside a::before {
-  font-family: font-icon-family;
+  font-family: "fontawesome-webfont";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: "\f0c9";
@@ -665,7 +665,7 @@ article footer .addthis iframe {
   color: #2ca6cb;
 }
 .closeaside a::before {
-  font-family: font-icon-family;
+  font-family: "fontawesome-webfont";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: '\f016';
@@ -794,7 +794,7 @@ article footer .addthis iframe {
   background: #fafafa;
 }
 .rsspart a::before {
-  font-family: font-icon-family;
+  font-family: "fontawesome-webfont";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0.5em;
@@ -1022,7 +1022,7 @@ article footer .addthis iframe {
 .icon-google_plus:before,
 .icon-linkedin:before,
 .icon-tumblr:before {
-  font-family: font-icon-family;
+  font-family: "fontawesome-webfont";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
