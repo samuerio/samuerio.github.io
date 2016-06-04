@@ -754,6 +754,7 @@ article footer .addthis iframe {
 }
 .tagslist ul li {
   float: left;
+  list-style: none;
 }
 .tagslist ul li a {
   display: block;
