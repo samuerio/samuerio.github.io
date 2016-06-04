@@ -668,7 +668,7 @@ article footer .addthis iframe {
   -webkit-font-smoothing: ;
   content: "\f0c9";
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .closeaside {
     display: block;
     position: absolute;
@@ -681,7 +681,7 @@ article footer .addthis iframe {
   margin: 1em 0 0;
   padding: 0.5em 2% 1em;
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   #asidepart {
     position: relative;
     float: left;
@@ -706,14 +706,14 @@ article footer .addthis iframe {
   -ms-transition: color 0.5s;
   transition: color 0.5s;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .categorieslist {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .categorieslist {
     width: 100%;
     float: none;
@@ -733,14 +733,14 @@ article footer .addthis iframe {
 .tagslist {
   margin: 1em 0 0;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .tagslist {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .tagslist {
     width: 100%;
     float: none;
@@ -767,14 +767,14 @@ article footer .addthis iframe {
   background: color-theme;
   width: 100%;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .rsspart {
     float: left;
     width: 45%;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .rsspart {
     width: 100%;
     float: none;
@@ -800,7 +800,7 @@ article footer .addthis iframe {
 .archiveslist {
   padding-right: 1em;
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .archiveslist {
     width: 100%;
     float: none;
@@ -838,19 +838,19 @@ article footer .addthis iframe {
   float: left;
   margin: 0.3em;
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .archive-float li {
     float: none;
   }
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .tagcloudlist {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .tagcloudlist {
     width: 100%;
     float: none;
@@ -873,14 +873,14 @@ article footer .addthis iframe {
 .linkslist {
   margin-top: 0.5em;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .linkslist {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .linkslist {
     width: 100%;
     float: none;
@@ -916,12 +916,12 @@ article footer .addthis iframe {
   -moz-background-size: 5px auto;
   background-size: 5px auto;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   #authorInfo {
     padding-top: 0.5em;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   #authorInfo {
     padding-top: 1em;
   }
@@ -953,7 +953,7 @@ article footer .addthis iframe {
   -ms-transform: rotateZ(360deg);
   transform: rotateZ(360deg);
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .author-img {
     float: none;
     width: 9.166666666666666em;
@@ -966,7 +966,7 @@ article footer .addthis iframe {
     margin: 0 auto;
   }
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .author-img {
     margin: 0 1em 0 0;
     float: none;
@@ -980,7 +980,7 @@ article footer .addthis iframe {
   float: left;
   text-align: center;
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .social-info {
     float: none;
     width: auto;
@@ -994,14 +994,14 @@ article footer .addthis iframe {
   font-size: font-size80;
   margin: 0.5em;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .social-info a {
     float: none;
     margin: 0;
     padding: 0.3em;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .social-info a {
     float: none;
     padding: 0.3em;
@@ -1062,14 +1062,14 @@ article footer .addthis iframe {
 .weiboshow {
   margin-top: 0.5em;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .weiboshow {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .weiboshow {
     width: 100%;
     float: none;
@@ -1082,14 +1082,14 @@ article footer .addthis iframe {
 .doubanshow {
   margin-top: 0.5em;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .doubanshow {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .doubanshow {
     width: 100%;
     float: none;
@@ -1102,14 +1102,14 @@ article footer .addthis iframe {
 .github-card {
   margin-top: 1.5em;
 }
-@media mini {
+@media only screen and (min-width: 768px) {
   .github-card {
     width: 45%;
     float: left;
     margin: 0 5% 0 0;
   }
 }
-@media tablet {
+@media only screen and (min-width: 1024px) {
   .github-card {
     width: 100%;
     float: none;
