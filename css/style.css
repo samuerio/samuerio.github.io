@@ -651,7 +651,8 @@ article footer .addthis iframe {
 }
 .openaside a::before {
   font-family: font-icon-family;
-  -webkit-font-smoothing: ;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   content: "\f0c9";
 }
 .closeaside {
@@ -665,7 +666,8 @@ article footer .addthis iframe {
 }
 .closeaside a::before {
   font-family: font-icon-family;
-  -webkit-font-smoothing: ;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   content: "\f0c9";
 }
 @media only screen and (min-width: 1024px) {
@@ -793,7 +795,8 @@ article footer .addthis iframe {
 }
 .rsspart a::before {
   font-family: font-icon-family;
-  -webkit-font-smoothing: ;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   padding-right: 0.5em;
   content: "\f09e";
 }
@@ -1020,7 +1023,8 @@ article footer .addthis iframe {
 .icon-linkedin:before,
 .icon-tumblr:before {
   font-family: font-icon-family;
-  -webkit-font-smoothing: ;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .icon-weibo:before {
   content: "\f18a";
@@ -1051,12 +1055,14 @@ article footer .addthis iframe {
 }
 .icon-douban:before {
   font-family: font-icon-diao;
-  -webkit-font-smoothing: ;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   content: "\f111";
 }
 .icon-zhihu:before {
   font-family: font-icon-diao;
-  -webkit-font-smoothing: ;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   content: "\f142";
 }
 .weiboshow {
