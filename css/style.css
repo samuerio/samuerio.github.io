@@ -1,41 +1,9 @@
+@import url("//fonts.googleapis.com/css?family=Lato:400,400italic");
 @font-face {
   font-family: 'FontAwesome';
   font-style: normal;
   font-weight: normal;
   src: url("font/fontawesome-webfont.eot?#iefix") format('embedded-opentype'), url("font/fontawesome-webfont.woff") format('woff'), url("font/fontawesome-webfont.ttf") format('truetype'), url("font/fontawesome-webfont.svg#FontAwesomeRegular") format('svg');
-}
-/* custom Font*/
-@font-face {
-  font-family: "chalkboardse-bold-webfont";
-  font-weight: normal;
-  font-style: normal;
-  src: url("../font/chalkboardse-bold-webfont.woff2") format('woff2'), url("../font/chalkboardse-bold-webfont.woff") format('woff'), url("../font/chalkboardse-bold-webfont.ttf") format('truetype'), url("../font/chalkboardse-bold-webfont.eot") format("embedded-opentype");
-}
-@font-face {
-  font-family: "coveredbyyourgrace-webfont";
-  font-weight: normal;
-  font-style: normal;
-  src: url("../font/coveredbyyourgrace-webfont.woff2") format('woff2'), url("../font/coveredbyyourgrace-webfont.woff") format('woff'), url("../font/coveredbyyourgrace-webfont.ttf") format('truetype'), url("../font/coveredbyyourgrace-webfont.eot") format("embedded-opentype");
-}
-@font-face {
-  font-family: "ReenieBeanie";
-  font-weight: normal;
-  font-style: normal;
-  src: url("../font/ReenieBeanie.woff2") format('woff2'), url("../font/ReenieBeanie.woff") format('woff'), url("../font/ReenieBeanie.ttf") format('truetype'), url("../font/ReenieBeanie.eot") format("embedded-opentype");
-}
-/* icon Font */
-@font-face {
-  font-family: "fontawesome-webfont";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../font/fontawesome-webfont.eot?v=#4.0.2");
-  src: url("../font/fontawesome-webfont.eot?#iefix&v=#4.0.2") format("embedded-opentype"), url("../font/fontawesome-webfont.woff?v=#4.0.2") format("woff"), url("../font/fontawesome-webfont.ttf?v=#4.0.2") format("truetype"), url("../font/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.2") format("svg");
-}
-@font-face {
-  font-family: "fontdiao";
-  font-weight: normal;
-  font-style: normal;
-  src: url("../font/fontdiao.woff2") format('woff2'), url("../font/fontdiao.woff") format('woff'), url("../font/fontdiao.ttf") format('truetype'), url("../font/fontdiao.eot") format("embedded-opentype");
 }
 * {
   margin: 0;
@@ -44,7 +12,7 @@
 body {
   background: #eee;
   color: #817c7c;
-  font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Lucida Grande', Arial, 'Hiragino Sans GB', '微软雅黑', 'WenQuanYi Micro Hei', 'STHeiti', 'SimSun', sans-serif;
   font-size: 16px;
   text-shadow: 0 0 1px transparent;
 }
@@ -682,7 +650,7 @@ article footer .addthis iframe {
   padding: 0.2em 0.55em;
 }
 .openaside a::before {
-  font-family: "fontawesome-webfont";
+  font-family: font-icon-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: "\f0c9";
@@ -697,7 +665,7 @@ article footer .addthis iframe {
   color: #2ca6cb;
 }
 .closeaside a::before {
-  font-family: "fontawesome-webfont";
+  font-family: font-icon-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: "\f0c9";
@@ -826,7 +794,7 @@ article footer .addthis iframe {
   background: #fafafa;
 }
 .rsspart a::before {
-  font-family: "fontawesome-webfont";
+  font-family: font-icon-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-right: 0.5em;
@@ -927,7 +895,7 @@ article footer .addthis iframe {
 }
 .linkslist ul a {
   font-size: 1em;
-  line-height: 1.5;
+  line-height: line-height;
   display: block;
   padding: 0 3%;
 }
@@ -1026,7 +994,7 @@ article footer .addthis iframe {
 .social-info a {
   display: inline-block;
   color: #2c3e50;
-  font-size: 180%;
+  font-size: font-size80;
   margin: 0.5em;
 }
 @media only screen and (min-width: 768px) {
@@ -1054,7 +1022,7 @@ article footer .addthis iframe {
 .icon-google_plus:before,
 .icon-linkedin:before,
 .icon-tumblr:before {
-  font-family: "fontawesome-webfont";
+  font-family: font-icon-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -1086,13 +1054,13 @@ article footer .addthis iframe {
   content: "\f174";
 }
 .icon-douban:before {
-  font-family: "fontdiao";
+  font-family: font-icon-diao;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: "\f111";
 }
 .icon-zhihu:before {
-  font-family: "fontdiao";
+  font-family: font-icon-diao;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: "\f142";
