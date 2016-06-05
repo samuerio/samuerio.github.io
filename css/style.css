@@ -101,6 +101,16 @@ a:hover {
     margin-right: 0;
   }
 }
+table {
+  margin: 20px 0;
+  width: $table-width;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  font-size: $table-font-size;
+  table-layout: fixed;
+  word-wrap: break-all;
+}
 #header {
   text-shadow: 0 0 1px #fff;
   margin: 50px auto;
