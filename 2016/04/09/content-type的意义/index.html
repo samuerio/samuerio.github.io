@@ -20,7 +20,7 @@
 
   <link href="/favicon.ico" rel="icon" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  
+
   <link rel="alternate" href="/atom.xml" title="issUn" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -75,6 +75,7 @@
 <p>The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.<br>content-type</p>
 </blockquote>
 <p>Get请求的数据是附着在URL后（即位于HTTP协议头部），而Post提交的数据是放于HTTP包的包体。故content-type只会影响到Post提交的数据。</p>
+<a id="more"></a>
 <h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><p>application/x-www-form-urlencoded为「表单提交」，默认的<code>Ajax Post</code>提交也是按这种方式。</p>
 <h3 id="application-json"><a href="#application-json" class="headerlink" title="application/json"></a>application/json</h3><p>这种时候，只能从HTTP内容体里面获取提交的数据</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(actionUrl,&#123;</span><br><span class="line">                      method:<span class="string">'POST'</span>,</span><br><span class="line">                      data:<span class="built_in">JSON</span>.stringify(postData),<span class="comment">//这里必须序列化为JSON字符串</span></span><br><span class="line">                      contentType:<span class="string">'application/json; charset=utf-8'</span>,</span><br><span class="line">                      dataType:<span class="string">'json'</span>,</span><br><span class="line">                      success:<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</span><br><span class="line">                          <span class="keyword">if</span>(rs.success)&#123;</span><br><span class="line">                              resolve(rs.content);</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;);</span><br></pre></td></tr></table></figure>
@@ -88,7 +89,7 @@
         
   
   <div class="tags">
-    <a href="/tags/Http/">Http</a>
+    <a href="/tags/http/">http</a>
   </div>
 
         
@@ -189,7 +190,7 @@
 			
 		
 			
-				<li><a href="/tags/Http/" title="Http">Http<sup>1</sup></a></li>
+				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
 			
 		
 			
