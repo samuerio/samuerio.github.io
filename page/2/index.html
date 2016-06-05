@@ -55,6 +55,47 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-03-29T14:14:20.000Z"><a href="/2016/03/29/media/同步异步和阻塞非阻塞/">2016-03-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/29/media/同步异步和阻塞非阻塞/">同步异步与阻塞非阻塞</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+        <h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><blockquote>
+<p>同步和异步关注的是<em>消息通信机制</em></p>
+</blockquote>
+<p><strong>同步</strong>：<em>调用</em>发出后，没得到结果前，该调用就不返回。<br><strong>异步</strong>：<em>调用</em>发出后，调用就直接返回了(没有返回结果)。调用者不会立即得到结果，而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者或通过回调函数来处理这个调用。</p>
+<h3 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h3><blockquote>
+<p>阻塞和非阻塞关注的是<em>程序在等待调用结果(消息，返回值)</em>时的状态。</p>
+</blockquote>
+<p><strong>阻塞</strong>：调用结果返回前，线程会被挂起<br><strong>非阻塞</strong>：不能得到结果之前，该调用不会阻塞当前线程</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-21T14:04:20.000Z"><a href="/2016/03/21/Shell下的文件和路径/">2016-03-21</a></time>
       
       
@@ -213,60 +254,6 @@
           <div class="alignleft">
             <a href="/2016/03/13/JS原型链实现继承/#more" class="more-link">Read More</a>
           </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-13T09:02:24.000Z"><a href="/2016/03/13/负margin与absolute、relative/">2016-03-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/13/负margin与absolute、relative/">负margin与absolute、relative</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        
-        <h3 id="负margin"><a href="#负margin" class="headerlink" title="负margin"></a>负margin</h3><blockquote>
-<p>参考线是保持不动的</p>
-</blockquote>
-<p><img src="http://ww4.sinaimg.cn/large/8b826b79jw1f1vcf9d4gag20fg0dsjrh.gif" alt=""></p>
-<p><code>margin-top</code>、<code>margin-left</code>是以外元素为参考线，<code>margin-right</code>、<code>margin-bottom</code>则以元素本身为参考线。</p>
-<p>负margin在一定程度上可以替代「relative」「absolute」达到一定的布局效果。并且负margin始终是处于「标准文档流」中的，对整体布局影响小。</p>
-<p>例子：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">    <span class="class">.demoSpecItem</span><span class="rules">&#123;<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">212px</span></span></span>; <span class="rule"><span class="attribute">min-height</span>:<span class="value"><span class="number">178px</span></span></span>;&#125;</span></span><br><span class="line">    <span class="class">.demoSpecItem</span> <span class="class">.demoItemPic</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>; &#125;</span></span><br><span class="line">    <span class="class">.demoSpecItem</span> <span class="class">.demoItemPic</span> <span class="tag">img</span><span class="rules">&#123;<span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">5px</span></span></span>; <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;&#125;</span></span><br><span class="line">    <span class="class">.demoSpecItem</span> <span class="class">.demoIcon</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>; <span class="rule"><span class="attribute">margin</span>:<span class="value">-<span class="number">170px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">150px</span></span></span>;&#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"demoSpecItem"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"demoItemPic"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">width</span>=<span class="value">"200"</span> <span class="attribute">height</span>=<span class="value">"166"</span> <span class="attribute">src</span>=<span class="value">"http://ww1.sinaimg.cn/large/8b826b79jw1f1vcrkjvrej205k04mq31.jpg"</span> <span class="attribute">alt</span>=<span class="value">"toygers kittens"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"demoIcon"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">width</span>=<span class="value">"54"</span> <span class="attribute">height</span>=<span class="value">"54"</span> <span class="attribute">src</span>=<span class="value">"http://ww2.sinaimg.cn/large/8b826b79jw1f1vcr7ck55j201i01i744.jpg"</span> <span class="attribute">alt</span>=<span class="value">"icon"</span> /&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://jsfiddle.net/samuerio/e9kzogcr/" target="_blank" rel="external">jsfiddle效果演示地址</a></p>
-<h3 id="relative和absolute"><a href="#relative和absolute" class="headerlink" title="relative和absolute"></a>relative和absolute</h3><p><strong><em>relative</em></strong></p>
-<ul>
-<li>自身位置为基准</li>
-<li>处于标准文档流</li>
-</ul>
-<p><strong><em>absolute</em></strong></p>
-<ul>
-<li>以包含块为基准</li>
-<li>脱离标准文档流</li>
-</ul>
-<p><em>注意</em>：若<code>absolute</code>未设置偏移量，则无论是否存在已定位的祖先元素，都保持在元素最初的位置。</p>
-<p><a href="http://zh.learnlayout.com/" target="_blank" rel="external">布局学习</a></p>
-
-      
-    </div>
-    <footer>
-      
         
         
       

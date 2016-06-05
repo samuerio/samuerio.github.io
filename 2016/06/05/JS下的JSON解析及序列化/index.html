@@ -54,7 +54,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-03-12T15:48:23.000Z"><a href="/2016/03/12/JS下的JSON解析及序列化/">2016-03-12</a></time>
+        <time datetime="2016-06-05T09:44:02.000Z"><a href="/2016/06/05/JS下的JSON解析及序列化/">2016-06-05</a></time>
       
       
   
@@ -65,28 +65,23 @@
     <div class="entry">
       
         
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Javascript解析JSON"><span class="toc-number">1.</span> <span class="toc-text">Javascript解析JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Javascript序列化JSON"><span class="toc-number">2.</span> <span class="toc-text">Javascript序列化JSON</span></a></li></ol>
+        </div>
+        
         <blockquote>
 <p>JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串</p>
 </blockquote>
-<h2 id="解析JSON"><a href="#解析JSON" class="headerlink" title="解析JSON"></a>解析JSON</h2><h4 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h4><p><strong>用法：</strong><code>eval(&quot;(&quot;+JSON+&quot;)&quot;)</code></p>
+<h3 id="Javascript解析JSON"><a href="#Javascript解析JSON" class="headerlink" title="Javascript解析JSON"></a>Javascript解析JSON</h3><p>eval是比较古老的解析JSON数据的方式：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":false&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>));</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h4 id="JSON-parse"><a href="#JSON-parse" class="headerlink" title="JSON.parse"></a>JSON.parse</h4><p><strong>用法：</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parse([string] jsonString,[Function,optional] reviver)(JSON)</span><br></pre></td></tr></table></figure>
-<p>相对于<code>eval</code>的解析，parse函数可以定制<em>解析规则</em></p>
-<p>举个栗子：</p>
+<p>现在比较推荐的是JSON.parse来解析JSON数据，而且其还可定制解析规则。</p>
+<p>按解析规则’当value值为字符串「true」或「false」，解析时将其转化为对应Boolean值’来解析JSON：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonStr = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":"false","time":&#123;"enough":"false","multiFormate":true&#125;&#125;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(jsonStr,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'false'</span> === value || <span class="string">'true'</span> === value)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">eval</span>(value);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(data);</span><br></pre></td></tr></table></figure>
-<p>定制一个解析规则： 当value值为字符串「true」或「false」，解析时将其转化为对应<code>Boolean</code>值</p>
-<h2 id="序列化JSON"><a href="#序列化JSON" class="headerlink" title="序列化JSON"></a>序列化JSON</h2><h4 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify"></a>JSON.stringify</h4><p>接口说明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringify([Object] value,[Function,optional] replacer,[Number|String,optional] space)</span><br></pre></td></tr></table></figure>
-<ol>
-<li><code>replacer</code>: 过滤器，<code>Function</code>|<code>Array</code>。<code>Array</code>类型时，会过滤掉不包含在<code>Array</code>中的<code>key</code>，只留下包含的。</li>
-<li><code>space</code>: 缩进</li>
-</ol>
-<p>可以配置<em>过滤规则</em>，以下以配置过滤函数为例：</p>
+<h3 id="Javascript序列化JSON"><a href="#Javascript序列化JSON" class="headerlink" title="Javascript序列化JSON"></a>Javascript序列化JSON</h3><p>JSON.stringify也是可以配置序列化规则的：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsObj = &#123;</span><br><span class="line">    toLower:<span class="string">'HELLO'</span>,</span><br><span class="line">    toUpper:<span class="string">'world'</span>,</span><br><span class="line">    normal:<span class="string">'haha'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonStr = <span class="built_in">JSON</span>.stringify(jsObj,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(key)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toLower'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toLowerCase();</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toUpper'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toUpperCase();</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonStr);</span><br></pre></td></tr></table></figure>
-<h4 id="类自定义序列化规则"><a href="#类自定义序列化规则" class="headerlink" title="类自定义序列化规则"></a>类自定义序列化规则</h4><p>除了上面那种提供<em>过滤函数</em>的方式，类对象还可以实现toJSON接口来定制自身的序列化规则</p>
-<p>举个栗子：</p>
+<p>类对象还可以实现toJSON接口来定制自身的序列化规则。这时候，使用JSON.stringify来序列化时，会优先调用toJSON，对得到的返回值进行序列化。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$.extend(Person,&#123;</span><br><span class="line">    prototype:&#123;</span><br><span class="line">        toJSON:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                age:<span class="keyword">this</span>.age+<span class="number">5</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="keyword">new</span> Person(<span class="string">'sam'</span>,<span class="number">5</span>)));</span><br></pre></td></tr></table></figure>
 
       
@@ -140,7 +135,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://zhenghe39.com/2016/03/12/JS下的JSON解析及序列化/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://zhenghe39.com/2016/06/05/JS下的JSON解析及序列化/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
