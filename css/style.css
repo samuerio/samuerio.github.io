@@ -1173,6 +1173,7 @@ pre code {
 figure.highlight {
   border-left: 5px solid #558abb;
   padding: 14px 5px;
+  background: url("/img/blueprint-dark.fd85a7a074ae.png") top center #fafbfc;
 }
 .highlight pre {
   border: none;
