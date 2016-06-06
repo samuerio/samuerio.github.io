@@ -96,6 +96,47 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-03-29T14:14:20.000Z"><a href="/2016/03/29/同步异步和阻塞非阻塞/">2016-03-29</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/03/29/同步异步和阻塞非阻塞/">同步异步与阻塞非阻塞</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+        <h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><blockquote>
+<p>同步和异步关注的是<em>消息通信机制</em></p>
+</blockquote>
+<p><strong>同步</strong>：<em>调用</em>发出后，没得到结果前，该调用就不返回。<br><strong>异步</strong>：<em>调用</em>发出后，调用就直接返回了(没有返回结果)。调用者不会立即得到结果，而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者或通过回调函数来处理这个调用。</p>
+<h3 id="阻塞与非阻塞同步异步和阻塞非阻塞"><a href="#阻塞与非阻塞同步异步和阻塞非阻塞" class="headerlink" title="阻塞与非阻塞同步异步和阻塞非阻塞"></a>阻塞与非阻塞<a href="media/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E5%92%8C%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E.md">同步异步和阻塞非阻塞</a></h3><blockquote>
+<p>阻塞和非阻塞关注的是<em>程序在等待调用结果(消息，返回值)</em>时的状态。</p>
+</blockquote>
+<p><strong>阻塞</strong>：调用结果返回前，线程会被挂起<br><strong>非阻塞</strong>：不能得到结果之前，该调用不会阻塞当前线程</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-21T14:04:20.000Z"><a href="/2016/03/21/Shell下的文件和路径/">2016-03-21</a></time>
       
       
@@ -214,45 +255,6 @@
         
           <div class="alignleft">
             <a href="/2016/03/14/浅谈JS闭包和this关键字/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-13T13:15:56.000Z"><a href="/2016/03/13/JS原型链实现继承/">2016-03-13</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/03/13/JS原型链实现继承/">JS原型链实现继承</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <blockquote>
-<p>ECMAScript只支持实现继承，不支持接口继承，并将原型链作为其主要的实现方式。</p>
-</blockquote>
-<p>每个对象上的__proto__和prototype属性都保存有原型的引用，并且，对__proto__赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。</p>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2016/03/13/JS原型链实现继承/#more" class="more-link">Read More</a>
           </div>
         
         
