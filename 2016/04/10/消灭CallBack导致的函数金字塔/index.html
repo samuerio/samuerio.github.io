@@ -68,6 +68,7 @@
         <blockquote>
 <p>对于开发人员来说，既要保持页面与用户的交互不受影响，又要协调页面与异步任务的关系，这种非线性的编程存在适应的困难。传统的编程方式是采用CallBack来协调「用户交互」和「异步任务」，但这种方式会导致嵌套的函数，不仅难以理解，而且开发人员需要仔细分析哪些代码用于应用的业务逻辑，而哪些代码处理异步函数调用，代码结构支离破碎，难以维护。</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="Promise模式拯救「延迟」引起CallBack"><a href="#Promise模式拯救「延迟」引起CallBack" class="headerlink" title="Promise模式拯救「延迟」引起CallBack"></a>Promise模式拯救「延迟」引起CallBack</h3><p><em>案例1</em></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodeconfig = (<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> nodeJson = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> privateMethod = </span><br><span class="line">		loadEvent:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="keyword">var</span> param = <span class="string">"?id=readFlowEvent&amp;appUnid="</span> + APP_UNID;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">var</span> servletUrl = WEB_ROOT + DESINGER_SERVLET;</span><br><span class="line">				servletUrl = servletUrl + param;</span><br><span class="line">	</span><br><span class="line">			<span class="keyword">var</span> loadSuccessFn = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(data.success) &#123;</span><br><span class="line">					<span class="comment">//...</span></span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					parent.mini.error(data.message);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;;</span><br><span class="line">			<span class="comment">// 加载请求servlet</span></span><br><span class="line">			lw.utils.postJson(servletUrl, <span class="literal">null</span>, loadSuccessFn,<span class="literal">null</span>,<span class="literal">false</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> pageInit = &#123;</span><br><span class="line">		initData:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="comment">/**加载事件列表到页面**/</span></span><br><span class="line">			privateMethod.loadEvent();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> pageInit</span><br><span class="line"></span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
 <p><strong>服务请求</strong>是有延迟、需要异步的，<code>loadEvent</code>是异步任务，但其中既有同步处理逻辑又有异步处理逻辑，不仅不好理解，而且难以查看服务请求来源（异步任务）。</p>
@@ -182,15 +183,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Shell/" title="Shell">Shell<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Css/" title="Css">Css<sup>2</sup></a></li>
 			
 		
 			
@@ -198,15 +191,11 @@
 			
 		
 			
+				<li><a href="/tags/Css/" title="Css">Css<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Q/" title="Q">Q<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/vi/" title="vi">vi<sup>1</sup></a></li>
 			
 		
 			
@@ -219,10 +208,6 @@
 		
 			
 				<li><a href="/tags/JSON/" title="JSON">JSON<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Homebrew/" title="Homebrew">Homebrew<sup>1</sup></a></li>
 			
 		
 		</ul>

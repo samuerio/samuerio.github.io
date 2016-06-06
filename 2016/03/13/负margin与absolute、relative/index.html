@@ -65,12 +65,18 @@
     <div class="entry">
       
         
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">Contents</strong>
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#负margin"><span class="toc-number">1.</span> <span class="toc-text">负margin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#relative和absolute"><span class="toc-number">2.</span> <span class="toc-text">relative和absolute</span></a></li></ol>
+        </div>
+        
         <h3 id="负margin"><a href="#负margin" class="headerlink" title="负margin"></a>负margin</h3><blockquote>
 <p>参考线是保持不动的</p>
 </blockquote>
 <p><img src="http://ww4.sinaimg.cn/large/8b826b79jw1f1vcf9d4gag20fg0dsjrh.gif" alt=""></p>
-<p><code>margin-top</code>、<code>margin-left</code>是以外元素为参考线，<code>margin-right</code>、<code>margin-bottom</code>则以元素本身为参考线。</p>
+<p>margin-top、margin-left是以外元素为参考线，margin-right、margin-bottom则以元素本身为参考线。</p>
 <p>负margin在一定程度上可以替代「relative」「absolute」达到一定的布局效果。并且负margin始终是处于「标准文档流」中的，对整体布局影响小。</p>
+<a id="more"></a>
 <p>例子：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">    <span class="class">.demoSpecItem</span><span class="rules">&#123;<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">212px</span></span></span>; <span class="rule"><span class="attribute">min-height</span>:<span class="value"><span class="number">178px</span></span></span>;&#125;</span></span><br><span class="line">    <span class="class">.demoSpecItem</span> <span class="class">.demoItemPic</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>; &#125;</span></span><br><span class="line">    <span class="class">.demoSpecItem</span> <span class="class">.demoItemPic</span> <span class="tag">img</span><span class="rules">&#123;<span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">5px</span></span></span>; <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;&#125;</span></span><br><span class="line">    <span class="class">.demoSpecItem</span> <span class="class">.demoIcon</span><span class="rules">&#123;<span class="rule"><span class="attribute">display</span>:<span class="value">block</span></span>; <span class="rule"><span class="attribute">margin</span>:<span class="value">-<span class="number">170px</span> <span class="number">0</span> <span class="number">0</span> <span class="number">150px</span></span></span>;&#125;</span></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"demoSpecItem"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">class</span>=<span class="value">"demoItemPic"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">width</span>=<span class="value">"200"</span> <span class="attribute">height</span>=<span class="value">"166"</span> <span class="attribute">src</span>=<span class="value">"http://ww1.sinaimg.cn/large/8b826b79jw1f1vcrkjvrej205k04mq31.jpg"</span> <span class="attribute">alt</span>=<span class="value">"toygers kittens"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"demoIcon"</span>&gt;</span><span class="tag">&lt;<span class="title">img</span> <span class="attribute">width</span>=<span class="value">"54"</span> <span class="attribute">height</span>=<span class="value">"54"</span> <span class="attribute">src</span>=<span class="value">"http://ww2.sinaimg.cn/large/8b826b79jw1f1vcr7ck55j201i01i744.jpg"</span> <span class="attribute">alt</span>=<span class="value">"icon"</span> /&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><a href="https://jsfiddle.net/samuerio/e9kzogcr/" target="_blank" rel="external">jsfiddle效果演示地址</a></p>
@@ -84,7 +90,7 @@
 <li>以包含块为基准</li>
 <li>脱离标准文档流</li>
 </ul>
-<p><em>注意</em>：若<code>absolute</code>未设置偏移量，则无论是否存在已定位的祖先元素，都保持在元素最初的位置。</p>
+<p><em>注意</em>：若absolute未设置偏移量，则无论是否存在已定位的祖先元素，都保持在元素最初的位置。</p>
 <p><a href="http://zh.learnlayout.com/" target="_blank" rel="external">布局学习</a></p>
 
       
@@ -180,15 +186,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/Shell/" title="Shell">Shell<sup>4</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Css/" title="Css">Css<sup>2</sup></a></li>
 			
 		
 			
@@ -196,15 +194,11 @@
 			
 		
 			
+				<li><a href="/tags/Css/" title="Css">Css<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Q/" title="Q">Q<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/vi/" title="vi">vi<sup>1</sup></a></li>
 			
 		
 			
@@ -217,10 +211,6 @@
 		
 			
 				<li><a href="/tags/JSON/" title="JSON">JSON<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Homebrew/" title="Homebrew">Homebrew<sup>1</sup></a></li>
 			
 		
 		</ul>
