@@ -171,35 +171,6 @@
   </entry>
   
   <entry>
-    <title>同步异步与阻塞非阻塞</title>
-    <link href="http://zhenghe39.com/2016/03/29/media/%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E5%92%8C%E9%98%BB%E5%A1%9E%E9%9D%9E%E9%98%BB%E5%A1%9E/"/>
-    <id>http://zhenghe39.com/2016/03/29/media/同步异步和阻塞非阻塞/</id>
-    <published>2016-03-29T14:14:20.000Z</published>
-    <updated>2016-04-10T08:08:27.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;同步与异步&quot;&gt;&lt;a href=&quot;#同步与异步&quot; class=&quot;headerlink&quot; title=&quot;同步与异步&quot;&gt;&lt;/a&gt;同步与异步&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;同步和异步关注的是&lt;em&gt;消息通信机制&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;同步&lt;/strong&gt;：&lt;em&gt;调用&lt;/em&gt;发出后，没得到结果前，该调用就不返回。&lt;br&gt;&lt;strong&gt;异步&lt;/strong&gt;：&lt;em&gt;调用&lt;/em&gt;发出后，调用就直接返回了(没有返回结果)。调用者不会立即得到结果，而是在&lt;em&gt;调用&lt;/em&gt;发出后，&lt;em&gt;被调用者&lt;/em&gt;通过状态、通知来通知调用者或通过回调函数来处理这个调用。&lt;/p&gt;
-&lt;h3 id=&quot;阻塞与非阻塞&quot;&gt;&lt;a href=&quot;#阻塞与非阻塞&quot; class=&quot;headerlink&quot; title=&quot;阻塞与非阻塞&quot;&gt;&lt;/a&gt;阻塞与非阻塞&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;阻塞和非阻塞关注的是&lt;em&gt;程序在等待调用结果(消息，返回值)&lt;/em&gt;时的状态。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;阻塞&lt;/strong&gt;：调用结果返回前，线程会被挂起&lt;br&gt;&lt;strong&gt;非阻塞&lt;/strong&gt;：不能得到结果之前，该调用不会阻塞当前线程&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;同步与异步&quot;&gt;&lt;a href=&quot;#同步与异步&quot; class=&quot;headerlink&quot; title=&quot;同步与异步&quot;&gt;&lt;/a&gt;同步与异步&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;同步和异步关注的是&lt;em&gt;消息通信机制&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>浅谈JS闭包和this关键字</title>
     <link href="http://zhenghe39.com/2016/03/14/%E6%B5%85%E8%B0%88JS%E9%97%AD%E5%8C%85%E5%92%8Cthis%E5%85%B3%E9%94%AE%E5%AD%97/"/>
     <id>http://zhenghe39.com/2016/03/14/浅谈JS闭包和this关键字/</id>
