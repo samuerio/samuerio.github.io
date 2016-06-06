@@ -336,9 +336,9 @@
     <link href="http://zhenghe39.com/2016/03/13/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF/"/>
     <id>http://zhenghe39.com/2016/03/13/JS原型链实现继承/</id>
     <published>2016-03-13T13:15:56.000Z</published>
-    <updated>2016-06-06T05:39:19.000Z</updated>
+    <updated>2016-06-06T05:44:44.000Z</updated>
     
-    <content type="html">&lt;p&gt;每个对象上的&lt;code&gt;__proto__&lt;/code&gt;和&lt;code&gt;prototype&lt;/code&gt;属性都保存有原型的引用，并且，对&lt;code&gt;__proto__&lt;/code&gt;赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:&lt;code&gt;A.prototype.__proto__ = B.prototype&lt;/code&gt;。&lt;/p&gt;
+    <content type="html">&lt;p&gt;每个对象上的__proto__和prototype属性都保存有原型的引用，并且，对&lt;code&gt;__proto__&lt;/code&gt;赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;ECMAScript只支持实现继承，不支持接口继承，并将原型链作为其主要的实现方式。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -369,7 +369,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;每个对象上的&lt;code&gt;__proto__&lt;/code&gt;和&lt;code&gt;prototype&lt;/code&gt;属性都保存有原型的引用，并且，对&lt;code&gt;__proto__&lt;/code&gt;赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:&lt;code&gt;A.prototype.__proto__ = B.prototype&lt;/code&gt;。&lt;/p&gt;
+      &lt;p&gt;每个对象上的__proto__和prototype属性都保存有原型的引用，并且，对&lt;code&gt;__proto__&lt;/code&gt;赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;ECMAScript只支持实现继承，不支持接口继承，并将原型链作为其主要的实现方式。&lt;/p&gt;
 &lt;/blockquote&gt;
