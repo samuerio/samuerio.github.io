@@ -735,6 +735,7 @@ article footer .addthis iframe {
 }
 .categorieslist li {
   border-bottom: 1px solid #ccc;
+  list-style: none;
 }
 .categorieslist li a {
   display: block;
