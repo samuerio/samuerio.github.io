@@ -691,10 +691,10 @@ mobile()
   transition-property: background;
 }
 .posts-collapse .post-header:hover {
-  border-bottom-color: #bbb -dim;
+  border-bottom-color: #666;
 }
 .posts-collapse .post-header:hover::before {
-  background: $black-deep;
+  background: #222;
 }
 .posts-collapse .post-meta {
   position: absolute;
