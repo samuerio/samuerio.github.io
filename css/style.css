@@ -144,53 +144,53 @@ table {
   float: left;
   margin-left: 30px;
 }
-article {
+article.post {
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
   background: #fff;
 }
-article.page {
+article.post.page {
   padding-left: 20px;
 }
-article.page .icon {
+article.post.page .icon {
   display: none;
 }
-article.post .icon:before {
+article.post.post .icon:before {
   content: '\f016';
 }
-article.photo .icon:before {
+article.post.photo .icon:before {
   content: '\f030';
 }
-article.link .icon:before {
+article.post.link .icon:before {
   content: '\f0c1';
 }
-article.link .title a:after {
+article.post.link .title a:after {
   content: '\f08e';
   color: #808080;
   font: 12px FontAwesome;
   padding-left: 10px;
   vertical-align: super;
 }
-article .post-content {
+article.post .post-content {
   padding: 20px 20px 15px 77px;
   margin-bottom: 50px;
   position: relative;
 }
 @media screen and (max-width: 600px) {
-  article .post-content {
+  article.post .post-content {
     padding-left: 20px;
   }
 }
-article .gallery {
+article.post .gallery {
   overflow: hidden;
   position: relative;
 }
-article .gallery:hover .control {
+article.post .gallery:hover .control {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-article .gallery img {
+article.post .gallery img {
   min-width: 100%;
   max-width: 100%;
   height: auto;
@@ -201,7 +201,7 @@ article .gallery img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
 }
-article .gallery .control {
+article.post .gallery .control {
   opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   filter: alpha(opacity=0);
@@ -211,16 +211,16 @@ article .gallery .control {
   -ms-transition: 0.3s;
   transition: 0.3s;
 }
-article .gallery .prev,
-article .gallery .next {
+article.post .gallery .prev,
+article.post .gallery .next {
   position: absolute;
   top: 0;
   width: 50%;
   height: 100%;
   cursor: pointer;
 }
-article .gallery .prev:before,
-article .gallery .next:before {
+article.post .gallery .prev:before,
+article.post .gallery .next:before {
   position: absolute;
   font: 24px/1 FontAwesome;
   text-align: center;
@@ -230,21 +230,21 @@ article .gallery .next:before {
   margin-top: -12px;
   top: 50%;
 }
-article .gallery .prev {
+article.post .gallery .prev {
   left: 0;
 }
-article .gallery .prev:before {
+article.post .gallery .prev:before {
   content: '\f053';
   left: 10px;
 }
-article .gallery .next {
+article.post .gallery .next {
   right: 0;
 }
-article .gallery .next:before {
+article.post .gallery .next:before {
   content: '\f054';
   right: 10px;
 }
-article header .icon {
+article.post header .icon {
   width: 32px;
   height: 32px;
   margin-right: 25px;
@@ -254,11 +254,11 @@ article header .icon {
   color: #258fb8;
 }
 @media screen and (max-width: 600px) {
-  article header .icon {
+  article.post header .icon {
     display: none;
   }
 }
-article header .icon:before {
+article.post header .icon:before {
   position: absolute;
   font: 32px FontAwesome;
   top: 0;
@@ -266,25 +266,25 @@ article header .icon:before {
   width: 32px;
   text-align: center;
 }
-article header time {
+article.post header time {
   color: #808080;
   font: 0.9em "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
   margin-bottom: 5px;
   display: block;
   line-height: 1;
 }
-article header .title {
+article.post header .title {
   font-weight: normal;
   margin-bottom: 25px;
 }
-article header .title a {
+article.post header .title a {
   color: #444;
 }
-article header .title a:hover {
+article.post header .title a:hover {
   color: #258fb8;
   text-decoration: none;
 }
-article .entry {
+article.post .entry {
   text-align: justify;
   line-height: 1.6;
 /*
@@ -313,20 +313,20 @@ article .entry {
             padding 0 0.5em
        */
 }
-article .entry p,
-article .entry blockquote,
-article .entry ul,
-article .entry ol,
-article .entry dl,
-article .entry iframe,
-article .entry h3,
-article .entry h4,
-article .entry h5,
-article .entry h6,
-article .entry .video-container {
+article.post .entry p,
+article.post .entry blockquote,
+article.post .entry ul,
+article.post .entry ol,
+article.post .entry dl,
+article.post .entry iframe,
+article.post .entry h3,
+article.post .entry h4,
+article.post .entry h5,
+article.post .entry h6,
+article.post .entry .video-container {
   margin-top: 15px;
 }
-article .entry blockquote {
+article.post .entry blockquote {
   font-size: 1em;
   font-style: normal;
   padding: 30px 38px;
@@ -337,53 +337,53 @@ article .entry blockquote {
   border: none;
   color: #888;
 }
-article .entry blockquote:before,
-article .entry blockquote:after {
+article.post .entry blockquote:before,
+article.post .entry blockquote:after {
   font-family: Arial, serif;
   font-size: 3em;
   line-height: 1em;
   font-weight: 700;
   position: absolute;
 }
-article .entry blockquote:before {
+article.post .entry blockquote:before {
   content: "“";
   left: 12px;
   top: 0;
   color: #e0e0e0;
 }
-article .entry blockquote:after {
+article.post .entry blockquote:after {
   content: "”";
   right: 12px;
   bottom: -31px;
   color: #e0e0e0;
 }
-article .entry blockquote p {
+article.post .entry blockquote p {
   color: #575757;
   margin-bottom: 0;
   padding-bottom: 0;
 }
-article .entry blockquote footer {
+article.post .entry blockquote footer {
   color: #808080;
   line-height: 1.1;
   margin-top: 20px;
 }
-article .entry blockquote footer cite:before {
+article.post .entry blockquote footer cite:before {
   content: "—";
   color: #ccc;
   padding: 0 0.5em;
 }
-article .entry blockquote footer a {
+article.post .entry blockquote footer a {
   color: #808080;
   text-decoration: underline;
 }
-article .entry blockquote footer a:hover {
+article.post .entry blockquote footer a:hover {
   color: #444;
 }
-article .entry code,
-article .entry pre {
+article.post .entry code,
+article.post .entry pre {
   font-family: Monaco, Menlo, Consolas, Courier New, monospace;
 }
-article .entry code {
+article.post .entry code {
   background: #eee;
   color: #666;
   padding: 0 5px;
@@ -393,13 +393,13 @@ article .entry code {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-article .entry pre {
+article.post .entry pre {
   overflow: auto;
   padding: 7px 15px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-article .entry pre code {
+article.post .entry pre code {
   background: none;
   padding: 0;
   margin: 0;
@@ -407,53 +407,53 @@ article .entry pre code {
   -webkit-border-radius: 0;
   border-radius: 0;
 }
-article .entry ul,
-article .entry ol,
-article .entry dl {
+article.post .entry ul,
+article.post .entry ol,
+article.post .entry dl {
   margin-left: 20px;
 }
-article .entry ul ul,
-article .entry ol ul,
-article .entry dl ul,
-article .entry ul ol,
-article .entry ol ol,
-article .entry dl ol,
-article .entry ul dl,
-article .entry ol dl,
-article .entry dl dl {
+article.post .entry ul ul,
+article.post .entry ol ul,
+article.post .entry dl ul,
+article.post .entry ul ol,
+article.post .entry ol ol,
+article.post .entry dl ol,
+article.post .entry ul dl,
+article.post .entry ol dl,
+article.post .entry dl dl {
   margin-top: 0;
 }
-article .entry h1,
-article .entry h2 {
+article.post .entry h1,
+article.post .entry h2 {
   font-weight: normal;
   padding-bottom: 10px;
   margin-top: 20px;
 }
-article .entry h3,
-article .entry h4,
-article .entry h5,
-article .entry h6 {
+article.post .entry h3,
+article.post .entry h4,
+article.post .entry h5,
+article.post .entry h6 {
   margin: 40px 10px 20px 0;
 }
-article .entry h3 {
+article.post .entry h3 {
   font-size: 1.4em;
   padding-left: 9px;
   border-left: 6px solid #ff7e79;
 }
-article .entry p {
+article.post .entry p {
   margin: 0 0 20px;
   padding: 0;
 }
-article .entry img,
-article .entry video {
+article.post .entry img,
+article.post .entry video {
   max-width: 100%;
   height: auto;
   border: none;
 }
-article .entry iframe {
+article.post .entry iframe {
   border: none;
 }
-article .entry .caption {
+article.post .entry .caption {
   display: block;
   margin-top: 5px;
   color: #808080;
@@ -461,7 +461,7 @@ article .entry .caption {
   font-size: 0.9em;
   padding-left: 25px;
 }
-article .entry .caption:before {
+article.post .entry .caption:before {
   content: '\f040';
   position: absolute;
   font: 1.3em FontAwesome;
@@ -469,16 +469,16 @@ article .entry .caption:before {
   left: 0;
   top: 3px;
 }
-article .entry .video-container {
+article.post .entry .video-container {
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 30px;
   height: 0;
   overflow: hidden;
 }
-article .entry .video-container iframe,
-article .entry .video-container object,
-article .entry .video-container embed {
+article.post .entry .video-container iframe,
+article.post .entry .video-container object,
+article.post .entry .video-container embed {
   position: absolute;
   top: 0;
   left: 0;
@@ -486,7 +486,7 @@ article .entry .video-container embed {
   height: 100%;
   margin-top: 0;
 }
-article .entry .pullquote {
+article.post .entry .pullquote {
   float: right;
   border: none;
   padding: 0;
@@ -495,7 +495,7 @@ article .entry .pullquote {
   width: 45%;
   font-size: 1.5em;
 }
-article footer {
+article.post footer {
   margin-top: 15px;
   padding-top: 10px;
   border-top: 1px solid #ddd;
@@ -505,49 +505,49 @@ article footer {
   position: relative;
   min-height: 16px;
 }
-article footer a {
+article.post footer a {
   color: #808080;
 }
-article footer a:hover {
+article.post footer a:hover {
   color: #258fb8;
   text-decoration: none;
 }
-article footer a:before {
+article.post footer a:before {
   font: 1.1em FontAwesome;
   padding-right: 10px;
   vertical-align: middle;
 }
-article footer a.more-link:before {
+article.post footer a.more-link:before {
   content: '\f054';
 }
-article footer a.comment-link:before {
+article.post footer a.comment-link:before {
   content: '\f075';
 }
-article footer .categories,
-article footer .tags {
+article.post footer .categories,
+article.post footer .tags {
   position: relative;
   padding-left: 25px;
   margin: 5px 0;
 }
-article footer .categories:before,
-article footer .tags:before {
+article.post footer .categories:before,
+article.post footer .tags:before {
   position: absolute;
   font: 1.1em FontAwesome;
 }
-article footer .categories:before {
+article.post footer .categories:before {
   content: '\f07b';
   top: 2px;
   left: 1px;
 }
-article footer .tags:before {
+article.post footer .tags:before {
   content: '\f02b';
   top: 3px;
   left: 2px;
 }
-article footer .addthis {
+article.post footer .addthis {
   margin-top: 15px;
 }
-article footer .addthis iframe {
+article.post footer .addthis iframe {
   margin-top: 0;
 }
 .toc-article {
@@ -779,6 +779,7 @@ mobile()
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
   background: #fff;
+  line-height: 2em;
 }
 .archive .archive-content {
   padding: 20px 20px 15px 77px;
