@@ -785,6 +785,11 @@ mobile()
   margin-bottom: 50px;
   position: relative;
 }
+.archive .archive-page-counter {
+  position: relative;
+  top: 3px;
+  left: 20px;
+}
 .openaside {
   display: none;
   position: fixed;
