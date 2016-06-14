@@ -13,7 +13,7 @@ body {
   background: #eee;
   color: #444;
   font-family: 'Helvetica Neue', 'Helvetica', 'Lucida Grande', Arial, 'Hiragino Sans GB', '微软雅黑', 'WenQuanYi Micro Hei', 'STHeiti', 'SimSun', sans-serif;
-  font-size: 16px;
+  font-size: 14.25px;
   text-shadow: 0 0 1px transparent;
 }
 @media screen and (max-width: 1260px) {
@@ -1310,7 +1310,7 @@ pre,
   overflow: auto;
   margin: 20px 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.8em;
   color: #4d4d4c;
   line-height: 1.6;
 }
