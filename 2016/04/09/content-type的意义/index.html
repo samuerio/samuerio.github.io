@@ -1,76 +1,107 @@
-<!DOCTYPE HTML>
+<!doctype html>
+
 <html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>content-type影响request.getParameter获取数据 | issUn</title>
-  <meta name="author" content="issUn">
-  
-  <meta name="description" content="记录造轮子的点点滴滴">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="content-type影响request.getParameter获取数据"/>
-  <meta property="og:site_name" content="issUn"/>
-
-  
-    <meta property="og:image" content="undefined"/>
-  
-
-  <link href="/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-
-  <link rel="alternate" href="/atom.xml" title="issUn" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
-
-</head>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
 
-<body>
-  <header id="header" class="inner"><div class="alignleft">
-  <h1><a href="/">issUn</a></h1>
-  <h2><a href="/"></a></h2>
-</div>
-<nav id="main-nav" class="alignright">
-  <ul>
+
+
+  
+  
+  
+  
+
+  
     
-      <li><a href="/">Home</a></li>
     
-      <li><a href="/archives">Archives</a></li>
-    
-  </ul>
-  <div class="clearfix"></div>
-</nav>
-<div class="clearfix"></div>
-</header>
-  <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-        <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-09T09:45:37.000Z"><a href="/2016/04/09/content-type的意义/">2016-04-09</a></time>
-      
-      
-  
-    <h1 class="title">content-type影响request.getParameter获取数据</h1>
   
 
-    </header>
-    <div class="entry">
-      
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+        <title> content-type影响request.getParameter获取数据 | issUn </title>
+    </head>
+    <body itemscope itemtype='http://schema.org/WebPage' lang='zh-Hans' >
         
-        <div id="toc" class="toc-article">
-          <strong class="toc-title">Contents</strong>
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#application-x-www-form-urlencoded"><span class="toc-number">1.</span> <span class="toc-text">application/x-www-form-urlencoded</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#application-json"><span class="toc-number">2.</span> <span class="toc-text">application/json</span></a></li></ol>
-        </div>
-        
-        <p><a href="http://tool.oschina.net/commons" target="_blank" rel="external">Content-type</a>决定了文件类型以及数据的展示方式</p>
+        <div class='container'>
+           
+
+           
+
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap'>
+                        <div id='content' class='content'>
+                            
+
+  <div id="posts" class="posts-expand">
+    
+    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            <div class="icon"></div>
+            <time datetime="2016-04-09T09:45:37.000Z">
+                <a href="/2016/04/09/content-type的意义/">2016-04-09</a>
+            </time>
+            <h1 class="post-title" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/04/09/content-type的意义/" itemprop="url" >
+                    content-type影响request.getParameter获取数据
+                </a>
+            </h1>
+            <!--
+                <div class="post-meta">
+                    <span class="post-time" >
+                        <span class="post-meta-item-icon">
+                            <i class="fa fa-calendar-o"></i>
+                        </span>
+                        <span class="post-meta-iterm-text">发表于</span>
+                        <time itemprop="dateCreated" datetime="2016-04-09T17:45:37+08:00" content="2016-04-09" >
+                            2016-04-09
+                        </time>
+                    </span>
+                    
+                        
+                            <span class="post-comments-count">
+                                &nbsp; | &nbsp
+                                <a href="/2016/04/09/content-type的意义/#comments" itemprop="discussionUrl" >
+                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/content-type的意义/" itemprop="commentsCount"></span>
+                                </a>
+                            </span>
+                        
+                    
+                    
+                    
+                </div>
+            -->
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p><a href="http://tool.oschina.net/commons" target="_blank" rel="external">Content-type</a>决定了文件类型以及数据的展示方式</p>
 <blockquote>
 <p>The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.<br>content-type</p>
 </blockquote>
@@ -81,169 +112,100 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(actionUrl,&#123;</span><br><span class="line">                      method:<span class="string">'POST'</span>,</span><br><span class="line">                      data:<span class="built_in">JSON</span>.stringify(postData),<span class="comment">//这里必须序列化为JSON字符串</span></span><br><span class="line">                      contentType:<span class="string">'application/json; charset=utf-8'</span>,</span><br><span class="line">                      dataType:<span class="string">'json'</span>,</span><br><span class="line">                      success:<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</span><br><span class="line">                          <span class="keyword">if</span>(rs.success)&#123;</span><br><span class="line">                              resolve(rs.content);</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;);</span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readStringFromRequest</span><span class="params">(HttpServletRequest request,String encode)</span></span>&#123;</span><br><span class="line">	StringBuffer json = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	InputStream in = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		in = request.getInputStream();</span><br><span class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in,encode);</span><br><span class="line">		BufferedReader bufferReader = <span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">		</span><br><span class="line">		String line = bufferReader.readLine();</span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isEmpty(line))&#123;</span><br><span class="line">			line = <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		do&#123;</span><br><span class="line">			json.append(line);</span><br><span class="line">			line = bufferReader.readLine();</span><br><span class="line">			<span class="keyword">if</span>(line != <span class="keyword">null</span>)&#123;</span><br><span class="line">				json.append(<span class="string">"\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">while</span>(line != <span class="keyword">null</span>);</span><br><span class="line">	&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <footer>
-      
-        
+            
+        </div>
+        <footer class="post-footer">
+             
+        </footer>
+    </article>
+
+  </div>
+
+
+                        </div>
+                        
+                    </div>
+                    
+                        
   
-  <div class="categories">
-    <a href="/categories/编程札记/">编程札记</a>
-  </div>
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+            <div class='closeaside'>
+                <a class='closebutton' href='/' title='hidesidebar'></a>
+            </div>
+            <div class='author'>
+                <div class='author-img'></div>
+                <div class='author-socialInfo'>
+                
+                    <a href="https://github.com/issUn" target="_blank" class="icon-github" title="github"></a>
+                
+                
+                    <a href="mailto:issUn@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+                
+                </div>
+            </div>
+            
+                <div class='categorieslist'>
+                    <p class='asidetitle'>分类</p>
+                    <ul>
+                        
+                            
+                                <li><a href="/categories/编程札记/" title="编程札记">编程札记</a></li>
+                            
+                        
+                    </ul>
+                </div>
+            
+            
+                <div class='tagslist' >
+                    <p class='asidetitle'>标签</p>
+                    <ul >
+                        
+                        
+                            
+                                <li><a href='/tags/javascript/' title=javascript>javascript</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/JavaScript/' title=JavaScript>JavaScript</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/Css/' title=Css>Css</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/http/' title=http>http</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/Oracle/' title=Oracle>Oracle</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/数据库/' title=数据库>数据库</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/JSON/' title=JSON>JSON</a></li>
+                            
+                        
+                    </ul>
+                 </div>
+            
+        </div>
+    </aside>
 
-        
-  
-  <div class="tags">
-    <a href="/tags/http/">http</a>
-  </div>
 
-        
-  <div class="addthis addthis_toolbox addthis_default_style">
-    
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-    
-    
-      <a class="addthis_button_tweet"></a>
-    
-    
-      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-    
-    
-      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
-    
-    <a class="addthis_counter addthis_pill_style"></a>
-  </div>
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-content-type的意义" data-title="content-type影响request.getParameter获取数据" data-url="http://zhenghe39.com/2016/04/09/content-type的意义/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-        var duoshuoQuery = {short_name:'issUn'};
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
-    <!-- 多说公共JS代码 end -->
-</section>
-
-</div>
-    </div>
-    <div id="asidepart">
-  <div class="closeaside"><a class="closebutton" href="#" title="hidesidebar"></a></div>
-  <aside class="clearfix">
-    <div id="authorInfo">
-      
-      <div class="author-img"></div>
-      
-      <div class="social-info" class="clearfix">
-        
-        
-        <a href="https://github.com/issUn" target="_blank" class="icon-github" title="github"></a>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <a href="mailto:issUn@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-        
-
-      </div>
-    </div>
-    
-      
-<div class="categorieslist">
-	<p class="asidetitle">分類</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/编程札记/" title="编程札记">编程札记<sup>8</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-    
-      
-<div class="tagslist">
-	<p class="asidetitle">標籤</p>
-		<ul class="clearfix">
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Css/" title="Css">Css<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据库/" title="数据库">数据库<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JSON/" title="JSON">JSON<sup>1</sup></a></li>
-			
-		
-		</ul>
-</div>
-
-    
-  </aside>
-</div>
-    <div class="clearfix"></div>
-  </div>
-  <footer id="footer" class="inner"><div class="alignleft">
-  
-  &copy; 2016 issUn
-  
-</div>
-<div class="clearfix"></div></footer>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
+                    
+                </div>
+            </main>
 
 
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
+        </div>
+        
+    </body>
 
-</body>
 </html>
