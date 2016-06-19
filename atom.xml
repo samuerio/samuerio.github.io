@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-19T06:36:59.000Z</updated>
+  <updated>2016-06-19T06:39:07.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zhenghe39.com/2016/06/19/%5B%E8%BD%AC%E8%BD%BD%5DBFC%E7%A5%9E%E5%A5%87%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86/"/>
     <id>http://zhenghe39.com/2016/06/19/[转载]BFC神奇背后的原理/</id>
     <published>2016-06-19T04:08:41.000Z</published>
-    <updated>2016-06-19T06:36:59.000Z</updated>
+    <updated>2016-06-19T06:39:07.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自：&lt;a href=&quot;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&lt;/a&gt;，部分内容略作调整。&lt;/p&gt;
 &lt;h3 id=&quot;BFC是什么？&quot;&gt;&lt;a href=&quot;#BFC是什么？&quot; class=&quot;headerlink&quot; title=&quot;BFC是什么？&quot;&gt;&lt;/a&gt;BFC是什么？&lt;/h3&gt;&lt;p&gt;在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。&lt;/p&gt;
@@ -31,6 +31,7 @@
 &lt;li&gt;inline-level box : display属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；&lt;/li&gt;
 &lt;li&gt;run-in box : css3 中才有， 这儿先不讲了。&lt;/li&gt;
 &lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;strong&gt;Formatting context&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。&lt;/p&gt;
 &lt;p&gt;CSS2.1 中只有 BFC 和 IFC, CSS3 中还增加了 GFC 和 FFC。&lt;/p&gt;
@@ -107,7 +108,15 @@
     
     <summary type="html">
     
-      &lt;p&gt;转载自：&lt;a href=&quot;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lh
+      &lt;p&gt;转载自：&lt;a href=&quot;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&quot;&gt;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&lt;/a&gt;，部分内容略作调整。&lt;/p&gt;
+&lt;h3 id=&quot;BFC是什么？&quot;&gt;&lt;a href=&quot;#BFC是什么？&quot; class=&quot;headerlink&quot; title=&quot;BFC是什么？&quot;&gt;&lt;/a&gt;BFC是什么？&lt;/h3&gt;&lt;p&gt;在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Box&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。让我们看看有哪些盒子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;block-level box : display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；&lt;/li&gt;
+&lt;li&gt;inline-level box : display属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；&lt;/li&gt;
+&lt;li&gt;run-in box : css3 中才有， 这儿先不讲了。&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
