@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-19T02:01:57.000Z</updated>
+  <updated>2016-06-19T06:36:59.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>「转载」BFC神奇背后的原理</title>
+    <link href="http://zhenghe39.com/2016/06/19/%5B%E8%BD%AC%E8%BD%BD%5DBFC%E7%A5%9E%E5%A5%87%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86/"/>
+    <id>http://zhenghe39.com/2016/06/19/[转载]BFC神奇背后的原理/</id>
+    <published>2016-06-19T04:08:41.000Z</published>
+    <updated>2016-06-19T06:36:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;转载自：&lt;a href=&quot;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&lt;/a&gt;，部分内容略作调整。&lt;/p&gt;
+&lt;h3 id=&quot;BFC是什么？&quot;&gt;&lt;a href=&quot;#BFC是什么？&quot; class=&quot;headerlink&quot; title=&quot;BFC是什么？&quot;&gt;&lt;/a&gt;BFC是什么？&lt;/h3&gt;&lt;p&gt;在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Box&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。让我们看看有哪些盒子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;block-level box : display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；&lt;/li&gt;
+&lt;li&gt;inline-level box : display属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；&lt;/li&gt;
+&lt;li&gt;run-in box : css3 中才有， 这儿先不讲了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Formatting context&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。&lt;/p&gt;
+&lt;p&gt;CSS2.1 中只有 BFC 和 IFC, CSS3 中还增加了 GFC 和 FFC。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BFC&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BFC布局规则&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;内部的Box会在垂直方向，一个接一个地放置&lt;/li&gt;
+&lt;li&gt;Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠&lt;/li&gt;
+&lt;li&gt;每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此&lt;/li&gt;
+&lt;li&gt;BFC的区域不会与float box重叠&lt;/li&gt;
+&lt;li&gt;BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此&lt;/li&gt;
+&lt;li&gt;计算BFC的高度时，浮动元素也参与计算&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;哪些元素会生成BFC&quot;&gt;&lt;a href=&quot;#哪些元素会生成BFC&quot; class=&quot;headerlink&quot; title=&quot;哪些元素会生成BFC&quot;&gt;&lt;/a&gt;哪些元素会生成BFC&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;根元素&lt;/li&gt;
+&lt;li&gt;float属性不为none&lt;/li&gt;
+&lt;li&gt;position为absolute或fixed&lt;/li&gt;
+&lt;li&gt;display为inline-block, table-cell, table-caption, flex, inline-flex&lt;/li&gt;
+&lt;li&gt;overflow不为visible&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;只要满足上述条件之一即可&lt;/p&gt;
+&lt;h3 id=&quot;BFC的作用及原理&quot;&gt;&lt;a href=&quot;#BFC的作用及原理&quot; class=&quot;headerlink&quot; title=&quot;BFC的作用及原理&quot;&gt;&lt;/a&gt;BFC的作用及原理&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;自适应两栏布局&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/4o8r2ebj/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;根据BFC布局规则第3条：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因此，虽然存在浮动的元素aslide，但main的左边依然会与包含块的左边相接触。根据BFC布局规则第四条:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;BFC的区域不会与float box重叠。 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;css&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.main&lt;/span&gt; {
+    &lt;span class=&quot;attribute&quot;&gt;overflow&lt;/span&gt;: hidden;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当触发main生成BFC后，这个新的BFC不会与浮动的aside重叠。因此会根据包含块的宽度，和aside的宽度，自动变窄。效果如下：&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/73n3nuj0/1/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;strong&gt;清除内部浮动&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/etsfkchw/1/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;根据BFC布局规则第六条：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;计算BFC的高度时，浮动元素也参与计算&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;为达到清除内部浮动，我们可以触发par生成BFC，那么par在计算高度时，par内部的浮动元素child也会参与计算。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;css&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.par&lt;/span&gt; {
+    &lt;span class=&quot;attribute&quot;&gt;overflow&lt;/span&gt;: hidden;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/hpx5vbgm/1/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;strong&gt;防止垂直margin重叠&lt;/strong&gt;&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/e3x5fhc1/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;两个p之间的距离为100px，发生了margin重叠。根据BFC布局规则第二条：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们可以在p外面包裹一层容器，并触发该容器生成一个BFC。那么两个P便不属于同一个BFC，就不会发生margin重叠了。&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/k5yjotkp/1/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+
+&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;其实以上的几个例子都体现了BFC布局规则第五条：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因为BFC内部的元素和外部的元素绝对不会互相影响，因此， 当BFC外部存在浮动时，它不应该影响BFC内部Box的布局，BFC会通过变窄，而不与浮动有重叠。同样的，当BFC内部有浮动时，为了不影响外部元素的布局，BFC计算高度时会包括浮动的高度。避免margin重叠也是这样的一个道理。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载自：&lt;a href=&quot;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lh
+    
+    </summary>
+    
+      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="css" scheme="http://zhenghe39.com/tags/css/"/>
+    
+  </entry>
   
   <entry>
     <title>Oracle数据库的监听器</title>

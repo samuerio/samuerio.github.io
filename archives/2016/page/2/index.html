@@ -65,6 +65,69 @@
     <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             <div class="icon"></div>
+            <time datetime="2016-03-14T01:25:23.000Z">
+                <a href="/2016/03/14/浅谈JS闭包和this关键字/">2016-03-14</a>
+            </time>
+            <h1 class="post-title" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/03/14/浅谈JS闭包和this关键字/" itemprop="url" >
+                    浅谈JS闭包和this关键字
+                </a>
+            </h1>
+            <!--
+                <div class="post-meta">
+                    <span class="post-time" >
+                        <span class="post-meta-item-icon">
+                            <i class="fa fa-calendar-o"></i>
+                        </span>
+                        <span class="post-meta-iterm-text">发表于</span>
+                        <time itemprop="dateCreated" datetime="2016-03-14T09:25:23+08:00" content="2016-03-14" >
+                            2016-03-14
+                        </time>
+                    </span>
+                    
+                        
+                            <span class="post-comments-count">
+                                &nbsp; | &nbsp
+                                <a href="/2016/03/14/浅谈JS闭包和this关键字/#comments" itemprop="discussionUrl" >
+                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/14/浅谈JS闭包和this关键字/" itemprop="commentsCount"></span>
+                                </a>
+                            </span>
+                        
+                    
+                    
+                    
+                </div>
+            -->
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<p><a href="https://developer.mozilla.org/cn/docs/Web/JavaScript/Closures">闭包</a>是指有权访问另外一个函数作用域变量的函数</p>
+</blockquote>
+<p>举个简单的栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAddFn</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> extra = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b+extra;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回的匿名函数有权访问getAddFn作用域中的<code>extra</code>变量，故形成了一个闭包。</p>
+                     <div class="post-more-link text-center">
+                            <a class="btn" href="/2016/03/14/浅谈JS闭包和this关键字/" rel="contents">
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+        <footer class="post-footer">
+             
+                    <div class="post-eof"></div>
+             
+        </footer>
+    </article>
+
+        
+            
+    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            <div class="icon"></div>
             <time datetime="2016-03-13T13:15:56.000Z">
                 <a href="/2016/03/13/JS原型链实现继承/">2016-03-13</a>
             </time>
@@ -282,6 +345,10 @@
                     <ul>
                         
                             
+                                <li><a href="/categories/精选转载/" title="精选转载">精选转载</a></li>
+                            
+                        
+                            
                                 <li><a href="/categories/编程札记/" title="编程札记">编程札记</a></li>
                             
                         
@@ -308,6 +375,10 @@
                         
                             
                                 <li><a href='/tags/http/' title=http>http</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/css/' title=css>css</a></li>
                             
                         
                             

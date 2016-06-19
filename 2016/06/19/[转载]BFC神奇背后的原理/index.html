@@ -1,0 +1,290 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+        <title> 「转载」BFC神奇背后的原理 | issUn </title>
+    </head>
+    <body itemscope itemtype='http://schema.org/WebPage' lang='zh-Hans' >
+        
+        <div class='container'>
+           
+
+           
+
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap'>
+                        <div id='content' class='content'>
+                            
+
+  <div id="posts" class="posts-expand">
+    
+    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            <div class="icon"></div>
+            <time datetime="2016-06-19T04:08:41.000Z">
+                <a href="/2016/06/19/[转载]BFC神奇背后的原理/">2016-06-19</a>
+            </time>
+            <h1 class="post-title" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/06/19/[转载]BFC神奇背后的原理/" itemprop="url" >
+                    「转载」BFC神奇背后的原理
+                </a>
+            </h1>
+            <!--
+                <div class="post-meta">
+                    <span class="post-time" >
+                        <span class="post-meta-item-icon">
+                            <i class="fa fa-calendar-o"></i>
+                        </span>
+                        <span class="post-meta-iterm-text">发表于</span>
+                        <time itemprop="dateCreated" datetime="2016-06-19T12:08:41+08:00" content="2016-06-19" >
+                            2016-06-19
+                        </time>
+                    </span>
+                    
+                        
+                            <span class="post-comments-count">
+                                &nbsp; | &nbsp
+                                <a href="/2016/06/19/[转载]BFC神奇背后的原理/#comments" itemprop="discussionUrl" >
+                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/19/[转载]BFC神奇背后的原理/" itemprop="commentsCount"></span>
+                                </a>
+                            </span>
+                        
+                    
+                    
+                    
+                </div>
+            -->
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>转载自：<a href="http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html" target="_blank" rel="external">http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html</a>，部分内容略作调整。</p>
+<h3 id="BFC是什么？"><a href="#BFC是什么？" class="headerlink" title="BFC是什么？"></a>BFC是什么？</h3><p>在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。</p>
+<p><strong>Box</strong></p>
+<p>Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。让我们看看有哪些盒子：</p>
+<ul>
+<li>block-level box : display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；</li>
+<li>inline-level box : display属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；</li>
+<li>run-in box : css3 中才有， 这儿先不讲了。</li>
+</ul>
+<p><strong>Formatting context</strong></p>
+<p>Formatting context 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。最常见的 Formatting context 有 Block fomatting context (简称BFC)和 Inline formatting context (简称IFC)。</p>
+<p>CSS2.1 中只有 BFC 和 IFC, CSS3 中还增加了 GFC 和 FFC。</p>
+<p><strong>BFC</strong></p>
+<p>BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</p>
+<p><strong>BFC布局规则</strong></p>
+<blockquote>
+<ul>
+<li>内部的Box会在垂直方向，一个接一个地放置</li>
+<li>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</li>
+<li>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此</li>
+<li>BFC的区域不会与float box重叠</li>
+<li>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此</li>
+<li>计算BFC的高度时，浮动元素也参与计算</li>
+</ul>
+</blockquote>
+<h3 id="哪些元素会生成BFC"><a href="#哪些元素会生成BFC" class="headerlink" title="哪些元素会生成BFC"></a>哪些元素会生成BFC</h3><ul>
+<li>根元素</li>
+<li>float属性不为none</li>
+<li>position为absolute或fixed</li>
+<li>display为inline-block, table-cell, table-caption, flex, inline-flex</li>
+<li>overflow不为visible</li>
+</ul>
+<p>只要满足上述条件之一即可</p>
+<h3 id="BFC的作用及原理"><a href="#BFC的作用及原理" class="headerlink" title="BFC的作用及原理"></a>BFC的作用及原理</h3><p><strong>自适应两栏布局</strong></p>
+<iframe width="100%" height="300" src="https://jsfiddle.net/samuerio/4o8r2ebj/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
+
+<p>根据BFC布局规则第3条：</p>
+<blockquote>
+<p>每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。</p>
+</blockquote>
+<p>因此，虽然存在浮动的元素aslide，但main的左边依然会与包含块的左边相接触。根据BFC布局规则第四条:</p>
+<blockquote>
+<p>BFC的区域不会与float box重叠。 </p>
+</blockquote>
+<pre><code class="css"><span class="selector-class">.main</span> {
+    <span class="attribute">overflow</span>: hidden;
+}
+</code></pre>
+<p>当触发main生成BFC后，这个新的BFC不会与浮动的aside重叠。因此会根据包含块的宽度，和aside的宽度，自动变窄。效果如下：</p>
+<iframe width="100%" height="300" src="https://jsfiddle.net/samuerio/73n3nuj0/1/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
+
+<p><strong>清除内部浮动</strong></p>
+<iframe width="100%" height="300" src="https://jsfiddle.net/samuerio/etsfkchw/1/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
+
+<p>根据BFC布局规则第六条：</p>
+<blockquote>
+<p>计算BFC的高度时，浮动元素也参与计算</p>
+</blockquote>
+<p>为达到清除内部浮动，我们可以触发par生成BFC，那么par在计算高度时，par内部的浮动元素child也会参与计算。</p>
+<pre><code class="css"><span class="selector-class">.par</span> {
+    <span class="attribute">overflow</span>: hidden;
+}
+</code></pre>
+<iframe width="100%" height="300" src="https://jsfiddle.net/samuerio/hpx5vbgm/1/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
+
+<p><strong>防止垂直margin重叠</strong></p>
+<iframe width="100%" height="300" src="https://jsfiddle.net/samuerio/e3x5fhc1/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
+
+<p>两个p之间的距离为100px，发生了margin重叠。根据BFC布局规则第二条：</p>
+<blockquote>
+<p>Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠</p>
+</blockquote>
+<p>我们可以在p外面包裹一层容器，并触发该容器生成一个BFC。那么两个P便不属于同一个BFC，就不会发生margin重叠了。</p>
+<iframe width="100%" height="300" src="https://jsfiddle.net/samuerio/k5yjotkp/1/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
+
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>其实以上的几个例子都体现了BFC布局规则第五条：</p>
+<blockquote>
+<p>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。</p>
+</blockquote>
+<p>因为BFC内部的元素和外部的元素绝对不会互相影响，因此， 当BFC外部存在浮动时，它不应该影响BFC内部Box的布局，BFC会通过变窄，而不与浮动有重叠。同样的，当BFC内部有浮动时，为了不影响外部元素的布局，BFC计算高度时会包括浮动的高度。避免margin重叠也是这样的一个道理。</p>
+
+            
+        </div>
+        <footer class="post-footer">
+             
+        </footer>
+    </article>
+
+  </div>
+
+
+                        </div>
+                        
+                    </div>
+                    
+                        
+  
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+            <div class='closeaside'>
+                <a class='closebutton' href='/' title='hidesidebar'></a>
+            </div>
+            <div class='author'>
+                <div class='author-img'></div>
+                <div class='author-socialInfo'>
+                
+                    <a href="https://github.com/issUn" target="_blank" class="icon-github" title="github"></a>
+                
+                
+                    <a href="mailto:issUn@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+                
+                </div>
+            </div>
+            
+                <div class='categorieslist'>
+                    <p class='asidetitle'>分类</p>
+                    <ul>
+                        
+                            
+                                <li><a href="/categories/精选转载/" title="精选转载">精选转载</a></li>
+                            
+                        
+                            
+                                <li><a href="/categories/编程札记/" title="编程札记">编程札记</a></li>
+                            
+                        
+                    </ul>
+                </div>
+            
+            
+                <div class='tagslist' >
+                    <p class='asidetitle'>标签</p>
+                    <ul >
+                        
+                        
+                            
+                                <li><a href='/tags/javascript/' title=javascript>javascript</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/JavaScript/' title=JavaScript>JavaScript</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/Css/' title=Css>Css</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/http/' title=http>http</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/css/' title=css>css</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/Oracle/' title=Oracle>Oracle</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/数据库/' title=数据库>数据库</a></li>
+                            
+                        
+                            
+                                <li><a href='/tags/JSON/' title=JSON>JSON</a></li>
+                            
+                        
+                    </ul>
+                 </div>
+            
+        </div>
+    </aside>
+
+
+                    
+                </div>
+            </main>
+
+
+
+
+        </div>
+        
+    </body>
+
+</html>
