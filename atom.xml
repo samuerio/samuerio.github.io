@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-19T23:35:12.000Z</updated>
+  <updated>2016-06-20T04:56:04.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Love and Peace</title>
+    <link href="http://zhenghe39.com/2016/06/20/love%20and%20peace/"/>
+    <id>http://zhenghe39.com/2016/06/20/love and peace/</id>
+    <published>2016-06-20T01:17:30.000Z</published>
+    <updated>2016-06-20T04:56:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f51fdnplggj21kw0uotl0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f51fg3yco1j21kw0uong8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f51fhiax82j21kw0uok3c.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79gw1f51fj54t96j21kw0uoaos.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f51fk3lb65j21kw0uotk0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f51fkrvkvmj21kw0uok2f.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f51fdnplggj21kw0uotl0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="电影日常" scheme="http://zhenghe39.com/categories/%E7%94%B5%E5%BD%B1%E6%97%A5%E5%B8%B8/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>JS下的JSON解析及序列化</title>
@@ -453,7 +480,7 @@
     <link href="http://zhenghe39.com/2016/02/27/JS%E4%BA%8B%E4%BB%B6/"/>
     <id>http://zhenghe39.com/2016/02/27/JS事件/</id>
     <published>2016-02-27T13:34:37.000Z</published>
-    <updated>2016-06-19T23:35:27.000Z</updated>
+    <updated>2016-06-20T05:50:15.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;事件监听程序&quot;&gt;&lt;a href=&quot;#事件监听程序&quot; class=&quot;headerlink&quot; title=&quot;事件监听程序&quot;&gt;&lt;/a&gt;事件监听程序&lt;/h3&gt;&lt;p&gt;JS原生的添加事件监听程序的方式有两种，一种是简单粗暴地对属性赋值，另外一种是调用函数addEventListener。&lt;/p&gt;
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dom.onclick&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dom.addEventListener([&lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;] eventType,[EventListener|&lt;span class=&quot;built_in&quot;&gt;Function&lt;/span&gt;] listener,[boolean] useCapture = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//第三个参数决定调用监听程序的阶段「捕获阶段/冒泡阶段」,默认为「冒泡阶段」&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
