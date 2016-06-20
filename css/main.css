@@ -388,16 +388,6 @@ h3 {
   position: relative;
   margin-bottom: 50px;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .post {
-    padding-left: 0;
-  }
-}
-@media (max-width: 767px) {
-  .post {
-    padding-left: 0;
-  }
-}
 .post-body {
   text-align: justify;
   line-height: 1.6;
@@ -592,6 +582,16 @@ h3 {
 }
 .posts-expand .post {
   padding-left: 70px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .posts-expand .post {
+    padding-left: 0;
+  }
+}
+@media (max-width: 767px) {
+  .posts-expand .post {
+    padding-left: 0;
+  }
 }
 .posts-expand .post-header h1 {
   margin-bottom: 20px;
