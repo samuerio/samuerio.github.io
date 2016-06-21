@@ -452,6 +452,9 @@ code {
   text-align: justify;
   line-height: 1.6;
 }
+.post-body a {
+  color: #2ca6cb;
+}
 .post-body ul li {
   list-style: square;
 }
