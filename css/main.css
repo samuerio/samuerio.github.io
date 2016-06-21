@@ -455,6 +455,9 @@ code {
 .post-body a {
   color: #2ca6cb;
 }
+.post-body a:hover {
+  text-decoration: underline;
+}
 .post-body ul li {
   list-style: square;
 }
