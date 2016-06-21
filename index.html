@@ -1,497 +1,78 @@
-<!doctype html>
-
-<html>
-    <head>
-        <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet"  />
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-        <title>issUn</title>
-    </head>
-    <body itemscope itemtype='http://schema.org/WebPage' lang='zh-Hans' >
-        
-        <div class='container  =' >
-           
-
-           
-
-            <main id='main' class='main'>
-                <div class='main-inner'>
-                    <div class='content-wrap'>
-                        <div id='content' class='content'>
-                            
-    <section id='posts' class='posts-expand'>
-        
-            
-
-    
-    <article class="post post-type-picture" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            <div class="icon"></div>
-            <time datetime="2016-06-20T01:17:30.000Z">
-                <a href="/2016/06/20/love and peace/">2016-06-20</a>
-            </time>
-            <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/love and peace/" itemprop="url" >
-                    Love and Peace
-                </a>
-            </h1>
-            <!--
-                <div class="post-meta">
-                    <span class="post-time" >
-                        <span class="post-meta-item-icon">
-                            <i class="fa fa-calendar-o"></i>
-                        </span>
-                        <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-06-20T09:17:30+08:00" content="2016-06-20" >
-                            2016-06-20
-                        </time>
-                    </span>
-                    
-                        
-                            <span class="post-comments-count">
-                                &nbsp; | &nbsp
-                                <a href="/2016/06/20/love and peace/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/love and peace/" itemprop="commentsCount"></span>
-                                </a>
-                            </span>
-                        
-                    
-                    
-                    
-                </div>
-            -->
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <p><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f51fdnplggj21kw0uotl0.jpg" alt=""></p>
-                     <div class="post-more-link text-center">
-                            <a class="btn" href="/2016/06/20/love and peace/" rel="contents">
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-        <footer class="post-footer">
-             
-                    <div class="post-eof"></div>
-             
-        </footer>
-    </article>
-
-        
-            
-
-    
-    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            <div class="icon"></div>
-            <time datetime="2016-06-19T23:35:12.000Z">
-                <a href="/2016/06/20/JS下的JSON解析及序列化/">2016-06-20</a>
-            </time>
-            <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/JS下的JSON解析及序列化/" itemprop="url" >
-                    JS下的JSON解析及序列化
-                </a>
-            </h1>
-            <!--
-                <div class="post-meta">
-                    <span class="post-time" >
-                        <span class="post-meta-item-icon">
-                            <i class="fa fa-calendar-o"></i>
-                        </span>
-                        <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-06-20T07:35:12+08:00" content="2016-06-20" >
-                            2016-06-20
-                        </time>
-                    </span>
-                    
-                        
-                            <span class="post-comments-count">
-                                &nbsp; | &nbsp
-                                <a href="/2016/06/20/JS下的JSON解析及序列化/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/JS下的JSON解析及序列化/" itemprop="commentsCount"></span>
-                                </a>
-                            </span>
-                        
-                    
-                    
-                    
-                </div>
-            -->
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <blockquote>
-<p>JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串</p>
-</blockquote>
-<h3 id="解析JSON"><a href="#解析JSON" class="headerlink" title="解析JSON"></a>解析JSON</h3><p>eval是比较古老的解析JSON数据的方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":false&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>));</span><br></pre></td></tr></table></figure>
-                     <div class="post-more-link text-center">
-                            <a class="btn" href="/2016/06/20/JS下的JSON解析及序列化/" rel="contents">
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-        <footer class="post-footer">
-             
-                    <div class="post-eof"></div>
-             
-        </footer>
-    </article>
-
-        
-            
-
-    
-    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            <div class="icon"></div>
-            <time datetime="2016-06-19T23:33:52.000Z">
-                <a href="/2016/06/20/Oracle数据库的监听器/">2016-06-20</a>
-            </time>
-            <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/Oracle数据库的监听器/" itemprop="url" >
-                    Oracle数据库的监听器
-                </a>
-            </h1>
-            <!--
-                <div class="post-meta">
-                    <span class="post-time" >
-                        <span class="post-meta-item-icon">
-                            <i class="fa fa-calendar-o"></i>
-                        </span>
-                        <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-06-20T07:33:52+08:00" content="2016-06-20" >
-                            2016-06-20
-                        </time>
-                    </span>
-                    
-                        
-                            <span class="post-comments-count">
-                                &nbsp; | &nbsp
-                                <a href="/2016/06/20/Oracle数据库的监听器/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/Oracle数据库的监听器/" itemprop="commentsCount"></span>
-                                </a>
-                            </span>
-                        
-                    
-                    
-                    
-                </div>
-            -->
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <blockquote>
-<p>Oracle数据库需要配置监听程序，用于监听<strong>客户端的连接请求</strong></p>
-</blockquote>
-<p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1fenxg9j1j20dk04t0th.jpg" alt=""></p>
-<p>以下为「SID」ZHeOracle数据库的监听器配置过程，有如下两种配置方式：</p>
-                     <div class="post-more-link text-center">
-                            <a class="btn" href="/2016/06/20/Oracle数据库的监听器/" rel="contents">
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-        <footer class="post-footer">
-             
-                    <div class="post-eof"></div>
-             
-        </footer>
-    </article>
-
-        
-            
-
-    
-    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            <div class="icon"></div>
-            <time datetime="2016-06-19T23:26:30.000Z">
-                <a href="/2016/06/20/清除浮动/">2016-06-20</a>
-            </time>
-            <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/清除浮动/" itemprop="url" >
-                    清除浮动
-                </a>
-            </h1>
-            <!--
-                <div class="post-meta">
-                    <span class="post-time" >
-                        <span class="post-meta-item-icon">
-                            <i class="fa fa-calendar-o"></i>
-                        </span>
-                        <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-06-20T07:26:30+08:00" content="2016-06-20" >
-                            2016-06-20
-                        </time>
-                    </span>
-                    
-                        
-                            <span class="post-comments-count">
-                                &nbsp; | &nbsp
-                                <a href="/2016/06/20/清除浮动/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/清除浮动/" itemprop="commentsCount"></span>
-                                </a>
-                            </span>
-                        
-                    
-                    
-                    
-                </div>
-            -->
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <h3 id="浮动元素下面加clearfix的空标签"><a href="#浮动元素下面加clearfix的空标签" class="headerlink" title="浮动元素下面加clearfix的空标签"></a>浮动元素下面加clearfix的空标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">‘clearfix’</span>&gt;</span><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">zoom</span>:<span class="value"><span class="number">1</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,<span class="class">.clearfix</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-                     <div class="post-more-link text-center">
-                            <a class="btn" href="/2016/06/20/清除浮动/" rel="contents">
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-        <footer class="post-footer">
-             
-                    <div class="post-eof"></div>
-             
-        </footer>
-    </article>
-
-        
-            
-
-    
-    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            <div class="icon"></div>
-            <time datetime="2016-06-19T04:08:41.000Z">
-                <a href="/2016/06/19/[转载]BFC神奇背后的原理/">2016-06-19</a>
-            </time>
-            <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/19/[转载]BFC神奇背后的原理/" itemprop="url" >
-                    「转载」BFC神奇背后的原理
-                </a>
-            </h1>
-            <!--
-                <div class="post-meta">
-                    <span class="post-time" >
-                        <span class="post-meta-item-icon">
-                            <i class="fa fa-calendar-o"></i>
-                        </span>
-                        <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-06-19T12:08:41+08:00" content="2016-06-19" >
-                            2016-06-19
-                        </time>
-                    </span>
-                    
-                        
-                            <span class="post-comments-count">
-                                &nbsp; | &nbsp
-                                <a href="/2016/06/19/[转载]BFC神奇背后的原理/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/19/[转载]BFC神奇背后的原理/" itemprop="commentsCount"></span>
-                                </a>
-                            </span>
-                        
-                    
-                    
-                    
-                </div>
-            -->
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <p>转载自：<a href="http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html">http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html</a>，部分内容略作调整。</p>
-<h3 id="BFC是什么？"><a href="#BFC是什么？" class="headerlink" title="BFC是什么？"></a>BFC是什么？</h3><p>在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。</p>
-<p><strong>Box</strong></p>
-<p>Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。让我们看看有哪些盒子：</p>
-<ul>
-<li>block-level box : display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；</li>
-<li>inline-level box : display属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；</li>
-<li>run-in box : css3 中才有， 这儿先不讲了。</li>
-</ul>
-                     <div class="post-more-link text-center">
-                            <a class="btn" href="/2016/06/19/[转载]BFC神奇背后的原理/" rel="contents">
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-        <footer class="post-footer">
-             
-                    <div class="post-eof"></div>
-             
-        </footer>
-    </article>
-
-        
-    </section>
-    <nav class='pagination'>
-    
-    
-            <a href = '/page/2/' class='alignright next'>下一页</a>
-    
-    <div class='clearfix'></div>
-</nav>
-
-                        </div>
-                        
-                    </div>
-                    
-                        
-    
-    <aside class="sidebar">
-        <div class="sidebar-inner">
-            <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
-            <a class='sidebar-btn-home' href='/' title='首页' ></a>
-            <div class='author'>
-                <div class='author-img'></div>
-                <div class='author-socialInfo'>
-                
-                    <a href="https://github.com/samuerio" target="_blank" class="icon-github" title="github"></a>
-                
-                
-                    <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-                
-                </div>
-            </div>
-            
-                <div class='categorieslist'>
-                    <p class='sidebar-title'>分类</p>
-                    <ul>
-                        
-                            
-                                <li class="categorieslist-item">
-                                    <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
-                                </li>
-                            
-                        
-                            
-                                <li class="categorieslist-item">
-                                    <a  href="/categories/电影日常/" title="电影日常">电影日常</a>
-                                </li>
-                            
-                        
-                            
-                                <li class="categorieslist-item">
-                                    <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
-                                </li>
-                            
-                        
-                            
-                                <li class="categorieslist-item">
-                                    <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
-                                </li>
-                            
-                        
-                    </ul>
-                </div>
-            
-            
-                <div class="tagslist" >
-                    <p class="sidebar-title">标签</p>
-                    <ul>
-                        
-                        
-                            
-                                <li class="tagslist-item">
-                                    <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
-                                </li>
-                            
-                        
-                            
-                                <li class="tagslist-item">
-                                    <a  href='/tags/Css/' title=Css>Css</a>
-                                </li>
-                            
-                        
-                            
-                                <li class="tagslist-item">
-                                    <a  href='/tags/Http/' title=Http>Http</a>
-                                </li>
-                            
-                        
-                            
-                                <li class="tagslist-item">
-                                    <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
-                                </li>
-                            
-                        
-                            
-                                <li class="tagslist-item">
-                                    <a  href='/tags/JSON/' title=JSON>JSON</a>
-                                </li>
-                            
-                        
-                    </ul>
-                 </div>
-            
-        </div>
-    </aside>
-
-
-                    
-                </div>
-            </main>
-
-
-
-
-        </div>
-        
-    </body>
-
-</html>
+body {
+  background: #f5f7f9;
+}
+.container {
+  position: relative;
+  min-height: 100%;
+}
+.header {
+  position: relative;
+  margin: 0 auto;
+  width: 1200px;
+tablet()
+mobile()
+}
+.header-inner {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  padding: 0;
+  width: $sidebar-desktop;
+  background: #fff;
+tablet()
+mobile()
+}
+.main {
+  padding-top: 20px;
+  padding-bottom: $footer-height$gap-between-main-and-footer;
+tablet()
+mobile()
+}
+.main-inner {
+  margin: 0 auto;
+  width: $main-desktop;
+tablet()
+mobile()
+}
+.content-wrap {
+  float: right;
+  box-sizing: border-box;
+  padding: $content-desktop-padding;
+  width: $content-desktop;
+  background: #fff;
+  min-height: 700px;
+tablet()
+mobile()
+}
+.sidebar {
+  position: static;
+  float: left;
+  width: $sidebar-desktop;
+  background: #fff;
+  box-shadow: none;
+tablet()
+mobile()
+}
+.sidebar-toggle {
+  display: none;
+}
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: $footer-height;
+}
+.footer-inner {
+  box-sizing: border-box;
+  margin: 20px auto;
+  width: $main-desktop;
+tablet()
+mobile()
+}
+.footer-inner:before {
+  content: " ";
+  float: left;
+  width: 260px;
+  min-height: 50px;
+}

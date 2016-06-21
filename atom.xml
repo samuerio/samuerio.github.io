@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-20T13:57:24.000Z</updated>
+  <updated>2016-06-21T15:45:50.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>「转载」Stop the cascade</title>
+    <link href="http://zhenghe39.com/2016/06/21/%5B%E8%BD%AC%E8%BD%BD%5DStop%20the%20cascade/"/>
+    <id>http://zhenghe39.com/2016/06/21/[转载]Stop the cascade/</id>
+    <published>2016-06-21T15:38:50.000Z</published>
+    <updated>2016-06-21T15:45:50.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Cascading styles is at the core of CSS—hell, it’s in the name—but experience has shown that building systems with too many &lt;em&gt;cascading styles&lt;/em&gt; can be detrimental. Some times it’s completely necessary to just &lt;strong&gt;stop the cascade&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Let’s take the modal of &lt;a href=&quot;http://getbootstrap.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bootstrap&lt;/a&gt; as an example.&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal-header&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;Modal title&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal-body&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;Modal subheader&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;Content for the modal, like additional text and forms, goes here.&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal-footer&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;btn&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;Done&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;button&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Notice how we namespace classes at key levels—each class name begins with &lt;code&gt;modal-&lt;/code&gt;as a prefix. &lt;a href=&quot;http://www.markdotto.com/2012/02/16/scope-css-classes-with-prefixes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Class name prefixing&lt;/a&gt; makes our code more durable and easier to maintain, but it also better enables us to scope styles to only the relevant elements.&lt;/p&gt;
+&lt;p&gt;Consider this snippet of CSS used to style the modal heading:&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.modal&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;h3&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;By using this generic selector, we inadvertently change the styles of the &lt;code&gt;h3&lt;/code&gt; in the &lt;code&gt;.modal-body&lt;/code&gt;. We’ve introduced an instance of cascading styles—any &lt;code&gt;h3&lt;/code&gt;throughout the &lt;code&gt;.modal&lt;/code&gt; will be center aligned. Therefore, if we wanted the other instances of &lt;code&gt;h3&lt;/code&gt; to be left-aligned, we’d have to override our brand new styles with something like this:&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.modal&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;.modal-body&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;h3&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; left&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;It’s worth noting that this example isn’t without its flaws, but that’s the point. With a little more time and thought, one can easily avoid this problem, avoiding extra lines of code and more complications in the overall system. Had we done things differently and altered our selector, our CSS might look like this:&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.modal-header&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;h3&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;By limiting the scope of a selector, we reduce the likelihood that we need additional code down the line by strengthening each component and limiting the effects of their styles. If done right, we can create an entire system of independent and durable, yet still flexible, components. It’s a promising approach I think, but one not to employ with an iron first.&lt;/p&gt;
+&lt;p&gt;Some CSS should be allowed to cascade. Base typography, links, and the such are prime examples of something not to redeclare over and over again. This would only serve to weigh down a project and make it even more unmanageable. Instead, the goal as always is to strike a balance.&lt;/p&gt;
+&lt;p&gt;Find ways to isolate components and make them more durable by limiting the scope of their CSS. You’ll discover that components can be more easily rearranged without causing adverse effects and the amount of code necessary will likely decrease.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Cascading styles is at the core of CSS—hell, it’s in the name—but experience has shown that building systems with too many &lt;em&gt;cascading 
+    
+    </summary>
+    
+      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>「转载」Scope CSS classes with prefixes</title>
+    <link href="http://zhenghe39.com/2016/06/21/%5B%E8%BD%AC%E8%BD%BD%5DScope%20CSS%20classes%20with%20prefixes/"/>
+    <id>http://zhenghe39.com/2016/06/21/[转载]Scope CSS classes with prefixes/</id>
+    <published>2016-06-21T14:25:50.000Z</published>
+    <updated>2016-06-21T14:40:18.000Z</updated>
+    
+    <content type="html">&lt;p&gt;转载自：&lt;a href=&quot;http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.&lt;/p&gt;
+&lt;p&gt;Taking the &lt;code&gt;chained classes&lt;/code&gt; approach, your CSS selectors might look something like this for a given set of components:&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;.success &amp;#123; ... &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.btn.success &amp;#123; .. &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.alert.success &amp;#123; ... &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;We have here a global base class, &lt;code&gt;.success&lt;/code&gt;, that might house all the commonalities between successful buttons and alerts. Then, at the individual component level, we add on or override as necessary. However, this wide open class and chained approach exposes developers to a number of questions and potential paint points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What’s that base class stand for?&lt;/li&gt;
+&lt;li&gt;What elements will be affected at the root level?&lt;/li&gt;
+&lt;li&gt;How many elements have .success chained onto them?&lt;/li&gt;
+&lt;li&gt;Can it be extended further to more components?&lt;/li&gt;
+&lt;li&gt;What if one instance of .success uses green text on a white background while another uses white text on a green background?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And those questions barely scratch the surface. This solution isn’t necessarily bad, but when scale, brevity, and flexibility are your top requirements, it might not be the best idea. A better solution might be using prefixed classes.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Prefixed classes&lt;/code&gt; guide developers towards a simpler and more maintainable direction for building an extensive CSS design system. Here’s what we have if we take away the generic base class and scope things per component with prefixes:&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;.btn-success &amp;#123; ... &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.alert-success &amp;#123; ... &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;This way, &lt;strong&gt;the base class is at the component level&lt;/strong&gt; and not the entire system level. In other words, our base classes have become &lt;code&gt;.btn&lt;/code&gt; and &lt;code&gt;.alert&lt;/code&gt;, not &lt;code&gt;.success&lt;/code&gt;. There’s no bleeding of styles or behavior from one component to another here because we treat components in a “successful state” as an idea across the design system. That is to say, we have a shared idea of what “success” looks for buttons and alerts, but the execution is scoped entirely to each independent component. No questions of where common styles are used and no concern of unintended effects, making each component more durable and flexible.&lt;/p&gt;
+&lt;p&gt;While a very tactical and detail-oriented practice, building components that inherently isolate themselves for improved modularity and customization in a system like Bootstrap makes for better code and a more enjoyable project down the line.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载自：&lt;a href=&quot;http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://markdotto.com/2012/0
+    
+    </summary>
+    
+      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Love and Peace</title>
@@ -151,7 +221,7 @@
     <link href="http://zhenghe39.com/2016/06/19/%5B%E8%BD%AC%E8%BD%BD%5DBFC%E7%A5%9E%E5%A5%87%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86/"/>
     <id>http://zhenghe39.com/2016/06/19/[转载]BFC神奇背后的原理/</id>
     <published>2016-06-19T04:08:41.000Z</published>
-    <updated>2016-06-19T23:34:35.000Z</updated>
+    <updated>2016-06-21T14:44:37.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自：&lt;a href=&quot;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&lt;/a&gt;，部分内容略作调整。&lt;/p&gt;
 &lt;h3 id=&quot;BFC是什么？&quot;&gt;&lt;a href=&quot;#BFC是什么？&quot; class=&quot;headerlink&quot; title=&quot;BFC是什么？&quot;&gt;&lt;/a&gt;BFC是什么？&lt;/h3&gt;&lt;p&gt;在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。&lt;/p&gt;

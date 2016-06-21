@@ -45,7 +45,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
-        <title>issUn</title>
+        <title> 「转载」Scope CSS classes with prefixes | issUn </title>
     </head>
     <body itemscope itemtype='http://schema.org/WebPage' lang='zh-Hans' >
         
@@ -59,20 +59,20 @@
                     <div class='content-wrap'>
                         <div id='content' class='content'>
                             
-    <section id='posts' class='posts-expand'>
-        
-            
+
+  <div id="posts" class="posts-expand">
+    
 
     
     <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             <div class="icon"></div>
-            <time datetime="2016-02-27T13:34:37.000Z">
-                <a href="/2016/02/27/JS事件/">2016-02-27</a>
+            <time datetime="2016-06-21T14:25:50.000Z">
+                <a href="/2016/06/21/[转载]Scope CSS classes with prefixes/">2016-06-21</a>
             </time>
             <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/02/27/JS事件/" itemprop="url" >
-                    JS事件
+                <a class="post-title-link" href="/2016/06/21/[转载]Scope CSS classes with prefixes/" itemprop="url" >
+                    「转载」Scope CSS classes with prefixes
                 </a>
             </h1>
             <!--
@@ -82,16 +82,16 @@
                             <i class="fa fa-calendar-o"></i>
                         </span>
                         <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-02-27T21:34:37+08:00" content="2016-02-27" >
-                            2016-02-27
+                        <time itemprop="dateCreated" datetime="2016-06-21T22:25:50+08:00" content="2016-06-21" >
+                            2016-06-21
                         </time>
                     </span>
                     
                         
                             <span class="post-comments-count">
                                 &nbsp; | &nbsp
-                                <a href="/2016/02/27/JS事件/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/27/JS事件/" itemprop="commentsCount"></span>
+                                <a href="/2016/06/21/[转载]Scope CSS classes with prefixes/#comments" itemprop="discussionUrl" >
+                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/21/[转载]Scope CSS classes with prefixes/" itemprop="commentsCount"></span>
                                 </a>
                             </span>
                         
@@ -103,46 +103,45 @@
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                
-                     <h3 id="事件监听程序"><a href="#事件监听程序" class="headerlink" title="事件监听程序"></a>事件监听程序</h3><p>JS原生的添加事件监听程序的方式有两种，一种是简单粗暴地对属性赋值，另外一种是调用函数addEventListener。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dom.onclick</span><br><span class="line">dom.addEventListener([<span class="built_in">String</span>] eventType,[EventListener|<span class="built_in">Function</span>] listener,[boolean] useCapture = <span class="literal">false</span>)</span><br><span class="line"><span class="comment">//第三个参数决定调用监听程序的阶段「捕获阶段/冒泡阶段」,默认为「冒泡阶段」</span></span><br></pre></td></tr></table></figure>
-<p>相对第一种方式而言，第二种方式更加灵活：可以添加多个处理程序，而且也可以移除事件处理程序。</p>
-                     <div class="post-more-link text-center">
-                            <a class="btn" href="/2016/02/27/JS事件/" rel="contents">
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
+                <p>转载自：<a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/" target="_blank" rel="external">http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/</a></p>
+<p>When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.</p>
+<p>Taking the <code>chained classes</code> approach, your CSS selectors might look something like this for a given set of components:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.success &#123; ... &#125;</span><br><span class="line">.btn.success &#123; .. &#125;</span><br><span class="line">.alert.success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>We have here a global base class, <code>.success</code>, that might house all the commonalities between successful buttons and alerts. Then, at the individual component level, we add on or override as necessary. However, this wide open class and chained approach exposes developers to a number of questions and potential paint points:</p>
+<ul>
+<li>What’s that base class stand for?</li>
+<li>What elements will be affected at the root level?</li>
+<li>How many elements have .success chained onto them?</li>
+<li>Can it be extended further to more components?</li>
+<li>What if one instance of .success uses green text on a white background while another uses white text on a green background?</li>
+</ul>
+<p>And those questions barely scratch the surface. This solution isn’t necessarily bad, but when scale, brevity, and flexibility are your top requirements, it might not be the best idea. A better solution might be using prefixed classes.</p>
+<p><code>Prefixed classes</code> guide developers towards a simpler and more maintainable direction for building an extensive CSS design system. Here’s what we have if we take away the generic base class and scope things per component with prefixes:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.btn-success &#123; ... &#125;</span><br><span class="line">.alert-success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>This way, <strong>the base class is at the component level</strong> and not the entire system level. In other words, our base classes have become <code>.btn</code> and <code>.alert</code>, not <code>.success</code>. There’s no bleeding of styles or behavior from one component to another here because we treat components in a “successful state” as an idea across the design system. That is to say, we have a shared idea of what “success” looks for buttons and alerts, but the execution is scoped entirely to each independent component. No questions of where common styles are used and no concern of unintended effects, making each component more durable and flexible.</p>
+<p>While a very tactical and detail-oriented practice, building components that inherently isolate themselves for improved modularity and customization in a system like Bootstrap makes for better code and a more enjoyable project down the line.</p>
+
             
         </div>
         <footer class="post-footer">
              
-                    <div class="post-eof"></div>
-             
         </footer>
     </article>
 
-        
-    </section>
-    <nav class='pagination'>
-    
-        <a href = '/page/2/' class='alignleft prev'>上一页</a>
-    
-    
-    <div class='clearfix'></div>
-</nav>
+  </div>
+
 
                         </div>
                         
                     </div>
                     
                         
-    
+  
     <aside class="sidebar">
         <div class="sidebar-inner">
-            <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
-            <a class='sidebar-btn-home' href='/' title='首页' ></a>
             <div class='author'>
+                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
                 
