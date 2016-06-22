@@ -64,7 +64,8 @@
     
 
     
-    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article" >
+    
+    <article class="post post-type-normal post-picture-center" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             <div class="icon"></div>
             <time datetime="2016-06-22T06:46:50.000Z">
@@ -106,7 +107,16 @@
                 <blockquote>
 <p>AMD&amp;&amp;CMD是浏览器端模块化开发的规范，服务器端的规范是CommonJS</p>
 </blockquote>
-<p>AMD规范&amp;CMD规范：define定义模块，require调用模块</p>
+<p><img src="http://ww4.sinaimg.cn/large/8b826b79jw1f54e31blynj209g0bymxm.jpg" alt=""></p>
+<a id="more"></a>
+<h3 id="AMD-amp-amp-CMD"><a href="#AMD-amp-amp-CMD" class="headerlink" title="AMD&amp;&amp;CMD"></a>AMD&amp;&amp;CMD</h3><p><strong>共性：</strong><code>define</code>定义模块，<code>require</code>调用模块</p>
+<p><strong>差异：</strong></p>
+<ul>
+<li>AMD是<code>RequireJS</code>在推广过程中对模块定义的规范化产出</li>
+<li>CMD是<code>SeaJS</code>在推广过程中对模块定义的规范化产出</li>
+<li>AMD和CMD最大区别：RequireJS是<code>「预执行」</code>{所有require都被提前执行}，而SeaJS是<code>「懒执行」</code>{需要使用依赖模块时才执行该模块}。俗话说：“RequireJS没有明显的BUG，SeaJS是明显没BUG”。</li>
+</ul>
+<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p><strong>特点：</strong>一个单独的文件就是一个模块，模块拥有自己单独的作用域。通过<code>module.exports</code>输出模块变量，<code>require</code>调用模块</p>
 
             
         </div>

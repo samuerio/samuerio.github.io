@@ -492,6 +492,11 @@ code {
 .post-body dl dl {
   margin-top: 0;
 }
+.post-picture-center img {
+  display: block;
+  margin: 0 auto;
+  max-width: 80%;
+}
 .posts-collapse {
   position: relative;
   margin-left: 55px;
