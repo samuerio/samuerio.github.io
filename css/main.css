@@ -486,21 +486,10 @@ code {
 .post-body dl dl {
   margin-top: 0;
 }
-@media (max-width: 767px) {
-  .posts-collapse {
-    margin: 0 20px;
-  }
-  .posts-collapse .post-title,
-  .posts-collapse .post-meta {
-    display: block;
-    width: auto;
-    text-align: left;
-  }
-}
 .posts-collapse {
   position: relative;
-  z-index: 1010;
   margin-left: 55px;
+  z-index: 1010;
 }
 .posts-collapse::after {
   content: " ";
@@ -516,6 +505,12 @@ code {
 @media (max-width: 767px) {
   .posts-collapse {
     margin: 0 20px;
+  }
+  .posts-collapse .post-title,
+  .posts-collapse .post-meta {
+    display: block;
+    width: auto;
+    text-align: left;
   }
 }
 .posts-collapse .collection-title {
@@ -594,16 +589,6 @@ code {
 .posts-expand {
   position: relative;
 }
-.posts-expand time {
-  display: block;
-  margin-bottom: 5px;
-  font: 0.9em "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
-  line-height: 1;
-  color: #2ca6cb;
-}
-.posts-expand time a {
-  color: #2ca6cb;
-}
 .posts-expand .post {
   padding-left: 70px;
 }
@@ -620,7 +605,17 @@ code {
 .posts-expand .post-header h1 {
   margin-bottom: 20px;
 }
-.posts-expand .icon {
+.posts-expand .post-header time {
+  display: block;
+  margin-bottom: 5px;
+  font: 0.9em "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  line-height: 1;
+  color: #2ca6cb;
+}
+.posts-expand .post-header time a {
+  color: #2ca6cb;
+}
+.posts-expand .post-header .icon {
   position: absolute;
   top: 0;
   left: 0;
@@ -629,7 +624,7 @@ code {
   margin-right: 25px;
   color: #2ca6cb;
 }
-.posts-expand .icon:before {
+.posts-expand .post-header .icon:before {
   content: '\f0f6';
   position: absolute;
   font: 24px FontAwesome;
@@ -639,12 +634,12 @@ code {
   text-align: center;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .posts-expand .icon {
+  .posts-expand .post-header .icon {
     display: none;
   }
 }
 @media (max-width: 767px) {
-  .posts-expand .icon {
+  .posts-expand .post-header .icon {
     display: none;
   }
 }

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-22T06:46:57.000Z</updated>
+  <updated>2016-06-22T06:48:35.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript模块化</title>
+    <link href="http://zhenghe39.com/2016/06/22/Javascript%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+    <id>http://zhenghe39.com/2016/06/22/Javascript模块化/</id>
+    <published>2016-06-22T06:46:50.000Z</published>
+    <updated>2016-06-22T06:48:35.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;AMD&amp;amp;&amp;amp;CMD是浏览器端模块化开发的规范，服务器端的规范是CommonJS&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AMD规范&amp;amp;CMD规范：define定义模块，require调用模块&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;AMD&amp;amp;&amp;amp;CMD是浏览器端模块化开发的规范，服务器端的规范是CommonJS&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;AMD规范&amp;amp;CMD规范：define定义模块，require调用模块&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>「转载」Stop the cascade</title>
