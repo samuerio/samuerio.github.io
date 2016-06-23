@@ -45,7 +45,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
-        <title> Oracle数据库的监听器 | issUn </title>
+        <title> JSP&&Servlet | issUn </title>
     </head>
     <body itemscope itemtype='http://schema.org/WebPage' lang='zh-Hans' >
         
@@ -65,15 +65,15 @@
 
     
     
-    <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
+    <article class="post post-type-normal post-picture-center" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             <div class="icon"></div>
-            <time datetime="2016-06-19T23:33:52.000Z">
-                <a href="/2016/06/20/Oracle数据库的监听器/">2016-06-20</a>
+            <time datetime="2016-06-23T15:13:13.000Z">
+                <a href="/2016/06/23/JSP与Servlet/">2016-06-23</a>
             </time>
             <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/Oracle数据库的监听器/" itemprop="url" >
-                    Oracle数据库的监听器
+                <a class="post-title-link" href="/2016/06/23/JSP与Servlet/" itemprop="url" >
+                    JSP&&Servlet
                 </a>
             </h1>
             <!--
@@ -83,16 +83,16 @@
                             <i class="fa fa-calendar-o"></i>
                         </span>
                         <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-06-20T07:33:52+08:00" content="2016-06-20" >
-                            2016-06-20
+                        <time itemprop="dateCreated" datetime="2016-06-23T23:13:13+08:00" content="2016-06-23" >
+                            2016-06-23
                         </time>
                     </span>
                     
                         
                             <span class="post-comments-count">
                                 &nbsp; | &nbsp
-                                <a href="/2016/06/20/Oracle数据库的监听器/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/Oracle数据库的监听器/" itemprop="commentsCount"></span>
+                                <a href="/2016/06/23/JSP与Servlet/#comments" itemprop="discussionUrl" >
+                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/23/JSP与Servlet/" itemprop="commentsCount"></span>
                                 </a>
                             </span>
                         
@@ -105,16 +105,18 @@
         <div class="post-body" itemprop="articleBody">
             
                 <blockquote>
-<p>Oracle数据库需要配置监听程序，用于监听<strong>客户端的连接请求</strong></p>
+<p>JSP即<code>JavaServer Pages</code>，一种使软件开发者可以响应客户端请求，而动态生成HTML、XML或其他格式文档的Web网页技术标准。</p>
 </blockquote>
-<p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1fenxg9j1j20dk04t0th.jpg" alt=""></p>
-<p>以下为「SID」ZHeOracle数据库的监听器配置过程，有如下两种配置方式：</p>
+<p>JSP是以<code>Java</code>作为脚本语言，Servlet是Java提供的用于<code>开发Web服务器应用的组件</code>。两种都是用于动态生成内容，那么既然有Servlet为什么还要有JSP呢？</p>
 <a id="more"></a>
-<h3 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h3><p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1fef1574pj206m06yq47.jpg" alt=""></p>
-<p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1fehqo601j20gr0ajgn2.jpg" alt=""></p>
-<p><img src="http://ww1.sinaimg.cn/large/8b826b79jw1f1fei91i43j20h2094mya.jpg" alt=""></p>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>「listener.ora」：</p>
-<p><img src="http://ww4.sinaimg.cn/large/8b826b79jw1f1ff83fkjsj20kb070wgd.jpg" alt=""></p>
+<ul>
+<li>使用Servlet生成动态页面，需要在代码中打印输出很多HTML标签</li>
+<li>网页编辑人员不了解Java，无法修改Servlet代码</li>
+<li>Java程序员不了解网页编辑人员的意图，以至于无法修改和实现网页功能</li>
+</ul>
+<p>为解决如上问题所以才有了JSP技术，JSP会被JSP编译器编译成Java Servlets。静态数据在输入文件中的内容和输出给HTTP响应的内容完全一致。此时，该JSP输入文件会是一个没有内嵌JAVA或动作的HTML页面。</p>
+<p>JSP侧重于视图，Servlet主要用于控制逻辑。</p>
+<p><img src="http://ww1.sinaimg.cn/large/8b826b79jw1f55knjaltkj20jg0jojsn.jpg" alt=""></p>
 
             
         </div>

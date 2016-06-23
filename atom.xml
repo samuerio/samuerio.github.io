@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-22T15:10:04.000Z</updated>
+  <updated>2016-06-23T15:25:24.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JSP&amp;&amp;Servlet</title>
+    <link href="http://zhenghe39.com/2016/06/23/JSP%E4%B8%8EServlet/"/>
+    <id>http://zhenghe39.com/2016/06/23/JSP与Servlet/</id>
+    <published>2016-06-23T15:13:13.000Z</published>
+    <updated>2016-06-23T15:25:24.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;JSP即&lt;code&gt;JavaServer Pages&lt;/code&gt;，一种使软件开发者可以响应客户端请求，而动态生成HTML、XML或其他格式文档的Web网页技术标准。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;JSP是以&lt;code&gt;Java&lt;/code&gt;作为脚本语言，Servlet是Java提供的用于&lt;code&gt;开发Web服务器应用的组件&lt;/code&gt;。两种都是用于动态生成内容，那么既然有Servlet为什么还要有JSP呢？&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;使用Servlet生成动态页面，需要在代码中打印输出很多HTML标签&lt;/li&gt;
+&lt;li&gt;网页编辑人员不了解Java，无法修改Servlet代码&lt;/li&gt;
+&lt;li&gt;Java程序员不了解网页编辑人员的意图，以至于无法修改和实现网页功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为解决如上问题所以才有了JSP技术，JSP会被JSP编译器编译成Java Servlets。静态数据在输入文件中的内容和输出给HTTP响应的内容完全一致。此时，该JSP输入文件会是一个没有内嵌JAVA或动作的HTML页面。&lt;/p&gt;
+&lt;p&gt;JSP侧重于视图，Servlet主要用于控制逻辑。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79jw1f55knjaltkj20jg0jojsn.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;JSP即&lt;code&gt;JavaServer Pages&lt;/code&gt;，一种使软件开发者可以响应客户端请求，而动态生成HTML、XML或其他格式文档的Web网页技术标准。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;JSP是以&lt;code&gt;Java&lt;/code&gt;作为脚本语言，Servlet是Java提供的用于&lt;code&gt;开发Web服务器应用的组件&lt;/code&gt;。两种都是用于动态生成内容，那么既然有Servlet为什么还要有JSP呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Java" scheme="http://zhenghe39.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Javascript模块化</title>
