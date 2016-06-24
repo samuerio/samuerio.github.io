@@ -915,6 +915,9 @@ pre .javascript .function {
   font-size: 0.8em;
   background: #dbdbdb;
 }
+.comments {
+  padding-left: 70px;
+}
 .use-motion .post {
   opacity: 0;
 }
