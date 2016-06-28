@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-23T15:25:24.000Z</updated>
+  <updated>2016-06-27T09:48:44.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,274 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript正则表达式</title>
+    <link href="http://zhenghe39.com/2016/06/27/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://zhenghe39.com/2016/06/27/JavaScript 正则表达式/</id>
+    <published>2016-06-27T08:24:14.000Z</published>
+    <updated>2016-06-27T09:48:44.000Z</updated>
+    
+    <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/dolphinX/p/3486214.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/dolphinX/p/3486214.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;p&gt;JavaScript种正则表达式有两种定义方式，定义一个匹配类似 &lt;code&gt;&amp;lt;%XXX%&amp;gt;&lt;/code&gt;的字符串&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;构造函数&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;RegExp&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;%[^%&amp;gt;]+%&amp;gt;&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;g&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;字面量&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;regexp&quot;&gt;/&amp;lt;%[^%&amp;gt;]%&amp;gt;/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;g： global，全文搜索，默认搜索到第一个结果接停止&lt;/li&gt;
+&lt;li&gt;i： ingore case，忽略大小写，默认大小写敏感&lt;/li&gt;
+&lt;li&gt;m： multiple lines，多行搜索（更改^ 和$的含义，使它们分别在任意一行对待行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;元字符&quot;&gt;&lt;a href=&quot;#元字符&quot; class=&quot;headerlink&quot; title=&quot;元字符&quot;&gt;&lt;/a&gt;元字符&lt;/h3&gt;&lt;p&gt;正则表达式让人望而却步以一个重要原因就是其转义字符太多了，组合非常之多，但是正则表达式的元字符（在正则表达式中具有特殊意义的专用字符，可以用来规定其前导字符）并不多&lt;/p&gt;
+&lt;p&gt;元字符：( [ { \ ^ $ | ) ? * + .&lt;/p&gt;
+&lt;p&gt;并不是每个元字符都有其特定意义，在不同的组合中元字符有不同的意义，分类看一下&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;预定义特殊字符&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符&lt;/th&gt;
+&lt;th&gt;含义 &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;\t&lt;/td&gt;
+&lt;td&gt;水平制表符 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\r&lt;/td&gt;
+&lt;td&gt;回车符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\n&lt;/td&gt;
+&lt;td&gt;换行符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\f&lt;/td&gt;
+&lt;td&gt;换页符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\v&lt;/td&gt;
+&lt;td&gt;垂直制表符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\0&lt;/td&gt;
+&lt;td&gt;空字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;字符类&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一般情况下正则表达式一个字符（转义字符算一个）对应字符串一个字符，表达式 ab\t 的含义是&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59vmjfrpuj204f018wea.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;但是我们可以使用元字符[]来构建一个简单的类，所谓类是指，符合某些特征的对象，是一个泛指，而不是特指某个字符了，我们可以使用表达式 [abc] 把字符a或b或c归为一类，表达式可以匹配这类的字符&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59vmw9zg1j204i03jwec.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;元字符[]组合可以创建一个类，我们还可以使用元字符^创建反向类/负向类，反向类的意思是不属于XXX类的内容，表达式 [^abc] 表示不是字符a或b或c的内容&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59vnyhg6yj204e03mt8k.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;范围类&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;按照上面的说明要是我们希望匹配单个数字那么表达式是这样的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[0123456789]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果是字母那么。。。，好麻烦，正则表达式还提供了范围类，我们可以使用 x-y来连接两个字符表示从x到y的任意字符，这是个闭区间，也就是说包含x和ybenshen，这样匹配小写字母就很简单了&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[a-z]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59vvs3zxuj204701tmwz.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;要是想匹配所有字母呢？在[]组成的类内部是可以连写的，我们还可以这样写 [a-zA-Z]&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59vwe78a5j204c02oq2t.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;预定义类&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;刚才使用正则我们创建了几个类，来表示数字，字母等，但这样写也很是麻烦，正则表达式为我们提供了几个常用的预定义类来匹配常见的字符&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符&lt;/th&gt;
+&lt;th&gt;等价类&lt;/th&gt;
+&lt;th&gt;含义 &lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;[^\n\r]&lt;/td&gt;
+&lt;td&gt;除了所有回车和换行之外的所有字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\d&lt;/td&gt;
+&lt;td&gt;[0-9]&lt;/td&gt;
+&lt;td&gt;数字字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\D&lt;/td&gt;
+&lt;td&gt;[^0-9]&lt;/td&gt;
+&lt;td&gt;非数字字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\s&lt;/td&gt;
+&lt;td&gt;[\t\n\x0B\f\r]&lt;/td&gt;
+&lt;td&gt;空白符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\S&lt;/td&gt;
+&lt;td&gt;[^\t\n\x0B\f\r]&lt;/td&gt;
+&lt;td&gt;非空白符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\w&lt;/td&gt;
+&lt;td&gt;[a-zA-Z_0-9]&lt;/td&gt;
+&lt;td&gt;单词字符（字母、数字、下划线）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\W&lt;/td&gt;
+&lt;td&gt;[^a-zA-Z_0-9]&lt;/td&gt;
+&lt;td&gt;非单词字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;有了这些预定义类，写一些正则就很方便了，比如我们希望匹配一个 ab+数字+任意字符 的字符串，就可以这样写了 &lt;code&gt;ab\d&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59w5mll5yj206j017jr9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;边界&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;正则表达式还提供了几个常用的边界匹配字符&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;^&lt;/td&gt;
+&lt;td&gt;以xx开头&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$&lt;/td&gt;
+&lt;td&gt;以xx结尾&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\b&lt;/td&gt;
+&lt;td&gt;单词边界，指[a-zA-Z_0-9]之外的字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\B&lt;/td&gt;
+&lt;td&gt;非单词边界&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;看个不负责任的邮箱正则匹配（切勿模仿，小括号后面会讲到） &lt;code&gt;\w+@\w+\.(com)$&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59wb8hdcrj20bq027glo.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;量词&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;之前我们介绍的方法都是一一匹配的，如果我们希望匹配一个连续出现20次数字的字符串难道我们需要写成这样&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\d\d\d\d...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;为此正则表达式引入了一些量词&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字符&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;？&lt;/td&gt;
+&lt;td&gt;出现零次或一次 (最多出现一次)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;+&lt;/td&gt;
+&lt;td&gt;出现一次或多次 （至少出现一次）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;出现零次或多次 （任意次）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;{n}&lt;/td&gt;
+&lt;td&gt;出现n次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;{n,m}&lt;/td&gt;
+&lt;td&gt;出现n到m次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;{n,}&lt;/td&gt;
+&lt;td&gt;至少出现n次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;看几个使用量词的例子&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\w+\b Byron&lt;/code&gt; 匹配 单词＋边界＋Byron &lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/\w+\b Byron/&lt;/span&gt;).test(&lt;span class=&quot;string&quot;&gt;&#39;Hi Byron&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//true &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/\w+\b Byron/&lt;/span&gt;).test(&lt;span class=&quot;string&quot;&gt;&#39;Welcome Byron&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//true &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/\w+\b Byron/&lt;/span&gt;).test(&lt;span class=&quot;string&quot;&gt;&#39;HiByron&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;\d+\.\d{1,3}&lt;/code&gt; 匹配三位小数的数字&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79gw1f59wv8thzkj206e01zjra.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;贪婪模式与非贪婪模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;看了上面介绍的量词，也许爱思考的同学会想到关于匹配原则的一些问题，比如{3,5}这个量词，要是在句子种出现了十次，那么他是每次匹配三个还是五个，反正3、4、5都满足3～5的条件，量词在默认下是尽可能多的匹配的，也就是大家常说的贪婪模式&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&#39;123456789&#39;&lt;/span&gt;.match(&lt;span class=&quot;regexp&quot;&gt;/\d&amp;#123;3,5&amp;#125;/g&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&quot;12345&quot;, &quot;6789&quot;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt; 既然有贪婪模式，那么肯定会有非贪婪模式，让正则表达式尽可能少的匹配，也就是说一旦成功匹配不不再继续尝试，做法很简单，在量词后加上 ? 即可&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&#39;123456789&#39;&lt;/span&gt;.match(&lt;span class=&quot;regexp&quot;&gt;/\d&amp;#123;3,5&amp;#125;?/g&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&quot;123&quot;, &quot;456&quot;, &quot;789&quot;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt; 分组&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;有时候我们希望使用量词的时候匹配多个字符，而不是像上面例子只是匹配一个，比如希望匹配Byron出现20次的字符串，我们如果写成 &lt;code&gt;Byron{20}&lt;/code&gt; 的话匹配的是Byro＋n出现20次，怎么把Byron作为一个整体呢？使用()就可以达到次目的，我们称为分组&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;(Byron){20}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f59x2j5kqdj205d02pq2u.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果希望匹配Byron或Casper出现20次该怎么办呢？可以使用字符 ｜ 达到或的功效&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;(Byron|Casper){20}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59x3jwy1tj206t03o0sr.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我们看到图中有个＃1的东东，那是什么？使用分组的正则表达式会把匹配项也放到分组中，默认就是按数字编号分发的，各异根据编号获得捕获的分组内容，这个在一些希望具体操作第几个匹配项的函数中很有用&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;(Byron).(ok)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f59x66zwamj2084027aa2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果有分组嵌套的情况，外面的组的编号靠前&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;((^|%&amp;gt;)[^\t]*)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59x6ueoj2j209n03v74i.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;有时候我们不希望捕获某些分组，只需要在分组内加上 ?: 就可以了，着并不意味着该分组内容不属于正则表达式，只是不会给这个分组加编号了而已&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;(?:Byron).(ok)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79gw1f59x7tvlh9j207r024wef.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其实在C#等语言中分组还可以起名字，不过JavaScript不支持&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;前瞻&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;表达式&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;exp1(?=exp2)&lt;/td&gt;
+&lt;td&gt;匹配后面是exp2的exp1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;exp1(?!exp2)&lt;/td&gt;
+&lt;td&gt;匹配后面不是exp2的exp1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;说的有些抽象，看个例子 &lt;code&gt;good(?=Byron)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59xc3hgdhj206w025q2v.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?=Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodByron123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&#39;good&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?=Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/bad(?=Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;通过上面例子可以看出 exp1(?=exp2) 表达式会匹配exp1表达式，但只有其后面内容是exp2的时候才会匹配，也就是两个条件，exp1(?!exp2) 比较类似&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;good(?!Byron)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59xcccxmej206f022q2v.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?!Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodByron123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//null &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?!Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&#39;good&#39;] &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/bad(?!Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/dolphinX/p/3486214.html&quot;&gt;http://www.cnblogs.com/dolphinX/p/3486214.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;p&gt;JavaScript种正则表达式有两种定义方式，定义一个匹配类似 &lt;code&gt;&amp;lt;%XXX%&amp;gt;&lt;/code&gt;的字符串&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;构造函数&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;RegExp&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;%[^%&amp;gt;]+%&amp;gt;&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;g&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;字面量&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;regexp&quot;&gt;/&amp;lt;%[^%&amp;gt;]%&amp;gt;/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;g： global，全文搜索，默认搜索到第一个结果接停止&lt;/li&gt;
+&lt;li&gt;i： ingore case，忽略大小写，默认大小写敏感&lt;/li&gt;
+&lt;li&gt;m： multiple lines，多行搜索（更改^ 和$的含义，使它们分别在任意一行对待行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配）&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>JSP&amp;&amp;Servlet</title>
