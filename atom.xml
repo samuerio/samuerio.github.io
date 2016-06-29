@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-06-27T09:48:44.000Z</updated>
+  <updated>2016-06-28T08:03:24.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -16,11 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Javascript正则表达式</title>
+    <title>Java基本类型转数据库类型</title>
+    <link href="http://zhenghe39.com/2016/06/28/Java%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://zhenghe39.com/2016/06/28/Java基本类型转数据库类型/</id>
+    <published>2016-06-28T05:23:00.000Z</published>
+    <updated>2016-06-28T08:03:24.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f5avjvoovqj216k0bc422.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;prestatement.setObject(int parameterIndex,Object x) throws SQLException&lt;/code&gt;尝试将Java类型转化为对应的数据库类型。那么这里的Java类型Object会转换为哪种数据库类型呢&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The JDBC specification specifies a standard mapping from Java Object types to SQL types. The given argument will be converted to the corresponding SQL type before being sent to the database.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;JDBC 在 &lt;code&gt;java.sql.Types&lt;/code&gt;类中定义了一系列的常规 SQL 类型标识符。这些类型可用于表示那些最为常用的 SQL 类型。在用 JDBC API 编程时，程序员通常可以使用这些 JDBC 类型来引用一般的 SQL 类型，而无须关心目标数据库所用的确切 SQL 类型的名称。&lt;/p&gt;
+&lt;p&gt;值得注意的是：Java的枚举类型没有&lt;code&gt;SQL type{java.sql.Types}&lt;/code&gt;对应，需手动转化为String类型或其他基本类型。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/8b826b79gw1f5azpabrfqj20au0si76i.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;以下是Orable的Sql Type和Java类型的转化关系&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f5avp6278pj20rf0ibdji.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f5avjvoovqj216k0bc422.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;prestatement.setObject(int parameterInde
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Java" scheme="http://zhenghe39.com/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>「转载」Javascript正则表达式</title>
     <link href="http://zhenghe39.com/2016/06/27/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <id>http://zhenghe39.com/2016/06/27/JavaScript 正则表达式/</id>
     <published>2016-06-27T08:24:14.000Z</published>
-    <updated>2016-06-27T09:48:44.000Z</updated>
+    <updated>2016-06-28T05:22:23.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/dolphinX/p/3486214.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/dolphinX/p/3486214.html&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;p&gt;JavaScript种正则表达式有两种定义方式，定义一个匹配类似 &lt;code&gt;&amp;lt;%XXX%&amp;gt;&lt;/code&gt;的字符串&lt;/p&gt;

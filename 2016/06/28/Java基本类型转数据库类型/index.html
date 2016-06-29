@@ -45,11 +45,11 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
 
-        <title></title>
+        <title> Java基本类型转数据库类型 | issUn </title>
     </head>
     <body itemscope itemtype='http://schema.org/WebPage' lang='zh-Hans' >
         
-        <div class='container  page-archive  =' >
+        <div class='container  =' >
            
 
            
@@ -60,97 +60,88 @@
                         <div id='content' class='content'>
                             
 
-     <section id="posts" class="posts-collapse">
-        <span class="archive-move-on"></span>
-        <span class="archive-page-counter">
-          
+  <div id="posts" class="posts-expand">
+    
 
-          
-            
-          
-          嗯..目前共计 18 篇日志。继续努力。
-        </span>
-        
-        
-            
-            
-            
-                
-                <div class="collection-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+    
+    
+    <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            <div class="icon"></div>
+            <time datetime="2016-06-28T05:23:00.000Z">
+                <a href="/2016/06/28/Java基本类型转数据库类型/">2016-06-28</a>
+            </time>
+            <h1 class="post-title" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/06/28/Java基本类型转数据库类型/" itemprop="url" >
+                    Java基本类型转数据库类型
+                </a>
+            </h1>
+            <!--
+                <div class="post-meta">
+                    <span class="post-time" >
+                        <span class="post-meta-item-icon">
+                            <i class="fa fa-calendar-o"></i>
+                        </span>
+                        <span class="post-meta-iterm-text">发表于</span>
+                        <time itemprop="dateCreated" datetime="2016-06-28T13:23:00+08:00" content="2016-06-28" >
+                            2016-06-28
+                        </time>
+                    </span>
+                    
+                        
+                            <span class="post-comments-count">
+                                &nbsp; | &nbsp
+                                <a href="/2016/06/28/Java基本类型转数据库类型/#comments" itemprop="discussionUrl" >
+                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/28/Java基本类型转数据库类型/" itemprop="commentsCount"></span>
+                                </a>
+                            </span>
+                        
+                    
+                    
+                    
                 </div>
-            
-            
-            
-    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-        <header class="post-header">
-            <h1 class="post-title">
-                
-                    <a class="post-title-link" href="/2016/03/13/Css省略号与换行/" itemprop="url">
-                        
-                            <span itemprop="name">Css省略号与换行</span>
-                        
-                    </a>
-                
-            </h1>
-
-            <div class="post-meta">
-                <time class="post-time" itemprop="dateCreated"
-                      datetime="2016-03-13T16:21:24+08:00"
-                      content="2016-03-13" >
-                    03-13
-                </time>
-            </div>
+            -->
         </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p><img src="http://ww3.sinaimg.cn/large/8b826b79gw1f5avjvoovqj216k0bc422.jpg" alt=""></p>
+<p><code>prestatement.setObject(int parameterIndex,Object x) throws SQLException</code>尝试将Java类型转化为对应的数据库类型。那么这里的Java类型Object会转换为哪种数据库类型呢</p>
+<blockquote>
+<p>The JDBC specification specifies a standard mapping from Java Object types to SQL types. The given argument will be converted to the corresponding SQL type before being sent to the database.</p>
+</blockquote>
+<p>JDBC 在 <code>java.sql.Types</code>类中定义了一系列的常规 SQL 类型标识符。这些类型可用于表示那些最为常用的 SQL 类型。在用 JDBC API 编程时，程序员通常可以使用这些 JDBC 类型来引用一般的 SQL 类型，而无须关心目标数据库所用的确切 SQL 类型的名称。</p>
+<p>值得注意的是：Java的枚举类型没有<code>SQL type{java.sql.Types}</code>对应，需手动转化为String类型或其他基本类型。</p>
+<p><img src="http://ww3.sinaimg.cn/mw690/8b826b79gw1f5azpabrfqj20au0si76i.jpg" alt=""></p>
+<p>以下是Orable的Sql Type和Java类型的转化关系</p>
+<p><img src="http://ww2.sinaimg.cn/large/8b826b79gw1f5avp6278pj20rf0ibdji.jpg" alt=""></p>
+
+            
+        </div>
+        <footer class="post-footer">
+             
+        </footer>
     </article>
 
-        
-            
-            
-            
-            
-            
-    <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-        <header class="post-header">
-            <h1 class="post-title">
-                
-                    <a class="post-title-link" href="/2016/02/27/JS事件/" itemprop="url">
-                        
-                            <span itemprop="name">JS事件</span>
-                        
-                    </a>
-                
-            </h1>
+  </div>
 
-            <div class="post-meta">
-                <time class="post-time" itemprop="dateCreated"
-                      datetime="2016-02-27T21:34:37+08:00"
-                      content="2016-02-27" >
-                    02-27
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-    </section>
-    <nav class='pagination'>
-    
-        <a href = '/archives/2016/page/2/' class='alignleft prev'>上一页</a>
-    
-    
-    <div class='clearfix'></div>
-</nav>
 
                         </div>
                         
                         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/28/Java基本类型转数据库类型/"
+           data-title="Java基本类型转数据库类型" data-url="http://zhenghe39.com/2016/06/28/Java基本类型转数据库类型/">
+      </div>
+    
+  </div>
+
 
 
                     </div>
                     
                         
-    
+  
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
