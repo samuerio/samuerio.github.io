@@ -461,12 +461,6 @@ table {
   table-layout: fixed;
   word-wrap: break-all;
 }
-table>tbody>tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
-}
-table>tbody>tr:hover {
-  background-color: #f5f5f5;
-}
 caption,
 th,
 td {
@@ -527,6 +521,12 @@ td {
 .post-body ol dl,
 .post-body dl dl {
   margin-top: 0;
+}
+.post-body table>tbody>tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+.post-body table>tbody>tr:hover {
+  background-color: #f5f5f5;
 }
 .post-picture-center img {
   display: block;
@@ -720,6 +720,7 @@ figure.highlight {
   border: none;
   margin: 0;
   padding: 7px 15px;
+  background: inherit;
 }
 .highlight table {
   margin: 0;
