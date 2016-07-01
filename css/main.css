@@ -728,7 +728,7 @@ figure.highlight {
   border: none;
 }
 .highlight tr {
-  background: inherit;
+  background: inherit !important;
 }
 .highlight td {
   border: none;
