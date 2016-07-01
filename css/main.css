@@ -726,11 +726,11 @@ figure.highlight {
   margin: 0;
   width: auto;
   border: none;
+  background: inherit;
 }
 .highlight td {
   border: none;
   padding: 0;
-  background: inherit;
 }
 .highlight figcaption {
   font-size: 1em;
