@@ -726,6 +726,8 @@ figure.highlight {
   margin: 0;
   width: auto;
   border: none;
+}
+.highlight tr {
   background: inherit;
 }
 .highlight td {
