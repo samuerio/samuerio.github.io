@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-03-13T09:02:24.000Z">
                 <a href="/2016/03/13/负margin与absolute、relative/">2016-03-13</a>
             </time>
@@ -156,7 +156,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -247,6 +247,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -278,6 +279,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

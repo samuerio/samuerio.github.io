@@ -338,9 +338,10 @@ body {
 }
 body {
   color: #555;
-  font-family: 'Helvetica Neue', 'Helvetica', 'Lucida Grande', Arial, 'Hiragino Sans GB', '微软雅黑', 'WenQuanYi Micro Hei', 'STHeiti', 'SimSun', sans-serif;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 14.25px;
   line-height: 2;
+  -webkit-font-smoothing: antialiased;
 }
 * {
   margin: 0;
@@ -426,16 +427,15 @@ video {
   border: none;
 }
 code {
-  padding: 2px 4px;
+  padding: 0 5px;
   word-break: break-all;
   color: #c7254e;
   background: #f9f2f4;
-  border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 pre,
 code {
-  font-family: Monaco, Menlo, Consolas, Courier New, monospace;
+  font-family: Monaco, Menlo, Consolas, monospace;
 }
 .clearfix:before,
 .clearfix:after {
@@ -450,6 +450,15 @@ code {
 }
 .alignright {
   float: right;
+}
+.fadeIn {
+  animation-name: fadeIn;
+}
+.fadeOut {
+  animation-name: fadeOut;
+}
+.postCenter {
+  width: 900px !important;
 }
 table {
   margin: 20px 0;
@@ -636,9 +645,6 @@ td {
 .posts-expand {
   position: relative;
 }
-.posts-expand .post {
-  padding-left: 70px;
-}
 @media (min-width: 768px) and (max-width: 991px) {
   .posts-expand .post {
     padding-left: 0;
@@ -652,7 +658,7 @@ td {
 .posts-expand .post-header time {
   display: block;
   margin-bottom: 5px;
-  font: 0.9em "Lato", Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 0.9em;
   line-height: 1;
   color: #2ca6cb;
 }
@@ -698,7 +704,7 @@ pre,
   overflow: auto;
   margin: 20px 0;
   padding: 0;
-  font-size: 0.9em;
+  font-size: 1em;
   color: #4d4d4c;
   line-height: 1.6;
 }
@@ -883,6 +889,20 @@ pre .javascript .function {
   font: 20px FontAwesome;
   color: #2ca6cb;
 }
+.sidebar-btn-open {
+  position: fixed;
+  top: 40px;
+  left: 7.5%;
+  display: none;
+  padding: 0.2em 0.6em;
+  border-radius: 5px;
+  background: #fff;
+}
+.sidebar-btn-open:before {
+  content: "\f0c9";
+  font: 18px FontAwesome;
+  color: #2ca6cb;
+}
 .author {
   position: relative;
   padding-top: 10px;
@@ -953,9 +973,6 @@ pre .javascript .function {
   padding: 0.125em 0.3125em;
   font-size: 0.8em;
   background: #dbdbdb;
-}
-.comments {
-  padding-left: 70px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .comments {

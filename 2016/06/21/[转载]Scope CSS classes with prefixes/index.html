@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-06-21T14:25:50.000Z">
                 <a href="/2016/06/21/[转载]Scope CSS classes with prefixes/">2016-06-21</a>
             </time>
@@ -108,7 +108,7 @@
 <p>When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.</p>
 <a id="more"></a>
 <p>Taking the <code>chained classes</code> approach, your CSS selectors might look something like this for a given set of components:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.success &#123; ... &#125;</span><br><span class="line">.btn.success &#123; .. &#125;</span><br><span class="line">.alert.success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.success &#123; ... &#125;</span><br><span class="line">.btn.success &#123; .. &#125;</span><br><span class="line">.alert.success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
 <p>We have here a global base class, <code>.success</code>, that might house all the commonalities between successful buttons and alerts. Then, at the individual component level, we add on or override as necessary. However, this wide open class and chained approach exposes developers to a number of questions and potential paint points:</p>
 <ul>
 <li>What’s that base class stand for?</li>
@@ -119,7 +119,7 @@
 </ul>
 <p>And those questions barely scratch the surface. This solution isn’t necessarily bad, but when scale, brevity, and flexibility are your top requirements, it might not be the best idea. A better solution might be using prefixed classes.</p>
 <p><code>Prefixed classes</code> guide developers towards a simpler and more maintainable direction for building an extensive CSS design system. Here’s what we have if we take away the generic base class and scope things per component with prefixes:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.btn-success &#123; ... &#125;</span><br><span class="line">.alert-success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.btn-success &#123; ... &#125;</span><br><span class="line">.alert-success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
 <p>This way, <strong>the base class is at the component level</strong> and not the entire system level. In other words, our base classes have become <code>.btn</code> and <code>.alert</code>, not <code>.success</code>. There’s no bleeding of styles or behavior from one component to another here because we treat components in a “successful state” as an idea across the design system. That is to say, we have a shared idea of what “success” looks for buttons and alerts, but the execution is scoped entirely to each independent component. No questions of where common styles are used and no concern of unintended effects, making each component more durable and flexible.</p>
 <p>While a very tactical and detail-oriented practice, building components that inherently isolate themselves for improved modularity and customization in a system like Bootstrap makes for better code and a more enjoyable project down the line.</p>
 
@@ -153,7 +153,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -244,6 +244,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -275,6 +276,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

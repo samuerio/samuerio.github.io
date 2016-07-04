@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-04-09T09:45:37.000Z">
                 <a href="/2016/04/09/content-type的意义/">2016-04-09</a>
             </time>
@@ -112,8 +112,8 @@
 <a id="more"></a>
 <h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><p>application/x-www-form-urlencoded为「表单提交」，默认的<code>Ajax Post</code>提交也是按这种方式。</p>
 <h3 id="application-json"><a href="#application-json" class="headerlink" title="application/json"></a>application/json</h3><p>这种时候，只能从HTTP内容体里面获取提交的数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(actionUrl,&#123;</span><br><span class="line">                      method:<span class="string">'POST'</span>,</span><br><span class="line">                      data:<span class="built_in">JSON</span>.stringify(postData),<span class="comment">//这里必须序列化为JSON字符串</span></span><br><span class="line">                      contentType:<span class="string">'application/json; charset=utf-8'</span>,</span><br><span class="line">                      dataType:<span class="string">'json'</span>,</span><br><span class="line">                      success:<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</span><br><span class="line">                          <span class="keyword">if</span>(rs.success)&#123;</span><br><span class="line">                              resolve(rs.content);</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readStringFromRequest</span><span class="params">(HttpServletRequest request,String encode)</span></span>&#123;</span><br><span class="line">	StringBuffer json = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	InputStream in = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		in = request.getInputStream();</span><br><span class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in,encode);</span><br><span class="line">		BufferedReader bufferReader = <span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">		</span><br><span class="line">		String line = bufferReader.readLine();</span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isEmpty(line))&#123;</span><br><span class="line">			line = <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		do&#123;</span><br><span class="line">			json.append(line);</span><br><span class="line">			line = bufferReader.readLine();</span><br><span class="line">			<span class="keyword">if</span>(line != <span class="keyword">null</span>)&#123;</span><br><span class="line">				json.append(<span class="string">"\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">while</span>(line != <span class="keyword">null</span>);</span><br><span class="line">	&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.ajax(actionUrl,&#123;</span><br><span class="line">                      method:<span class="string">'POST'</span>,</span><br><span class="line">                      data:<span class="built_in">JSON</span>.stringify(postData),<span class="comment">//这里必须序列化为JSON字符串</span></span><br><span class="line">                      contentType:<span class="string">'application/json; charset=utf-8'</span>,</span><br><span class="line">                      dataType:<span class="string">'json'</span>,</span><br><span class="line">                      success:<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</span><br><span class="line">                          <span class="keyword">if</span>(rs.success)&#123;</span><br><span class="line">                              resolve(rs.content);</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readStringFromRequest</span><span class="params">(HttpServletRequest request,String encode)</span></span>&#123;</span><br><span class="line">	StringBuffer json = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	InputStream in = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		in = request.getInputStream();</span><br><span class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in,encode);</span><br><span class="line">		BufferedReader bufferReader = <span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">		</span><br><span class="line">		String line = bufferReader.readLine();</span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isEmpty(line))&#123;</span><br><span class="line">			line = <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		do&#123;</span><br><span class="line">			json.append(line);</span><br><span class="line">			line = bufferReader.readLine();</span><br><span class="line">			<span class="keyword">if</span>(line != <span class="keyword">null</span>)&#123;</span><br><span class="line">				json.append(<span class="string">"\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">while</span>(line != <span class="keyword">null</span>);</span><br><span class="line">	&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             
         </div>
@@ -145,7 +145,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -236,6 +236,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -267,6 +268,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

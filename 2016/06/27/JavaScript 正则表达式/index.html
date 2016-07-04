@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-06-27T08:24:14.000Z">
                 <a href="/2016/06/27/JavaScript 正则表达式/">2016-06-27</a>
             </time>
@@ -107,9 +107,9 @@
                 <p>转载自<a href="http://www.cnblogs.com/dolphinX/p/3486214.html" target="_blank" rel="external">http://www.cnblogs.com/dolphinX/p/3486214.html</a></p>
 <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>JavaScript种正则表达式有两种定义方式，定义一个匹配类似 <code>&lt;%XXX%&gt;</code>的字符串</p>
 <p><strong>构造函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'&lt;%[^%&gt;]+%&gt;'</span>,<span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'&lt;%[^%&gt;]+%&gt;'</span>,<span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
 <p><strong>字面量</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="regexp">/&lt;%[^%&gt;]%&gt;/g</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="regexp">/&lt;%[^%&gt;]%&gt;/g</span>;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>g： global，全文搜索，默认搜索到第一个结果接停止</li>
 <li>i： ingore case，忽略大小写，默认大小写敏感</li>
@@ -289,14 +289,14 @@
 </table>
 <p>看几个使用量词的例子</p>
 <p><code>\w+\b Byron</code> 匹配 单词＋边界＋Byron </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="regexp">/\w+\b Byron/</span>).test(<span class="string">'Hi Byron'</span>); <span class="comment">//true </span></span><br><span class="line">(<span class="regexp">/\w+\b Byron/</span>).test(<span class="string">'Welcome Byron'</span>); <span class="comment">//true </span></span><br><span class="line">(<span class="regexp">/\w+\b Byron/</span>).test(<span class="string">'HiByron'</span>); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="regexp">/\w+\b Byron/</span>).test(<span class="string">'Hi Byron'</span>); <span class="comment">//true </span></span><br><span class="line">(<span class="regexp">/\w+\b Byron/</span>).test(<span class="string">'Welcome Byron'</span>); <span class="comment">//true </span></span><br><span class="line">(<span class="regexp">/\w+\b Byron/</span>).test(<span class="string">'HiByron'</span>); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 <p><code>\d+\.\d{1,3}</code> 匹配三位小数的数字</p>
 <p><img src="http://ww4.sinaimg.cn/large/8b826b79gw1f59wv8thzkj206e01zjra.jpg" alt=""></p>
 <p><strong>贪婪模式与非贪婪模式</strong></p>
 <p>看了上面介绍的量词，也许爱思考的同学会想到关于匹配原则的一些问题，比如{3,5}这个量词，要是在句子种出现了十次，那么他是每次匹配三个还是五个，反正3、4、5都满足3～5的条件，量词在默认下是尽可能多的匹配的，也就是大家常说的贪婪模式</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'123456789'</span>.match(<span class="regexp">/\d&#123;3,5&#125;/g</span>); <span class="comment">//["12345", "6789"]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">'123456789'</span>.match(<span class="regexp">/\d&#123;3,5&#125;/g</span>); <span class="comment">//["12345", "6789"]</span></span><br></pre></td></tr></table></figure>
 <p> 既然有贪婪模式，那么肯定会有非贪婪模式，让正则表达式尽可能少的匹配，也就是说一旦成功匹配不不再继续尝试，做法很简单，在量词后加上 ? 即可</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'123456789'</span>.match(<span class="regexp">/\d&#123;3,5&#125;?/g</span>); <span class="comment">//["123", "456", "789"]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">'123456789'</span>.match(<span class="regexp">/\d&#123;3,5&#125;?/g</span>); <span class="comment">//["123", "456", "789"]</span></span><br></pre></td></tr></table></figure>
 <p><strong> 分组</strong></p>
 <p>有时候我们希望使用量词的时候匹配多个字符，而不是像上面例子只是匹配一个，比如希望匹配Byron出现20次的字符串，我们如果写成 <code>Byron{20}</code> 的话匹配的是Byro＋n出现20次，怎么把Byron作为一个整体呢？使用()就可以达到次目的，我们称为分组</p>
 <p><code>(Byron){20}</code></p>
@@ -335,11 +335,11 @@
 </table>
 <p>说的有些抽象，看个例子 <code>good(?=Byron)</code></p>
 <p><img src="http://ww3.sinaimg.cn/large/8b826b79gw1f59xc3hgdhj206w025q2v.jpg" alt=""></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="regexp">/good(?=Byron)/</span>).exec(<span class="string">'goodByron123'</span>); <span class="comment">//['good']</span></span><br><span class="line">(<span class="regexp">/good(?=Byron)/</span>).exec(<span class="string">'goodCasper123'</span>); <span class="comment">//null</span></span><br><span class="line">(<span class="regexp">/bad(?=Byron)/</span>).exec(<span class="string">'goodCasper123'</span>);<span class="comment">//null</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="regexp">/good(?=Byron)/</span>).exec(<span class="string">'goodByron123'</span>); <span class="comment">//['good']</span></span><br><span class="line">(<span class="regexp">/good(?=Byron)/</span>).exec(<span class="string">'goodCasper123'</span>); <span class="comment">//null</span></span><br><span class="line">(<span class="regexp">/bad(?=Byron)/</span>).exec(<span class="string">'goodCasper123'</span>);<span class="comment">//null</span></span><br></pre></td></tr></table></figure>
 <p>通过上面例子可以看出 exp1(?=exp2) 表达式会匹配exp1表达式，但只有其后面内容是exp2的时候才会匹配，也就是两个条件，exp1(?!exp2) 比较类似</p>
 <p><code>good(?!Byron)</code></p>
 <p><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f59xcccxmej206f022q2v.jpg" alt=""></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="regexp">/good(?!Byron)/</span>).exec(<span class="string">'goodByron123'</span>); <span class="comment">//null </span></span><br><span class="line">(<span class="regexp">/good(?!Byron)/</span>).exec(<span class="string">'goodCasper123'</span>); <span class="comment">//['good'] </span></span><br><span class="line">(<span class="regexp">/bad(?!Byron)/</span>).exec(<span class="string">'goodCasper123'</span>);<span class="comment">//null</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">(<span class="regexp">/good(?!Byron)/</span>).exec(<span class="string">'goodByron123'</span>); <span class="comment">//null </span></span><br><span class="line">(<span class="regexp">/good(?!Byron)/</span>).exec(<span class="string">'goodCasper123'</span>); <span class="comment">//['good'] </span></span><br><span class="line">(<span class="regexp">/bad(?!Byron)/</span>).exec(<span class="string">'goodCasper123'</span>);<span class="comment">//null</span></span><br></pre></td></tr></table></figure>
 
             
         </div>
@@ -371,7 +371,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -462,6 +462,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -493,6 +494,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

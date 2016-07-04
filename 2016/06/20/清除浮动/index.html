@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-06-19T23:26:30.000Z">
                 <a href="/2016/06/20/清除浮动/">2016-06-20</a>
             </time>
@@ -104,10 +104,10 @@
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <h3 id="浮动元素下面加clearfix的空标签"><a href="#浮动元素下面加clearfix的空标签" class="headerlink" title="浮动元素下面加clearfix的空标签"></a>浮动元素下面加clearfix的空标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">‘clearfix’</span>&gt;</span><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">zoom</span>:<span class="value"><span class="number">1</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,<span class="class">.clearfix</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+                <h3 id="浮动元素下面加clearfix的空标签"><a href="#浮动元素下面加clearfix的空标签" class="headerlink" title="浮动元素下面加clearfix的空标签"></a>浮动元素下面加clearfix的空标签</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">‘clearfix’</span>&gt;</span><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">zoom</span>:<span class="value"><span class="number">1</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,<span class="class">.clearfix</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="给浮动元素的父元素加上两个伪类"><a href="#给浮动元素的父元素加上两个伪类" class="headerlink" title="给浮动元素的父元素加上两个伪类"></a>给浮动元素的父元素加上两个伪类</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#parentEle</span><span class="pseudo">:after</span>,<span class="id">#parentEle</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#parentEle</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="给浮动元素的父元素加上两个伪类"><a href="#给浮动元素的父元素加上两个伪类" class="headerlink" title="给浮动元素的父元素加上两个伪类"></a>给浮动元素的父元素加上两个伪类</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="id">#parentEle</span><span class="pseudo">:after</span>,<span class="id">#parentEle</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="id">#parentEle</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 
             
         </div>
@@ -139,7 +139,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -230,6 +230,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -261,6 +262,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

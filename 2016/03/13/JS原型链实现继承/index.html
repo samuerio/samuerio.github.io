@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-03-13T13:15:56.000Z">
                 <a href="/2016/03/13/JS原型链实现继承/">2016-03-13</a>
             </time>
@@ -109,27 +109,27 @@
 </blockquote>
 <p>每个对象上的__proto__和prototype属性都保存有原型的引用，并且，对__proto__赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。</p>
 <a id="more"></a>
-<h3 id="Student继承Person"><a href="#Student继承Person" class="headerlink" title="Student继承Person"></a>Student继承Person</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype.learn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'i`m learning.'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.walk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'my name is '</span>+<span class="keyword">this</span>.name+<span class="string">' i can walk.'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype.__proto__ = Person.prototype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> Student(<span class="string">'xiaoming'</span>);</span><br><span class="line">xiaoming.walk();</span><br><span class="line">xiaoming.learn();</span><br></pre></td></tr></table></figure>
+<h3 id="Student继承Person"><a href="#Student继承Person" class="headerlink" title="Student继承Person"></a>Student继承Person</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype.learn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'i`m learning.'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.walk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'my name is '</span>+<span class="keyword">this</span>.name+<span class="string">' i can walk.'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype.__proto__ = Person.prototype;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> xiaoming = <span class="keyword">new</span> Student(<span class="string">'xiaoming'</span>);</span><br><span class="line">xiaoming.walk();</span><br><span class="line">xiaoming.learn();</span><br></pre></td></tr></table></figure>
 <p><img src="http://ww2.sinaimg.cn/large/8b826b79gw1f4lg34yrbgj20b408mq4d.jpg" alt=""></p>
 <p>从图中可以看出xiaoming对象原型链的情况(<code>A--&gt;B</code>代表A的原型为B)：</p>
 <p>xiaoming–&gt;Student.prototype–&gt;Person.prototype–&gt;Object.prototype</p>
 <h3 id="三种继承方式："><a href="#三种继承方式：" class="headerlink" title="三种继承方式："></a>三种继承方式：</h3><ul>
 <li><em>方式一</em></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student.prototype.__proto__ = Person.prototype;</span><br><span class="line"><span class="comment">//注意:这里是两个'_'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Student.prototype.__proto__ = Person.prototype;</span><br><span class="line"><span class="comment">//注意:这里是两个'_'</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><em>方式二</em></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student.prototype = <span class="built_in">Object</span>.create(Person.prototype);</span><br><span class="line">Student.prototype.constructor = Student;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Student.prototype = <span class="built_in">Object</span>.create(Person.prototype);</span><br><span class="line">Student.prototype.constructor = Student;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><em>方式三</em></li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student.prototype = <span class="keyword">new</span> Person();</span><br><span class="line">Student.prototype.constructor = Student;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">Student.prototype = <span class="keyword">new</span> Person();</span><br><span class="line">Student.prototype.constructor = Student;</span><br></pre></td></tr></table></figure>
 <p>由于javascript中，对象为引用类型，方式二和方式三会导致原先绑定在Student.prototype对象上面的属性和方法消失。</p>
 <h3 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h3><p>例1.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> Zhe = <span class="keyword">new</span> Student();<span class="comment">//等价于 var Zhe = Object.create(Student.prototype)</span></span><br><span class="line"></span><br><span class="line">Student.prototype = <span class="built_in">Object</span>.create(Person.prototype)</span><br><span class="line">Student.prototype.constructor = Student;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Zhe <span class="keyword">instanceof</span> Person);<span class="comment">//false</span></span><br><span class="line"><span class="keyword">var</span> ZheG = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="built_in">console</span>.log(ZheG <span class="keyword">instanceof</span> Person);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> Zhe = <span class="keyword">new</span> Student();<span class="comment">//等价于 var Zhe = Object.create(Student.prototype)</span></span><br><span class="line"></span><br><span class="line">Student.prototype = <span class="built_in">Object</span>.create(Person.prototype)</span><br><span class="line">Student.prototype.constructor = Student;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Zhe <span class="keyword">instanceof</span> Person);<span class="comment">//false</span></span><br><span class="line"><span class="keyword">var</span> ZheG = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="built_in">console</span>.log(ZheG <span class="keyword">instanceof</span> Person);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <p>例2.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> Zhe = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">Student.prototype.__proto__=Person.prototype;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Zhe <span class="keyword">instanceof</span> Person);<span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> ZheG = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="built_in">console</span>.log(ZheG <span class="keyword">instanceof</span> Person);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> Zhe = <span class="keyword">new</span> Student();</span><br><span class="line"></span><br><span class="line">Student.prototype.__proto__=Person.prototype;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Zhe <span class="keyword">instanceof</span> Person);<span class="comment">//true</span></span><br><span class="line"><span class="keyword">var</span> ZheG = <span class="keyword">new</span> Student();</span><br><span class="line"><span class="built_in">console</span>.log(ZheG <span class="keyword">instanceof</span> Person);<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
 <p>同理，由于例1Student.prototype绑定对象发生了变化，故导致对象Zhe未实现Person的继承。而例2Student.prototype绑定对象始终没有变化，故之前实例化的对象也实现了Person的继承。</p>
 
             
@@ -162,7 +162,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -253,6 +253,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -284,6 +285,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

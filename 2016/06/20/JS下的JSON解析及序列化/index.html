@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-06-19T23:35:12.000Z">
                 <a href="/2016/06/20/JS下的JSON解析及序列化/">2016-06-20</a>
             </time>
@@ -108,14 +108,14 @@
 <p>JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串</p>
 </blockquote>
 <h3 id="解析JSON"><a href="#解析JSON" class="headerlink" title="解析JSON"></a>解析JSON</h3><p>eval是比较古老的解析JSON数据的方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":false&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":false&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>));</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>比较推荐的是JSON.parse来解析JSON数据，而且其还可定制解析规则。以下为“当value值为字符串true或false值时，将其转化为对应Boolean值”的解析规则：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonStr = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":"false","time":&#123;"enough":"false","multiFormate":true&#125;&#125;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(jsonStr,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'false'</span> === value || <span class="string">'true'</span> === value)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">eval</span>(value);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(data);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> jsonStr = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":"false","time":&#123;"enough":"false","multiFormate":true&#125;&#125;'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(jsonStr,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">'false'</span> === value || <span class="string">'true'</span> === value)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">eval</span>(value);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(data);</span><br></pre></td></tr></table></figure>
 <h3 id="序列化JSON"><a href="#序列化JSON" class="headerlink" title="序列化JSON"></a>序列化JSON</h3><p>JSON.stringify也是可以配置序列化规则的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jsObj = &#123;</span><br><span class="line">    toLower:<span class="string">'HELLO'</span>,</span><br><span class="line">    toUpper:<span class="string">'world'</span>,</span><br><span class="line">    normal:<span class="string">'haha'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonStr = <span class="built_in">JSON</span>.stringify(jsObj,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(key)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toLower'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toLowerCase();</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toUpper'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toUpperCase();</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonStr);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> jsObj = &#123;</span><br><span class="line">    toLower:<span class="string">'HELLO'</span>,</span><br><span class="line">    toUpper:<span class="string">'world'</span>,</span><br><span class="line">    normal:<span class="string">'haha'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> jsonStr = <span class="built_in">JSON</span>.stringify(jsObj,<span class="function"><span class="keyword">function</span>(<span class="params">key,value</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(key)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toLower'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toLowerCase();</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'toUpper'</span>:</span><br><span class="line">            <span class="keyword">return</span> value.toUpperCase();</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(jsonStr);</span><br></pre></td></tr></table></figure>
 <p>类对象还可以实现toJSON接口来定制自身的序列化规则。这时候，使用JSON.stringify来序列化时，会优先调用toJSON，对得到的返回值进行序列化。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$.extend(Person,&#123;</span><br><span class="line">    prototype:&#123;</span><br><span class="line">        toJSON:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                age:<span class="keyword">this</span>.age+<span class="number">5</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="keyword">new</span> Person(<span class="string">'sam'</span>,<span class="number">5</span>)));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$.extend(Person,&#123;</span><br><span class="line">    prototype:&#123;</span><br><span class="line">        toJSON:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                age:<span class="keyword">this</span>.age+<span class="number">5</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(<span class="keyword">new</span> Person(<span class="string">'sam'</span>,<span class="number">5</span>)));</span><br></pre></td></tr></table></figure>
 
             
         </div>
@@ -147,7 +147,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -238,6 +238,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -269,6 +270,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

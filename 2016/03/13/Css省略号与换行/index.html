@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-03-13T08:21:24.000Z">
                 <a href="/2016/03/13/Css省略号与换行/">2016-03-13</a>
             </time>
@@ -106,7 +106,7 @@
             
                 <h3 id="英文换行"><a href="#英文换行" class="headerlink" title="英文换行"></a>英文换行</h3><p>默认的换行规则对英文单词不理想（会有英文单词超过边界仍显示的情况），故需要手动进行换行。</p>
 <a id="more"></a>
-<h3 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">        <span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">30px</span></span></span>;</span><br><span class="line">            <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">60px</span></span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line">        <span class="comment">/*省略号代替超过长度的文本*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">white-space</span>:<span class="value"> nowrap</span></span>;<span class="comment">/*阻止默认的文本换行*/</span></span><br><span class="line">            <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;   <span class="comment">/*隐藏超过容器的部分*/</span></span><br><span class="line">            <span class="rule"><span class="attribute">text-overflow</span>:<span class="value"> ellipsis</span></span>;<span class="comment">/*被隐藏的文本使用省略号代替 */</span></span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*英文单词的换行*/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*强制换行*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test1</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">word-break</span>:<span class="value"> break-all</span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*普通换行:尽量保持英文单词的完整性*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test2</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">word-wrap</span>:<span class="value"> break-word</span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test"</span>&gt;</span>我是超过容器长度的长文本<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span>Hello world,Hello world,Hello world,Hello world<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test1"</span>&gt;</span>Hello world,Hello world,Hello world,Hello world<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test2"</span>&gt;</span>Hello world,Hello world,Hello world,Hello world<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">        <span class="tag">div</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">margin-top</span>:<span class="value"><span class="number">30px</span></span></span>;</span><br><span class="line">            <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">60px</span></span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line">        <span class="comment">/*省略号代替超过长度的文本*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">white-space</span>:<span class="value"> nowrap</span></span>;<span class="comment">/*阻止默认的文本换行*/</span></span><br><span class="line">            <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;   <span class="comment">/*隐藏超过容器的部分*/</span></span><br><span class="line">            <span class="rule"><span class="attribute">text-overflow</span>:<span class="value"> ellipsis</span></span>;<span class="comment">/*被隐藏的文本使用省略号代替 */</span></span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*英文单词的换行*/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*强制换行*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test1</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">word-break</span>:<span class="value"> break-all</span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*普通换行:尽量保持英文单词的完整性*/</span></span><br><span class="line">        <span class="tag">div</span><span class="class">.test2</span><span class="rules">&#123;</span><br><span class="line">            <span class="rule"><span class="attribute">word-wrap</span>:<span class="value"> break-word</span></span>;</span><br><span class="line">        &#125;</span></span><br><span class="line"></span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test"</span>&gt;</span>我是超过容器长度的长文本<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span>Hello world,Hello world,Hello world,Hello world<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test1"</span>&gt;</span>Hello world,Hello world,Hello world,Hello world<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"test2"</span>&gt;</span>Hello world,Hello world,Hello world,Hello world<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>演示效果：</p>
 <iframe width="100%" height="300" src="https://jsfiddle.net/gk5847jb/1/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
 
@@ -143,7 +143,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -234,6 +234,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -265,6 +266,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 

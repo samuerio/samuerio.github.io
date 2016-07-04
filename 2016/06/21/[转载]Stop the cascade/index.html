@@ -30,7 +30,7 @@
   
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -67,7 +67,7 @@
     
     <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
-            <div class="icon"></div>
+            
             <time datetime="2016-06-21T15:38:50.000Z">
                 <a href="/2016/06/21/[转载]Stop the cascade/">2016-06-21</a>
             </time>
@@ -108,14 +108,14 @@
 <p>Cascading styles is at the core of CSS—hell, it’s in the name—but experience has shown that building systems with too many <em>cascading styles</em> can be detrimental. Some times it’s completely necessary to just <strong>stop the cascade</strong>.</p>
 <a id="more"></a>
 <p>Let’s take the modal of <a href="http://getbootstrap.com/" target="_blank" rel="external">Bootstrap</a> as an example.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-header"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h3</span>&gt;</span>Modal title<span class="tag">&lt;/<span class="title">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-body"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h3</span>&gt;</span>Modal subheader<span class="tag">&lt;/<span class="title">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Content for the modal, like additional text and forms, goes here.<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-footer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span>&gt;</span>Done<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-header"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h3</span>&gt;</span>Modal title<span class="tag">&lt;/<span class="title">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-body"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">h3</span>&gt;</span>Modal subheader<span class="tag">&lt;/<span class="title">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>Content for the modal, like additional text and forms, goes here.<span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"modal-footer"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">class</span>=<span class="value">"btn"</span>&gt;</span>Done<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Notice how we namespace classes at key levels—each class name begins with <code>modal-</code>as a prefix. <a href="http://www.markdotto.com/2012/02/16/scope-css-classes-with-prefixes/" target="_blank" rel="external">Class name prefixing</a> makes our code more durable and easier to maintain, but it also better enables us to scope styles to only the relevant elements.</p>
 <p>Consider this snippet of CSS used to style the modal heading:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.modal</span> <span class="tag">h3</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.modal</span> <span class="tag">h3</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>By using this generic selector, we inadvertently change the styles of the <code>h3</code> in the <code>.modal-body</code>. We’ve introduced an instance of cascading styles—any <code>h3</code>throughout the <code>.modal</code> will be center aligned. Therefore, if we wanted the other instances of <code>h3</code> to be left-aligned, we’d have to override our brand new styles with something like this:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.modal</span> <span class="class">.modal-body</span> <span class="tag">h3</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">text-align</span>:<span class="value"> left</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.modal</span> <span class="class">.modal-body</span> <span class="tag">h3</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">text-align</span>:<span class="value"> left</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>It’s worth noting that this example isn’t without its flaws, but that’s the point. With a little more time and thought, one can easily avoid this problem, avoiding extra lines of code and more complications in the overall system. Had we done things differently and altered our selector, our CSS might look like this:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.modal-header</span> <span class="tag">h3</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.modal-header</span> <span class="tag">h3</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>By limiting the scope of a selector, we reduce the likelihood that we need additional code down the line by strengthening each component and limiting the effects of their styles. If done right, we can create an entire system of independent and durable, yet still flexible, components. It’s a promising approach I think, but one not to employ with an iron first.</p>
 <p>Some CSS should be allowed to cascade. Base typography, links, and the such are prime examples of something not to redeclare over and over again. This would only serve to weigh down a project and make it even more unmanageable. Instead, the goal as always is to strike a balance.</p>
 <p>Find ways to isolate components and make them more durable by limiting the scope of their CSS. You’ll discover that components can be more easily rearranged without causing adverse effects and the amount of code necessary will likely decrease.</p>
@@ -150,7 +150,7 @@
     <aside class="sidebar">
         <div class="sidebar-inner">
             <div class='author'>
-                <a class='sidebar-btn-archives' href='/archives' title='存档' ></a>
+                <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
                 <a class='sidebar-btn-home' href='/' title='首页' ></a>
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
@@ -241,6 +241,7 @@
             
         </div>
     </aside>
+    <a id='btnOpenSideBar' class='sidebar-btn-open' href='#'  ></a>
 
 
                     
@@ -272,6 +273,24 @@
 
 
 
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').addClass('fadeOut')
+            .css('display', 'none');
+        $('#btnOpenSideBar').addClass('fadeIn')
+            .css('display', 'block');
+        $('.main-inner').addClass('postCenter');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').addClass('fadeIn')
+                .css('display', 'block');
+              $('#btnOpenSideBar').addClass('fadeOut')
+                .css('display', 'none');
+              $('.main-inner').removeClass('postCenter');
+        });
+</script>
         
     </body>
 
