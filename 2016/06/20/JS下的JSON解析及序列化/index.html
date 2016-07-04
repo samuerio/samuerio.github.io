@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html>
     <head>
         <meta charset="UTF-8"/>
@@ -48,59 +47,33 @@
         <title> JS下的JSON解析及序列化 | issUn </title>
     </head>
     <body itemscope itemtype='http://schema.org/WebPage' lang='zh-Hans' >
-        
-        <div class='container  =' >
-           
-
-           
-
+        <div class='container' >
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap'>
+                    <div class='content-wrap content-wrap-post '>
                         <div id='content' class='content'>
                             
 
-  <div id="posts" class="posts-expand">
-    
+
 
     
-    
-    <article class="post post-type-normal post-picture-normal" itemscope itemtype="http://schema.org/Article" >
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
-            <time datetime="2016-06-19T23:35:12.000Z">
-                <a href="/2016/06/20/JS下的JSON解析及序列化/">2016-06-20</a>
-            </time>
-            <h1 class="post-title" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/JS下的JSON解析及序列化/" itemprop="url" >
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2016/06/20/JS下的JSON解析及序列化/"  itemprop="url" >
                     JS下的JSON解析及序列化
                 </a>
             </h1>
-            <!--
-                <div class="post-meta">
-                    <span class="post-time" >
-                        <span class="post-meta-item-icon">
-                            <i class="fa fa-calendar-o"></i>
-                        </span>
-                        <span class="post-meta-iterm-text">发表于</span>
-                        <time itemprop="dateCreated" datetime="2016-06-20T07:35:12+08:00" content="2016-06-20" >
-                            2016-06-20
-                        </time>
-                    </span>
-                    
-                        
-                            <span class="post-comments-count">
-                                &nbsp; | &nbsp
-                                <a href="/2016/06/20/JS下的JSON解析及序列化/#comments" itemprop="discussionUrl" >
-                                     <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/JS下的JSON解析及序列化/" itemprop="commentsCount"></span>
-                                </a>
-                            </span>
-                        
-                    
-                    
-                    
-                </div>
-            -->
+            
+            <div class="post-meta">
+                <a href = "/" class="post-meta-avatar">
+                    <img src="/favicon.ico" alt="issUn" >
+                    <span>issUn</span>
+                </a>
+                <span class="post-meta-time" >2016-06-20</time>
+            </div>
+            
         </header>
         <div class="post-body" itemprop="articleBody">
             
@@ -119,16 +92,11 @@
 
             
         </div>
-        <footer class="post-footer">
-             
-        </footer>
     </article>
 
-  </div>
 
 
                         </div>
-                        
                         
   <div class="comments" id="comments">
     
@@ -148,7 +116,7 @@
         <div class="sidebar-inner">
             <div class='author'>
                 <a id='btnCloseSideBar'  class='sidebar-btn-archives' href='#' title='存档' ></a>
-                <a class='sidebar-btn-home' href='/' title='首页' ></a>
+                
                 <div class='author-img'></div>
                 <div class='author-socialInfo'>
                 
@@ -244,11 +212,8 @@
                     
                 </div>
             </main>
-
-
-
-
         </div>
+        
         
 
   
@@ -273,22 +238,16 @@
         <script src="/js/jquery-2.0.3.min.js"></script>
 <script>
       $('#btnCloseSideBar').click(function(){
-        $('.sidebar').addClass('fadeOut')
-            .css('display', 'none');
-        $('#btnOpenSideBar').addClass('fadeIn')
-            .css('display', 'block');
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
         $('.main-inner').addClass('postCenter');
       });
 
        $('#btnOpenSideBar').click(function(){
-              $('.sidebar').addClass('fadeIn')
-                .css('display', 'block');
-              $('#btnOpenSideBar').addClass('fadeOut')
-                .css('display', 'none');
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
               $('.main-inner').removeClass('postCenter');
         });
 </script>
-        
     </body>
-
 </html>
