@@ -892,9 +892,8 @@ pre .javascript .function {
   background: #fff;
 }
 .sidebar-btn-open:before {
-  content: "\f100";
+  content: "\f192";
   font: 18px FontAwesome;
-  color: #2ca6cb;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar-btn-open {
