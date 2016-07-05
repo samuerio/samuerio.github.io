@@ -1,5 +1,5 @@
 body {
-  background: #f5f5f5;
+  background: #fffcf5;
 }
 .container {
   position: relative;
@@ -41,7 +41,7 @@ body {
   }
 }
 .main {
-  padding-top: 20px;
+  padding-top: 70px;
   padding-bottom: 150px;
 }
 .main:before,
@@ -82,6 +82,8 @@ body {
   width: 900px;
   background: #fff;
   min-height: 700px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0.8em rgba(204,197,185,0.5);
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -100,11 +102,12 @@ body {
   padding: 25px;
 }
 .sidebar {
-  position: static;
+  position: fixed;
   float: left;
   width: 264px;
   background: #fff;
-  box-shadow: none;
+  border-radius: 8px;
+  box-shadow: 0px 0px 0.8em rgba(204,197,185,0.5);
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar {
@@ -152,6 +155,29 @@ body {
   .footer-inner:before {
     display: none;
   }
+}
+.navbar {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  min-height: 50px;
+  font-weight: 600;
+  background-color: #8ecfd5;
+  border-color: #1c73a5;
+  border: 1px solid transparent;
+}
+.navbar:before,
+.navbar:after {
+  content: " ";
+  display: table;
+}
+.navbar:after {
+  clear: both;
+}
+.navbar-inner {
+  width: 1200px;
+  margin: 0 auto;
 }
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
@@ -827,7 +853,6 @@ pre .javascript .function {
   width: 264px;
   padding: 15px 25px;
   line-height: 1.6;
-  background: #fff;
 }
 .sidebar-title {
   padding: 0 0 0.3125em 0;
@@ -860,7 +885,7 @@ pre .javascript .function {
 }
 .sidebar-btn-open {
   position: absolute;
-  top: 20px;
+  top: 70px;
   display: none;
   padding: 0.2em 0.6em;
   border-radius: 5px;
@@ -951,6 +976,18 @@ pre .javascript .function {
   padding: 0.125em 0.3125em;
   font-size: 0.8em;
   background: #dbdbdb;
+}
+.navbar-nav {
+  float: left;
+}
+.navbar-nav li {
+  float: left;
+}
+.navbar-nav li a {
+  display: block;
+  padding: 14px 15px;
+  line-height: 22px;
+  color: #fff;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .comments {
