@@ -179,6 +179,24 @@ body {
   width: 1200px;
   margin: 0 auto;
 }
+.navbar-inner:before,
+.navbar-inner:after {
+  content: " ";
+  display: table;
+}
+.navbar-inner:after {
+  clear: both;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-inner {
+    width: auto;
+  }
+}
+@media (max-width: 767px) {
+  .navbar-inner {
+    width: auto;
+  }
+}
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif; /* 1 */
