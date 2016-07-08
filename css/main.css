@@ -3,6 +3,7 @@
 }
 .main {
   padding-top: 70px;
+  padding-bottom: 50px;
 }
 .main:before,
 .main:after {
@@ -504,7 +505,6 @@ td {
 }
 .post-header time {
   display: block;
-  margin-bottom: 5px;
   font-size: 0.9em;
   line-height: 1;
   color: #2ca6cb;
