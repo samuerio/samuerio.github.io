@@ -838,6 +838,7 @@ pre .javascript .function {
   margin-bottom: 0;
   font-size: 1.1em;
   font-weight: 700;
+  line-height: 1em;
   border-bottom: 0.1875em solid #ccc;
 }
 .author {
