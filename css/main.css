@@ -875,6 +875,7 @@ pre .javascript .function {
 }
 .categorieslist-item a {
   display: block;
+  line-height: 1em;
   padding: 0.5em 5%;
 }
 .tagslist {
@@ -899,6 +900,7 @@ pre .javascript .function {
   margin: 0.3125em;
   padding: 0.125em 0.3125em;
   font-size: 0.8em;
+  line-height: 1em;
   background: #dbdbdb;
 }
 .navbar-nav {
