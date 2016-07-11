@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> media媒体查询器用法总结 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            <nav class="navbar">
+    <div class="navbar-inner">
+        <ul class="navbar-nav" >
+            <li><a href="/" >Home</a></li>
+            <li><a href="/archives">Archive</a></li>
+        </ul>
+    </div>
+</nav>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2016/07/11/[转载]Css3 media媒体查询器用法总结/"  itemprop="url" >
+                    media媒体查询器用法总结
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2016-07-11</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>转载来自 520UED <a href="http://www.520ued.com/article/53882d7ab992a7c43f5c204b" target="_blank" rel="external">http://www.520ued.com/article/53882d7ab992a7c43f5c204b</a></p>
+<p>   随着响应式设计模型的诞生，Web网站又要发生翻天腹地的改革浪潮，可能有些人会觉得在国内IE6用户居高不下的情况下，这些新的技术还不会广泛的蔓延下去，那你就错了，如今淘宝，凡客，携程等等公司都已经在大胆的尝试了这项技术，并完美的应用在了自己的网站上了。再不更新知识你就老了。我今天就总结一下响应式设计的核心CSS技术Media(媒体查询器)的用法。</p>
+<a id="more"></a>
+<h3 id="准备工作1：设置Meta标签"><a href="#准备工作1：设置Meta标签" class="headerlink" title="准备工作1：设置Meta标签"></a>准备工作1：设置Meta标签</h3><p>首先我们在使用Media的时候需要先设置下面这段代码，来兼容移动设备的展示效果：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这段代码的几个参数解释：</p>
+<ul>
+<li>width = device-width：宽度等于当前设备的宽度</li>
+<li>initial-scale：初始的缩放比例（默认设置为1.0）  </li>
+<li>minimum-scale：允许用户缩放到的最小比例（默认设置为1.0）    </li>
+<li>maximum-scale：允许用户缩放到的最大比例（默认设置为1.0）   </li>
+<li>user-scalable：用户是否可以手动缩放（默认设置为no，因为我们不希望用户放大缩小页面） </li>
+</ul>
+<h3 id="准备工作2：加载兼容文件JS"><a href="#准备工作2：加载兼容文件JS" class="headerlink" title="准备工作2：加载兼容文件JS"></a>准备工作2：加载兼容文件JS</h3><p>因为IE8既不支持HTML5也不支持CSS3 Media，所以我们需要加载两个JS文件，来保证我们的代码实现兼容效果：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;</span><br><span class="line">  &lt;script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"&gt;&lt;/script&gt;</span><br><span class="line">  &lt;script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;![endif]--</span></span><br></pre></td></tr></table></figure>
+<h3 id="准备工作3：设置IE渲染方式默认为最高-这部分可以选择添加也可以不添加"><a href="#准备工作3：设置IE渲染方式默认为最高-这部分可以选择添加也可以不添加" class="headerlink" title="准备工作3：设置IE渲染方式默认为最高(这部分可以选择添加也可以不添加)"></a>准备工作3：设置IE渲染方式默认为最高(这部分可以选择添加也可以不添加)</h3><p>现在有很多人的IE浏览器都升级到IE9以上了，所以这个时候就有又很多诡异的事情发生了，例如现在是IE9的浏览器，但是浏览器的文档模式却是IE8.为了防止这种情况，我们需要下面这段代码来让IE的文档模式永远都是最新的：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=edge"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>不过我最近又发现了一个更给力的写法：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">http-equiv</span>=<span class="value">"X-UA-Compatible"</span> <span class="attribute">content</span>=<span class="value">"IE=Edge，chrome=1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>怎么这段代码后面加了一个chrome=1，这个Google Chrome Frame（谷歌内嵌浏览器框架GCF），如果有的用户电脑里面装了这个chrome的插件，就可以让电脑里面的IE不管是哪个版本的都可以使用Webkit引擎及V8引擎进行排版及运算，无比给力，不过如果用户没装这个插件，那这段代码就会让IE以最高的文档模式展现效果。这段代码我还是建议你们用上，不过不用也是可以的</p>
+<h3 id="CSS3-Media"><a href="#CSS3-Media" class="headerlink" title="CSS3 Media"></a>CSS3 Media</h3><p>我们来实现等于960px尺寸的代码：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">media</span> screen and (max-device-width:<span class="number">960px</span>)</span>&#123;</span><br><span class="line">	<span class="tag">body</span><span class="rules">&#123;</span><br><span class="line">		<span class="rule"><span class="attribute">background</span>:<span class="value">red</span></span>;</span><br><span class="line">	&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后就是当浏览器尺寸大于960px时候的代码了：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">media</span> screen and (min-width:<span class="number">960px</span>)</span>&#123;</span><br><span class="line">	<span class="tag">body</span><span class="rules">&#123;</span><br><span class="line">		<span class="rule"><span class="attribute">background</span>:<span class="value">orange</span></span>;</span><br><span class="line">	&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们还可以混合使用上面的用法：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="at_rule">@<span class="keyword">media</span> screen and (min-width:<span class="number">960px</span>) and (max-width:<span class="number">1200px</span>)</span>&#123;</span><br><span class="line">	<span class="tag">body</span><span class="rules">&#123;</span><br><span class="line">		<span class="rule"><span class="attribute">background</span>:<span class="value">yellow</span></span>;</span><br><span class="line">	&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的这段代码的意思是当页面宽度大于960px小于1200px的时候执行下面的CSS。</p>
+<h3 id="Media所有参数汇总"><a href="#Media所有参数汇总" class="headerlink" title="Media所有参数汇总"></a>Media所有参数汇总</h3><p>以上就是我们最常需要用到的媒体查询器的三个特性，大于，等于，小于的写法。媒体查询器的全部功能肯定不止这三个功能，下面是我总结的它的一些参数用法解释：</p>
+<ul>
+<li>width:浏览器可视宽度。</li>
+<li>height:浏览器可视高度。</li>
+<li>device-width:设备屏幕的宽度。</li>
+<li>device-height:设备屏幕的高度。</li>
+<li>orientation:检测设备目前处于横向还是纵向状态。</li>
+<li>aspect-ratio:检测浏览器可视宽度和高度的比例。(例如：aspect-ratio:16/9)</li>
+<li>device-aspect-ratio:检测设备的宽度和高度的比例。</li>
+<li>color:检测颜色的位数。（例如：min-color:32就会检测设备是否拥有32位颜色）</li>
+<li>color-index:检查设备颜色索引表中的颜色，他的值不能是负数。</li>
+<li>monochrome:检测单色楨缓冲区域中的每个像素的位数。（这个太高级，估计咱很少会用的到）</li>
+<li>resolution:检测屏幕或打印机的分辨率。(例如：min-resolution:300dpi或min-resolution:118dpcm)。</li>
+<li>grid：检测输出的设备是网格的还是位图设备。</li>
+</ul>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/11/[转载]Css3 media媒体查询器用法总结/"
+           data-title="media媒体查询器用法总结" data-url="http://zhenghe39.com/2016/07/11/[转载]Css3 media媒体查询器用法总结/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    <aside class="sidebar">
+    <div class="sidebar-inner">
+        <div class='author'>
+            <a id='btnCloseSideBar'  class='icon icon-collapse' href='#' title='存档' ></a>
+            <div class='author-img'></div>
+            <div class='author-socialInfo'>
+            
+                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+            
+            
+                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+            
+            </div>
+        </div>
+        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/电影日常/" title="电影日常">电影日常</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+    </div>
+</aside>
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+</script>
+    </body>
+</html>

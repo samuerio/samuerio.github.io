@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-07-04T01:03:52.000Z</updated>
+  <updated>2016-07-11T09:42:52.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>media媒体查询器用法总结</title>
+    <link href="http://zhenghe39.com/2016/07/11/%5B%E8%BD%AC%E8%BD%BD%5DCss3%20media%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E5%99%A8%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://zhenghe39.com/2016/07/11/[转载]Css3 media媒体查询器用法总结/</id>
+    <published>2016-07-11T09:23:51.000Z</published>
+    <updated>2016-07-11T09:42:52.000Z</updated>
+    
+    <content type="html">&lt;p&gt;转载来自 520UED &lt;a href=&quot;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;   随着响应式设计模型的诞生，Web网站又要发生翻天腹地的改革浪潮，可能有些人会觉得在国内IE6用户居高不下的情况下，这些新的技术还不会广泛的蔓延下去，那你就错了，如今淘宝，凡客，携程等等公司都已经在大胆的尝试了这项技术，并完美的应用在了自己的网站上了。再不更新知识你就老了。我今天就总结一下响应式设计的核心CSS技术Media(媒体查询器)的用法。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;准备工作1：设置Meta标签&quot;&gt;&lt;a href=&quot;#准备工作1：设置Meta标签&quot; class=&quot;headerlink&quot; title=&quot;准备工作1：设置Meta标签&quot;&gt;&lt;/a&gt;准备工作1：设置Meta标签&lt;/h3&gt;&lt;p&gt;首先我们在使用Media的时候需要先设置下面这段代码，来兼容移动设备的展示效果：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这段代码的几个参数解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;width = device-width：宽度等于当前设备的宽度&lt;/li&gt;
+&lt;li&gt;initial-scale：初始的缩放比例（默认设置为1.0）  &lt;/li&gt;
+&lt;li&gt;minimum-scale：允许用户缩放到的最小比例（默认设置为1.0）    &lt;/li&gt;
+&lt;li&gt;maximum-scale：允许用户缩放到的最大比例（默认设置为1.0）   &lt;/li&gt;
+&lt;li&gt;user-scalable：用户是否可以手动缩放（默认设置为no，因为我们不希望用户放大缩小页面） &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;准备工作2：加载兼容文件JS&quot;&gt;&lt;a href=&quot;#准备工作2：加载兼容文件JS&quot; class=&quot;headerlink&quot; title=&quot;准备工作2：加载兼容文件JS&quot;&gt;&lt;/a&gt;准备工作2：加载兼容文件JS&lt;/h3&gt;&lt;p&gt;因为IE8既不支持HTML5也不支持CSS3 Media，所以我们需要加载两个JS文件，来保证我们的代码实现兼容效果：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!--[if lt IE 9]&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;script src=&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;script src=&quot;https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;![endif]--&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;准备工作3：设置IE渲染方式默认为最高-这部分可以选择添加也可以不添加&quot;&gt;&lt;a href=&quot;#准备工作3：设置IE渲染方式默认为最高-这部分可以选择添加也可以不添加&quot; class=&quot;headerlink&quot; title=&quot;准备工作3：设置IE渲染方式默认为最高(这部分可以选择添加也可以不添加)&quot;&gt;&lt;/a&gt;准备工作3：设置IE渲染方式默认为最高(这部分可以选择添加也可以不添加)&lt;/h3&gt;&lt;p&gt;现在有很多人的IE浏览器都升级到IE9以上了，所以这个时候就有又很多诡异的事情发生了，例如现在是IE9的浏览器，但是浏览器的文档模式却是IE8.为了防止这种情况，我们需要下面这段代码来让IE的文档模式永远都是最新的：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;IE=edge&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;不过我最近又发现了一个更给力的写法：&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;IE=Edge，chrome=1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;怎么这段代码后面加了一个chrome=1，这个Google Chrome Frame（谷歌内嵌浏览器框架GCF），如果有的用户电脑里面装了这个chrome的插件，就可以让电脑里面的IE不管是哪个版本的都可以使用Webkit引擎及V8引擎进行排版及运算，无比给力，不过如果用户没装这个插件，那这段代码就会让IE以最高的文档模式展现效果。这段代码我还是建议你们用上，不过不用也是可以的&lt;/p&gt;
+&lt;h3 id=&quot;CSS3-Media&quot;&gt;&lt;a href=&quot;#CSS3-Media&quot; class=&quot;headerlink&quot; title=&quot;CSS3 Media&quot;&gt;&lt;/a&gt;CSS3 Media&lt;/h3&gt;&lt;p&gt;我们来实现等于960px尺寸的代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;at_rule&quot;&gt;@&lt;span class=&quot;keyword&quot;&gt;media&lt;/span&gt; screen and (max-device-width:&lt;span class=&quot;number&quot;&gt;960px&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;red&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;然后就是当浏览器尺寸大于960px时候的代码了：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;at_rule&quot;&gt;@&lt;span class=&quot;keyword&quot;&gt;media&lt;/span&gt; screen and (min-width:&lt;span class=&quot;number&quot;&gt;960px&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;orange&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们还可以混合使用上面的用法：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;at_rule&quot;&gt;@&lt;span class=&quot;keyword&quot;&gt;media&lt;/span&gt; screen and (min-width:&lt;span class=&quot;number&quot;&gt;960px&lt;/span&gt;) and (max-width:&lt;span class=&quot;number&quot;&gt;1200px&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;yellow&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面的这段代码的意思是当页面宽度大于960px小于1200px的时候执行下面的CSS。&lt;/p&gt;
+&lt;h3 id=&quot;Media所有参数汇总&quot;&gt;&lt;a href=&quot;#Media所有参数汇总&quot; class=&quot;headerlink&quot; title=&quot;Media所有参数汇总&quot;&gt;&lt;/a&gt;Media所有参数汇总&lt;/h3&gt;&lt;p&gt;以上就是我们最常需要用到的媒体查询器的三个特性，大于，等于，小于的写法。媒体查询器的全部功能肯定不止这三个功能，下面是我总结的它的一些参数用法解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;width:浏览器可视宽度。&lt;/li&gt;
+&lt;li&gt;height:浏览器可视高度。&lt;/li&gt;
+&lt;li&gt;device-width:设备屏幕的宽度。&lt;/li&gt;
+&lt;li&gt;device-height:设备屏幕的高度。&lt;/li&gt;
+&lt;li&gt;orientation:检测设备目前处于横向还是纵向状态。&lt;/li&gt;
+&lt;li&gt;aspect-ratio:检测浏览器可视宽度和高度的比例。(例如：aspect-ratio:16/9)&lt;/li&gt;
+&lt;li&gt;device-aspect-ratio:检测设备的宽度和高度的比例。&lt;/li&gt;
+&lt;li&gt;color:检测颜色的位数。（例如：min-color:32就会检测设备是否拥有32位颜色）&lt;/li&gt;
+&lt;li&gt;color-index:检查设备颜色索引表中的颜色，他的值不能是负数。&lt;/li&gt;
+&lt;li&gt;monochrome:检测单色楨缓冲区域中的每个像素的位数。（这个太高级，估计咱很少会用的到）&lt;/li&gt;
+&lt;li&gt;resolution:检测屏幕或打印机的分辨率。(例如：min-resolution:300dpi或min-resolution:118dpcm)。&lt;/li&gt;
+&lt;li&gt;grid：检测输出的设备是网格的还是位图设备。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载来自 520UED &lt;a href=&quot;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&quot;&gt;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;   随着响应式设计模型的诞生，Web网站又要发生翻天腹地的改革浪潮，可能有些人会觉得在国内IE6用户居高不下的情况下，这些新的技术还不会广泛的蔓延下去，那你就错了，如今淘宝，凡客，携程等等公司都已经在大胆的尝试了这项技术，并完美的应用在了自己的网站上了。再不更新知识你就老了。我今天就总结一下响应式设计的核心CSS技术Media(媒体查询器)的用法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
+    
+  </entry>
   
   <entry>
     <title>Java基本类型转数据库类型</title>
@@ -50,11 +115,11 @@
   </entry>
   
   <entry>
-    <title>「转载」Javascript正则表达式</title>
+    <title>Javascript正则表达式</title>
     <link href="http://zhenghe39.com/2016/06/27/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <id>http://zhenghe39.com/2016/06/27/JavaScript 正则表达式/</id>
     <published>2016-06-27T08:24:14.000Z</published>
-    <updated>2016-06-28T05:22:23.000Z</updated>
+    <updated>2016-07-11T14:06:14.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/dolphinX/p/3486214.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/dolphinX/p/3486214.html&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;p&gt;JavaScript种正则表达式有两种定义方式，定义一个匹配类似 &lt;code&gt;&amp;lt;%XXX%&amp;gt;&lt;/code&gt;的字符串&lt;/p&gt;
@@ -394,11 +459,11 @@
   </entry>
   
   <entry>
-    <title>「转载」Stop the cascade</title>
+    <title>Stop the cascade</title>
     <link href="http://zhenghe39.com/2016/06/21/%5B%E8%BD%AC%E8%BD%BD%5DStop%20the%20cascade/"/>
     <id>http://zhenghe39.com/2016/06/21/[转载]Stop the cascade/</id>
     <published>2016-06-21T15:38:50.000Z</published>
-    <updated>2016-06-22T14:44:48.000Z</updated>
+    <updated>2016-07-11T09:17:45.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://markdotto.com/2012/03/02/stop-the-cascade/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://markdotto.com/2012/03/02/stop-the-cascade/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Cascading styles is at the core of CSS—hell, it’s in the name—but experience has shown that building systems with too many &lt;em&gt;cascading styles&lt;/em&gt; can be detrimental. Some times it’s completely necessary to just &lt;strong&gt;stop the cascade&lt;/strong&gt;.&lt;/p&gt;
@@ -432,11 +497,11 @@
   </entry>
   
   <entry>
-    <title>「转载」Scope CSS classes with prefixes</title>
+    <title>Scope CSS classes with prefixes</title>
     <link href="http://zhenghe39.com/2016/06/21/%5B%E8%BD%AC%E8%BD%BD%5DScope%20CSS%20classes%20with%20prefixes/"/>
     <id>http://zhenghe39.com/2016/06/21/[转载]Scope CSS classes with prefixes/</id>
     <published>2016-06-21T14:25:50.000Z</published>
-    <updated>2016-06-22T14:44:53.000Z</updated>
+    <updated>2016-07-11T09:17:56.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自：&lt;a href=&quot;http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.&lt;/p&gt;
@@ -604,11 +669,11 @@
   </entry>
   
   <entry>
-    <title>「转载」BFC神奇背后的原理</title>
+    <title>BFC神奇背后的原理</title>
     <link href="http://zhenghe39.com/2016/06/19/%5B%E8%BD%AC%E8%BD%BD%5DBFC%E7%A5%9E%E5%A5%87%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86/"/>
     <id>http://zhenghe39.com/2016/06/19/[转载]BFC神奇背后的原理/</id>
     <published>2016-06-19T04:08:41.000Z</published>
-    <updated>2016-06-21T14:44:37.000Z</updated>
+    <updated>2016-07-11T09:18:10.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自：&lt;a href=&quot;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html&lt;/a&gt;，部分内容略作调整。&lt;/p&gt;
 &lt;h3 id=&quot;BFC是什么？&quot;&gt;&lt;a href=&quot;#BFC是什么？&quot; class=&quot;headerlink&quot; title=&quot;BFC是什么？&quot;&gt;&lt;/a&gt;BFC是什么？&lt;/h3&gt;&lt;p&gt;在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。&lt;/p&gt;

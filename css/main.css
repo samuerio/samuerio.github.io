@@ -141,6 +141,42 @@
 .main-inner-center {
   width: 900px;
 }
+.use-motion .post {
+  opacity: 0;
+}
+.archive-page-counter {
+  position: relative;
+  top: 3px;
+  left: 20px;
+}
+@media (max-width: 767px) {
+  .archive-page-counter {
+    top: 5px;
+  }
+}
+.archive-move-on {
+  position: absolute;
+  top: 11px;
+  left: 0;
+  margin-left: -5px;
+  width: 10px;
+  height: 10px;
+  opacity: 0.5;
+  background: #555;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+.content-wrap-index {
+  padding: 10px 35px;
+  padding-top: 15px;
+}
+.content-wrap-index .post {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.content-wrap-post {
+  padding: 10px 35px;
+}
 /* normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif; /* 1 */
@@ -504,6 +540,8 @@ td {
 }
 .post h1 {
   margin-bottom: 0;
+  font-size: 1.6em;
+  font-weight: 500;
 }
 .post-header time {
   display: block;
@@ -527,7 +565,8 @@ td {
   list-style: square;
 }
 .post-body h3 {
-  font-size: 1.4em;
+  font-size: 1.3em;
+  font-weight: 500;
   padding-left: 9px;
   border-left: 5px solid #ff7e79;
 }
@@ -927,40 +966,4 @@ pre .javascript .function {
   .comments {
     padding-left: 0;
   }
-}
-.use-motion .post {
-  opacity: 0;
-}
-.archive-page-counter {
-  position: relative;
-  top: 3px;
-  left: 20px;
-}
-@media (max-width: 767px) {
-  .archive-page-counter {
-    top: 5px;
-  }
-}
-.archive-move-on {
-  position: absolute;
-  top: 11px;
-  left: 0;
-  margin-left: -5px;
-  width: 10px;
-  height: 10px;
-  opacity: 0.5;
-  background: #555;
-  border: 1px solid #fff;
-  border-radius: 50%;
-}
-.content-wrap-index {
-  padding: 10px 35px;
-  padding-top: 15px;
-}
-.content-wrap-index .post {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-}
-.content-wrap-post {
-  padding: 10px 35px;
 }
