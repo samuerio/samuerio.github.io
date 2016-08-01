@@ -538,33 +538,6 @@
   </entry>
   
   <entry>
-    <title>Love and Peace</title>
-    <link href="http://zhenghe39.com/2016/06/20/love%20and%20peace/"/>
-    <id>http://zhenghe39.com/2016/06/20/love and peace/</id>
-    <published>2016-06-20T01:17:30.000Z</published>
-    <updated>2016-06-20T13:57:24.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f51fdnplggj21kw0uotl0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f51fg3yco1j21kw0uong8.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f51fhiax82j21kw0uok3c.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79gw1f51fj54t96j21kw0uoaos.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f51fk3lb65j21kw0uotk0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f51fkrvkvmj21kw0uok2f.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f51fdnplggj21kw0uotl0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="电影日常" scheme="http://zhenghe39.com/categories/%E7%94%B5%E5%BD%B1%E6%97%A5%E5%B8%B8/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>JS下的JSON解析及序列化</title>
     <link href="http://zhenghe39.com/2016/06/20/JS%E4%B8%8B%E7%9A%84JSON%E8%A7%A3%E6%9E%90%E5%8F%8A%E5%BA%8F%E5%88%97%E5%8C%96/"/>
     <id>http://zhenghe39.com/2016/06/20/JS下的JSON解析及序列化/</id>
@@ -848,6 +821,59 @@
     
     
       <category term="Http" scheme="http://zhenghe39.com/tags/Http/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac和Window JDK的差异</title>
+    <link href="http://zhenghe39.com/2016/03/21/Mac%E5%92%8CWindow%20JDK%E7%9A%84%E5%B7%AE%E5%BC%82/"/>
+    <id>http://zhenghe39.com/2016/03/21/Mac和Window JDK的差异/</id>
+    <published>2016-03-21T07:34:20.000Z</published>
+    <updated>2016-08-01T15:16:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f24ipw5l0nj21a40h0n6a.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f24ipw5l0nj21a40h0n6a.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="JDK" scheme="http://zhenghe39.com/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mongodb的启动和备份</title>
+    <link href="http://zhenghe39.com/2016/03/21/Mongodb%E7%9A%84%E5%90%AF%E5%8A%A8%E5%92%8C%E5%A4%87%E4%BB%BD/"/>
+    <id>http://zhenghe39.com/2016/03/21/Mongodb的启动和备份/</id>
+    <published>2016-03-21T07:17:20.000Z</published>
+    <updated>2016-08-01T15:03:02.000Z</updated>
+    
+    <content type="html">&lt;p&gt;version：&lt;code&gt;2.4.3&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;启动MongoDB：&quot;&gt;&lt;a href=&quot;#启动MongoDB：&quot; class=&quot;headerlink&quot; title=&quot;启动MongoDB：&quot;&gt;&lt;/a&gt;启动MongoDB：&lt;/h3&gt;&lt;p&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongod —-config /usr/local/var/log/mongodb/mongod.conf&lt;/p&gt;
+&lt;h3 id=&quot;备份MongoDB：&quot;&gt;&lt;a href=&quot;#备份MongoDB：&quot; class=&quot;headerlink&quot; title=&quot;备份MongoDB：&quot;&gt;&lt;/a&gt;备份MongoDB：&lt;/h3&gt;&lt;p&gt;1.整库备份：&lt;/p&gt;
+&lt;p&gt;mongodump -h &lt;hostname&gt;&amp;lt;:port&amp;gt; -o &lt;path&gt;&lt;/path&gt;&lt;br&gt;例如:&lt;br&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongodump -h 192.168.5.185 -o /Users/ZHe/开发者工具/dump/mongod&lt;/hostname&gt;&lt;/p&gt;
+&lt;p&gt;2.单库备份:&lt;br&gt;mongodump -h &lt;hostname&gt;&amp;lt;:port&amp;gt; -d &lt;database&gt; -o &lt;path&gt;&lt;/path&gt;&lt;br&gt;例如:&lt;br&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongodump -h 192.168.203.45:27021 -d flowConfig -o /Users/ZHe/开发者工具/dump/mongod&lt;/database&gt;&lt;/hostname&gt;&lt;/p&gt;
+&lt;p&gt;恢复MongoDB：&lt;br&gt;1.整库恢复：&lt;br&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongorestore -h 127.0.0.1 -directoryperdb /Users/ZHe/开发者工具/dum/mongod&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;version：&lt;code&gt;2.4.3&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;启动MongoDB：&quot;&gt;&lt;a href=&quot;#启动MongoDB：&quot; class=&quot;headerlink&quot; title=&quot;启动MongoDB：&quot;&gt;&lt;/a&gt;启动MongoDB：&lt;/h3&gt;&lt;p&gt;/Use
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="mongodb" scheme="http://zhenghe39.com/tags/mongodb/"/>
     
   </entry>
   
