@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-08-25T02:40:24.000Z</updated>
+  <updated>2016-08-25T02:49:03.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jsp的静态包含及动态包含</title>
+    <link href="http://zhenghe39.com/2016/08/25/Jsp%E7%9A%84%E9%9D%99%E6%80%81%E5%8C%85%E5%90%AB%E5%8F%8A%E5%8A%A8%E6%80%81%E5%8C%85%E5%90%AB/"/>
+    <id>http://zhenghe39.com/2016/08/25/Jsp的静态包含及动态包含/</id>
+    <published>2016-08-25T02:45:31.000Z</published>
+    <updated>2016-08-25T02:49:03.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;主文件&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@page import=&quot;java.io.PrintWriter&quot;  %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;ISO-8859-1&quot;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;String path = request.getContextPath();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;base href=&quot;&amp;lt;%=basePath%&amp;gt;&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;title&amp;gt;测试动态包含&amp;lt;/title&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;pragma&quot; content=&quot;no-cache&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;cache-control&quot; content=&quot;no-cache&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;expires&quot; content=&quot;0&quot;&amp;gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;keywords&quot; content=&quot;keyword1,keyword2,keyword3&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;description&quot; content=&quot;This is my page&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;% &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	String requestParam1 = &quot;test&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	String requestParam2 = &quot;request&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;!-- 动态包含：请求完一个JSP页面，再请求另外一个JSP页面。最终会解析为两个Servlet --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;jsp:include page=&quot;demo.jsp&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  		&amp;lt;jsp:param value=&quot;&amp;lt;%= requestParam1 %&amp;gt;&quot; name=&quot;requestParam1&quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  		&amp;lt;jsp:param value=&quot;&amp;lt;%= requestParam2 %&amp;gt;&quot; name=&quot;requestParam2&quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;/jsp:include&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;br&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    This is my JSP page. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;!-- 静态包含：会合并完再进行解析，最终生成一个Servlet --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%@include file = &quot;demo2.jsp&quot; %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;demo.jsp&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot; pageEncoding=&quot;UTF-8&quot;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;title&amp;gt;Insert title here&amp;lt;/title&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;% &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String param1 = request.getParameter(&quot;requestParam1&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String param2 = request.getParameter(&quot;requestParam2&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		out.println(&quot;param1: &quot;+param1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		out.println(&quot;param2: &quot;+param2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;demo2.jsp&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pageEncoding=&quot;UTF-8&quot;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;title&amp;gt;Insert title here&amp;lt;/title&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;% out.println(&quot;dd&quot;); %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;主文件&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@page import=&quot;java.io.PrintWriter&quot;  %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@ page language=&quot;java&quot; import=&quot;java.util.*&quot; pageEncoding=&quot;ISO-8859-1&quot;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;String path = request.getContextPath();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;String basePath = request.getScheme()+&quot;://&quot;+request.getServerName()+&quot;:&quot;+request.getServerPort()+path+&quot;/&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;base href=&quot;&amp;lt;%=basePath%&amp;gt;&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;title&amp;gt;测试动态包含&amp;lt;/title&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;pragma&quot; content=&quot;no-cache&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;cache-control&quot; content=&quot;no-cache&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;expires&quot; content=&quot;0&quot;&amp;gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;keywords&quot; content=&quot;keyword1,keyword2,keyword3&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;lt;meta http-equiv=&quot;description&quot; content=&quot;This is my page&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/head&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;% &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	String requestParam1 = &quot;test&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	String requestParam2 = &quot;request&quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;!-- 动态包含：请求完一个JSP页面，再请求另外一个JSP页面。最终会解析为两个Servlet --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;jsp:include page=&quot;demo.jsp&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  		&amp;lt;jsp:param value=&quot;&amp;lt;%= requestParam1 %&amp;gt;&quot; name=&quot;requestParam1&quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  		&amp;lt;jsp:param value=&quot;&amp;lt;%= requestParam2 %&amp;gt;&quot; name=&quot;requestParam2&quot;/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;/jsp:include&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  	&amp;lt;br&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    This is my JSP page. &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;!-- 静态包含：会合并完再进行解析，最终生成一个Servlet --&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%@include file = &quot;demo2.jsp&quot; %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Jsp" scheme="http://zhenghe39.com/tags/Jsp/"/>
+    
+  </entry>
   
   <entry>
     <title>编码详解</title>
@@ -1034,54 +1064,6 @@
     
     
       <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>负margin与absolute、relative</title>
-    <link href="http://zhenghe39.com/2016/03/13/%E8%B4%9Fmargin%E4%B8%8Eabsolute%E3%80%81relative/"/>
-    <id>http://zhenghe39.com/2016/03/13/负margin与absolute、relative/</id>
-    <published>2016-03-13T09:02:24.000Z</published>
-    <updated>2016-06-19T02:17:51.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;负margin&quot;&gt;&lt;a href=&quot;#负margin&quot; class=&quot;headerlink&quot; title=&quot;负margin&quot;&gt;&lt;/a&gt;负margin&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;参考线是保持不动的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79jw1f1vcf9d4gag20fg0dsjrh.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;margin-top、margin-left是以外元素为参考线，margin-right、margin-bottom则以元素本身为参考线。&lt;/p&gt;
-&lt;p&gt;负margin在一定程度上可以替代「relative」「absolute」达到一定的布局效果。并且负margin始终是处于「标准文档流」中的，对整体布局影响小。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/e9kzogcr/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-
-&lt;h3 id=&quot;relative和absolute&quot;&gt;&lt;a href=&quot;#relative和absolute&quot; class=&quot;headerlink&quot; title=&quot;relative和absolute&quot;&gt;&lt;/a&gt;relative和absolute&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;relative&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;自身位置为基准&lt;/li&gt;
-&lt;li&gt;处于标准文档流&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;absolute&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;以包含块为基准&lt;/li&gt;
-&lt;li&gt;脱离标准文档流&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;注意&lt;/em&gt;：若absolute未设置偏移量，则无论是否存在已定位的祖先元素，都保持在元素最初的位置。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://zh.learnlayout.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;布局学习&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;负margin&quot;&gt;&lt;a href=&quot;#负margin&quot; class=&quot;headerlink&quot; title=&quot;负margin&quot;&gt;&lt;/a&gt;负margin&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;参考线是保持不动的&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79jw1f1vcf9d4gag20fg0dsjrh.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;margin-top、margin-left是以外元素为参考线，margin-right、margin-bottom则以元素本身为参考线。&lt;/p&gt;
-&lt;p&gt;负margin在一定程度上可以替代「relative」「absolute」达到一定的布局效果。并且负margin始终是处于「标准文档流」中的，对整体布局影响小。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
-    
-    
-      <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
     
   </entry>
   
