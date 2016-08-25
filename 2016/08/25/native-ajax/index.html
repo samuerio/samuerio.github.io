@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Scope CSS classes with prefixes | issUn </title>
+        <title> Native ajax | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -51,8 +51,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/21/[转载]Scope CSS classes with prefixes/"  itemprop="url" >
-                    Scope CSS classes with prefixes
+                <a class="post-title-link" href="/2016/08/25/native-ajax/"  itemprop="url" >
+                    Native ajax
                 </a>
             </h1>
             
@@ -61,30 +61,16 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-06-21</time>
+                    <span class="post-meta-time" >2016-08-25</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <p>转载自：<a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/" target="_blank" rel="external">http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/</a></p>
-<p>When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.</p>
-<a id="more"></a>
-<p>Taking the <code>chained classes</code> approach, your CSS selectors might look something like this for a given set of components:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.success &#123; ... &#125;</span><br><span class="line">.btn.success &#123; .. &#125;</span><br><span class="line">.alert.success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<p>We have here a global base class, <code>.success</code>, that might house all the commonalities between successful buttons and alerts. Then, at the individual component level, we add on or override as necessary. However, this wide open class and chained approach exposes developers to a number of questions and potential paint points:</p>
-<ul>
-<li>What’s that base class stand for?</li>
-<li>What elements will be affected at the root level?</li>
-<li>How many elements have .success chained onto them?</li>
-<li>Can it be extended further to more components?</li>
-<li>What if one instance of .success uses green text on a white background while another uses white text on a green background?</li>
-</ul>
-<p>And those questions barely scratch the surface. This solution isn’t necessarily bad, but when scale, brevity, and flexibility are your top requirements, it might not be the best idea. A better solution might be using prefixed classes.</p>
-<p><code>Prefixed classes</code> guide developers towards a simpler and more maintainable direction for building an extensive CSS design system. Here’s what we have if we take away the generic base class and scope things per component with prefixes:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.btn-success &#123; ... &#125;</span><br><span class="line">.alert-success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<p>This way, <strong>the base class is at the component level</strong> and not the entire system level. In other words, our base classes have become <code>.btn</code> and <code>.alert</code>, not <code>.success</code>. There’s no bleeding of styles or behavior from one component to another here because we treat components in a “successful state” as an idea across the design system. That is to say, we have a shared idea of what “success” looks for buttons and alerts, but the execution is scoped entirely to each independent component. No questions of where common styles are used and no concern of unintended effects, making each component more durable and flexible.</p>
-<p>While a very tactical and detail-oriented practice, building components that inherently isolate themselves for improved modularity and customization in a system like Bootstrap makes for better code and a more enjoyable project down the line.</p>
+                <figure class="highlight"><table><tr><td class="code"><pre><span class="line">function addURLParam(url,name,value)&#123;</span><br><span class="line">    url += (url.indexOf('?') == -1) ? '?' : '&amp;';</span><br><span class="line">    url += encodeURIComponent(name) + '=' + encodeURIComponent(value);//必须</span><br><span class="line">    return url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var xhr = new XMLHttpRequest();//不建议重用XHR对象</span><br><span class="line">//xhr状态改变事件准备</span><br><span class="line">xhr.onreadystatechange = function()&#123;</span><br><span class="line">    if(4 === xhr.readyState)&#123;//已收到全部响应数据，而且可以在客户端使用了(XMLHttpRequest对象状态的说明)</span><br><span class="line">        if(xhr.status === 200 || xhr.status === 304)&#123;//响应Http状态的说明，成功返回的标识：200/304</span><br><span class="line">            //收到服务器的响应后，响应数据会自动填充XHR对象的属性</span><br><span class="line">            alert(xhr.responseText);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            alert('Request was unsuccessful: '+xhr.statusText+xhr.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var url = 'exmple.php';</span><br><span class="line">addURLParam(url,'userName','Zhe');</span><br><span class="line">addURLParam(url,'password','111111');</span><br><span class="line">xhr.open(‘get',url,false);//此时并未发送，而只是启动一个请求以备发送</span><br><span class="line">xhr.send(null);</span><br></pre></td></tr></table></figure>
+<p>这里值得注意的问题是URL上QueryString的编码问题，查询字符串中每个参数的名称和值<br>都必须使用encodeURIComponent进行编码，才能放到URL的末尾,并且使用&amp;分隔！</p>
+<p>下面是“ajax模拟表单提交”的例子</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">4</span> === xhr.readyState)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status === <span class="number">200</span> || xhr.status === <span class="number">304</span>)&#123;</span><br><span class="line">            alert(xhr.responseText);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            alert(<span class="string">'Request was unsuccessful: '</span>+xhr.statusText+xhr.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">xhr.open(<span class="string">'post'</span>,<span class="string">'postexample.php'</span>,<span class="literal">true</span>);</span><br><span class="line">xhr.setRequestHeader(<span class="string">'Content-Type'</span>,<span class="string">'application/x-www-form-urlencoded'</span>);</span><br><span class="line">xhr.send($(<span class="string">"#user-info"</span>).serialize(form));<span class="comment">//发送表单序列化后的字符串</span></span><br></pre></td></tr></table></figure>
 
             
         </div>
@@ -96,8 +82,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/21/[转载]Scope CSS classes with prefixes/"
-           data-title="Scope CSS classes with prefixes" data-url="http://zhenghe39.com/2016/06/21/[转载]Scope CSS classes with prefixes/">
+      <div class="ds-thread" data-thread-key="2016/08/25/native-ajax/"
+           data-title="Native ajax" data-url="http://zhenghe39.com/2016/08/25/native-ajax/">
       </div>
     
   </div>
@@ -153,13 +139,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Css/' title=Css>Css</a>
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                        <a  href='/tags/Css/' title=Css>Css</a>
                     </li>
                 
             

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-07-11T09:42:52.000Z</updated>
+  <updated>2016-08-25T01:43:24.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -16,9 +16,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Native ajax</title>
+    <link href="http://zhenghe39.com/2016/08/25/native-ajax/"/>
+    <id>http://zhenghe39.com/2016/08/25/native-ajax/</id>
+    <published>2016-08-25T01:29:38.000Z</published>
+    <updated>2016-08-25T01:43:24.000Z</updated>
+    
+    <content type="html">&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function addURLParam(url,name,value)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += (url.indexOf(&#39;?&#39;) == -1) ? &#39;?&#39; : &#39;&amp;amp;&#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += encodeURIComponent(name) + &#39;=&#39; + encodeURIComponent(value);//必须&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return url;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var xhr = new XMLHttpRequest();//不建议重用XHR对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//xhr状态改变事件准备&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.onreadystatechange = function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if(4 === xhr.readyState)&amp;#123;//已收到全部响应数据，而且可以在客户端使用了(XMLHttpRequest对象状态的说明)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(xhr.status === 200 || xhr.status === 304)&amp;#123;//响应Http状态的说明，成功返回的标识：200/304&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //收到服务器的响应后，响应数据会自动填充XHR对象的属性&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(xhr.responseText);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&#39;Request was unsuccessful: &#39;+xhr.statusText+xhr.status);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var url = &#39;exmple.php&#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;addURLParam(url,&#39;userName&#39;,&#39;Zhe&#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;addURLParam(url,&#39;password&#39;,&#39;111111&#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.open(‘get&#39;,url,false);//此时并未发送，而只是启动一个请求以备发送&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.send(null);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这里值得注意的问题是URL上QueryString的编码问题，查询字符串中每个参数的名称和值&lt;br&gt;都必须使用encodeURIComponent进行编码，才能放到URL的末尾,并且使用&amp;amp;分隔！&lt;/p&gt;
+&lt;p&gt;下面是“ajax模拟表单提交”的例子&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; xhr = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; XMLHttpRequest();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.onreadystatechange = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; === xhr.readyState)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(xhr.status === &lt;span class=&quot;number&quot;&gt;200&lt;/span&gt; || xhr.status === &lt;span class=&quot;number&quot;&gt;304&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(xhr.responseText);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&lt;span class=&quot;string&quot;&gt;&#39;Request was unsuccessful: &#39;&lt;/span&gt;+xhr.statusText+xhr.status);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.open(&lt;span class=&quot;string&quot;&gt;&#39;post&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;postexample.php&#39;&lt;/span&gt;,&lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.setRequestHeader(&lt;span class=&quot;string&quot;&gt;&#39;Content-Type&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;application/x-www-form-urlencoded&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.send($(&lt;span class=&quot;string&quot;&gt;&quot;#user-info&quot;&lt;/span&gt;).serialize(form));&lt;span class=&quot;comment&quot;&gt;//发送表单序列化后的字符串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function addURLParam(url,name,value)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span cla
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>media媒体查询器用法总结</title>
-    <link href="http://zhenghe39.com/2016/07/11/%5B%E8%BD%AC%E8%BD%BD%5DCss3%20media%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E5%99%A8%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    <id>http://zhenghe39.com/2016/07/11/[转载]Css3 media媒体查询器用法总结/</id>
+    <link href="http://zhenghe39.com/2016/07/11/%E8%BD%AC%E8%BD%BD-Css3-media%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E5%99%A8%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
+    <id>http://zhenghe39.com/2016/07/11/转载-Css3-media媒体查询器用法总结/</id>
     <published>2016-07-11T09:23:51.000Z</published>
     <updated>2016-07-11T09:42:52.000Z</updated>
     
@@ -116,8 +142,8 @@
   
   <entry>
     <title>Javascript正则表达式</title>
-    <link href="http://zhenghe39.com/2016/06/27/JavaScript%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>http://zhenghe39.com/2016/06/27/JavaScript 正则表达式/</id>
+    <link href="http://zhenghe39.com/2016/06/27/JavaScript-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://zhenghe39.com/2016/06/27/JavaScript-正则表达式/</id>
     <published>2016-06-27T08:24:14.000Z</published>
     <updated>2016-07-11T14:06:14.000Z</updated>
     
@@ -460,8 +486,8 @@
   
   <entry>
     <title>Stop the cascade</title>
-    <link href="http://zhenghe39.com/2016/06/21/%5B%E8%BD%AC%E8%BD%BD%5DStop%20the%20cascade/"/>
-    <id>http://zhenghe39.com/2016/06/21/[转载]Stop the cascade/</id>
+    <link href="http://zhenghe39.com/2016/06/21/%E8%BD%AC%E8%BD%BD-Stop-the-cascade/"/>
+    <id>http://zhenghe39.com/2016/06/21/转载-Stop-the-cascade/</id>
     <published>2016-06-21T15:38:50.000Z</published>
     <updated>2016-07-11T09:17:45.000Z</updated>
     
@@ -498,8 +524,8 @@
   
   <entry>
     <title>Scope CSS classes with prefixes</title>
-    <link href="http://zhenghe39.com/2016/06/21/%5B%E8%BD%AC%E8%BD%BD%5DScope%20CSS%20classes%20with%20prefixes/"/>
-    <id>http://zhenghe39.com/2016/06/21/[转载]Scope CSS classes with prefixes/</id>
+    <link href="http://zhenghe39.com/2016/06/21/%E8%BD%AC%E8%BD%BD-Scope-CSS-classes-with-prefixes/"/>
+    <id>http://zhenghe39.com/2016/06/21/转载-Scope-CSS-classes-with-prefixes/</id>
     <published>2016-06-21T14:25:50.000Z</published>
     <updated>2016-07-11T09:17:56.000Z</updated>
     
@@ -643,8 +669,8 @@
   
   <entry>
     <title>BFC神奇背后的原理</title>
-    <link href="http://zhenghe39.com/2016/06/19/%5B%E8%BD%AC%E8%BD%BD%5DBFC%E7%A5%9E%E5%A5%87%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86/"/>
-    <id>http://zhenghe39.com/2016/06/19/[转载]BFC神奇背后的原理/</id>
+    <link href="http://zhenghe39.com/2016/06/19/%E8%BD%AC%E8%BD%BD-BFC%E7%A5%9E%E5%A5%87%E8%83%8C%E5%90%8E%E7%9A%84%E5%8E%9F%E7%90%86/"/>
+    <id>http://zhenghe39.com/2016/06/19/转载-BFC神奇背后的原理/</id>
     <published>2016-06-19T04:08:41.000Z</published>
     <updated>2016-07-11T09:18:10.000Z</updated>
     
@@ -826,8 +852,8 @@
   
   <entry>
     <title>Mac和Window JDK的差异</title>
-    <link href="http://zhenghe39.com/2016/03/21/Mac%E5%92%8CWindow%20JDK%E7%9A%84%E5%B7%AE%E5%BC%82/"/>
-    <id>http://zhenghe39.com/2016/03/21/Mac和Window JDK的差异/</id>
+    <link href="http://zhenghe39.com/2016/03/21/Mac%E5%92%8CWindow-JDK%E7%9A%84%E5%B7%AE%E5%BC%82/"/>
+    <id>http://zhenghe39.com/2016/03/21/Mac和Window-JDK的差异/</id>
     <published>2016-03-21T07:34:20.000Z</published>
     <updated>2016-08-01T15:16:41.000Z</updated>
     
@@ -1050,41 +1076,6 @@
     
     
       <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS事件</title>
-    <link href="http://zhenghe39.com/2016/02/27/JS%E4%BA%8B%E4%BB%B6/"/>
-    <id>http://zhenghe39.com/2016/02/27/JS事件/</id>
-    <published>2016-02-27T13:34:37.000Z</published>
-    <updated>2016-06-20T05:56:20.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;事件监听程序&quot;&gt;&lt;a href=&quot;#事件监听程序&quot; class=&quot;headerlink&quot; title=&quot;事件监听程序&quot;&gt;&lt;/a&gt;事件监听程序&lt;/h3&gt;&lt;p&gt;JS原生的添加事件监听程序的方式有两种，一种是简单粗暴地对属性赋值，另外一种是调用函数addEventListener。&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dom.onclick&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dom.addEventListener([&lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;] eventType,[EventListener|&lt;span class=&quot;built_in&quot;&gt;Function&lt;/span&gt;] listener,[boolean] useCapture = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//第三个参数决定调用监听程序的阶段「捕获阶段/冒泡阶段」,默认为「冒泡阶段」&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;相对第一种方式而言，第二种方式更加灵活：可以添加多个处理程序，而且也可以移除事件处理程序。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;事件对象&quot;&gt;&lt;a href=&quot;#事件对象&quot; class=&quot;headerlink&quot; title=&quot;事件对象&quot;&gt;&lt;/a&gt;事件对象&lt;/h3&gt;&lt;p&gt;当事件发生,调用监听程序时,浏览器默认会对事件监听程序注入事件对象event。但是，当通过HTML特性指定事件处理程序时，变量event中保存着event对象：&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&#39;button&#39;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&#39;click me&#39;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;onclick&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&#39;alert(event.type) /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;event的常用属性有type、currentTarget、target。type为事件类型，例如&lt;code&gt;click、mouseover&lt;/code&gt;，currentTarget指代当前正在处理事件的dom元素，target指代事件的目标，由于事件存在冒泡所以会有这两个target的区别。&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;doctype&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;lang&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;en&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;head&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;UTF-8&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;title&lt;/span&gt;&amp;gt;&lt;/span&gt;Button&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;title&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;style&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;css&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    *&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;&lt;span class=&quot;number&quot;&gt;16px&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &lt;span class=&quot;tag&quot;&gt;button&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;padding&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;.&lt;span class=&quot;number&quot;&gt;3em&lt;/span&gt; .&lt;span class=&quot;number&quot;&gt;8em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;border&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;&lt;span class=&quot;number&quot;&gt;1px&lt;/span&gt; solid &lt;span class=&quot;hexcolor&quot;&gt;#446d88&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;hexcolor&quot;&gt;#58a&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;linear-gradient&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;hsla&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0%&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;100%&lt;/span&gt;,.&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;), transparent)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;border-radius&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; .&lt;span class=&quot;number&quot;&gt;2em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;box-shadow&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; .&lt;span class=&quot;number&quot;&gt;05em&lt;/span&gt; .&lt;span class=&quot;number&quot;&gt;25em&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;rgba&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,.&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;white&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;text-shadow&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; -.&lt;span class=&quot;number&quot;&gt;05em&lt;/span&gt; .&lt;span class=&quot;number&quot;&gt;05em&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;rgba&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,.&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;line-height&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;1.5&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;number&quot;&gt;125%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &lt;span class=&quot;tag&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;inline-block&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;&lt;span class=&quot;number&quot;&gt;20px&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;inherit&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	        &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; currentColor&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	    &amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;style&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;head&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;body&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;button&lt;/span&gt;&amp;gt;&lt;/span&gt;Yes!&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;button&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;body&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;javascript&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;listener&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;event&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&lt;span class=&quot;string&quot;&gt;&quot;I&#39;m &quot;&lt;/span&gt;+&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.tagName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&lt;span class=&quot;string&quot;&gt;&quot;my &quot;&lt;/span&gt;+event.type+&lt;span class=&quot;string&quot;&gt;&quot;event currentTarget: &quot;&lt;/span&gt;+event.currentTarget.tagName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&lt;span class=&quot;string&quot;&gt;&quot;my &quot;&lt;/span&gt;+event.type+&lt;span class=&quot;string&quot;&gt;&quot;event target: &quot;&lt;/span&gt;+event.target.tagName);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.body.onclick = listener;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementsByTagName(&lt;span class=&quot;string&quot;&gt;&quot;button&quot;&lt;/span&gt;)[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;].onclick = listener;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;html&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;a href=&quot;https://jsfiddle.net/samuerio/22k99mob/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;演示地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;由于事件是存在&lt;strong&gt;冒泡机制&lt;/strong&gt;的，点击button按钮，随着点击事件的冒泡，最终会被body标签捕获，此时事件对象的target是所点击的按钮对象，而currentTarget则为当前处理事件的元素即body。&lt;/p&gt;
-&lt;p&gt;event的常用方法有stopPropagation和preventDefault，stopPropagation可以阻止事件的冒泡，preventDefault阻止默认元素的默认行为。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;事件监听程序&quot;&gt;&lt;a href=&quot;#事件监听程序&quot; class=&quot;headerlink&quot; title=&quot;事件监听程序&quot;&gt;&lt;/a&gt;事件监听程序&lt;/h3&gt;&lt;p&gt;JS原生的添加事件监听程序的方式有两种，一种是简单粗暴地对属性赋值，另外一种是调用函数addEventListener。&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dom.onclick&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dom.addEventListener([&lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;] eventType,[EventListener|&lt;span class=&quot;built_in&quot;&gt;Function&lt;/span&gt;] listener,[boolean] useCapture = &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//第三个参数决定调用监听程序的阶段「捕获阶段/冒泡阶段」,默认为「冒泡阶段」&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;相对第一种方式而言，第二种方式更加灵活：可以添加多个处理程序，而且也可以移除事件处理程序。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
-    
-    
-      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
     
   </entry>
   

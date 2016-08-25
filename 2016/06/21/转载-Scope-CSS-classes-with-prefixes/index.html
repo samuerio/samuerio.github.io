@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> JSP&&Servlet | issUn </title>
+        <title> Scope CSS classes with prefixes | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -51,8 +51,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/23/JSP与Servlet/"  itemprop="url" >
-                    JSP&&Servlet
+                <a class="post-title-link" href="/2016/06/21/转载-Scope-CSS-classes-with-prefixes/"  itemprop="url" >
+                    Scope CSS classes with prefixes
                 </a>
             </h1>
             
@@ -61,25 +61,30 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-06-23</time>
+                    <span class="post-meta-time" >2016-06-21</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <blockquote>
-<p>JSP即<code>JavaServer Pages</code>，一种使软件开发者可以响应客户端请求，而动态生成HTML、XML或其他格式文档的Web网页技术标准。</p>
-</blockquote>
-<p>JSP是以<code>Java</code>作为脚本语言，Servlet是Java提供的用于<code>开发Web服务器应用的组件</code>。两种都是用于动态生成内容，那么既然有Servlet为什么还要有JSP呢？</p>
+                <p>转载自：<a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/" target="_blank" rel="external">http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/</a></p>
+<p>When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.</p>
 <a id="more"></a>
+<p>Taking the <code>chained classes</code> approach, your CSS selectors might look something like this for a given set of components:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.success &#123; ... &#125;</span><br><span class="line">.btn.success &#123; .. &#125;</span><br><span class="line">.alert.success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>We have here a global base class, <code>.success</code>, that might house all the commonalities between successful buttons and alerts. Then, at the individual component level, we add on or override as necessary. However, this wide open class and chained approach exposes developers to a number of questions and potential paint points:</p>
 <ul>
-<li>使用Servlet生成动态页面，需要在代码中打印输出很多HTML标签</li>
-<li>网页编辑人员不了解Java，无法修改Servlet代码</li>
-<li>Java程序员不了解网页编辑人员的意图，以至于无法修改和实现网页功能</li>
+<li>What’s that base class stand for?</li>
+<li>What elements will be affected at the root level?</li>
+<li>How many elements have .success chained onto them?</li>
+<li>Can it be extended further to more components?</li>
+<li>What if one instance of .success uses green text on a white background while another uses white text on a green background?</li>
 </ul>
-<p>为解决如上问题所以才有了JSP技术，JSP会被JSP编译器编译成Java Servlets。静态数据在输入文件中的内容和输出给HTTP响应的内容完全一致。此时，该JSP输入文件会是一个没有内嵌JAVA或动作的HTML页面。</p>
-<p>JSP侧重于视图，Servlet主要用于控制逻辑。</p>
-<p><img src="http://ww1.sinaimg.cn/large/8b826b79jw1f55knjaltkj20jg0jojsn.jpg" alt=""></p>
+<p>And those questions barely scratch the surface. This solution isn’t necessarily bad, but when scale, brevity, and flexibility are your top requirements, it might not be the best idea. A better solution might be using prefixed classes.</p>
+<p><code>Prefixed classes</code> guide developers towards a simpler and more maintainable direction for building an extensive CSS design system. Here’s what we have if we take away the generic base class and scope things per component with prefixes:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.btn-success &#123; ... &#125;</span><br><span class="line">.alert-success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>This way, <strong>the base class is at the component level</strong> and not the entire system level. In other words, our base classes have become <code>.btn</code> and <code>.alert</code>, not <code>.success</code>. There’s no bleeding of styles or behavior from one component to another here because we treat components in a “successful state” as an idea across the design system. That is to say, we have a shared idea of what “success” looks for buttons and alerts, but the execution is scoped entirely to each independent component. No questions of where common styles are used and no concern of unintended effects, making each component more durable and flexible.</p>
+<p>While a very tactical and detail-oriented practice, building components that inherently isolate themselves for improved modularity and customization in a system like Bootstrap makes for better code and a more enjoyable project down the line.</p>
 
             
         </div>
@@ -91,8 +96,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/23/JSP与Servlet/"
-           data-title="JSP&&Servlet" data-url="http://zhenghe39.com/2016/06/23/JSP与Servlet/">
+      <div class="ds-thread" data-thread-key="2016/06/21/转载-Scope-CSS-classes-with-prefixes/"
+           data-title="Scope CSS classes with prefixes" data-url="http://zhenghe39.com/2016/06/21/转载-Scope-CSS-classes-with-prefixes/">
       </div>
     
   </div>
