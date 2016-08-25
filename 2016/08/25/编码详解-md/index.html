@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> 负margin与absolute、relative | issUn </title>
+        <title> 编码详解.md | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -51,8 +51,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/03/13/负margin与absolute、relative/"  itemprop="url" >
-                    负margin与absolute、relative
+                <a class="post-title-link" href="/2016/08/25/编码详解-md/"  itemprop="url" >
+                    编码详解.md
                 </a>
             </h1>
             
@@ -61,33 +61,24 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-03-13</time>
+                    <span class="post-meta-time" >2016-08-25</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <h3 id="负margin"><a href="#负margin" class="headerlink" title="负margin"></a>负margin</h3><blockquote>
-<p>参考线是保持不动的</p>
-</blockquote>
-<p><img src="http://ww4.sinaimg.cn/large/8b826b79jw1f1vcf9d4gag20fg0dsjrh.gif" alt=""></p>
-<p>margin-top、margin-left是以外元素为参考线，margin-right、margin-bottom则以元素本身为参考线。</p>
-<p>负margin在一定程度上可以替代「relative」「absolute」达到一定的布局效果。并且负margin始终是处于「标准文档流」中的，对整体布局影响小。</p>
-<a id="more"></a>
-<iframe width="100%" height="300" src="https://jsfiddle.net/samuerio/e9kzogcr/embedded/result,resources,html,css,js/light" frameborder="0" allowfullscreen></iframe>
-
-<h3 id="relative和absolute"><a href="#relative和absolute" class="headerlink" title="relative和absolute"></a>relative和absolute</h3><p><strong><em>relative</em></strong></p>
-<ul>
-<li>自身位置为基准</li>
-<li>处于标准文档流</li>
-</ul>
-<p><strong><em>absolute</em></strong></p>
-<ul>
-<li>以包含块为基准</li>
-<li>脱离标准文档流</li>
-</ul>
-<p><em>注意</em>：若absolute未设置偏移量，则无论是否存在已定位的祖先元素，都保持在元素最初的位置。</p>
-<p><a href="http://zh.learnlayout.com/" target="_blank" rel="external">布局学习</a></p>
+                <h3 id="为何需要编码"><a href="#为何需要编码" class="headerlink" title="为何需要编码"></a>为何需要编码</h3><p>由于人类语言种类太多导致标识这些语言的符号太多，无法使用计算机中的一个基本存储单元<code>byte</code>来标识，因此需要经过一些翻译工作，才能让计算机理解。编码就是对字节<code>byte</code>的翻译，即编码情况出现在字符串和字节的互相转化过程中，也就是在IO操作中，IO包括普通文件IO以及网络IO。</p>
+<h3 id="普通IO"><a href="#普通IO" class="headerlink" title="普通IO"></a>普通IO</h3><p>有个MyHtml.html文件，这个文件是意UTF-8编码写的，内容如下</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>MyHtml.html<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"GBK"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"keywords"</span> <span class="attribute">content</span>=<span class="value">"keyword1,keyword2,keyword3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"description"</span> <span class="attribute">content</span>=<span class="value">"this is my page"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    This is my HTML page.点击 <span class="tag">&lt;<span class="title">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可知<code>点击</code>是以UTF-8编码展示的。但是使用浏览器打开该HTML文件时，却显示如下乱码<br><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f75s64azbnj20e402yq35.jpg" alt=""><br>这是由于浏览器显示该文件的编码是<code>GBK</code>{ 标签<meta charset="GBK">}。</p>
+<h3 id="网络IO"><a href="#网络IO" class="headerlink" title="网络IO"></a>网络IO</h3><p><img src="http://ww2.sinaimg.cn/large/8b826b79gw1f75scwwtdqg20g0055weh.gif" alt=""></p>
+<p>上图中以 Tomcat 作为 Servlet Engine 为例，它们分别对应到下面这些配置文件中：<br>Port 对应在 Tomcat 的 <connector port="8080"> 中配置，而 Context Path 在 <context path="/examples"> 中配置，Servlet Path 在 Web 应用的 web.xml 中<br>URI相关概念：<br>Example:<a href="http://myhost:8080/people?lastname=Fox&amp;age=30" target="_blank" rel="external">http://myhost:8080/people?lastname=Fox&amp;age=30</a></context></connector></p>
+<p>request.getScheme()     ===&gt; http<br>request.getServerName() ===&gt; myhost<br>request.getServerPort() ===&gt; 8080<br>request.getRequestURI ===&gt; /people<br>request.getQueryString ===&gt; lastname=Fox&amp;age=30</p>
+<p>URI和queryString是两个独立的编码，由于在传输上的数据只能是字节，所以URI和queryString分别按照其对应码表进行解码为字节，而URL编码规范规定每个16进制表示的字节前加上“%”。</p>
+<p><strong>以Tomcat服务器为例，看服务器端是如何解码的</strong></p>
+<p>解析URL是org.apache.coyote.HTTP11.InternalInputBuffer的parseRequestLine方法，解读其源码可知，其对URI部分的解码是在 <code>&lt;Connector URIEncoding=&#39;UTF-8&#39;/&gt;</code> 中定义的。至于queryString，其本身是通过HTTP的Header传到服务器的，它的解码要么是ContentType编码中定义的charset要么是ISO-8859-1，而且要使用ContentType中的编码要设置<code>&lt;Connector URIEncoding=&#39;UTF-8&#39; useBodyEncodingForURI=&#39;true&#39;/&gt;</code> 中的 useBodyEncodingForURI 设置为 true。这个配置项的名字有点让人产生混淆，它并不是对整个 URI 都采用 BodyEncoding 进行解码而仅仅是对 QueryString 使用 BodyEncoding 解码，这一点还要特别注意。</p>
+<p>对于Post表单的编解码，它是通过 HTTP 的 BODY 传递到服务端的。当我们在页面上点击 submit 按钮时浏览器首先将根据 ContentType 的 Charset 编码格式对表单填的参数进行编码然后提交到服务器端，在服务器端同样也是用 ContentType 中字符集进行解码。所以通过 POST 表单提交的参数一般不会出现问题，而且这个字符集编码是我们自己设置的，可以通过 request.setCharacterEncoding(charset) 来设置。</p>
+<h3 id="额外说明"><a href="#额外说明" class="headerlink" title="额外说明"></a>额外说明</h3><p>有些人會直接打開瀏覽器鍵入以下的內容，告訴我：「URL也可以直接打中文啊！」<br><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f75shhnjp2j20dr00t749.jpg" alt=""><br>不過你可以將網址列複製，貼到純文字檔案中，你就會看到URI編碼的結果，這其實是現在的瀏覽器很聰明，會自動將上述的URI編碼顯示為中文。</p>
 
             
         </div>
@@ -99,8 +90,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/13/负margin与absolute、relative/"
-           data-title="负margin与absolute、relative" data-url="http://zhenghe39.com/2016/03/13/负margin与absolute、relative/">
+      <div class="ds-thread" data-thread-key="2016/08/25/编码详解-md/"
+           data-title="编码详解.md" data-url="http://zhenghe39.com/2016/08/25/编码详解-md/">
       </div>
     
   </div>
