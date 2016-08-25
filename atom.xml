@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-08-25T02:36:33.000Z</updated>
+  <updated>2016-08-25T02:38:00.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -17,12 +17,13 @@
   
   <entry>
     <title>编码详解.md</title>
-    <link href="http://zhenghe39.com/2016/08/25/%E7%BC%96%E7%A0%81%E8%AF%A6%E8%A7%A3-md/"/>
-    <id>http://zhenghe39.com/2016/08/25/编码详解-md/</id>
+    <link href="http://zhenghe39.com/2016/08/25/%E7%BC%96%E7%A0%81%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://zhenghe39.com/2016/08/25/编码详解/</id>
     <published>2016-08-25T02:14:03.000Z</published>
-    <updated>2016-08-25T02:36:33.000Z</updated>
+    <updated>2016-08-25T02:38:00.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;为何需要编码&quot;&gt;&lt;a href=&quot;#为何需要编码&quot; class=&quot;headerlink&quot; title=&quot;为何需要编码&quot;&gt;&lt;/a&gt;为何需要编码&lt;/h3&gt;&lt;p&gt;由于人类语言种类太多导致标识这些语言的符号太多，无法使用计算机中的一个基本存储单元&lt;code&gt;byte&lt;/code&gt;来标识，因此需要经过一些翻译工作，才能让计算机理解。编码就是对字节&lt;code&gt;byte&lt;/code&gt;的翻译，即编码情况出现在字符串和字节的互相转化过程中，也就是在IO操作中，IO包括普通文件IO以及网络IO。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;普通IO&quot;&gt;&lt;a href=&quot;#普通IO&quot; class=&quot;headerlink&quot; title=&quot;普通IO&quot;&gt;&lt;/a&gt;普通IO&lt;/h3&gt;&lt;p&gt;有个MyHtml.html文件，这个文件是意UTF-8编码写的，内容如下&lt;/p&gt;
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;doctype&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;html&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;head&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;title&lt;/span&gt;&amp;gt;&lt;/span&gt;MyHtml.html&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;title&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;GBK&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;keywords&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;keyword1,keyword2,keyword3&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;description&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;this is my page&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;head&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;body&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    This is my HTML page.点击 &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;br&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;body&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;html&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;可知&lt;code&gt;点击&lt;/code&gt;是以UTF-8编码展示的。但是使用浏览器打开该HTML文件时，却显示如下乱码&lt;br&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f75s64azbnj20e402yq35.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;这是由于浏览器显示该文件的编码是&lt;code&gt;GBK&lt;/code&gt;{ 标签&lt;meta charset=&quot;GBK&quot;&gt;}。&lt;/p&gt;
@@ -38,7 +39,7 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;为何需要编码&quot;&gt;&lt;a href=&quot;#为何需要编码&quot; class=&quot;headerlink&quot; title=&quot;为何需要编码&quot;&gt;&lt;/a&gt;为何需要编码&lt;/h3&gt;&lt;p&gt;由于人类语言种类太多导致标识这些语言的符号太多，无法使用计算机中的一个基本存储单元&lt;code&gt;byte&lt;/c
+      &lt;h3 id=&quot;为何需要编码&quot;&gt;&lt;a href=&quot;#为何需要编码&quot; class=&quot;headerlink&quot; title=&quot;为何需要编码&quot;&gt;&lt;/a&gt;为何需要编码&lt;/h3&gt;&lt;p&gt;由于人类语言种类太多导致标识这些语言的符号太多，无法使用计算机中的一个基本存储单元&lt;code&gt;byte&lt;/code&gt;来标识，因此需要经过一些翻译工作，才能让计算机理解。编码就是对字节&lt;code&gt;byte&lt;/code&gt;的翻译，即编码情况出现在字符串和字节的互相转化过程中，也就是在IO操作中，IO包括普通文件IO以及网络IO。&lt;/p&gt;
     
     </summary>
     
