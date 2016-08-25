@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-08-25T02:39:16.000Z</updated>
+  <updated>2016-08-25T02:40:24.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>编码详解.md</title>
+    <title>编码详解</title>
     <link href="http://zhenghe39.com/2016/08/25/%E7%BC%96%E7%A0%81%E8%AF%A6%E8%A7%A3/"/>
     <id>http://zhenghe39.com/2016/08/25/编码详解/</id>
     <published>2016-08-25T02:14:03.000Z</published>
-    <updated>2016-08-25T02:39:16.000Z</updated>
+    <updated>2016-08-25T02:40:24.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;为何需要编码&quot;&gt;&lt;a href=&quot;#为何需要编码&quot; class=&quot;headerlink&quot; title=&quot;为何需要编码&quot;&gt;&lt;/a&gt;为何需要编码&lt;/h3&gt;&lt;p&gt;由于人类语言种类太多导致标识这些语言的符号太多，无法使用计算机中的一个基本存储单元&lt;code&gt;byte&lt;/code&gt;来标识，因此需要经过一些翻译工作，才能让计算机理解。编码就是对字节&lt;code&gt;byte&lt;/code&gt;的翻译，即编码情况出现在字符串和字节的互相转化过程中，也就是在IO操作中，IO包括普通文件IO以及网络IO。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
