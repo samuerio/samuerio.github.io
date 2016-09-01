@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-09-01T09:52:49.000Z</updated>
+  <updated>2016-09-01T13:34:47.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shell的环境变量</title>
+    <link href="http://zhenghe39.com/2016/09/01/shell%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
+    <id>http://zhenghe39.com/2016/09/01/shell环境变量/</id>
+    <published>2016-09-01T13:33:33.000Z</published>
+    <updated>2016-09-01T13:34:47.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;作用于当前shell和任意子shell环境，开机就添加到本地变量中.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;查看&quot;&gt;&lt;a href=&quot;#查看&quot; class=&quot;headerlink&quot; title=&quot;查看&quot;&gt;&lt;/a&gt;查看&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;所有环境变量&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79jw1f1hsycv4w7j20vi0mqqb7.jpg&quot; alt=&quot;所有环境变量&quot;&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;环境变量PATH&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79jw1f1ht1tetq9j20vo02ujt1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;修改&quot;&gt;&lt;a href=&quot;#修改&quot; class=&quot;headerlink&quot; title=&quot;修改&quot;&gt;&lt;/a&gt;修改&lt;/h2&gt;&lt;p&gt;以下为环境变量配置文件，加载顺序为（从上至下）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;系统级&lt;/em&gt;（所有用户登录都会先执行）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/etc/profile&lt;/li&gt;
+&lt;li&gt;/etc/paths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;用户级&lt;/em&gt;（当前用户登录先执行）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;~/.bash_profile &lt;em&gt;补充说明&lt;/em&gt;：用户登录时执行，并调用「~/.bashrc」(这两个都是~的隐藏文件要用ls -a才可查看）&lt;/li&gt;
+&lt;li&gt;~/.bash_login&lt;/li&gt;
+&lt;li&gt;~/.profile&lt;/li&gt;
+&lt;li&gt;~/.bashrc &lt;em&gt;补充说明&lt;/em&gt;：每次打开新的终端时执行，并调用/etc/bashrc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;作用于当前shell和任意子shell环境，开机就添加到本地变量中.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;查看&quot;&gt;&lt;a href=&quot;#查看&quot; class=&quot;headerlink&quot; title=&quot;查看&quot;&gt;&lt;/a&gt;查看&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;所有环境变量&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79jw1f1hsycv4w7j20vi0mqqb7.jpg&quot; alt=&quot;所有环境变量&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Shell" scheme="http://zhenghe39.com/tags/Shell/"/>
+    
+  </entry>
   
   <entry>
     <title>Shell下的权限控制</title>
@@ -1095,46 +1152,6 @@
     
     
       <category term="Http" scheme="http://zhenghe39.com/tags/Http/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vi</title>
-    <link href="http://zhenghe39.com/2016/03/21/vi/"/>
-    <id>http://zhenghe39.com/2016/03/21/vi/</id>
-    <published>2016-03-21T13:56:20.000Z</published>
-    <updated>2016-09-01T09:49:54.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;概述：&quot;&gt;&lt;a href=&quot;#概述：&quot; class=&quot;headerlink&quot; title=&quot;概述：&quot;&gt;&lt;/a&gt;概述：&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;进入编辑环境:       vi&lt;/li&gt;
-&lt;li&gt;打开/创建:         vi file&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;3种模式：&quot;&gt;&lt;a href=&quot;#3种模式：&quot; class=&quot;headerlink&quot; title=&quot;3种模式：&quot;&gt;&lt;/a&gt;3种模式：&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;命令模式&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt; 跳行： G「跳到末行」  nG「跳到n行」&lt;br&gt; 复制： yy「复制当前整行」 nyy「复制从当前行开始的n行」&lt;br&gt; 黏贴： p「插入的形式，以当前行的下一行作为插入点」&lt;br&gt; 删除： dd「删除当前行」 ndd「删除从当前行开始的n行」&lt;br&gt; 翻页： ctrl+f「向后翻整页」 ctrl+b「向前翻整页」&lt;br&gt; 撤销： u「取消最近一次的操作」U「取消对当前进行的所有操作」&lt;br&gt; 恢复： ctrl+r「对撤销进行恢复」&lt;br&gt; 查询： /word（自上而下查找） ?word（自下而上查找） n（定位下一个）N（定位上一个)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;输入模式&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;末行模式&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt; 替换： %s/old/new/g「替换文件范围内的所有“old”为“new”」&lt;br&gt; 行号： set nu「设置」     set nonu「取消」&lt;br&gt; 退出： q!「强制退出」&lt;br&gt; 保存： wq「保存并退出」    w filename「另存为filename」&lt;br&gt; 追加： r filename「追加filename内容到当前文件中」&lt;br&gt; 打开： e！filename「打开filename，并放弃当前文件的修改」 e filename「打开filename」&lt;br&gt; 帮助： help&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;概述：&quot;&gt;&lt;a href=&quot;#概述：&quot; class=&quot;headerlink&quot; title=&quot;概述：&quot;&gt;&lt;/a&gt;概述：&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;进入编辑环境:       vi&lt;/li&gt;
-&lt;li&gt;打开/创建:         vi file&lt;/li&gt;
-&lt;/ul&gt;
-
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="vi" scheme="http://zhenghe39.com/tags/vi/"/>
     
   </entry>
   

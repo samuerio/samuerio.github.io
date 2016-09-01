@@ -50,6 +50,37 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-06-19T23:26:30.000Z">
+                    <a href="/2016/06/20/清除浮动/">2016-06-20</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/06/20/清除浮动/"  itemprop="url" >
+                    清除浮动
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <h3 id="浮动元素下面加clearfix的空标签"><a href="#浮动元素下面加clearfix的空标签" class="headerlink" title="浮动元素下面加clearfix的空标签"></a>浮动元素下面加clearfix的空标签</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">‘clearfix’</span>&gt;</span><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">zoom</span>:<span class="value"><span class="number">1</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,<span class="class">.clearfix</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+                     <div style="text-align:center;">
+                            <a  href="/2016/06/20/清除浮动/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-06-19T04:08:41.000Z">
                     <a href="/2016/06/19/转载-BFC神奇背后的原理/">2016-06-19</a>
                 </time>
@@ -253,39 +284,6 @@
     </article>
 
     
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-03-13T13:15:56.000Z">
-                    <a href="/2016/03/13/JS原型链实现继承/">2016-03-13</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/03/13/JS原型链实现继承/"  itemprop="url" >
-                    JS原型链实现继承
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <blockquote>
-<p>ECMAScript只支持实现继承，不支持接口继承，并将原型链作为其主要的实现方式。</p>
-</blockquote>
-<p>每个对象上的__proto__和prototype属性都保存有原型的引用，并且，对__proto__赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。</p>
-                     <div style="text-align:center;">
-                            <a  href="/2016/03/13/JS原型链实现继承/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
     <nav class='pagination'>
     
         <a href = '/page/2/' class='alignleft prev'>上一页</a>
@@ -367,6 +365,12 @@
             
                 
                     <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
                         <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
                     </li>
                 
@@ -404,12 +408,6 @@
                 
                     <li class="tagslist-item">
                         <a  href='/tags/vi/' title=vi>vi</a>
-                    </li>
-                
-            
-                
-                    <li class="tagslist-item">
-                        <a  href='/tags/Shell/' title=Shell>Shell</a>
                     </li>
                 
             

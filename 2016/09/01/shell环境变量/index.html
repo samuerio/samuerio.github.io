@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title></title>
+        <title> Shell的环境变量 | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -41,63 +41,78 @@
 </nav>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-normal '>
+                    <div class='content-wrap content-wrap-post '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-     <section  class="collapse">
-        <span class="archive-move-on"></span>
-        <span class="archive-page-counter">
-          
-
-          
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
             
-          
-          嗯..目前共计 28 篇日志。继续努力。
-        </span>
-        
-        
-            
-            
-            
-                
-                <div class="collapse-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-                </div>
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/07/11/转载-Css3-media媒体查询器用法总结/" itemprop="url">
-                    
-                        <span itemprop="name">media媒体查询器用法总结</span>
-                    
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2016/09/01/shell环境变量/"  itemprop="url" >
+                    Shell的环境变量
                 </a>
             </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-07-11T17:23:51+08:00"
-                      content="2016-07-11" >
-                    07-11
-                </time>
-            </div>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2016-09-01</time>
+                </div>
+            
         </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <blockquote>
+<p>作用于当前shell和任意子shell环境，开机就添加到本地变量中.</p>
+</blockquote>
+<h2 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h2><ul>
+<li><em>所有环境变量</em></li>
+</ul>
+<p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1hsycv4w7j20vi0mqqb7.jpg" alt="所有环境变量"></p>
+<a id="more"></a>
+<ul>
+<li><em>环境变量PATH</em></li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/8b826b79jw1f1ht1tetq9j20vo02ujt1.jpg" alt=""></p>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><p>以下为环境变量配置文件，加载顺序为（从上至下）：</p>
+<ul>
+<li><p><em>系统级</em>（所有用户登录都会先执行）</p>
+<ul>
+<li>/etc/profile</li>
+<li>/etc/paths</li>
+</ul>
+</li>
+<li><p><em>用户级</em>（当前用户登录先执行）</p>
+<ul>
+<li>~/.bash_profile <em>补充说明</em>：用户登录时执行，并调用「~/.bashrc」(这两个都是~的隐藏文件要用ls -a才可查看）</li>
+<li>~/.bash_login</li>
+<li>~/.profile</li>
+<li>~/.bashrc <em>补充说明</em>：每次打开新的终端时执行，并调用/etc/bashrc</li>
+</ul>
+</li>
+</ul>
+
+            
+        </div>
     </article>
 
-        
-    </section>
-    <nav class='pagination'>
-    
-    
-    <div class='clearfix'></div>
-</nav>
+
 
                         </div>
                         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/01/shell环境变量/"
+           data-title="Shell的环境变量" data-url="http://zhenghe39.com/2016/09/01/shell环境变量/">
+      </div>
+    
+  </div>
+
 
 
                     </div>
