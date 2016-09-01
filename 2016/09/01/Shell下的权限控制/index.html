@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Java基本类型转数据库类型 | issUn </title>
+        <title> Shell下的权限控制 | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -51,8 +51,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/28/Java基本类型转数据库类型/"  itemprop="url" >
-                    Java基本类型转数据库类型
+                <a class="post-title-link" href="/2016/09/01/Shell下的权限控制/"  itemprop="url" >
+                    Shell下的权限控制
                 </a>
             </h1>
             
@@ -61,23 +61,92 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-06-28</time>
+                    <span class="post-meta-time" >2016-09-01</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <p><img src="http://ww3.sinaimg.cn/large/8b826b79gw1f5avjvoovqj216k0bc422.jpg" alt=""></p>
-<p><code>prestatement.setObject(int parameterIndex,Object x) throws SQLException</code>尝试将Java类型转化为对应的数据库类型。那么这里的Java类型Object会转换为哪种数据库类型呢</p>
-<a id="more"></a>
-<blockquote>
-<p>The JDBC specification specifies a standard mapping from Java Object types to SQL types. The given argument will be converted to the corresponding SQL type before being sent to the database.</p>
+                <h2 id="用户授权（sudo）"><a href="#用户授权（sudo）" class="headerlink" title="用户授权（sudo）"></a>用户授权（sudo）</h2><blockquote>
+<p>若当前用户没有执行某命令的权限可以使用sudo给其授权</p>
 </blockquote>
-<p>JDBC 在 <code>java.sql.Types</code>类中定义了一系列的常规 SQL 类型标识符。这些类型可用于表示那些最为常用的 SQL 类型。在用 JDBC API 编程时，程序员通常可以使用这些 JDBC 类型来引用一般的 SQL 类型，而无须关心目标数据库所用的确切 SQL 类型的名称。</p>
-<p>值得注意的是：Java的枚举类型没有<code>SQL type{java.sql.Types}</code>对应，需手动转化为String类型或其他基本类型。</p>
-<p><img src="http://ww3.sinaimg.cn/mw690/8b826b79gw1f5azpabrfqj20au0si76i.jpg" alt=""></p>
-<p>以下是Orable的Sql Type和Java类型的转化关系</p>
-<p><img src="http://ww2.sinaimg.cn/large/8b826b79gw1f5avp6278pj20rf0ibdji.jpg" alt=""></p>
+<h2 id="文件-目录授权（chmod）"><a href="#文件-目录授权（chmod）" class="headerlink" title="文件/目录授权（chmod）"></a>文件/目录授权（chmod）</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>r</th>
+<th>w</th>
+<th>x</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>含义</td>
+<td>read</td>
+<td>write</td>
+<td>execute</td>
+<td>相应权限未被授予</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h4 id="查看权限"><a href="#查看权限" class="headerlink" title="查看权限"></a>查看权限</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -l file/directory</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/8b826b79gw1f1ighhgbxkj20vo024t9h.jpg" alt=""></p>
+<p><strong>profile文件，权限信息分析：</strong></p>
+<p>-rwxrwxr-x</p>
+<ol>
+<li>首位<code>-</code>    :    类型</li>
+<li>rwx    :    User</li>
+<li>rwx    :    Group</li>
+<li>r—x    :    Other</li>
+</ol>
+<h4 id="改变权限"><a href="#改变权限" class="headerlink" title="改变权限"></a>改变权限</h4><p><strong>方式一:</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod [ugoa..] [+-=] [rwx] file...</span><br></pre></td></tr></table></figure>
+<p>u「user」g「group」o「other」a「all」</p>
+<p><em>eg.</em></p>
+<ul>
+<li>chmod -r file : 删除所有用户对file的<code>r</code>权限</li>
+<li>chmod u +r file : 增加所有用户对file的<code>r</code>权限</li>
+<li>chmod =r file : 所有用户对file只有<code>r</code>权限</li>
+</ul>
+<p><strong>方式二:</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod XXX file (chmod -R <span class="number">775</span> directory | chmod <span class="number">775</span> file)</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>权限组合</th>
+<th>二进制数</th>
+<th>十进制数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 可读可写可执行</td>
+<td>rwx</td>
+<td>111</td>
+<td>7</td>
+</tr>
+<tr>
+<td> 可读可执行</td>
+<td>r-x</td>
+<td>101</td>
+<td>5</td>
+</tr>
+<tr>
+<td> 可读可写</td>
+<td>rw-</td>
+<td>110</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p><em>eg.</em></p>
+<ul>
+<li>chmod 777 file : 所有用户对file有<code>rwx</code>权限</li>
+<li>chmod 175 file : file创建者对file有<code>x</code>权限，group对file有<code>rwx</code>权限，othor对file有<code>rx</code>权限</li>
+</ul>
 
             
         </div>
@@ -89,8 +158,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/28/Java基本类型转数据库类型/"
-           data-title="Java基本类型转数据库类型" data-url="http://zhenghe39.com/2016/06/28/Java基本类型转数据库类型/">
+      <div class="ds-thread" data-thread-key="2016/09/01/Shell下的权限控制/"
+           data-title="Shell下的权限控制" data-url="http://zhenghe39.com/2016/09/01/Shell下的权限控制/">
       </div>
     
   </div>

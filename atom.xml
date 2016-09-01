@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-09-01T08:53:06.000Z</updated>
+  <updated>2016-09-01T09:52:49.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,130 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shell下的权限控制</title>
+    <link href="http://zhenghe39.com/2016/09/01/Shell%E4%B8%8B%E7%9A%84%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/"/>
+    <id>http://zhenghe39.com/2016/09/01/Shell下的权限控制/</id>
+    <published>2016-09-01T09:52:02.000Z</published>
+    <updated>2016-09-01T09:52:49.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;用户授权（sudo）&quot;&gt;&lt;a href=&quot;#用户授权（sudo）&quot; class=&quot;headerlink&quot; title=&quot;用户授权（sudo）&quot;&gt;&lt;/a&gt;用户授权（sudo）&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;若当前用户没有执行某命令的权限可以使用sudo给其授权&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;文件-目录授权（chmod）&quot;&gt;&lt;a href=&quot;#文件-目录授权（chmod）&quot; class=&quot;headerlink&quot; title=&quot;文件/目录授权（chmod）&quot;&gt;&lt;/a&gt;文件/目录授权（chmod）&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;权限&lt;/th&gt;
+&lt;th&gt;r&lt;/th&gt;
+&lt;th&gt;w&lt;/th&gt;
+&lt;th&gt;x&lt;/th&gt;
+&lt;th&gt;-&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;含义&lt;/td&gt;
+&lt;td&gt;read&lt;/td&gt;
+&lt;td&gt;write&lt;/td&gt;
+&lt;td&gt;execute&lt;/td&gt;
+&lt;td&gt;相应权限未被授予&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;查看权限&quot;&gt;&lt;a href=&quot;#查看权限&quot; class=&quot;headerlink&quot; title=&quot;查看权限&quot;&gt;&lt;/a&gt;查看权限&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ls -l file/directory&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f1ighhgbxkj20vo024t9h.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;profile文件，权限信息分析：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;-rwxrwxr-x&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首位&lt;code&gt;-&lt;/code&gt;    :    类型&lt;/li&gt;
+&lt;li&gt;rwx    :    User&lt;/li&gt;
+&lt;li&gt;rwx    :    Group&lt;/li&gt;
+&lt;li&gt;r—x    :    Other&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&quot;改变权限&quot;&gt;&lt;a href=&quot;#改变权限&quot; class=&quot;headerlink&quot; title=&quot;改变权限&quot;&gt;&lt;/a&gt;改变权限&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;方式一:&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;chmod [ugoa..] [+-=] [rwx] file...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;u「user」g「group」o「other」a「all」&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;eg.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;chmod -r file : 删除所有用户对file的&lt;code&gt;r&lt;/code&gt;权限&lt;/li&gt;
+&lt;li&gt;chmod u +r file : 增加所有用户对file的&lt;code&gt;r&lt;/code&gt;权限&lt;/li&gt;
+&lt;li&gt;chmod =r file : 所有用户对file只有&lt;code&gt;r&lt;/code&gt;权限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;方式二:&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;chmod XXX file (chmod -R &lt;span class=&quot;number&quot;&gt;775&lt;/span&gt; directory | chmod &lt;span class=&quot;number&quot;&gt;775&lt;/span&gt; file)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;权限组合&lt;/th&gt;
+&lt;th&gt;二进制数&lt;/th&gt;
+&lt;th&gt;十进制数&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt; 可读可写可执行&lt;/td&gt;
+&lt;td&gt;rwx&lt;/td&gt;
+&lt;td&gt;111&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; 可读可执行&lt;/td&gt;
+&lt;td&gt;r-x&lt;/td&gt;
+&lt;td&gt;101&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt; 可读可写&lt;/td&gt;
+&lt;td&gt;rw-&lt;/td&gt;
+&lt;td&gt;110&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;eg.&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;chmod 777 file : 所有用户对file有&lt;code&gt;rwx&lt;/code&gt;权限&lt;/li&gt;
+&lt;li&gt;chmod 175 file : file创建者对file有&lt;code&gt;x&lt;/code&gt;权限，group对file有&lt;code&gt;rwx&lt;/code&gt;权限，othor对file有&lt;code&gt;rx&lt;/code&gt;权限&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;用户授权（sudo）&quot;&gt;&lt;a href=&quot;#用户授权（sudo）&quot; class=&quot;headerlink&quot; title=&quot;用户授权（sudo）&quot;&gt;&lt;/a&gt;用户授权（sudo）&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;若当前用户没有执行某命令的权限可以使用sudo给其授权&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;文件-目录授权（chmod）&quot;&gt;&lt;a href=&quot;#文件-目录授权（chmod）&quot; class=&quot;headerlink&quot; title=&quot;文件/目录授权（chmod）&quot;&gt;&lt;/a&gt;文件/目录授权（chmod）&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;权限&lt;/th&gt;
+&lt;th&gt;r&lt;/th&gt;
+&lt;th&gt;w&lt;/th&gt;
+&lt;th&gt;x&lt;/th&gt;
+&lt;th&gt;-&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;含义&lt;/td&gt;
+&lt;td&gt;read&lt;/td&gt;
+&lt;td&gt;write&lt;/td&gt;
+&lt;td&gt;execute&lt;/td&gt;
+&lt;td&gt;相应权限未被授予&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Shell" scheme="http://zhenghe39.com/tags/Shell/"/>
+    
+  </entry>
   
   <entry>
     <title>Java反射的应用</title>
@@ -975,18 +1099,34 @@
   </entry>
   
   <entry>
-    <title>Mac和Window JDK的差异</title>
-    <link href="http://zhenghe39.com/2016/03/21/Mac%E5%92%8CWindow-JDK%E7%9A%84%E5%B7%AE%E5%BC%82/"/>
-    <id>http://zhenghe39.com/2016/03/21/Mac和Window-JDK的差异/</id>
-    <published>2016-03-21T07:34:20.000Z</published>
-    <updated>2016-08-01T15:16:41.000Z</updated>
+    <title>Vi</title>
+    <link href="http://zhenghe39.com/2016/03/21/vi/"/>
+    <id>http://zhenghe39.com/2016/03/21/vi/</id>
+    <published>2016-03-21T13:56:20.000Z</published>
+    <updated>2016-09-01T09:49:54.000Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f24ipw5l0nj21a40h0n6a.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;h3 id=&quot;概述：&quot;&gt;&lt;a href=&quot;#概述：&quot; class=&quot;headerlink&quot; title=&quot;概述：&quot;&gt;&lt;/a&gt;概述：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;进入编辑环境:       vi&lt;/li&gt;
+&lt;li&gt;打开/创建:         vi file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;3种模式：&quot;&gt;&lt;a href=&quot;#3种模式：&quot; class=&quot;headerlink&quot; title=&quot;3种模式：&quot;&gt;&lt;/a&gt;3种模式：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;命令模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 跳行： G「跳到末行」  nG「跳到n行」&lt;br&gt; 复制： yy「复制当前整行」 nyy「复制从当前行开始的n行」&lt;br&gt; 黏贴： p「插入的形式，以当前行的下一行作为插入点」&lt;br&gt; 删除： dd「删除当前行」 ndd「删除从当前行开始的n行」&lt;br&gt; 翻页： ctrl+f「向后翻整页」 ctrl+b「向前翻整页」&lt;br&gt; 撤销： u「取消最近一次的操作」U「取消对当前进行的所有操作」&lt;br&gt; 恢复： ctrl+r「对撤销进行恢复」&lt;br&gt; 查询： /word（自上而下查找） ?word（自下而上查找） n（定位下一个）N（定位上一个)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;输入模式&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;末行模式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt; 替换： %s/old/new/g「替换文件范围内的所有“old”为“new”」&lt;br&gt; 行号： set nu「设置」     set nonu「取消」&lt;br&gt; 退出： q!「强制退出」&lt;br&gt; 保存： wq「保存并退出」    w filename「另存为filename」&lt;br&gt; 追加： r filename「追加filename内容到当前文件中」&lt;br&gt; 打开： e！filename「打开filename，并放弃当前文件的修改」 e filename「打开filename」&lt;br&gt; 帮助： help&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f24ipw5l0nj21a40h0n6a.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+      &lt;h3 id=&quot;概述：&quot;&gt;&lt;a href=&quot;#概述：&quot; class=&quot;headerlink&quot; title=&quot;概述：&quot;&gt;&lt;/a&gt;概述：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;进入编辑环境:       vi&lt;/li&gt;
+&lt;li&gt;打开/创建:         vi file&lt;/li&gt;
+&lt;/ul&gt;
 
     
     </summary>
@@ -994,36 +1134,7 @@
       <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
     
     
-      <category term="JDK" scheme="http://zhenghe39.com/tags/JDK/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mongodb的启动和备份</title>
-    <link href="http://zhenghe39.com/2016/03/21/Mongodb%E7%9A%84%E5%90%AF%E5%8A%A8%E5%92%8C%E5%A4%87%E4%BB%BD/"/>
-    <id>http://zhenghe39.com/2016/03/21/Mongodb的启动和备份/</id>
-    <published>2016-03-21T07:17:20.000Z</published>
-    <updated>2016-08-01T15:03:02.000Z</updated>
-    
-    <content type="html">&lt;p&gt;version：&lt;code&gt;2.4.3&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;启动MongoDB：&quot;&gt;&lt;a href=&quot;#启动MongoDB：&quot; class=&quot;headerlink&quot; title=&quot;启动MongoDB：&quot;&gt;&lt;/a&gt;启动MongoDB：&lt;/h3&gt;&lt;p&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongod —-config /usr/local/var/log/mongodb/mongod.conf&lt;/p&gt;
-&lt;h3 id=&quot;备份MongoDB：&quot;&gt;&lt;a href=&quot;#备份MongoDB：&quot; class=&quot;headerlink&quot; title=&quot;备份MongoDB：&quot;&gt;&lt;/a&gt;备份MongoDB：&lt;/h3&gt;&lt;p&gt;1.整库备份：&lt;/p&gt;
-&lt;p&gt;mongodump -h &lt;hostname&gt;&amp;lt;:port&amp;gt; -o &lt;path&gt;&lt;/path&gt;&lt;br&gt;例如:&lt;br&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongodump -h 192.168.5.185 -o /Users/ZHe/开发者工具/dump/mongod&lt;/hostname&gt;&lt;/p&gt;
-&lt;p&gt;2.单库备份:&lt;br&gt;mongodump -h &lt;hostname&gt;&amp;lt;:port&amp;gt; -d &lt;database&gt; -o &lt;path&gt;&lt;/path&gt;&lt;br&gt;例如:&lt;br&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongodump -h 192.168.203.45:27021 -d flowConfig -o /Users/ZHe/开发者工具/dump/mongod&lt;/database&gt;&lt;/hostname&gt;&lt;/p&gt;
-&lt;p&gt;恢复MongoDB：&lt;br&gt;1.整库恢复：&lt;br&gt;/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongorestore -h 127.0.0.1 -directoryperdb /Users/ZHe/开发者工具/dum/mongod&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;version：&lt;code&gt;2.4.3&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;启动MongoDB：&quot;&gt;&lt;a href=&quot;#启动MongoDB：&quot; class=&quot;headerlink&quot; title=&quot;启动MongoDB：&quot;&gt;&lt;/a&gt;启动MongoDB：&lt;/h3&gt;&lt;p&gt;/Use
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="mongodb" scheme="http://zhenghe39.com/tags/mongodb/"/>
+      <category term="vi" scheme="http://zhenghe39.com/tags/vi/"/>
     
   </entry>
   
