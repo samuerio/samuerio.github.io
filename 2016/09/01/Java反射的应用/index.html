@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> Java反射的应用 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            <nav class="navbar">
+    <div class="navbar-inner">
+        <ul class="navbar-nav" >
+            <li><a href="/" >Home</a></li>
+            <li><a href="/archives">Archive</a></li>
+        </ul>
+    </div>
+</nav>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2016/09/01/Java反射的应用/"  itemprop="url" >
+                    Java反射的应用
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2016-09-01</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <h3 id="JavaBean"><a href="#JavaBean" class="headerlink" title="JavaBean"></a>JavaBean</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zheges;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;<span class="comment">//JavaBean 对象</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> password;</span><br><span class="line">    <span class="keyword">public</span> String present = <span class="string">"God"</span>;</span><br><span class="line">    <span class="keyword">private</span> Date date;</span><br><span class="line">     </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Customer [name="</span> + name + <span class="string">", password="</span> + password</span><br><span class="line">                + <span class="string">", present="</span> + present + <span class="string">", date="</span> + date + <span class="string">"]"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPresent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> present;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPresent</span><span class="params">(String present)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.present = present;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getDate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> date;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDate</span><span class="params">(Date date)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.date = date;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(<span class="keyword">int</span> password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAB</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"AB"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="基本应用"><a href="#基本应用" class="headerlink" title="基本应用"></a>基本应用</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zheges;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertEquals;<span class="comment">//静态导入Assert所有静态方法</span></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 项目名称：Reflection  </span><br><span class="line">* 类名称：FirDemo  </span><br><span class="line">* 类描述：反射的基本应用</span><br><span class="line">* 创建人：ZHe  </span><br><span class="line">* 创建时间：2015年8月29日 下午5:01:43  </span><br><span class="line">* 修改人：ZHe  </span><br><span class="line">* 修改时间：2015年8月29日 下午5:01:43 </span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FirDemo</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> Class&lt;?&gt; clazz;<span class="comment">//类的字节码</span></span><br><span class="line">    <span class="keyword">private</span> Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 1.加载类，并且获得类的字节码</span><br><span class="line">     * <span class="doctag">@throws</span> ClassNotFoundException </span><br><span class="line">     */</span></span><br><span class="line">    <span class="annotation">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getClassLoader</span><span class="params">()</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">//1.使用Class的静态方法加载</span></span><br><span class="line">        clazz = Class.forName(<span class="string">"com.zheges.Customer"</span>);<span class="comment">//注意：这里要使用类的全名</span></span><br><span class="line">        <span class="comment">//2.通过类对象获得其字节码</span></span><br><span class="line">        clazz = <span class="keyword">new</span> Customer().getClass();</span><br><span class="line">        <span class="comment">//3.通过类的静态属性获得</span></span><br><span class="line">        clazz = Customer.class;</span><br><span class="line">         </span><br><span class="line">        assertEquals(<span class="string">"com.zheges.Customer"</span>,clazz.getName());</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * 2.获得类的字段(注意：不等同于属性，属性由getter来确定！)</span><br><span class="line">     * <span class="doctag">@throws</span> SecurityException </span><br><span class="line">     * <span class="doctag">@throws</span> NoSuchFieldException </span><br><span class="line">     * <span class="doctag">@throws</span> IllegalAccessException </span><br><span class="line">     * <span class="doctag">@throws</span> IllegalArgumentException </span><br><span class="line">     */</span></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getClassProperties</span><span class="params">()</span> <span class="keyword">throws</span> NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException</span>&#123;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//1.获得私有字段及其类型</span></span><br><span class="line">        Field field = clazz.getDeclaredField(<span class="string">"name"</span>);</span><br><span class="line">        Class&lt;?&gt; type = field.getType();</span><br><span class="line">        assertEquals(String.class, type);</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//2.获得公有字段及其类型</span></span><br><span class="line">        Field field1 = clazz.getField(<span class="string">"present"</span>);</span><br><span class="line">        Class&lt;?&gt; type1 = field1.getType();</span><br><span class="line">        assertEquals(String.class, type1);</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//3.true if this object is the same as the obj argument; false otherwise.</span></span><br><span class="line">        assertEquals(<span class="keyword">true</span>, field.equals(clazz.getDeclaredField(<span class="string">"name"</span>)));</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//4.设置某个对象上该字段的值</span></span><br><span class="line">        field.setAccessible(<span class="keyword">true</span>);<span class="comment">//该字段是私有的,需要设置setAccessible</span></span><br><span class="line">        field.set(customer,<span class="string">"ZheGes"</span>);</span><br><span class="line">         </span><br><span class="line">        field1.set(customer, <span class="string">"Nor"</span>);</span><br><span class="line">         </span><br><span class="line">        assertEquals(customer.getName(), <span class="string">"ZheGes"</span>);</span><br><span class="line">        assertEquals(customer.getPresent(), <span class="string">"Nor"</span>);</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//5.获取某个对象上该字段的值</span></span><br><span class="line">        assertEquals(field.get(customer), <span class="string">"ZheGes"</span>);<span class="comment">//前提是该私有变量设置了Accessible</span></span><br><span class="line">        assertEquals(field1.get(customer), <span class="string">"Nor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内省"><a href="#内省" class="headerlink" title="内省"></a>内省</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zheges;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.beans.BeanInfo;</span><br><span class="line"><span class="keyword">import</span> java.beans.IntrospectionException;</span><br><span class="line"><span class="keyword">import</span> java.beans.Introspector;</span><br><span class="line"><span class="keyword">import</span> java.beans.PropertyDescriptor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.junit.Ignore;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 项目名称：Reflection  </span><br><span class="line">* 类名称：SecDemo  </span><br><span class="line">* 类描述：反射高级应用：内省</span><br><span class="line">* 创建人：ZHe  </span><br><span class="line">* 创建时间：2015年8月29日 下午5:03:02  </span><br><span class="line">* 修改人：ZHe  </span><br><span class="line">* 修改时间：2015年8月29日 下午5:03:02 </span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecDemo</span> </span>&#123;</span><br><span class="line">    <span class="comment">//内省：通过反射的方式访问javabean的技术</span></span><br><span class="line">    <span class="comment">//JavaBean:1.必须有无参的构造函数 2.属性必须私有（属性数目由get数目来定，并非由字段来定！）3.提供标准的getter和setter</span></span><br><span class="line">     </span><br><span class="line">    <span class="comment">//1.打印Customer的所有属性(包含Object的属性)</span></span><br><span class="line">    <span class="comment">/*result:</span><br><span class="line">                AB-----Customer getter</span><br><span class="line">                class ----Object getter,getClass----&gt;这个方法是继承Object的</span><br><span class="line">                date</span><br><span class="line">                name</span><br><span class="line">                password</span><br><span class="line">                present*/</span></span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getProperties</span><span class="params">()</span> <span class="keyword">throws</span> IntrospectionException</span>&#123;</span><br><span class="line">        BeanInfo beanInfo = Introspector.getBeanInfo(Customer.class);</span><br><span class="line">        PropertyDescriptor [] propertyDescriptors = beanInfo.getPropertyDescriptors();</span><br><span class="line">        <span class="keyword">for</span> (PropertyDescriptor propertyDescriptor : propertyDescriptors) &#123;</span><br><span class="line">            System.out.println(propertyDescriptor.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//2.打印Customer的所有属性（不包含Object的属性）</span></span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getOwnProperties</span><span class="params">()</span> <span class="keyword">throws</span> IntrospectionException</span>&#123;</span><br><span class="line">        BeanInfo beanInfo = Introspector.getBeanInfo(Customer.class,Object.class);</span><br><span class="line">        PropertyDescriptor [] propertyDescriptors = beanInfo.getPropertyDescriptors();</span><br><span class="line">        <span class="keyword">for</span> (PropertyDescriptor propertyDescriptor : propertyDescriptors) &#123;</span><br><span class="line">            System.out.println(propertyDescriptor.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//3.操作JavaBean的指定属性</span></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actProperty</span><span class="params">()</span> <span class="keyword">throws</span> IntrospectionException, IllegalAccessException, IllegalArgumentException, InvocationTargetException</span>&#123;</span><br><span class="line">        Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">         </span><br><span class="line">        PropertyDescriptor propertyDescriptor = <span class="keyword">new</span> PropertyDescriptor(<span class="string">"name"</span>, Customer.class);</span><br><span class="line">        Method method = propertyDescriptor.getWriteMethod();</span><br><span class="line">        method.invoke(customer, <span class="string">"zheGes"</span>);</span><br><span class="line">         </span><br><span class="line">        Method method2 = propertyDescriptor.getReadMethod();</span><br><span class="line">        System.out.println(method2.invoke(customer, <span class="keyword">null</span>));</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//4.获得当前操作属性的类型</span></span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPropertyType</span><span class="params">()</span> <span class="keyword">throws</span> IntrospectionException</span>&#123;</span><br><span class="line">        PropertyDescriptor propertyDescriptor = <span class="keyword">new</span> PropertyDescriptor(<span class="string">"name"</span>, Customer.class);</span><br><span class="line">        assertEquals(String.class, propertyDescriptor.getPropertyType());</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="BeanUtils"><a href="#BeanUtils" class="headerlink" title="BeanUtils"></a>BeanUtils</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.zheges;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertTrue;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.BeanUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.ConversionException;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.ConvertUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.Converter;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.beanutils.locale.converters.DateLocaleConverter;</span><br><span class="line"><span class="keyword">import</span> org.junit.Ignore;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span><br><span class="line">* 项目名称：Reflection  </span><br><span class="line">* 类名称：ThrDemo  </span><br><span class="line">* 类描述：反射的高级应用2：BeanUtils</span><br><span class="line">* 创建人：ZHe </span><br><span class="line">* 创建时间：2015年8月29日 下午5:50:20  </span><br><span class="line">* 修改人：ZHe  </span><br><span class="line">* 修改时间：2015年8月29日 下午5:50:20 </span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThrDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Customer customer = <span class="keyword">new</span> Customer();</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//1.BeanUtils操作属性</span></span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actProperty</span><span class="params">()</span> <span class="keyword">throws</span> IllegalAccessException, InvocationTargetException, Exception</span>&#123;</span><br><span class="line">         </span><br><span class="line">        BeanUtils.setProperty(customer, <span class="string">"name"</span>, <span class="string">"ZHeGes"</span>);</span><br><span class="line">        BeanUtils.setProperty(customer, <span class="string">"password"</span>, <span class="string">"404"</span>);<span class="comment">//发生了String转int，但这种转换只支持8种基础类型！</span></span><br><span class="line">         </span><br><span class="line">        System.out.println(BeanUtils.getProperty(customer, <span class="string">"name"</span>)+<span class="string">" "</span>+</span><br><span class="line">                BeanUtils.getProperty(customer, <span class="string">"password"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//2.对于非基础类型的转换，则要给BeanUtils注册转换器</span></span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registConver</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//注册一个日期转换器,Converter接口，使用匿名内部类实现</span></span><br><span class="line">        ConvertUtils.register(<span class="keyword">new</span> Converter()&#123;</span><br><span class="line">            <span class="annotation">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">convert</span><span class="params">(Class type, Object value)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">null</span> == value)&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>( !(value <span class="keyword">instanceof</span> String))&#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> ConversionException(<span class="string">"只支持String类型的转换"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                String str = (String)value;</span><br><span class="line">                SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">                 </span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> simpleDateFormat.parse(str);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (ParseException e) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);<span class="comment">//异常链不能断！</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             </span><br><span class="line">        &#125;, Date.class);</span><br><span class="line">         </span><br><span class="line">        BeanUtils.setProperty(customer, <span class="string">"date"</span>, <span class="string">"1992-3-18"</span>);</span><br><span class="line">        <span class="comment">//The property's value, converted to a String</span></span><br><span class="line">        System.out.println(BeanUtils.getProperty(customer, <span class="string">"date"</span>));</span><br><span class="line">        System.out.println(customer.getDate().toLocaleString());</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//3.使用Apach公司提供的日期转换器</span></span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registConver2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        ConvertUtils.register(<span class="keyword">new</span> DateLocaleConverter(), Date.class);</span><br><span class="line">        BeanUtils.setProperty(customer, <span class="string">"date"</span>, <span class="string">"1992-3-18"</span>);</span><br><span class="line">        System.out.println(customer.getDate().toLocaleString());</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//4.使用BeanUtils将Map对象填充到JavaBean</span></span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">usePopulate</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">        Map map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">"name"</span>, <span class="string">"ZheGes"</span>);</span><br><span class="line">        map.put(<span class="string">"password"</span>, <span class="string">"123"</span>);</span><br><span class="line">        map.put(<span class="string">"date"</span>, <span class="string">"1992-2-1"</span>);</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//日期转换器</span></span><br><span class="line">        ConvertUtils.register(<span class="keyword">new</span> DateLocaleConverter(), Date.class);</span><br><span class="line">         </span><br><span class="line">        BeanUtils.populate(customer, map);</span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String str = <span class="string">"hell"</span>;</span><br><span class="line">        String str1 = str;</span><br><span class="line">        str = <span class="string">"wofl"</span>;</span><br><span class="line">        System.out.println(str+<span class="string">" "</span>+str1);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="annotation">@Ignore</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Class&lt;String&gt; t1 = String.class;</span><br><span class="line">        <span class="comment">//Class&lt;String&gt; t2 = Date.class;      false：加了类型约束，必须是类String的字节码，否则报错！</span></span><br><span class="line">        Class t3 = String.class;</span><br><span class="line">        assertTrue(t1 == t3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/01/Java反射的应用/"
+           data-title="Java反射的应用" data-url="http://zhenghe39.com/2016/09/01/Java反射的应用/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    <aside class="sidebar">
+    <div class="sidebar-inner">
+        <div class='author'>
+            <a id='btnCloseSideBar'  class='icon icon-collapse' href='#' title='存档' ></a>
+            <div class='author-img'></div>
+            <div class='author-socialInfo'>
+            
+                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+            
+            
+                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+            
+            </div>
+        </div>
+        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+    </div>
+</aside>
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script>
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+</script>
+    </body>
+</html>
