@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-09-01T13:36:16.000Z</updated>
+  <updated>2016-09-05T07:14:51.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -16,11 +16,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>浅谈IOC</title>
+    <link href="http://zhenghe39.com/2016/09/05/%E6%B5%85%E8%B0%88IOC/"/>
+    <id>http://zhenghe39.com/2016/09/05/浅谈IOC/</id>
+    <published>2016-09-05T06:30:27.000Z</published>
+    <updated>2016-09-05T07:14:51.000Z</updated>
+    
+    <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;IOC的理论背景&quot;&gt;&lt;a href=&quot;#IOC的理论背景&quot; class=&quot;headerlink&quot; title=&quot;IOC的理论背景&quot;&gt;&lt;/a&gt;IOC的理论背景&lt;/h3&gt;&lt;p&gt;我们知道在面向对象设计的软件系统中，它的底层都是由N个对象构成的，各个对象之间通过相互合作，最终实现系统地业务逻辑[1]。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/72f96cbagw1f7iq5n53sfj209k05l0t0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;　　如果我们打开机械式手表的后盖，就会看到与上面类似的情形，各个齿轮分别带动时针、分针和秒针顺时针旋转，从而在表盘上产生正确的时间。图1中描述的就是这样的一个齿轮组，它拥有多个独立的齿轮，这些齿轮相互啮合在一起，协同工作，共同完成某项任务。我们可以看到，在这样的齿轮组中，如果有一个齿轮出了问题，就可能会影响到整个齿轮组的正常运转。&lt;br&gt;　　&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+　&lt;/p&gt;
+&lt;p&gt;　齿轮组中齿轮之间的啮合关系,与软件系统中对象之间的耦合关系非常相似。对象之间的耦合关系是无法避免的，也是必要的，这是协同工作的基础。现在，伴随着工业级应用的规模越来越庞大，对象之间的依赖关系也越来越复杂，经常会出现对象之间的多重依赖性关系，因此，架构师和设计师对于系统的分析和设计，将面临更大的挑战。对象之间耦合度过高的系统，必然会出现牵一发而动全身的情形。&lt;br&gt;　&lt;br&gt;　&lt;img src=&quot;http://ww2.sinaimg.cn/large/65e4f1e6gw1f7iq92w25mj208105hglu.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;　&lt;br&gt;　　　耦合关系不仅会出现在对象与对象之间，也会出现在软件系统的各模块之间，以及软件系统和硬件系统之间。如何降低系统之间、模块之间和对象之间的耦合度，是软件工程永远追求的目标之一。为了解决对象之间的耦合度过高的问题，软件专家Michael Mattson 1996年提出了IOC理论，用来实现对象之间的“解耦”，目前这个理论已经被成功地应用到实践当中。
+　　　&lt;/p&gt;
+&lt;h3 id=&quot;什么是IOC&quot;&gt;&lt;a href=&quot;#什么是IOC&quot; class=&quot;headerlink&quot; title=&quot;什么是IOC&quot;&gt;&lt;/a&gt;什么是IOC&lt;/h3&gt;&lt;p&gt;IOC是Inversion of Control的缩写，多数书籍翻译成“控制反转”。&lt;/p&gt;
+&lt;p&gt;　　1996年，Michael Mattson在一篇有关探讨面向对象框架的文章中，首先提出了IOC 这个概念。对于面向对象设计及编程的基本思想，前面我们已经讲了很多了，不再赘述，简单来说就是把复杂系统分解成相互合作的对象，这些对象类通过封装以后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展。&lt;/p&gt;
+&lt;p&gt;　　IOC理论提出的观点大体是这样的：借助于“第三方”实现具有依赖关系的对象之间的解耦。如下图&lt;br&gt;　　&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f7iq9nu1n0j20a8051t8y.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;　大家看到了吧，由于引进了中间位置的“第三方”，也就是IOC容器，使得A、B、C、D这4个对象没有了耦合关系，齿轮之间的传动全部依靠“第三方”了，全部对象的控制权全部上缴给“第三方”IOC容器，所以，IOC容器成了整个系统的关键核心，它起到了一种类似“粘合剂”的作用，把系统中的所有对象粘合在一起发挥作用，如果没有这个“粘合剂”，对象与对象之间会彼此失去联系，这就是有人把IOC容器比喻成“粘合剂”的由来。&lt;/p&gt;
+&lt;p&gt;　　我们再来做个试验：把上图中间的IOC容器拿掉，然后再来看看这套系统&lt;br&gt;　　&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/801b780agw1f7iqbwd8umj20b505eq2z.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;　我们现在看到的画面，就是我们要实现整个系统所需要完成的全部内容。这时候，A、B、C、D这4个对象之间已经没有了耦合关系，彼此毫无联系，这样的话，当你在实现A的时候，根本无须再去考虑B、C和D了，对象之间的依赖关系已经降低到了最低程度。所以，如果真能实现IOC容器，对于系统开发而言，这将是一件多么美好的事情，参与开发的每一成员只要实现自己的类就可以了，跟别人没有任何关系！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;我们再来看看，控制反转(IOC)到底为什么要起这么个名字？我们来对比一下：
+
+软件系统在没有引入IOC容器之前，如图1所示，对象A依赖于对象B，那么对象A在初始化或者运行到某一点的时候，自己必须主动去创建对象B或者使用已经创建的对象B。无论是创建还是使用对象B，控制权都在自己手上。
+
+软件系统在引入IOC容器之后，这种情形就完全改变了，如图3所示，由于IOC容器的加入，对象A与对象B之间失去了直接联系，所以，当对象A运行到需要对象B的时候，IOC容器会主动创建一个对象B注入到对象A需要的地方。
+
+通过前后的对比，我们不难看出来：对象A获得依赖对象B的过程,由主动行为变为了被动行为，控制权颠倒过来了，这就是“控制反转”这个名称的由来。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;IOC也叫依赖注入-DI&quot;&gt;&lt;a href=&quot;#IOC也叫依赖注入-DI&quot; class=&quot;headerlink&quot; title=&quot;IOC也叫依赖注入(DI)&quot;&gt;&lt;/a&gt;IOC也叫依赖注入(DI)&lt;/h3&gt;&lt;p&gt;2004年，Martin Fowler探讨了同一个问题，既然IOC是控制反转，那么到底是“哪些方面的控制被反转了呢？”，经过详细地分析和论证后，他得出了答案：“获得依赖对象的过程被反转了”。控制被反转之后，获得依赖对象的过程由自身管理变为了由IOC容器主动注入。于是，他给“控制反转”取了一个更合适的名字叫做“依赖注入（Dependency Injection）”。他的这个答案，实际上给出了实现IOC的方法：注入。所谓依赖注入，就是由IOC容器在运行期间，动态地将某种依赖关系注入到对象之中。&lt;/p&gt;
+&lt;p&gt;　　所以，依赖注入(DI)和控制反转(IOC)是从不同的角度的描述的同一件事情，就是指通过引入IOC容器，利用依赖关系注入的方式，实现对象之间的解耦。&lt;/p&gt;
+&lt;p&gt;　　学过IOC的人可能都看过Martin Fowler(老马,2004年post)的这篇文章：Inversion of Control Containers and the Dependency Injection pattern[2]。
+　　&lt;/p&gt;
+&lt;h3 id=&quot;IOC容器的一些产品&quot;&gt;&lt;a href=&quot;#IOC容器的一些产品&quot; class=&quot;headerlink&quot; title=&quot;IOC容器的一些产品&quot;&gt;&lt;/a&gt;IOC容器的一些产品&lt;/h3&gt;&lt;p&gt;　Sun ONE技术体系下的IOC容器有：轻量级的有Spring、Guice、Pico Container、Avalon、HiveMind；重量级的有EJB；不轻不重的有JBoss，Jdon等等。Spring框架作为Java开发中SSH(Struts、Spring、Hibernate)三剑客之一，大中小项目中都有使用，非常成熟，应用广泛，EJB在关键性的工业级项目中也被使用，比如某些电信业务。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&quot;&gt;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;IOC的理论背景&quot;&gt;&lt;a href=&quot;#IOC的理论背景&quot; class=&quot;headerlink&quot; title=&quot;IOC的理论背景&quot;&gt;&lt;/a&gt;IOC的理论背景&lt;/h3&gt;&lt;p&gt;我们知道在面向对象设计的软件系统中，它的底层都是由N个对象构成的，各个对象之间通过相互合作，最终实现系统地业务逻辑[1]。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/72f96cbagw1f7iq5n53sfj209k05l0t0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;　　如果我们打开机械式手表的后盖，就会看到与上面类似的情形，各个齿轮分别带动时针、分针和秒针顺时针旋转，从而在表盘上产生正确的时间。图1中描述的就是这样的一个齿轮组，它拥有多个独立的齿轮，这些齿轮相互啮合在一起，协同工作，共同完成某项任务。我们可以看到，在这样的齿轮组中，如果有一个齿轮出了问题，就可能会影响到整个齿轮组的正常运转。&lt;br&gt;　　&lt;br&gt;
+    
+    </summary>
+    
+      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="软件设计" scheme="http://zhenghe39.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Shell的环境变量</title>
     <link href="http://zhenghe39.com/2016/09/01/shell%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
     <id>http://zhenghe39.com/2016/09/01/shell环境变量/</id>
     <published>2016-09-01T13:33:33.000Z</published>
-    <updated>2016-09-01T13:36:16.000Z</updated>
+    <updated>2016-09-01T13:36:30.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;作用于当前shell和任意子shell环境，开机就添加到本地变量中.&lt;/p&gt;
@@ -45,7 +95,9 @@
 &lt;li&gt;&lt;p&gt;&lt;em&gt;用户级&lt;/em&gt;（当前用户登录先执行）&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;~/.bash_profile &lt;em&gt;补充说明&lt;/em&gt;：用户登录时执行，并调用「~/.bashrc」(这两个都是~的隐藏文件要用ls -a才可查看）&lt;/li&gt;
-&lt;li&gt;~/.bash_login&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;~/.bash_login&lt;ul&gt;
 &lt;li&gt;~/.profile&lt;/li&gt;
 &lt;li&gt;~/.bashrc &lt;em&gt;补充说明&lt;/em&gt;：每次打开新的终端时执行，并调用/etc/bashrc&lt;/li&gt;
 &lt;/ul&gt;
@@ -1116,42 +1168,6 @@
     
     
       <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>content-type影响request.getParameter获取数据</title>
-    <link href="http://zhenghe39.com/2016/04/09/content-type%E7%9A%84%E6%84%8F%E4%B9%89/"/>
-    <id>http://zhenghe39.com/2016/04/09/content-type的意义/</id>
-    <published>2016-04-09T09:45:37.000Z</published>
-    <updated>2016-06-19T23:34:28.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;a href=&quot;http://tool.oschina.net/commons&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Content-type&lt;/a&gt;决定了文件类型以及数据的展示方式&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.&lt;br&gt;content-type&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Get请求的数据是附着在URL后（即位于HTTP协议头部），而Post提交的数据是放于HTTP包的包体。故content-type只会影响到Post提交的数据。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;application-x-www-form-urlencoded&quot;&gt;&lt;a href=&quot;#application-x-www-form-urlencoded&quot; class=&quot;headerlink&quot; title=&quot;application/x-www-form-urlencoded&quot;&gt;&lt;/a&gt;application/x-www-form-urlencoded&lt;/h3&gt;&lt;p&gt;application/x-www-form-urlencoded为「表单提交」，默认的&lt;code&gt;Ajax Post&lt;/code&gt;提交也是按这种方式。&lt;/p&gt;
-&lt;h3 id=&quot;application-json&quot;&gt;&lt;a href=&quot;#application-json&quot; class=&quot;headerlink&quot; title=&quot;application/json&quot;&gt;&lt;/a&gt;application/json&lt;/h3&gt;&lt;p&gt;这种时候，只能从HTTP内容体里面获取提交的数据&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$.ajax(actionUrl,&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                      method:&lt;span class=&quot;string&quot;&gt;&#39;POST&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                      data:&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(postData),&lt;span class=&quot;comment&quot;&gt;//这里必须序列化为JSON字符串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                      contentType:&lt;span class=&quot;string&quot;&gt;&#39;application/json; charset=utf-8&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                      dataType:&lt;span class=&quot;string&quot;&gt;&#39;json&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                      success:&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;rs&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                          &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(rs.success)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                              resolve(rs.content);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                          &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                  &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; String &lt;span class=&quot;title&quot;&gt;readStringFromRequest&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(HttpServletRequest request,String encode)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	StringBuffer json = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; StringBuffer();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	InputStream in = &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		in = request.getInputStream();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		InputStreamReader isr = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; InputStreamReader(in,encode);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		BufferedReader bufferReader = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BufferedReader(isr);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String line = bufferReader.readLine();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(StringUtils.isEmpty(line))&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			line = &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		do&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			json.append(line);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			line = bufferReader.readLine();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(line != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				json.append(&lt;span class=&quot;string&quot;&gt;&quot;\n&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt;(line != &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt;(IOException e)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		e.printStackTrace();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;http://tool.oschina.net/commons&quot;&gt;Content-type&lt;/a&gt;决定了文件类型以及数据的展示方式&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.&lt;br&gt;content-type&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Get请求的数据是附着在URL后（即位于HTTP协议头部），而Post提交的数据是放于HTTP包的包体。故content-type只会影响到Post提交的数据。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
-    
-    
-      <category term="Http" scheme="http://zhenghe39.com/tags/Http/"/>
     
   </entry>
   
