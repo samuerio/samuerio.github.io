@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-09-15T03:28:48.000Z</updated>
+  <updated>2016-09-15T03:30:30.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zhenghe39.com/2016/09/14/HTTP%E7%BC%93%E5%AD%98/"/>
     <id>http://zhenghe39.com/2016/09/14/HTTP缓存/</id>
     <published>2016-09-14T15:37:33.000Z</published>
-    <updated>2016-09-15T03:28:48.000Z</updated>
+    <updated>2016-09-15T03:30:30.000Z</updated>
     
     <content type="html">&lt;p&gt;转载来自 Google Developer &lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;通过网络获取内容既缓慢，成本又高：大的响应需要在客户端和服务器之间进行多次往返通信，这拖延了浏览器可以使用和处理内容的时间，同时也增加了访问者的数据成本。因此，缓存和重用以前获取的资源的能力成为优化性能很关键的一个方面。&lt;/p&gt;
@@ -85,7 +85,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;根据 HTTP Archive，在排名最高的 300,000 个网站中（Alexa 排名），&lt;img src=&quot;http://httparchive.org/trends.php#maxage0&quot; alt=&quot;所有下载的响应中，几乎有半数可以由浏览器进行缓存&quot;&gt;，对于重复性网页浏览和访问来说，这是一个巨大的节省！ 当然，这并不意味着特定的应用会有 50% 的资源可以被缓存：有些网站可以缓存 90% 以上的资源， 而有些网站有许多私密的或者时间要求苛刻的数据，根本无法被缓存。&lt;/p&gt;
+&lt;p&gt;根据 HTTP Archive，在排名最高的 300,000 个网站中（Alexa 排名），&lt;a href=&quot;http://httparchive.org/trends.php#maxage0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;所有下载的响应中，几乎有半数可以由浏览器进行缓存&lt;/a&gt;，对于重复性网页浏览和访问来说，这是一个巨大的节省！ 当然，这并不意味着特定的应用会有 50% 的资源可以被缓存：有些网站可以缓存 90% 以上的资源， 而有些网站有许多私密的或者时间要求苛刻的数据，根本无法被缓存。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;审查您的网页，确定哪些资源可以被缓存，并确保可以返回正确的 Cache-Control 和 ETag 头。&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&quot;废弃和更新已缓存的响应&quot;&gt;&lt;a href=&quot;#废弃和更新已缓存的响应&quot; class=&quot;headerlink&quot; title=&quot;废弃和更新已缓存的响应&quot;&gt;&lt;/a&gt;废弃和更新已缓存的响应&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;在资源”过期”之前，将一直使用本地缓存的响应&lt;br&gt;通过将文件内容指纹码嵌入网址，我们可以强制客户端更新到新版的响应&lt;br&gt;为了获得最佳性能，每个应用需要定义自己的缓存层级&lt;/p&gt;
