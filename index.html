@@ -50,6 +50,38 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-09-14T15:37:33.000Z">
+                    <a href="/2016/09/14/HTTP缓存/">2016-09-14</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/09/14/HTTP缓存/"  itemprop="url" >
+                    HTTP缓存
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <p>转载来自 Google Developer <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control">https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control</a></p>
+<p>通过网络获取内容既缓慢，成本又高：大的响应需要在客户端和服务器之间进行多次往返通信，这拖延了浏览器可以使用和处理内容的时间，同时也增加了访问者的数据成本。因此，缓存和重用以前获取的资源的能力成为优化性能很关键的一个方面。</p>
+<p>好消息是每个浏览器都实现了 HTTP 缓存！ 我们所要做的就是，确保每个服务器响应都提供正确的 HTTP 头指令，以指导浏览器何时可以缓存响应以及可以缓存多久。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/09/14/HTTP缓存/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-09-05T06:30:27.000Z">
                     <a href="/2016/09/05/浅谈IOC/">2016-09-05</a>
                 </time>
@@ -282,36 +314,6 @@
     </article>
 
     
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-08-25T01:29:38.000Z">
-                    <a href="/2016/08/25/native-ajax/">2016-08-25</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/08/25/native-ajax/"  itemprop="url" >
-                    Native ajax
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <figure class="highlight"><table><tr><td class="code"><pre><span class="line">function addURLParam(url,name,value)&#123;</span><br><span class="line">    url += (url.indexOf('?') == -1) ? '?' : '&amp;';</span><br><span class="line">    url += encodeURIComponent(name) + '=' + encodeURIComponent(value);//必须</span><br><span class="line">    return url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var xhr = new XMLHttpRequest();//不建议重用XHR对象</span><br><span class="line">//xhr状态改变事件准备</span><br><span class="line">xhr.onreadystatechange = function()&#123;</span><br><span class="line">    if(4 === xhr.readyState)&#123;//已收到全部响应数据，而且可以在客户端使用了(XMLHttpRequest对象状态的说明)</span><br><span class="line">        if(xhr.status === 200 || xhr.status === 304)&#123;//响应Http状态的说明，成功返回的标识：200/304</span><br><span class="line">            //收到服务器的响应后，响应数据会自动填充XHR对象的属性</span><br><span class="line">            alert(xhr.responseText);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            alert('Request was unsuccessful: '+xhr.statusText+xhr.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var url = 'exmple.php';</span><br><span class="line">addURLParam(url,'userName','Zhe');</span><br><span class="line">addURLParam(url,'password','111111');</span><br><span class="line">xhr.open(‘get',url,false);//此时并未发送，而只是启动一个请求以备发送</span><br><span class="line">xhr.send(null);</span><br></pre></td></tr></table></figure>
-                     <div style="text-align:center;">
-                            <a  href="/2016/08/25/native-ajax/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
     <nav class='pagination'>
     
     
@@ -391,13 +393,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                        <a  href='/tags/Http/' title=Http>Http</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
                     </li>
                 
             
@@ -415,7 +417,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Http/' title=Http>Http</a>
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
                     </li>
                 
             
@@ -439,7 +441,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
                     </li>
                 
             
