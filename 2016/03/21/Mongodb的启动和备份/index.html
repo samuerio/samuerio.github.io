@@ -68,11 +68,14 @@
         <div class="post-body" itemprop="articleBody">
             
                 <p>version：<code>2.4.3</code></p>
+<p><a href="https://mongodb-documentation.readthedocs.io/en/latest/administration/import-export.html" target="_blank" rel="external">参考资料</a></p>
 <h3 id="启动MongoDB："><a href="#启动MongoDB：" class="headerlink" title="启动MongoDB："></a>启动MongoDB：</h3><p>/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongod —-config /usr/local/var/log/mongodb/mongod.conf</p>
 <h3 id="备份MongoDB："><a href="#备份MongoDB：" class="headerlink" title="备份MongoDB："></a>备份MongoDB：</h3><p>1.整库备份：</p>
 <p>mongodump -h <hostname>&lt;:port&gt; -o <path></path><br>例如:<br>/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongodump -h 192.168.5.185 -o /Users/ZHe/开发者工具/dump/mongod</hostname></p>
 <p>2.单库备份:<br>mongodump -h <hostname>&lt;:port&gt; -d <database> -o <path></path><br>例如:<br>/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongodump -h 192.168.203.45:27021 -d flowConfig -o /Users/ZHe/开发者工具/dump/mongod</database></hostname></p>
-<p>恢复MongoDB：<br>1.整库恢复：<br>/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongorestore -h 127.0.0.1 -directoryperdb /Users/ZHe/开发者工具/dum/mongod</p>
+<p>3.单个Collection备份:<br>mongoexport –host <hostname> –port <port> -db <dbname> –collection <collectionname> –out <outputpath><br>例如:<br>/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongoexport –host 192.168.203.44 –port 27017 –db UcapCcip  –collection DataListConditionCfg –out /Users/ZHe/Downloads/DataListConditionCfg.json<br>这里也可导出到DataListConditionCfg.csv</outputpath></collectionname></dbname></port></hostname></p>
+<h3 id="恢复MongoDB："><a href="#恢复MongoDB：" class="headerlink" title="恢复MongoDB："></a>恢复MongoDB：</h3><p>1.整库恢复：<br>/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongorestore -h 127.0.0.1 -directoryperdb /Users/ZHe/开发者工具/dum/mongod</p>
+<p>2.恢复单个Collection：<br>mongoimport –host <hostname> –port <port> -db <dbname> –collection <collectionname> –file <importpath><br>例如：<br>/Users/ZHe/开发者工具/mongodb-osx-x86_64-2.4.3/bin/mongoimport –host 127.0.0.1 –port 27017 –db UcapCcip –collection DataListConditionCfg –file /Users/ZHe/Downloads/修改后的DataListConditionCfg/DataListConditionCfg.json</importpath></collectionname></dbname></port></hostname></p>
 
             
         </div>
