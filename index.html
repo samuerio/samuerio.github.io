@@ -50,6 +50,29 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-10-11T12:26:12.000Z">
+                    <a href="/2016/10/11/Mac系统下给nginx安装nginx-sticky-module/">2016-10-11</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/10/11/Mac系统下给nginx安装nginx-sticky-module/"  itemprop="url" >
+                    Mac系统下给nginx安装nginx-sticky-module
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-09-19T14:08:42.000Z">
                     <a href="/2016/09/19/自适应宽度的三栏布局/">2016-09-19</a>
                 </time>
@@ -276,37 +299,6 @@
     </article>
 
     
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-08-25T02:45:31.000Z">
-                    <a href="/2016/08/25/Jsp的静态包含及动态包含/">2016-08-25</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/08/25/Jsp的静态包含及动态包含/"  itemprop="url" >
-                    Jsp的静态包含及动态包含
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <p><strong>主文件</strong></p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@page import="java.io.PrintWriter"  %&gt;</span><br><span class="line">&lt;%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">String path = request.getContextPath();</span><br><span class="line">String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;base href="&lt;%=basePath%&gt;"&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;title&gt;测试动态包含&lt;/title&gt;</span><br><span class="line">	&lt;meta http-equiv="pragma" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="cache-control" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="expires" content="0"&gt;    </span><br><span class="line">	&lt;meta http-equiv="keywords" content="keyword1,keyword2,keyword3"&gt;</span><br><span class="line">	&lt;meta http-equiv="description" content="This is my page"&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;% </span><br><span class="line">  	String requestParam1 = "test";</span><br><span class="line">  	String requestParam2 = "request";</span><br><span class="line">  %&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  	&lt;!-- 动态包含：请求完一个JSP页面，再请求另外一个JSP页面。最终会解析为两个Servlet --&gt;</span><br><span class="line">  	&lt;jsp:include page="demo.jsp"&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam1 %&gt;" name="requestParam1"/&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam2 %&gt;" name="requestParam2"/&gt;</span><br><span class="line">  	&lt;/jsp:include&gt;</span><br><span class="line">  	&lt;br&gt;</span><br><span class="line">    This is my JSP page. </span><br><span class="line">    &lt;!-- 静态包含：会合并完再进行解析，最终生成一个Servlet --&gt;</span><br><span class="line">    &lt;%@include file = "demo2.jsp" %&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-                     <div style="text-align:center;">
-                            <a  href="/2016/08/25/Jsp的静态包含及动态包含/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
     <nav class='pagination'>
     
     
@@ -411,6 +403,12 @@
                 
                     <li class="tagslist-item">
                         <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
                     </li>
                 
             

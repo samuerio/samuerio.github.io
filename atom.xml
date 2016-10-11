@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-09-19T14:33:24.000Z</updated>
+  <updated>2016-10-11T12:52:06.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -16,11 +16,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Mac系统下给nginx安装nginx-sticky-module</title>
+    <link href="http://zhenghe39.com/2016/10/11/Mac%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%BB%99nginx%E5%AE%89%E8%A3%85nginx-sticky-module/"/>
+    <id>http://zhenghe39.com/2016/10/11/Mac系统下给nginx安装nginx-sticky-module/</id>
+    <published>2016-10-11T12:26:12.000Z</published>
+    <updated>2016-10-11T12:52:06.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Nginx要启用模块的话，得重新编译。&lt;/p&gt;
+&lt;h3 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerlink&quot; title=&quot;准备&quot;&gt;&lt;/a&gt;准备&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Nginx &amp;amp;&amp;amp; Sticky&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;使用的Nginx版本为&lt;code&gt;1.10.1&lt;/code&gt;,而nginx-sticky-module来源有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/lusis/nginx-sticky-module&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/lusis/nginx-sticky-module&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可能是由于Nginx版本过高的缘故，使用Github源的sticky模块时，在Make阶段就报了几个变量未定义的错误，建议采用bitbucket源。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git clone https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;安装openssl&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;brew install openssl&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤&quot; class=&quot;headerlink&quot; title=&quot;步骤&quot;&gt;&lt;/a&gt;步骤&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tar xzf nginx-1.10.1.tar.gz&amp;#10;cd  nginx-1.10.1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;./configure --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_realip_module --with-http_ssl_module  --with-openssl=/usr/local/Cellar/openssl/1.0.2j   --add-module=../nginx-sticky-module-ng&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;--prefix&lt;/code&gt;是配置&lt;code&gt;make install&lt;/code&gt;时将nginx可执行应用安装到的路径&lt;code&gt;--with-http_ssl_module  --with-openssl=/usr/local/Cellar/openssl/1.0.2j&lt;/code&gt;是自定义所依赖&lt;code&gt;openssl&lt;/code&gt;的来源&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;make&amp;#10;make install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Nginx要启用模块的话，得重新编译。&lt;/p&gt;
+&lt;h3 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerlink&quot; title=&quot;准备&quot;&gt;&lt;/a&gt;准备&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Nginx &amp;amp;&amp;amp; Sticky&lt;/strong&gt;&lt;/p
+    
+    </summary>
+    
+      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
+    
+    
+      <category term="nginx" scheme="http://zhenghe39.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>自适应宽度的三栏布局</title>
     <link href="http://zhenghe39.com/2016/09/19/%E8%87%AA%E9%80%82%E5%BA%94%E5%AE%BD%E5%BA%A6%E7%9A%84%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/"/>
     <id>http://zhenghe39.com/2016/09/19/自适应宽度的三栏布局/</id>
     <published>2016-09-19T14:08:42.000Z</published>
-    <updated>2016-09-19T14:33:24.000Z</updated>
+    <updated>2016-10-11T12:26:44.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;浮动实现&quot;&gt;&lt;a href=&quot;#浮动实现&quot; class=&quot;headerlink&quot; title=&quot;浮动实现&quot;&gt;&lt;/a&gt;浮动实现&lt;/h3&gt;&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;https://jsfiddle.net/samuerio/rhr3ppka/embedded/result,resources,html,css,js/light&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 
@@ -1139,33 +1177,6 @@
     
     
       <category term="Oracle" scheme="http://zhenghe39.com/tags/Oracle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>清除浮动</title>
-    <link href="http://zhenghe39.com/2016/06/20/%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
-    <id>http://zhenghe39.com/2016/06/20/清除浮动/</id>
-    <published>2016-06-19T23:26:30.000Z</published>
-    <updated>2016-06-19T23:34:39.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;浮动元素下面加clearfix的空标签&quot;&gt;&lt;a href=&quot;#浮动元素下面加clearfix的空标签&quot; class=&quot;headerlink&quot; title=&quot;浮动元素下面加clearfix的空标签&quot;&gt;&lt;/a&gt;浮动元素下面加clearfix的空标签&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;‘clearfix’&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;zoom&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:after&lt;/span&gt;,&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:before&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; table&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;clear&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; both&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;给浮动元素的父元素加上两个伪类&quot;&gt;&lt;a href=&quot;#给浮动元素的父元素加上两个伪类&quot; class=&quot;headerlink&quot; title=&quot;给浮动元素的父元素加上两个伪类&quot;&gt;&lt;/a&gt;给浮动元素的父元素加上两个伪类&lt;/h3&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;id&quot;&gt;#parentEle&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:after&lt;/span&gt;,&lt;span class=&quot;id&quot;&gt;#parentEle&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:before&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; table&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;id&quot;&gt;#parentEle&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;clear&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; both&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;浮动元素下面加clearfix的空标签&quot;&gt;&lt;a href=&quot;#浮动元素下面加clearfix的空标签&quot; class=&quot;headerlink&quot; title=&quot;浮动元素下面加clearfix的空标签&quot;&gt;&lt;/a&gt;浮动元素下面加clearfix的空标签&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;‘clearfix’&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;zoom&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:after&lt;/span&gt;,&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:before&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; &lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; table&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.clearfix&lt;/span&gt;&lt;span class=&quot;pseudo&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;clear&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; both&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
     
   </entry>
   
