@@ -85,21 +85,23 @@
 
 
                     </div>
-                    <aside class="sidebar">
-    <div class="sidebar-inner">
-        <div class='author'>
-            <a id='btnCloseSideBar'  class='icon icon-collapse' href='#' title='存档' ></a>
-            <div class='author-img'></div>
-            <div class='author-socialInfo'>
-            
-                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
-            
-            
-                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
-            
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+            <div class='author'>
+                <a id='btnCloseSideBar'  class='icon icon-collapse' href='#' title='存档' ></a>
+                <div class='author-img'></div>
+                <div class='author-socialInfo'>
+                
+                    <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                
+                
+                    <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                
+                </div>
             </div>
-        </div>
-        
+            
     <div class='categorieslist'>
         <p class='categorieslist-title'>分类</p>
         <ul>
@@ -125,7 +127,7 @@
         </ul>
     </div>
 
-        
+            
     <div class="tagslist" >
         <p class="tagslist-title">标签</p>
         <ul>
@@ -230,8 +232,11 @@
         </ul>
      </div>
 
-    </div>
-</aside>
+            
+        </div>
+    </aside>
+
+
                 </div>
             </main>
         </div>
@@ -256,6 +261,7 @@
 
 
         <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script>
       $('#btnCloseSideBar').click(function(){
         $('.sidebar').css('display', 'none');
@@ -268,6 +274,12 @@
               $('#btnOpenSideBar').css('display', 'none');
               $('.main-inner').removeClass('main-inner-center');
         });
+
+        //$('.nav>li:first').addClass('active');
+
+        //$('.nav').affix({
+          //offset: 15
+        //})
 </script>
     </body>
 </html>
