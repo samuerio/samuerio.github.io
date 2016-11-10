@@ -93,19 +93,36 @@
  
     <aside class="sidebar">
         <div class="sidebar-inner">
-            <div class='author'>
-                <a id='btnCloseSideBar'  class='icon icon-collapse' href='#' title='存档' ></a>
-                <div class='author-img'></div>
-                <div class='author-socialInfo'>
-                
-                    <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
                 
                 
-                    <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
                 
-                </div>
-            </div>
-            
+                <ul class='sidebar-nav' >
+                    <li class='sidebar-nav-toc active' href="#post-menu"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li class='sidebar-nav-overview' href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='tab-content'>
+                    
+                    <div class='tab-panel post-nav-body active' id='post-menu'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#英文换行"><span class="nav-text">英文换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#省略号"><span class="nav-text">省略号</span></a></li></ol>
+                    </div>
+                    
+                    <div class='tab-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
     <div class='categorieslist'>
         <p class='categorieslist-title'>分类</p>
         <ul>
@@ -131,7 +148,7 @@
         </ul>
     </div>
 
-            
+                        
     <div class="tagslist" >
         <p class="tagslist-title">标签</p>
         <ul>
@@ -236,19 +253,8 @@
         </ul>
      </div>
 
-            
-                
-                <div class='horizontal-line'></div>
-                <div class='post-nav'>
-                    <div class='post-nav-inner'>
-                        <div class='post-nav-heading'>文章目录</div>
-                        <div class='post-nav-body'>
-                            <!--<div class='highlight-title'></div>-->
-                            <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#英文换行"><span class="nav-text">英文换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#省略号"><span class="nav-text">省略号</span></a></li></ol>
-                        </div>
                     </div>
                 </div>
-            
         </div>
     </aside>
 
@@ -278,7 +284,9 @@
 
         <script src="/js/jquery-2.0.3.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
 <script>
+      /*
       $('#btnCloseSideBar').click(function(){
         $('.sidebar').css('display', 'none');
         $('#btnOpenSideBar').css('display', 'block');
@@ -290,12 +298,37 @@
               $('#btnOpenSideBar').css('display', 'none');
               $('.main-inner').removeClass('main-inner-center');
         });
+        */
 
-        //$('.nav>li:first').addClass('active');
+        var navMenu = $('.nav').length && $('.nav').spyNavMenu({
+            activeClass:'active',
+            events:{
+                'scrollNav':function($curNavItem,$navMenu,curNavItemHeight,curNavItemTop){
+                    if(!$curNavItem){
+                        return;
+                    }
 
-        //$('.nav').affix({
-          //offset: 15
-        //})
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        //'top':$curNavItem.offset().top-$navMenu.offset().top,
+                        'top':curNavItemTop,
+                        'height':curNavItemHeight+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
 </script>
     </body>
 </html>
