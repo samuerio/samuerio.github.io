@@ -48,7 +48,7 @@
         defaults:{
             activeClass:'active',
             fixOffsetClass:'nav-fix',
-            distinguishLineScale:1/2,//基准线的比例值,默认为0.5,即当前窗口的中间线
+            distinguishLineScale:0,//基准线的比例值,默认为0.5,即当前窗口的中间线
             events:{}
         },
         prototype:{
