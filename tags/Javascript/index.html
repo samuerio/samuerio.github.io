@@ -481,6 +481,7 @@
 
         var navMenu = $('.nav').length && $('.nav').spyNavMenu({
             activeClass:'active',
+            distinguishLineScale:1/4,
             events:{
                 'scrollNav':function($curNavItem,$navMenu,curNavItemHeight,curNavItemTop){
                     if(!$curNavItem){
