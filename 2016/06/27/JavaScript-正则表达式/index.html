@@ -325,19 +325,19 @@
                 
                 
                 <ul class='sidebar-nav' >
-                    <li class='sidebar-nav-toc active' href="#post-menu"  data-toggle="tab" >文章目录</li>
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
                     &nbsp&nbsp
-                    <li class='sidebar-nav-overview' href="#site-info" data-toggle="tab" >站点概况</li>
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
                 </ul>
                 
-                <div class='tab-content'>
+                <div class='sidebar-nav-content'>
                     
-                    <div class='tab-panel post-nav-body active' id='post-menu'>
+                    <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
-                        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元字符"><span class="nav-text">元字符</span></a></li></ol>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#定义"><span class="nav-menu-text">定义</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#元字符"><span class="nav-menu-text">元字符</span></a></li></ol>
                     </div>
                     
-                    <div class='tab-panel  ' id='site-info' >
+                    <div class='nav-panel  ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
@@ -528,8 +528,9 @@
         });
         */
 
-        var navMenu = $('.nav').length && $('.nav').spyNavMenu({
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
             activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
             distinguishLineScale:0,
             events:{
                 'scrollNav':function($curNavItem,$navMenu,curNavItemHeight,curNavItemTop){

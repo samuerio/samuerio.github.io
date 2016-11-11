@@ -107,19 +107,19 @@
                 
                 
                 <ul class='sidebar-nav' >
-                    <li class='sidebar-nav-toc active' href="#post-menu"  data-toggle="tab" >文章目录</li>
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
                     &nbsp&nbsp
-                    <li class='sidebar-nav-overview' href="#site-info" data-toggle="tab" >站点概况</li>
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
                 </ul>
                 
-                <div class='tab-content'>
+                <div class='sidebar-nav-content'>
                     
-                    <div class='tab-panel post-nav-body active' id='post-menu'>
+                    <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
                         
                     </div>
                     
-                    <div class='tab-panel  ' id='site-info' >
+                    <div class='nav-panel  ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
@@ -310,8 +310,9 @@
         });
         */
 
-        var navMenu = $('.nav').length && $('.nav').spyNavMenu({
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
             activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
             distinguishLineScale:0,
             events:{
                 'scrollNav':function($curNavItem,$navMenu,curNavItemHeight,curNavItemTop){

@@ -875,6 +875,26 @@ pre .javascript .function {
   font-size: 18px;
   color: #2ca6cb;
 }
+.sidebar-nav {
+  text-align: center;
+}
+.sidebar-nav li {
+  display: inline-block;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+.sidebar-nav li.active {
+  color: #fc6423;
+}
+.sidebar-nav-content {
+  padding: 10px 0;
+}
+.sidebar-nav-content .nav-panel {
+  display: none;
+}
+.sidebar-nav-content .nav-panel.active {
+  display: block;
+}
 .categorieslist-title,
 .tagslist-title {
   padding: 0 0 0.3125em 0;
@@ -947,11 +967,15 @@ pre .javascript .function {
   line-height: 1em;
   background: #dbdbdb;
 }
-.post-nav-body {
+.post-toc-fix {
+  position: fixed;
+  top: 0;
+}
+.post-toc {
   position: relative;
   padding: 0 12px;
 }
-.post-nav-body::after {
+.post-toc::after {
   content: '';
   position: absolute;
   top: 0;
@@ -963,8 +987,7 @@ pre .javascript .function {
   border-radius: 5px;
   z-index: -3;
 }
-.post-nav-body .highlight-title {
-  height: 24px;
+.post-toc .highlight-title {
   position: absolute;
   display: block;
   left: 0;
@@ -975,40 +998,16 @@ pre .javascript .function {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-.post-nav-body ol {
+.nav-menu {
   position: relative;
   margin: 0;
   padding-left: 18px;
   list-style-type: square;
 }
-.post-nav-body ol li {
+.nav-menu-item {
   z-index: 3;
 }
-.post-nav-body ol a {
-  display: block;
-}
-.nav-fix {
-  position: fixed;
-  top: 0;
-}
-.sidebar-nav {
-  text-align: center;
-}
-.sidebar-nav li {
-  display: inline-block;
-  cursor: pointer;
-  border-bottom: 1px solid transparent;
-}
-.sidebar-nav li.active {
-  color: #fc6423;
-}
-.tab-content {
-  padding: 10px 0;
-}
-.tab-content .tab-panel {
-  display: none;
-}
-.tab-content .tab-panel.active {
+.nav-menu-item a {
   display: block;
 }
 .navbar-nav {

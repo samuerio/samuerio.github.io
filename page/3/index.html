@@ -327,9 +327,9 @@
                 
                 
                 
-                <div class='tab-content'>
+                <div class='sidebar-nav-content'>
                     
-                    <div class='tab-panel active ' id='site-info' >
+                    <div class='nav-panel active ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
@@ -520,8 +520,9 @@
         });
         */
 
-        var navMenu = $('.nav').length && $('.nav').spyNavMenu({
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
             activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
             distinguishLineScale:0,
             events:{
                 'scrollNav':function($curNavItem,$navMenu,curNavItemHeight,curNavItemTop){
