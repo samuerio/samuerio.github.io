@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-11-14T06:29:58.000Z</updated>
+  <updated>2016-11-14T06:32:39.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zhenghe39.com/2016/11/14/Brew%E7%94%A8%E6%B3%95/"/>
     <id>http://zhenghe39.com/2016/11/14/Brew用法/</id>
     <published>2016-11-14T06:25:42.000Z</published>
-    <updated>2016-11-14T06:29:58.000Z</updated>
+    <updated>2016-11-14T06:32:39.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;brew update : 更新formula库，执行任何指令前最好先更新指令库&lt;/li&gt;
@@ -31,7 +31,7 @@
 &lt;li&gt;brew upgrade [formula]  / brew upgrade : formula的版本更新/所有已安装formula版本更新&lt;/li&gt;
 &lt;li&gt;brew search [formula] : 搜索formula的所有版本&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;eg:&lt;/em&gt;&lt;br&gt;    $ brew search grails&lt;br&gt;    grails                        homebrew/versions/grails20    homebrew/versions/grails22&lt;br&gt;    homebrew/versions/grails224   homebrew/versions/grails13    homebrew/versions/grails21&lt;br&gt;    homebrew/versions/grails223   homebrew/versions/grails23&lt;br&gt;    $ brew install homebrew/versions/grails223&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;eg:&lt;/em&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ brew search grails&amp;#10;grails                        homebrew/versions/grails20    homebrew/versions/grails22&amp;#10;homebrew/versions/grails224   homebrew/versions/grails13    homebrew/versions/grails21&amp;#10;homebrew/versions/grails223   homebrew/versions/grails23&amp;#10;$ brew install homebrew/versions/grails223&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h3 id=&quot;服务管理&quot;&gt;&lt;a href=&quot;#服务管理&quot; class=&quot;headerlink&quot; title=&quot;服务管理&quot;&gt;&lt;/a&gt;服务管理&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;brew services
     Easily start and stop formulae via launchctl
 Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services can be
