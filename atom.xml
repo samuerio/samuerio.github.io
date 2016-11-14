@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-11-03T14:50:46.000Z</updated>
+  <updated>2016-11-14T06:29:58.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Brew用法</title>
+    <link href="http://zhenghe39.com/2016/11/14/Brew%E7%94%A8%E6%B3%95/"/>
+    <id>http://zhenghe39.com/2016/11/14/Brew用法/</id>
+    <published>2016-11-14T06:25:42.000Z</published>
+    <updated>2016-11-14T06:29:58.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;brew update : 更新formula库，执行任何指令前最好先更新指令库&lt;/li&gt;
+&lt;li&gt;brew install [formula]&lt;/li&gt;
+&lt;li&gt;brew uninstall [formula]&lt;/li&gt;
+&lt;li&gt;brew list : 查看已经安装的formula&lt;/li&gt;
+&lt;li&gt;brew info [formula] : 查看formula信息，若已安装，则会显示相关安装信息&lt;/li&gt;
+&lt;li&gt;brew upgrade [formula]  / brew upgrade : formula的版本更新/所有已安装formula版本更新&lt;/li&gt;
+&lt;li&gt;brew search [formula] : 搜索formula的所有版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;eg:&lt;/em&gt;&lt;br&gt;    $ brew search grails&lt;br&gt;    grails                        homebrew/versions/grails20    homebrew/versions/grails22&lt;br&gt;    homebrew/versions/grails224   homebrew/versions/grails13    homebrew/versions/grails21&lt;br&gt;    homebrew/versions/grails223   homebrew/versions/grails23&lt;br&gt;    $ brew install homebrew/versions/grails223&lt;/p&gt;
+&lt;h3 id=&quot;服务管理&quot;&gt;&lt;a href=&quot;#服务管理&quot; class=&quot;headerlink&quot; title=&quot;服务管理&quot;&gt;&lt;/a&gt;服务管理&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;brew services
+    Easily start and stop formulae via launchctl
+Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services can be
+    added to either /Library/LaunchDaemons or ~/Library/LaunchAgents.
+    Basically, items in /Library/LaunchDaemons are started at boot, while those
+    in ~/Library/LaunchAgents are started at login.
+
+    When started with sudo, it operates on /Library/LaunchDaemons; otherwise,
+    it operates on ~/Library/LaunchAgents.
+
+    On start the plist file is generated and written to a Tempfile, and then
+    copied to the launch path (existing plists are overwritten).
+
+    [sudo] brew services list
+    List all running services for the current user (or root)
+
+    [sudo] brew services start formula
+    Install and start the service formula at login (or boot).
+
+    [sudo] brew services stop formula|--all
+    Stop the service formula after it was launched at login (or boot).
+
+    [sudo] brew services restart formula
+    Stop (if necessary), install and start the service formula at login (or boot).
+
+    [sudo] brew services cleanup
+    Remove all unused services.
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;brew service list：列出所有已安装的服务&lt;/li&gt;
+&lt;li&gt;brew service start formula：启动服务&lt;/li&gt;
+&lt;li&gt;brew service stop formula：关闭服务&lt;/li&gt;
+&lt;li&gt;brew service restart formula：重启服务&lt;/li&gt;
+&lt;li&gt;brew service cleanup：移除废弃的服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;安装扩展&quot;&gt;&lt;a href=&quot;#安装扩展&quot; class=&quot;headerlink&quot; title=&quot;安装扩展&quot;&gt;&lt;/a&gt;安装扩展&lt;/h3&gt;&lt;p&gt;&lt;code&gt;$ brew tap &amp;lt;github_user/repo&amp;gt;&lt;/code&gt; ：安装他人扩展的brew服务&lt;br&gt;由于brew和包含的包源都是通过github来管理，人为的维护管理，除了自己的源还允许别人的源添加进行。&lt;/p&gt;
+&lt;p&gt;eg.举例说明一下，Mac OS 比较歧视 PHP ，所以每次系统更新都会把常用的开发包（Ruby、Python 等）也顺带着更新到最新版本。（吐槽：Java 都已经被抛弃不再默认安装了），而 brew 居然也不包含 PHP 的包，那怎么办呢？&lt;br&gt;&lt;code&gt;$ brew tap josegonzalez/php&lt;/code&gt;&lt;br&gt;命令完成之后，执行（当前最新是 php 5.5 版本，请根据需要替换）&lt;br&gt;&lt;code&gt;$ brew install php55&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;brew update : 更新formula库，执行任何指令前最好先更新指令库&lt;/li&gt;
+&lt;li&gt;brew i
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Tool" scheme="http://zhenghe39.com/tags/Tool/"/>
+    
+  </entry>
   
   <entry>
     <title>构建单页Web应用</title>
@@ -1191,46 +1261,6 @@
     
     
       <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS下的JSON解析及序列化</title>
-    <link href="http://zhenghe39.com/2016/06/20/JS%E4%B8%8B%E7%9A%84JSON%E8%A7%A3%E6%9E%90%E5%8F%8A%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    <id>http://zhenghe39.com/2016/06/20/JS下的JSON解析及序列化/</id>
-    <published>2016-06-19T23:35:12.000Z</published>
-    <updated>2016-06-19T23:35:12.000Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;解析JSON&quot;&gt;&lt;a href=&quot;#解析JSON&quot; class=&quot;headerlink&quot; title=&quot;解析JSON&quot;&gt;&lt;/a&gt;解析JSON&lt;/h3&gt;&lt;p&gt;eval是比较古老的解析JSON数据的方式：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; data = &lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;&quot;name&quot;:&quot;sam&quot;,&quot;age&quot;:25,&quot;isSuccess&quot;:false&amp;#125;&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;built_in&quot;&gt;eval&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;(&quot;&lt;/span&gt;+data+&lt;span class=&quot;string&quot;&gt;&quot;)&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;比较推荐的是JSON.parse来解析JSON数据，而且其还可定制解析规则。以下为“当value值为字符串true或false值时，将其转化为对应Boolean值”的解析规则：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; jsonStr = &lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;&quot;name&quot;:&quot;sam&quot;,&quot;age&quot;:25,&quot;isSuccess&quot;:&quot;false&quot;,&quot;time&quot;:&amp;#123;&quot;enough&quot;:&quot;false&quot;,&quot;multiFormate&quot;:true&amp;#125;&amp;#125;&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; data = &lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.parse(jsonStr,&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;key,value&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;false&#39;&lt;/span&gt; === value || &lt;span class=&quot;string&quot;&gt;&#39;true&#39;&lt;/span&gt; === value)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;eval&lt;/span&gt;(value);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; value;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(data);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;序列化JSON&quot;&gt;&lt;a href=&quot;#序列化JSON&quot; class=&quot;headerlink&quot; title=&quot;序列化JSON&quot;&gt;&lt;/a&gt;序列化JSON&lt;/h3&gt;&lt;p&gt;JSON.stringify也是可以配置序列化规则的：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; jsObj = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    toLower:&lt;span class=&quot;string&quot;&gt;&#39;HELLO&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    toUpper:&lt;span class=&quot;string&quot;&gt;&#39;world&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    normal:&lt;span class=&quot;string&quot;&gt;&#39;haha&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; jsonStr = &lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(jsObj,&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;key,value&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;switch&lt;/span&gt;(key)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;toLower&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; value.toLowerCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;toUpper&#39;&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; value.toUpperCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;default&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; value;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;,&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(jsonStr);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;类对象还可以实现toJSON接口来定制自身的序列化规则。这时候，使用JSON.stringify来序列化时，会优先调用toJSON，对得到的返回值进行序列化。&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; Person = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;name,age&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.name = name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.age = age;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$.extend(Person,&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    prototype:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        toJSON:&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                age:&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.age+&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;built_in&quot;&gt;JSON&lt;/span&gt;.stringify(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Person(&lt;span class=&quot;string&quot;&gt;&#39;sam&#39;&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;)));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;解析JSON&quot;&gt;&lt;a href=&quot;#解析JSON&quot; class=&quot;headerlink&quot; title=&quot;解析JSON&quot;&gt;&lt;/a&gt;解析JSON&lt;/h3&gt;&lt;p&gt;eval是比较古老的解析JSON数据的方式：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; data = &lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;&quot;name&quot;:&quot;sam&quot;,&quot;age&quot;:25,&quot;isSuccess&quot;:false&amp;#125;&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;built_in&quot;&gt;eval&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&quot;(&quot;&lt;/span&gt;+data+&lt;span class=&quot;string&quot;&gt;&quot;)&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
-    
-    
-      <category term="JSON" scheme="http://zhenghe39.com/tags/JSON/"/>
-    
-      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
     
   </entry>
   
