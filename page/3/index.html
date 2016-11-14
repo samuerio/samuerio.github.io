@@ -44,6 +44,121 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-09-01T08:47:28.000Z">
+                    <a href="/2016/09/01/Java反射的应用/">2016-09-01</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/09/01/Java反射的应用/"  itemprop="url" >
+                    Java反射的应用
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-09-01T08:00:58.000Z">
+                    <a href="/2016/09/01/zTree级联树的优化/">2016-09-01</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/09/01/zTree级联树的优化/"  itemprop="url" >
+                    zTree级联树的优化
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <h3 id="setting-check"><a href="#setting-check" class="headerlink" title="setting.check"></a>setting.check</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     enable: <span class="literal">true</span>,</span><br><span class="line">     chkStyle: chkStyle,</span><br><span class="line">     nocheckInherit: <span class="literal">false</span>,</span><br><span class="line">     autoCheckTrigger:<span class="literal">false</span>,</span><br><span class="line">     radioType : <span class="string">"all"</span>,</span><br><span class="line">     chkboxType: &#123; <span class="string">"Y"</span>: <span class="string">"s"</span>, <span class="string">"N"</span>: <span class="string">"s"</span> &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>这里未启动zTree的级联配置(<code>autoCheckTrigger</code>设置为<code>false</code>)，代替的是我们手动实现级联。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/09/01/zTree级联树的优化/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-08-25T02:45:31.000Z">
+                    <a href="/2016/08/25/Jsp的静态包含及动态包含/">2016-08-25</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/08/25/Jsp的静态包含及动态包含/"  itemprop="url" >
+                    Jsp的静态包含及动态包含
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <p><strong>主文件</strong></p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@page import="java.io.PrintWriter"  %&gt;</span><br><span class="line">&lt;%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">String path = request.getContextPath();</span><br><span class="line">String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;base href="&lt;%=basePath%&gt;"&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;title&gt;测试动态包含&lt;/title&gt;</span><br><span class="line">	&lt;meta http-equiv="pragma" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="cache-control" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="expires" content="0"&gt;    </span><br><span class="line">	&lt;meta http-equiv="keywords" content="keyword1,keyword2,keyword3"&gt;</span><br><span class="line">	&lt;meta http-equiv="description" content="This is my page"&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;% </span><br><span class="line">  	String requestParam1 = "test";</span><br><span class="line">  	String requestParam2 = "request";</span><br><span class="line">  %&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  	&lt;!-- 动态包含：请求完一个JSP页面，再请求另外一个JSP页面。最终会解析为两个Servlet --&gt;</span><br><span class="line">  	&lt;jsp:include page="demo.jsp"&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam1 %&gt;" name="requestParam1"/&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam2 %&gt;" name="requestParam2"/&gt;</span><br><span class="line">  	&lt;/jsp:include&gt;</span><br><span class="line">  	&lt;br&gt;</span><br><span class="line">    This is my JSP page. </span><br><span class="line">    &lt;!-- 静态包含：会合并完再进行解析，最终生成一个Servlet --&gt;</span><br><span class="line">    &lt;%@include file = "demo2.jsp" %&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+                     <div style="text-align:center;">
+                            <a  href="/2016/08/25/Jsp的静态包含及动态包含/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-08-25T02:14:03.000Z">
+                    <a href="/2016/08/25/编码详解/">2016-08-25</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/08/25/编码详解/"  itemprop="url" >
+                    编码详解
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <h3 id="为何需要编码"><a href="#为何需要编码" class="headerlink" title="为何需要编码"></a>为何需要编码</h3><p>由于人类语言种类太多导致标识这些语言的符号太多，无法使用计算机中的一个基本存储单元<code>byte</code>来标识，因此需要经过一些翻译工作，才能让计算机理解。编码就是对字节<code>byte</code>的翻译，即编码情况出现在字符串和字节的互相转化过程中，也就是在IO操作中，IO包括普通文件IO以及网络IO。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/08/25/编码详解/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-08-25T01:29:38.000Z">
                     <a href="/2016/08/25/native-ajax/">2016-08-25</a>
                 </time>
@@ -172,134 +287,6 @@
     </article>
 
     
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-23T15:13:13.000Z">
-                    <a href="/2016/06/23/JSP与Servlet/">2016-06-23</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/23/JSP与Servlet/"  itemprop="url" >
-                    JSP&&Servlet
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <blockquote>
-<p>JSP即<code>JavaServer Pages</code>，一种使软件开发者可以响应客户端请求，而动态生成HTML、XML或其他格式文档的Web网页技术标准。</p>
-</blockquote>
-<p>JSP是以<code>Java</code>作为脚本语言，Servlet是Java提供的用于<code>开发Web服务器应用的组件</code>。两种都是用于动态生成内容，那么既然有Servlet为什么还要有JSP呢？</p>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/23/JSP与Servlet/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-22T06:46:50.000Z">
-                    <a href="/2016/06/22/Javascript模块化/">2016-06-22</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/22/Javascript模块化/"  itemprop="url" >
-                    Javascript模块化
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <blockquote>
-<p>AMD&amp;&amp;CMD是浏览器端模块化开发的规范，服务器端的规范是CommonJS</p>
-</blockquote>
-<p><img src="http://ww4.sinaimg.cn/large/8b826b79jw1f54e31blynj209g0bymxm.jpg" alt=""></p>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/22/Javascript模块化/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-21T15:38:50.000Z">
-                    <a href="/2016/06/21/转载-Stop-the-cascade/">2016-06-21</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/21/转载-Stop-the-cascade/"  itemprop="url" >
-                    Stop the cascade
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <p>转载自<a href="http://markdotto.com/2012/03/02/stop-the-cascade/">http://markdotto.com/2012/03/02/stop-the-cascade/</a></p>
-<p>Cascading styles is at the core of CSS—hell, it’s in the name—but experience has shown that building systems with too many <em>cascading styles</em> can be detrimental. Some times it’s completely necessary to just <strong>stop the cascade</strong>.</p>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/21/转载-Stop-the-cascade/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-21T14:25:50.000Z">
-                    <a href="/2016/06/21/转载-Scope-CSS-classes-with-prefixes/">2016-06-21</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/21/转载-Scope-CSS-classes-with-prefixes/"  itemprop="url" >
-                    Scope CSS classes with prefixes
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <p>转载自：<a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/">http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/</a></p>
-<p>When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.</p>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/21/转载-Scope-CSS-classes-with-prefixes/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
     <nav class='pagination'>
     
         <a href = '/page/2/' class='alignleft prev'>上一页</a>
@@ -397,6 +384,12 @@
             
                 
                     <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
                         <a  href='/tags/Maven/' title=Maven>Maven</a>
                     </li>
                 
@@ -409,25 +402,31 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
-                    </li>
-                
-            
-                
-                    <li class="tagslist-item">
                         <a  href='/tags/JSON/' title=JSON>JSON</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                        <a  href='/tags/svn/' title=svn>svn</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
                     </li>
                 
             
@@ -469,7 +468,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
                     </li>
                 
             

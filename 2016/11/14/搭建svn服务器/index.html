@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/fonts/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> 搭建svn服务器 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            
+            <div class='headband'></div>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2016/11/14/搭建svn服务器/"  itemprop="url" >
+                    搭建svn服务器
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2016-11-14</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>安装环境为Mac，而Mac本身已经自带了SVN服务端和客户端</p>
+<h3 id="创建SVN-repository"><a href="#创建SVN-repository" class="headerlink" title="创建SVN repository"></a>创建SVN repository</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">svnadmin create /Users/ZHe/Documents/svn/repository</span><br></pre></td></tr></table></figure>
+<h3 id="配置SVN用户权限"><a href="#配置SVN用户权限" class="headerlink" title="配置SVN用户权限"></a>配置SVN用户权限</h3><p>/Users/ZHe/Documents/svn/repository/conf目录下有三文件：authz，passwd，svnserve.conf<br><strong>authz内容</strong>：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">### This file is an example authorization file for svnserve.&#10;### Its format is identical to that of mod_authz_svn authorization&#10;### files.&#10;### As shown below each section defines authorizations for the path and&#10;### (optional) repository specified by the section name.&#10;### The authorizations follow. An authorization line can refer to:&#10;###  - a single user,&#10;###  - a group of users defined in a special [groups] section,&#10;###  - an alias defined in a special [aliases] section,&#10;###  - all authenticated users, using the &#39;$authenticated&#39; token,&#10;###  - only anonymous users, using the &#39;$anonymous&#39; token,&#10;###  - anyone, using the &#39;*&#39; wildcard.&#10;###&#10;### A match can be inverted by prefixing the rule with &#39;~&#39;. Rules can&#10;### grant read (&#39;r&#39;) access, read-write (&#39;rw&#39;) access, or no access&#10;### (&#39;&#39;).&#10;&#10;[aliases]&#10;# joe = /C=XZ/ST=Dessert/L=Snake City/O=Snake Oil, Ltd./OU=Research Institute/CN=Joe Average&#10;&#10;[groups]&#10;# harry_and_sally = harry,sally&#10;# harry_sally_and_joe = harry,sally,&#38;joe&#10;users = hxl,ZHe&#10;&#10;# [/foo/bar]&#10;# harry = rw&#10;# &#38;joe = r&#10;# * =&#10;&#10;[/]&#10;@users = rw&#10;&#10;# [repository:/baz/fuz]&#10;# @harry_and_sally = rw&#10;# * = r</span><br></pre></td></tr></table></figure></p>
+<p><strong>passwd内容</strong>：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">### This file is an example password file for svnserve.&#10;### Its format is similar to that of svnserve.conf. As shown in the&#10;### example below it contains one section labelled [users].&#10;### The name and password for each user follow, one account per line.&#10;&#10;[users]&#10;# harry = harryssecret&#10;# sally = sallyssecret&#10;&#10;ZHe = 123&#10;hxl = 123</span><br></pre></td></tr></table></figure></p>
+<p><strong>svnserve.conf内容</strong>：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">### This file controls the configuration of the svnserve daemon, if you&#10;### use it to allow access to this repository.  (If you only allow&#10;### access through http: and/or file: URLs, then this file is&#10;### irrelevant.)&#10;&#10;### Visit http://subversion.apache.org/ for more information.&#10;&#10;[general]&#10;### The anon-access and auth-access options control access to the&#10;### repository for unauthenticated (a.k.a. anonymous) users and&#10;### authenticated users, respectively.&#10;### Valid values are &#34;write&#34;, &#34;read&#34;, and &#34;none&#34;.&#10;### Setting the value to &#34;none&#34; prohibits both reading and writing;&#10;### &#34;read&#34; allows read-only access, and &#34;write&#34; allows complete &#10;### read/write access to the repository.&#10;### The sample settings below are the defaults and specify that anonymous&#10;### users have read-only access to the repository, while authenticated&#10;### users have read and write access to the repository.&#10;anon-access = read&#10;auth-access = write&#10;### The password-db option controls the location of the password&#10;### database file.  Unless you specify a path starting with a /,&#10;### the file&#39;s location is relative to the directory containing&#10;### this configuration file.&#10;### If SASL is enabled (see below), this file will NOT be used.&#10;### Uncomment the line below to use the default password file.&#10;password-db = passwd&#10;### The authz-db option controls the location of the authorization&#10;### rules for path-based access control.  Unless you specify a path&#10;### starting with a /, the file&#39;s location is relative to the the&#10;### directory containing this file.  If you don&#39;t specify an&#10;### authz-db, no path-based access control is done.&#10;### Uncomment the line below to use the default authorization file.&#10;authz-db = authz&#10;### This option specifies the authentication realm of the repository.&#10;### If two repositories have the same authentication realm, they should&#10;### have the same password database, and vice versa.  The default realm&#10;### is repository&#39;s uuid.&#10;# realm = My First Repository&#10;### The force-username-case option causes svnserve to case-normalize&#10;### usernames before comparing them against the authorization rules in the&#10;### authz-db file configured above.  Valid values are &#34;upper&#34; (to upper-&#10;### case the usernames), &#34;lower&#34; (to lowercase the usernames), and&#10;### &#34;none&#34; (to compare usernames as-is without case conversion, which&#10;### is the default behavior).&#10;# force-username-case = none&#10;&#10;[sasl]&#10;### This option specifies whether you want to use the Cyrus SASL&#10;### library for authentication. Default is false.&#10;### This section will be ignored if svnserve is not built with Cyrus&#10;### SASL support; to check, run &#39;svnserve --version&#39; and look for a line&#10;### reading &#39;Cyrus SASL authentication is available.&#39;&#10;# use-sasl = true&#10;### These options specify the desired strength of the security layer&#10;### that you want SASL to provide. 0 means no encryption, 1 means&#10;### integrity-checking only, values larger than 1 are correlated&#10;### to the effective key length for encryption (e.g. 128 means 128-bit&#10;### encryption). The values below are the defaults.&#10;# min-encryption = 0&#10;# max-encryption = 256</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动SVN服务器"><a href="#启动SVN服务器" class="headerlink" title="启动SVN服务器"></a>启动SVN服务器</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">svnserve -d -r /Users/ZHe/Documents/svn/repository</span><br></pre></td></tr></table></figure>
+<h3 id="将项目导入SVN服务器"><a href="#将项目导入SVN服务器" class="headerlink" title="将项目导入SVN服务器"></a>将项目导入SVN服务器</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">svn import /Users/ZHe/Documents/MyEclipseProfessional2014/workflow_odoc http://192.168.202.71/svn/workflow_odoc/  --username zhenghe --password 9803dd -m &#34;&#21021;&#22987;&#23548;&#20837;&#34;</span><br></pre></td></tr></table></figure>
+<h3 id="将项目签出到本地工作目录"><a href="#将项目签出到本地工作目录" class="headerlink" title="将项目签出到本地工作目录"></a>将项目签出到本地工作目录</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">checkout http://192.168.202.71/svn/workflow_odoc -r HEAD --depth=infinity --force</span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/14/搭建svn服务器/"
+           data-title="搭建svn服务器" data-url="http://zhenghe39.com/2016/11/14/搭建svn服务器/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+                
+                
+                
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='sidebar-nav-content'>
+                    
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#创建SVN-repository"><span class="nav-menu-text">创建SVN repository</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#配置SVN用户权限"><span class="nav-menu-text">配置SVN用户权限</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#启动SVN服务器"><span class="nav-menu-text">启动SVN服务器</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#将项目导入SVN服务器"><span class="nav-menu-text">将项目导入SVN服务器</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#将项目签出到本地工作目录"><span class="nav-menu-text">将项目签出到本地工作目录</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+                        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Maven/' title=Maven>Maven</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/SPA/' title=SPA>SPA</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/软件设计/' title=软件设计>软件设计</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/vi/' title=vi>vi</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+                    </div>
+                </div>
+        </div>
+    </aside>
+
+
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
+<script>
+      /*
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+        */
+
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
+            activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
+            distinguishLineScale:0,
+            events:{
+                'scrollNav':function($curNavItem,$navMenu,curNavItemHeight,curNavItemTop){
+                    if(!$curNavItem){
+                        return;
+                    }
+
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        //'top':$curNavItem.offset().top-$navMenu.offset().top,
+                        'top':curNavItemTop,
+                        'height':curNavItemHeight+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
+</script>
+    </body>
+</html>

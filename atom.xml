@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-11-14T10:30:59.000Z</updated>
+  <updated>2016-11-14T15:28:03.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,116 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dom坐标参数的获取</title>
+    <link href="http://zhenghe39.com/2016/11/14/Dom%E5%9D%90%E6%A0%87%E5%8F%82%E6%95%B0%E7%9A%84%E8%8E%B7%E5%8F%96/"/>
+    <id>http://zhenghe39.com/2016/11/14/Dom坐标参数的获取/</id>
+    <published>2016-11-14T15:16:58.000Z</published>
+    <updated>2016-11-14T15:28:03.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;获取Dom相对于视窗的坐标&quot;&gt;&lt;a href=&quot;#获取Dom相对于视窗的坐标&quot; class=&quot;headerlink&quot; title=&quot;获取Dom相对于视窗的坐标&quot;&gt;&lt;/a&gt;获取Dom相对于视窗的坐标&lt;/h3&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//jQuery &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$el.offset();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//Native&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getOffset&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;el&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;//返回一个TextRectangle对象，包含left, top, right和bottom几个只读属性，以px为单位来表示边界框相对视窗左上角的位置。&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;const&lt;/span&gt; box = el.getBoundingClientRect();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    top: box.top + &lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.pageYOffset - &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.documentElement.clientTop,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    left: box.left + &lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.pageXOffset - &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.documentElement.clientLeft&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;获取Dom相对于父元素的坐标&quot;&gt;&lt;a href=&quot;#获取Dom相对于父元素的坐标&quot; class=&quot;headerlink&quot; title=&quot;获取Dom相对于父元素的坐标&quot;&gt;&lt;/a&gt;获取Dom相对于父元素的坐标&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//jQuery&amp;#10;$el.position();&amp;#10;//Native&amp;#10;&amp;#123;&amp;#10;  left:el.offsetLeft,&amp;#10;  top:el.offsetTop&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;鼠标事件对象的坐标参数&quot;&gt;&lt;a href=&quot;#鼠标事件对象的坐标参数&quot; class=&quot;headerlink&quot; title=&quot;鼠标事件对象的坐标参数&quot;&gt;&lt;/a&gt;鼠标事件对象的坐标参数&lt;/h3&gt;&lt;p&gt;&lt;code&gt;event.clientX&lt;/code&gt;和&lt;code&gt;event.pageX&lt;/code&gt;的参照点都是浏览器内容区域的左上角。不同的是，&lt;code&gt;clientX&lt;/code&gt;的参照点会随滚动条的移动而移动，而&lt;code&gt;pageX&lt;/code&gt;的参照点不会随滚动条而变动。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;获取Dom相对于视窗的坐标&quot;&gt;&lt;a href=&quot;#获取Dom相对于视窗的坐标&quot; class=&quot;headerlink&quot; title=&quot;获取Dom相对于视窗的坐标&quot;&gt;&lt;/a&gt;获取Dom相对于视窗的坐标&lt;/h3&gt;&lt;figure class=&quot;highlight java
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Dom" scheme="http://zhenghe39.com/tags/Dom/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>encodeURIComponent</title>
+    <link href="http://zhenghe39.com/2016/11/14/encodeURIComponent/"/>
+    <id>http://zhenghe39.com/2016/11/14/encodeURIComponent/</id>
+    <published>2016-11-14T13:57:28.000Z</published>
+    <updated>2016-11-14T15:08:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最常见的通信错误是格式不正确的URL，没有使用encodeURIComponent对QueryString进行编码。&lt;br&gt;例如，下面这个URL格式就是不正确：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://www.yourdomain.com/?redir=http://www.someotherdomain.com?a=b&amp;#38;c=d&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;得对QueryString部分进行URI编码获得：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;http://www.yourdomain.com/?redir=http%eA%2F%2Fwww.someotherdomain.com%3Fa%3Db%26c%3Dd&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;提供对QueryString进行编码的函数：&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;addQueryStringArg&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;url, name, value&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(url.indexOf(&lt;span class=&quot;string&quot;&gt;&#39;?&#39;&lt;/span&gt;) == -&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += &lt;span class=&quot;string&quot;&gt;&#39;?&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += &lt;span class=&quot;string&quot;&gt;&#39;&amp;amp;&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  url += &lt;span class=&quot;built_in&quot;&gt;encodeURIComponent&lt;/span&gt;(name) + &lt;span class=&quot;string&quot;&gt;&#39;=&#39;&lt;/span&gt; +&lt;span class=&quot;built_in&quot;&gt;encodeURIComponent&lt;/span&gt;(value);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; url;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最常见的通信错误是格式不正确的URL，没有使用encodeURIComponent对QueryString进行编码。&lt;br&gt;例如，下面这个URL格式就是不正确：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建svn服务器</title>
+    <link href="http://zhenghe39.com/2016/11/14/%E6%90%AD%E5%BB%BAsvn%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://zhenghe39.com/2016/11/14/搭建svn服务器/</id>
+    <published>2016-11-14T11:46:49.000Z</published>
+    <updated>2016-11-14T15:15:35.000Z</updated>
+    
+    <content type="html">&lt;p&gt;安装环境为Mac，而Mac本身已经自带了SVN服务端和客户端&lt;/p&gt;
+&lt;h3 id=&quot;创建SVN-repository&quot;&gt;&lt;a href=&quot;#创建SVN-repository&quot; class=&quot;headerlink&quot; title=&quot;创建SVN repository&quot;&gt;&lt;/a&gt;创建SVN repository&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;svnadmin create /Users/ZHe/Documents/svn/repository&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;配置SVN用户权限&quot;&gt;&lt;a href=&quot;#配置SVN用户权限&quot; class=&quot;headerlink&quot; title=&quot;配置SVN用户权限&quot;&gt;&lt;/a&gt;配置SVN用户权限&lt;/h3&gt;&lt;p&gt;/Users/ZHe/Documents/svn/repository/conf目录下有三文件：authz，passwd，svnserve.conf&lt;br&gt;&lt;strong&gt;authz内容&lt;/strong&gt;：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;### This file is an example authorization file for svnserve.&amp;#10;### Its format is identical to that of mod_authz_svn authorization&amp;#10;### files.&amp;#10;### As shown below each section defines authorizations for the path and&amp;#10;### (optional) repository specified by the section name.&amp;#10;### The authorizations follow. An authorization line can refer to:&amp;#10;###  - a single user,&amp;#10;###  - a group of users defined in a special [groups] section,&amp;#10;###  - an alias defined in a special [aliases] section,&amp;#10;###  - all authenticated users, using the &amp;#39;$authenticated&amp;#39; token,&amp;#10;###  - only anonymous users, using the &amp;#39;$anonymous&amp;#39; token,&amp;#10;###  - anyone, using the &amp;#39;*&amp;#39; wildcard.&amp;#10;###&amp;#10;### A match can be inverted by prefixing the rule with &amp;#39;~&amp;#39;. Rules can&amp;#10;### grant read (&amp;#39;r&amp;#39;) access, read-write (&amp;#39;rw&amp;#39;) access, or no access&amp;#10;### (&amp;#39;&amp;#39;).&amp;#10;&amp;#10;[aliases]&amp;#10;# joe = /C=XZ/ST=Dessert/L=Snake City/O=Snake Oil, Ltd./OU=Research Institute/CN=Joe Average&amp;#10;&amp;#10;[groups]&amp;#10;# harry_and_sally = harry,sally&amp;#10;# harry_sally_and_joe = harry,sally,&amp;#38;joe&amp;#10;users = hxl,ZHe&amp;#10;&amp;#10;# [/foo/bar]&amp;#10;# harry = rw&amp;#10;# &amp;#38;joe = r&amp;#10;# * =&amp;#10;&amp;#10;[/]&amp;#10;@users = rw&amp;#10;&amp;#10;# [repository:/baz/fuz]&amp;#10;# @harry_and_sally = rw&amp;#10;# * = r&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;passwd内容&lt;/strong&gt;：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;### This file is an example password file for svnserve.&amp;#10;### Its format is similar to that of svnserve.conf. As shown in the&amp;#10;### example below it contains one section labelled [users].&amp;#10;### The name and password for each user follow, one account per line.&amp;#10;&amp;#10;[users]&amp;#10;# harry = harryssecret&amp;#10;# sally = sallyssecret&amp;#10;&amp;#10;ZHe = 123&amp;#10;hxl = 123&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;svnserve.conf内容&lt;/strong&gt;：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;### This file controls the configuration of the svnserve daemon, if you&amp;#10;### use it to allow access to this repository.  (If you only allow&amp;#10;### access through http: and/or file: URLs, then this file is&amp;#10;### irrelevant.)&amp;#10;&amp;#10;### Visit http://subversion.apache.org/ for more information.&amp;#10;&amp;#10;[general]&amp;#10;### The anon-access and auth-access options control access to the&amp;#10;### repository for unauthenticated (a.k.a. anonymous) users and&amp;#10;### authenticated users, respectively.&amp;#10;### Valid values are &amp;#34;write&amp;#34;, &amp;#34;read&amp;#34;, and &amp;#34;none&amp;#34;.&amp;#10;### Setting the value to &amp;#34;none&amp;#34; prohibits both reading and writing;&amp;#10;### &amp;#34;read&amp;#34; allows read-only access, and &amp;#34;write&amp;#34; allows complete &amp;#10;### read/write access to the repository.&amp;#10;### The sample settings below are the defaults and specify that anonymous&amp;#10;### users have read-only access to the repository, while authenticated&amp;#10;### users have read and write access to the repository.&amp;#10;anon-access = read&amp;#10;auth-access = write&amp;#10;### The password-db option controls the location of the password&amp;#10;### database file.  Unless you specify a path starting with a /,&amp;#10;### the file&amp;#39;s location is relative to the directory containing&amp;#10;### this configuration file.&amp;#10;### If SASL is enabled (see below), this file will NOT be used.&amp;#10;### Uncomment the line below to use the default password file.&amp;#10;password-db = passwd&amp;#10;### The authz-db option controls the location of the authorization&amp;#10;### rules for path-based access control.  Unless you specify a path&amp;#10;### starting with a /, the file&amp;#39;s location is relative to the the&amp;#10;### directory containing this file.  If you don&amp;#39;t specify an&amp;#10;### authz-db, no path-based access control is done.&amp;#10;### Uncomment the line below to use the default authorization file.&amp;#10;authz-db = authz&amp;#10;### This option specifies the authentication realm of the repository.&amp;#10;### If two repositories have the same authentication realm, they should&amp;#10;### have the same password database, and vice versa.  The default realm&amp;#10;### is repository&amp;#39;s uuid.&amp;#10;# realm = My First Repository&amp;#10;### The force-username-case option causes svnserve to case-normalize&amp;#10;### usernames before comparing them against the authorization rules in the&amp;#10;### authz-db file configured above.  Valid values are &amp;#34;upper&amp;#34; (to upper-&amp;#10;### case the usernames), &amp;#34;lower&amp;#34; (to lowercase the usernames), and&amp;#10;### &amp;#34;none&amp;#34; (to compare usernames as-is without case conversion, which&amp;#10;### is the default behavior).&amp;#10;# force-username-case = none&amp;#10;&amp;#10;[sasl]&amp;#10;### This option specifies whether you want to use the Cyrus SASL&amp;#10;### library for authentication. Default is false.&amp;#10;### This section will be ignored if svnserve is not built with Cyrus&amp;#10;### SASL support; to check, run &amp;#39;svnserve --version&amp;#39; and look for a line&amp;#10;### reading &amp;#39;Cyrus SASL authentication is available.&amp;#39;&amp;#10;# use-sasl = true&amp;#10;### These options specify the desired strength of the security layer&amp;#10;### that you want SASL to provide. 0 means no encryption, 1 means&amp;#10;### integrity-checking only, values larger than 1 are correlated&amp;#10;### to the effective key length for encryption (e.g. 128 means 128-bit&amp;#10;### encryption). The values below are the defaults.&amp;#10;# min-encryption = 0&amp;#10;# max-encryption = 256&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;启动SVN服务器&quot;&gt;&lt;a href=&quot;#启动SVN服务器&quot; class=&quot;headerlink&quot; title=&quot;启动SVN服务器&quot;&gt;&lt;/a&gt;启动SVN服务器&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;svnserve -d -r /Users/ZHe/Documents/svn/repository&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;将项目导入SVN服务器&quot;&gt;&lt;a href=&quot;#将项目导入SVN服务器&quot; class=&quot;headerlink&quot; title=&quot;将项目导入SVN服务器&quot;&gt;&lt;/a&gt;将项目导入SVN服务器&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;svn import /Users/ZHe/Documents/MyEclipseProfessional2014/workflow_odoc http://192.168.202.71/svn/workflow_odoc/  --username zhenghe --password 9803dd -m &amp;#34;&amp;#21021;&amp;#22987;&amp;#23548;&amp;#20837;&amp;#34;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;将项目签出到本地工作目录&quot;&gt;&lt;a href=&quot;#将项目签出到本地工作目录&quot; class=&quot;headerlink&quot; title=&quot;将项目签出到本地工作目录&quot;&gt;&lt;/a&gt;将项目签出到本地工作目录&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;checkout http://192.168.202.71/svn/workflow_odoc -r HEAD --depth=infinity --force&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装环境为Mac，而Mac本身已经自带了SVN服务端和客户端&lt;/p&gt;
+&lt;h3 id=&quot;创建SVN-repository&quot;&gt;&lt;a href=&quot;#创建SVN-repository&quot; class=&quot;headerlink&quot; title=&quot;创建SVN repository&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="svn" scheme="http://zhenghe39.com/tags/svn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB-Java驱动的使用</title>
+    <link href="http://zhenghe39.com/2016/11/14/MongoDB-Java%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://zhenghe39.com/2016/11/14/MongoDB-Java驱动的使用/</id>
+    <published>2016-11-14T11:33:54.000Z</published>
+    <updated>2016-11-14T11:41:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;使用的Mongodb-Java驱动版本为&lt;code&gt;mongo-2.10.1.jar&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;获取数据库连接&quot;&gt;&lt;a href=&quot;#获取数据库连接&quot; class=&quot;headerlink&quot; title=&quot;获取数据库连接&quot;&gt;&lt;/a&gt;获取数据库连接&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Mongo mongo = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; MongoClient(&lt;span class=&quot;string&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;27017&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//连接mongodb服务器&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DB db = mongo.getDB(&lt;span class=&quot;string&quot;&gt;&quot;UserDB&quot;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//数据库“UserDB”&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DBCollection deptCollection = db.getCollection(&lt;span class=&quot;string&quot;&gt;&quot;Dept&quot;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//获得集合“Dept”&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//获得当前服务器下的所有数据库名称&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (String str : mongo.getDatabaseNames()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	System.out.println(str);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//获得当前数据库里面的所有聚集集合&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (String str : db.getCollectionNames()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;聚集集合名称： &quot;&lt;/span&gt;+str);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;增&quot;&gt;&lt;a href=&quot;#增&quot; class=&quot;headerlink&quot; title=&quot;增&quot;&gt;&lt;/a&gt;增&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;DBObject dbObject=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject();&lt;span class=&quot;comment&quot;&gt;//document的实体对象，BSON数据类型在java中的抽象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbObject.put(&lt;span class=&quot;string&quot;&gt;&quot;_id&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ObjectId(&lt;span class=&quot;string&quot;&gt;&quot;558ac250f6e449a1a8a7f7d5&quot;&lt;/span&gt;));&lt;span class=&quot;comment&quot;&gt;//添加键-值对&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbObject.put(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;world&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.save(dbObject).getN()&lt;span class=&quot;comment&quot;&gt;//1条记录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.insert(dbObject, dbObject2).getN()&lt;span class=&quot;comment&quot;&gt;//多条记录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;删&quot;&gt;&lt;a href=&quot;#删&quot; class=&quot;headerlink&quot; title=&quot;删&quot;&gt;&lt;/a&gt;删&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//通过document固有标识_id删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.remove(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;_id&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ObjectId(&lt;span class=&quot;string&quot;&gt;&quot;558ac250f6e449a1a8a7f7d5&quot;&lt;/span&gt;))).getN();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//通过其他标识删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.remove(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;age&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;45&quot;&lt;/span&gt;)).getN();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;改&quot;&gt;&lt;a href=&quot;#改&quot; class=&quot;headerlink&quot; title=&quot;改&quot;&gt;&lt;/a&gt;改&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//这种修改是除了_id没有变外的整个document替换&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.update(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;world&quot;&lt;/span&gt;), &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;ssss&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;illlooooo&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//这种修改是只修改某个键的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.update(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;world&quot;&lt;/span&gt;), &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;$set&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;Java&quot;&lt;/span&gt;)));&lt;span class=&quot;comment&quot;&gt;//修改操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;查&quot;&gt;&lt;a href=&quot;#查&quot; class=&quot;headerlink&quot; title=&quot;查&quot;&gt;&lt;/a&gt;查&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//只查询一条数据，多条去第一条   &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;findOne: &quot;&lt;/span&gt; + dbCollection.findOne());  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;findOne: &quot;&lt;/span&gt; + dbCollection.findOne(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;tag&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;LV&quot;&lt;/span&gt;)));    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;findOne: &quot;&lt;/span&gt; + dbCollection.findOne(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;tag&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;LV&quot;&lt;/span&gt;), &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;tag&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;)));&lt;span class=&quot;comment&quot;&gt;//显示&quot;tag&quot;这个键值对&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//多记录查询：根据age查询documents&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;find age=45: &quot;&lt;/span&gt;+&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		dbCollection.find(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;age&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;45&quot;&lt;/span&gt;)).toArray());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用的Mongodb-Java驱动版本为&lt;code&gt;mongo-2.10.1.jar&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;获取数据库连接&quot;&gt;&lt;a href=&quot;#获取数据库连接&quot; class=&quot;headerlink&quot; title=&quot;获取数据库连接&quot;&gt;&lt;/a&gt;获取数据库连接&lt;
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="mongodb" scheme="http://zhenghe39.com/tags/mongodb/"/>
+    
+  </entry>
   
   <entry>
     <title>Meta标签</title>
@@ -848,400 +958,6 @@ Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services ca
     
     
       <category term="编码" scheme="http://zhenghe39.com/tags/%E7%BC%96%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Native ajax</title>
-    <link href="http://zhenghe39.com/2016/08/25/native-ajax/"/>
-    <id>http://zhenghe39.com/2016/08/25/native-ajax/</id>
-    <published>2016-08-25T01:29:38.000Z</published>
-    <updated>2016-08-25T01:50:58.000Z</updated>
-    
-    <content type="html">&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function addURLParam(url,name,value)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += (url.indexOf(&#39;?&#39;) == -1) ? &#39;?&#39; : &#39;&amp;amp;&#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += encodeURIComponent(name) + &#39;=&#39; + encodeURIComponent(value);//必须&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return url;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var xhr = new XMLHttpRequest();//不建议重用XHR对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//xhr状态改变事件准备&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.onreadystatechange = function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if(4 === xhr.readyState)&amp;#123;//已收到全部响应数据，而且可以在客户端使用了(XMLHttpRequest对象状态的说明)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(xhr.status === 200 || xhr.status === 304)&amp;#123;//响应Http状态的说明，成功返回的标识：200/304&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //收到服务器的响应后，响应数据会自动填充XHR对象的属性&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(xhr.responseText);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&#39;Request was unsuccessful: &#39;+xhr.statusText+xhr.status);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var url = &#39;exmple.php&#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;addURLParam(url,&#39;userName&#39;,&#39;Zhe&#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;addURLParam(url,&#39;password&#39;,&#39;111111&#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.open(‘get&#39;,url,false);//此时并未发送，而只是启动一个请求以备发送&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.send(null);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;这里值得注意的问题是URL上QueryString的编码问题，查询字符串中每个参数的名称和值&lt;br&gt;都必须使用encodeURIComponent进行编码，才能放到URL的末尾,并且使用&amp;amp;分隔！&lt;/p&gt;
-&lt;p&gt;下面是“ajax模拟表单提交”的例子&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; xhr = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; XMLHttpRequest();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.onreadystatechange = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt; === xhr.readyState)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(xhr.status === &lt;span class=&quot;number&quot;&gt;200&lt;/span&gt; || xhr.status === &lt;span class=&quot;number&quot;&gt;304&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(xhr.responseText);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&lt;span class=&quot;string&quot;&gt;&#39;Request was unsuccessful: &#39;&lt;/span&gt;+xhr.statusText+xhr.status);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.open(&lt;span class=&quot;string&quot;&gt;&#39;post&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;postexample.php&#39;&lt;/span&gt;,&lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.setRequestHeader(&lt;span class=&quot;string&quot;&gt;&#39;Content-Type&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;application/x-www-form-urlencoded&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.send($(&lt;span class=&quot;string&quot;&gt;&quot;#user-info&quot;&lt;/span&gt;).serialize(form));&lt;span class=&quot;comment&quot;&gt;//发送表单序列化后的字符串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function addURLParam(url,name,value)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += (url.indexOf(&#39;?&#39;) == -1) ? &#39;?&#39; : &#39;&amp;amp;&#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url += encodeURIComponent(name) + &#39;=&#39; + encodeURIComponent(value);//必须&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return url;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var xhr = new XMLHttpRequest();//不建议重用XHR对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;//xhr状态改变事件准备&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.onreadystatechange = function()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if(4 === xhr.readyState)&amp;#123;//已收到全部响应数据，而且可以在客户端使用了(XMLHttpRequest对象状态的说明)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(xhr.status === 200 || xhr.status === 304)&amp;#123;//响应Http状态的说明，成功返回的标识：200/304&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            //收到服务器的响应后，响应数据会自动填充XHR对象的属性&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(xhr.responseText);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;else&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            alert(&#39;Request was unsuccessful: &#39;+xhr.statusText+xhr.status);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var url = &#39;exmple.php&#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;addURLParam(url,&#39;userName&#39;,&#39;Zhe&#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;addURLParam(url,&#39;password&#39;,&#39;111111&#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.open(‘get&#39;,url,false);//此时并未发送，而只是启动一个请求以备发送&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xhr.send(null);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>media媒体查询器用法总结</title>
-    <link href="http://zhenghe39.com/2016/07/11/%E8%BD%AC%E8%BD%BD-Css3-media%E5%AA%92%E4%BD%93%E6%9F%A5%E8%AF%A2%E5%99%A8%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    <id>http://zhenghe39.com/2016/07/11/转载-Css3-media媒体查询器用法总结/</id>
-    <published>2016-07-11T09:23:51.000Z</published>
-    <updated>2016-07-11T09:42:52.000Z</updated>
-    
-    <content type="html">&lt;p&gt;转载来自 520UED &lt;a href=&quot;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;   随着响应式设计模型的诞生，Web网站又要发生翻天腹地的改革浪潮，可能有些人会觉得在国内IE6用户居高不下的情况下，这些新的技术还不会广泛的蔓延下去，那你就错了，如今淘宝，凡客，携程等等公司都已经在大胆的尝试了这项技术，并完美的应用在了自己的网站上了。再不更新知识你就老了。我今天就总结一下响应式设计的核心CSS技术Media(媒体查询器)的用法。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;准备工作1：设置Meta标签&quot;&gt;&lt;a href=&quot;#准备工作1：设置Meta标签&quot; class=&quot;headerlink&quot; title=&quot;准备工作1：设置Meta标签&quot;&gt;&lt;/a&gt;准备工作1：设置Meta标签&lt;/h3&gt;&lt;p&gt;首先我们在使用Media的时候需要先设置下面这段代码，来兼容移动设备的展示效果：&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这段代码的几个参数解释：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;width = device-width：宽度等于当前设备的宽度&lt;/li&gt;
-&lt;li&gt;initial-scale：初始的缩放比例（默认设置为1.0）  &lt;/li&gt;
-&lt;li&gt;minimum-scale：允许用户缩放到的最小比例（默认设置为1.0）    &lt;/li&gt;
-&lt;li&gt;maximum-scale：允许用户缩放到的最大比例（默认设置为1.0）   &lt;/li&gt;
-&lt;li&gt;user-scalable：用户是否可以手动缩放（默认设置为no，因为我们不希望用户放大缩小页面） &lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;准备工作2：加载兼容文件JS&quot;&gt;&lt;a href=&quot;#准备工作2：加载兼容文件JS&quot; class=&quot;headerlink&quot; title=&quot;准备工作2：加载兼容文件JS&quot;&gt;&lt;/a&gt;准备工作2：加载兼容文件JS&lt;/h3&gt;&lt;p&gt;因为IE8既不支持HTML5也不支持CSS3 Media，所以我们需要加载两个JS文件，来保证我们的代码实现兼容效果：&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;&amp;lt;!--[if lt IE 9]&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;script src=&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;script src=&quot;https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;![endif]--&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;准备工作3：设置IE渲染方式默认为最高-这部分可以选择添加也可以不添加&quot;&gt;&lt;a href=&quot;#准备工作3：设置IE渲染方式默认为最高-这部分可以选择添加也可以不添加&quot; class=&quot;headerlink&quot; title=&quot;准备工作3：设置IE渲染方式默认为最高(这部分可以选择添加也可以不添加)&quot;&gt;&lt;/a&gt;准备工作3：设置IE渲染方式默认为最高(这部分可以选择添加也可以不添加)&lt;/h3&gt;&lt;p&gt;现在有很多人的IE浏览器都升级到IE9以上了，所以这个时候就有又很多诡异的事情发生了，例如现在是IE9的浏览器，但是浏览器的文档模式却是IE8.为了防止这种情况，我们需要下面这段代码来让IE的文档模式永远都是最新的：&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;IE=edge&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;不过我最近又发现了一个更给力的写法：&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;X-UA-Compatible&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;IE=Edge，chrome=1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;怎么这段代码后面加了一个chrome=1，这个Google Chrome Frame（谷歌内嵌浏览器框架GCF），如果有的用户电脑里面装了这个chrome的插件，就可以让电脑里面的IE不管是哪个版本的都可以使用Webkit引擎及V8引擎进行排版及运算，无比给力，不过如果用户没装这个插件，那这段代码就会让IE以最高的文档模式展现效果。这段代码我还是建议你们用上，不过不用也是可以的&lt;/p&gt;
-&lt;h3 id=&quot;CSS3-Media&quot;&gt;&lt;a href=&quot;#CSS3-Media&quot; class=&quot;headerlink&quot; title=&quot;CSS3 Media&quot;&gt;&lt;/a&gt;CSS3 Media&lt;/h3&gt;&lt;p&gt;我们来实现等于960px尺寸的代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;at_rule&quot;&gt;@&lt;span class=&quot;keyword&quot;&gt;media&lt;/span&gt; screen and (max-device-width:&lt;span class=&quot;number&quot;&gt;960px&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;red&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后就是当浏览器尺寸大于960px时候的代码了：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;at_rule&quot;&gt;@&lt;span class=&quot;keyword&quot;&gt;media&lt;/span&gt; screen and (min-width:&lt;span class=&quot;number&quot;&gt;960px&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;orange&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;我们还可以混合使用上面的用法：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;at_rule&quot;&gt;@&lt;span class=&quot;keyword&quot;&gt;media&lt;/span&gt; screen and (min-width:&lt;span class=&quot;number&quot;&gt;960px&lt;/span&gt;) and (max-width:&lt;span class=&quot;number&quot;&gt;1200px&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;tag&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt;yellow&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;上面的这段代码的意思是当页面宽度大于960px小于1200px的时候执行下面的CSS。&lt;/p&gt;
-&lt;h3 id=&quot;Media所有参数汇总&quot;&gt;&lt;a href=&quot;#Media所有参数汇总&quot; class=&quot;headerlink&quot; title=&quot;Media所有参数汇总&quot;&gt;&lt;/a&gt;Media所有参数汇总&lt;/h3&gt;&lt;p&gt;以上就是我们最常需要用到的媒体查询器的三个特性，大于，等于，小于的写法。媒体查询器的全部功能肯定不止这三个功能，下面是我总结的它的一些参数用法解释：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;width:浏览器可视宽度。&lt;/li&gt;
-&lt;li&gt;height:浏览器可视高度。&lt;/li&gt;
-&lt;li&gt;device-width:设备屏幕的宽度。&lt;/li&gt;
-&lt;li&gt;device-height:设备屏幕的高度。&lt;/li&gt;
-&lt;li&gt;orientation:检测设备目前处于横向还是纵向状态。&lt;/li&gt;
-&lt;li&gt;aspect-ratio:检测浏览器可视宽度和高度的比例。(例如：aspect-ratio:16/9)&lt;/li&gt;
-&lt;li&gt;device-aspect-ratio:检测设备的宽度和高度的比例。&lt;/li&gt;
-&lt;li&gt;color:检测颜色的位数。（例如：min-color:32就会检测设备是否拥有32位颜色）&lt;/li&gt;
-&lt;li&gt;color-index:检查设备颜色索引表中的颜色，他的值不能是负数。&lt;/li&gt;
-&lt;li&gt;monochrome:检测单色楨缓冲区域中的每个像素的位数。（这个太高级，估计咱很少会用的到）&lt;/li&gt;
-&lt;li&gt;resolution:检测屏幕或打印机的分辨率。(例如：min-resolution:300dpi或min-resolution:118dpcm)。&lt;/li&gt;
-&lt;li&gt;grid：检测输出的设备是网格的还是位图设备。&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载来自 520UED &lt;a href=&quot;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&quot;&gt;http://www.520ued.com/article/53882d7ab992a7c43f5c204b&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;   随着响应式设计模型的诞生，Web网站又要发生翻天腹地的改革浪潮，可能有些人会觉得在国内IE6用户居高不下的情况下，这些新的技术还不会广泛的蔓延下去，那你就错了，如今淘宝，凡客，携程等等公司都已经在大胆的尝试了这项技术，并完美的应用在了自己的网站上了。再不更新知识你就老了。我今天就总结一下响应式设计的核心CSS技术Media(媒体查询器)的用法。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java基本类型转数据库类型</title>
-    <link href="http://zhenghe39.com/2016/06/28/Java%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B1%BB%E5%9E%8B/"/>
-    <id>http://zhenghe39.com/2016/06/28/Java基本类型转数据库类型/</id>
-    <published>2016-06-28T05:23:00.000Z</published>
-    <updated>2016-07-04T01:03:52.000Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f5avjvoovqj216k0bc422.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;prestatement.setObject(int parameterIndex,Object x) throws SQLException&lt;/code&gt;尝试将Java类型转化为对应的数据库类型。那么这里的Java类型Object会转换为哪种数据库类型呢&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The JDBC specification specifies a standard mapping from Java Object types to SQL types. The given argument will be converted to the corresponding SQL type before being sent to the database.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;JDBC 在 &lt;code&gt;java.sql.Types&lt;/code&gt;类中定义了一系列的常规 SQL 类型标识符。这些类型可用于表示那些最为常用的 SQL 类型。在用 JDBC API 编程时，程序员通常可以使用这些 JDBC 类型来引用一般的 SQL 类型，而无须关心目标数据库所用的确切 SQL 类型的名称。&lt;/p&gt;
-&lt;p&gt;值得注意的是：Java的枚举类型没有&lt;code&gt;SQL type{java.sql.Types}&lt;/code&gt;对应，需手动转化为String类型或其他基本类型。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/mw690/8b826b79gw1f5azpabrfqj20au0si76i.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;以下是Orable的Sql Type和Java类型的转化关系&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f5avp6278pj20rf0ibdji.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f5avjvoovqj216k0bc422.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;prestatement.setObject(int parameterIndex,Object x) throws SQLException&lt;/code&gt;尝试将Java类型转化为对应的数据库类型。那么这里的Java类型Object会转换为哪种数据库类型呢&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Java" scheme="http://zhenghe39.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Javascript正则表达式</title>
-    <link href="http://zhenghe39.com/2016/06/27/JavaScript-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    <id>http://zhenghe39.com/2016/06/27/JavaScript-正则表达式/</id>
-    <published>2016-06-27T08:24:14.000Z</published>
-    <updated>2016-07-11T14:06:14.000Z</updated>
-    
-    <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/dolphinX/p/3486214.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/dolphinX/p/3486214.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;p&gt;JavaScript种正则表达式有两种定义方式，定义一个匹配类似 &lt;code&gt;&amp;lt;%XXX%&amp;gt;&lt;/code&gt;的字符串&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;构造函数&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;RegExp&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;%[^%&amp;gt;]+%&amp;gt;&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;g&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;字面量&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;regexp&quot;&gt;/&amp;lt;%[^%&amp;gt;]%&amp;gt;/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;g： global，全文搜索，默认搜索到第一个结果接停止&lt;/li&gt;
-&lt;li&gt;i： ingore case，忽略大小写，默认大小写敏感&lt;/li&gt;
-&lt;li&gt;m： multiple lines，多行搜索（更改^ 和$的含义，使它们分别在任意一行对待行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;元字符&quot;&gt;&lt;a href=&quot;#元字符&quot; class=&quot;headerlink&quot; title=&quot;元字符&quot;&gt;&lt;/a&gt;元字符&lt;/h3&gt;&lt;p&gt;正则表达式让人望而却步以一个重要原因就是其转义字符太多了，组合非常之多，但是正则表达式的元字符（在正则表达式中具有特殊意义的专用字符，可以用来规定其前导字符）并不多&lt;/p&gt;
-&lt;p&gt;元字符：( [ { \ ^ $ | ) ? * + .&lt;/p&gt;
-&lt;p&gt;并不是每个元字符都有其特定意义，在不同的组合中元字符有不同的意义，分类看一下&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;预定义特殊字符&lt;/strong&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字符&lt;/th&gt;
-&lt;th&gt;含义 &lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;\t&lt;/td&gt;
-&lt;td&gt;水平制表符 &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\r&lt;/td&gt;
-&lt;td&gt;回车符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\n&lt;/td&gt;
-&lt;td&gt;换行符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\f&lt;/td&gt;
-&lt;td&gt;换页符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\v&lt;/td&gt;
-&lt;td&gt;垂直制表符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\0&lt;/td&gt;
-&lt;td&gt;空字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;字符类&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;一般情况下正则表达式一个字符（转义字符算一个）对应字符串一个字符，表达式 ab\t 的含义是&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59vmjfrpuj204f018wea.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;但是我们可以使用元字符[]来构建一个简单的类，所谓类是指，符合某些特征的对象，是一个泛指，而不是特指某个字符了，我们可以使用表达式 [abc] 把字符a或b或c归为一类，表达式可以匹配这类的字符&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59vmw9zg1j204i03jwec.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;元字符[]组合可以创建一个类，我们还可以使用元字符^创建反向类/负向类，反向类的意思是不属于XXX类的内容，表达式 [^abc] 表示不是字符a或b或c的内容&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59vnyhg6yj204e03mt8k.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;范围类&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;按照上面的说明要是我们希望匹配单个数字那么表达式是这样的&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;[0123456789]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;如果是字母那么。。。，好麻烦，正则表达式还提供了范围类，我们可以使用 x-y来连接两个字符表示从x到y的任意字符，这是个闭区间，也就是说包含x和ybenshen，这样匹配小写字母就很简单了&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;[a-z]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59vvs3zxuj204701tmwz.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;要是想匹配所有字母呢？在[]组成的类内部是可以连写的，我们还可以这样写 [a-zA-Z]&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59vwe78a5j204c02oq2t.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;预定义类&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;刚才使用正则我们创建了几个类，来表示数字，字母等，但这样写也很是麻烦，正则表达式为我们提供了几个常用的预定义类来匹配常见的字符&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字符&lt;/th&gt;
-&lt;th&gt;等价类&lt;/th&gt;
-&lt;th&gt;含义 &lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;.&lt;/td&gt;
-&lt;td&gt;[^\n\r]&lt;/td&gt;
-&lt;td&gt;除了所有回车和换行之外的所有字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\d&lt;/td&gt;
-&lt;td&gt;[0-9]&lt;/td&gt;
-&lt;td&gt;数字字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\D&lt;/td&gt;
-&lt;td&gt;[^0-9]&lt;/td&gt;
-&lt;td&gt;非数字字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\s&lt;/td&gt;
-&lt;td&gt;[\t\n\x0B\f\r]&lt;/td&gt;
-&lt;td&gt;空白符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\S&lt;/td&gt;
-&lt;td&gt;[^\t\n\x0B\f\r]&lt;/td&gt;
-&lt;td&gt;非空白符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\w&lt;/td&gt;
-&lt;td&gt;[a-zA-Z_0-9]&lt;/td&gt;
-&lt;td&gt;单词字符（字母、数字、下划线）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\W&lt;/td&gt;
-&lt;td&gt;[^a-zA-Z_0-9]&lt;/td&gt;
-&lt;td&gt;非单词字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;有了这些预定义类，写一些正则就很方便了，比如我们希望匹配一个 ab+数字+任意字符 的字符串，就可以这样写了 &lt;code&gt;ab\d&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59w5mll5yj206j017jr9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;边界&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;正则表达式还提供了几个常用的边界匹配字符&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字符&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;^&lt;/td&gt;
-&lt;td&gt;以xx开头&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;$&lt;/td&gt;
-&lt;td&gt;以xx结尾&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\b&lt;/td&gt;
-&lt;td&gt;单词边界，指[a-zA-Z_0-9]之外的字符&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;\B&lt;/td&gt;
-&lt;td&gt;非单词边界&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;看个不负责任的邮箱正则匹配（切勿模仿，小括号后面会讲到） &lt;code&gt;\w+@\w+\.(com)$&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59wb8hdcrj20bq027glo.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;量词&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;之前我们介绍的方法都是一一匹配的，如果我们希望匹配一个连续出现20次数字的字符串难道我们需要写成这样&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;\d\d\d\d...&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;为此正则表达式引入了一些量词&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字符&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;？&lt;/td&gt;
-&lt;td&gt;出现零次或一次 (最多出现一次)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;+&lt;/td&gt;
-&lt;td&gt;出现一次或多次 （至少出现一次）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;*&lt;/td&gt;
-&lt;td&gt;出现零次或多次 （任意次）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;{n}&lt;/td&gt;
-&lt;td&gt;出现n次&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;{n,m}&lt;/td&gt;
-&lt;td&gt;出现n到m次&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;{n,}&lt;/td&gt;
-&lt;td&gt;至少出现n次&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;看几个使用量词的例子&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;\w+\b Byron&lt;/code&gt; 匹配 单词＋边界＋Byron &lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/\w+\b Byron/&lt;/span&gt;).test(&lt;span class=&quot;string&quot;&gt;&#39;Hi Byron&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//true &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/\w+\b Byron/&lt;/span&gt;).test(&lt;span class=&quot;string&quot;&gt;&#39;Welcome Byron&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//true &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/\w+\b Byron/&lt;/span&gt;).test(&lt;span class=&quot;string&quot;&gt;&#39;HiByron&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;\d+\.\d{1,3}&lt;/code&gt; 匹配三位小数的数字&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79gw1f59wv8thzkj206e01zjra.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;贪婪模式与非贪婪模式&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;看了上面介绍的量词，也许爱思考的同学会想到关于匹配原则的一些问题，比如{3,5}这个量词，要是在句子种出现了十次，那么他是每次匹配三个还是五个，反正3、4、5都满足3～5的条件，量词在默认下是尽可能多的匹配的，也就是大家常说的贪婪模式&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&#39;123456789&#39;&lt;/span&gt;.match(&lt;span class=&quot;regexp&quot;&gt;/\d&amp;#123;3,5&amp;#125;/g&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&quot;12345&quot;, &quot;6789&quot;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt; 既然有贪婪模式，那么肯定会有非贪婪模式，让正则表达式尽可能少的匹配，也就是说一旦成功匹配不不再继续尝试，做法很简单，在量词后加上 ? 即可&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&#39;123456789&#39;&lt;/span&gt;.match(&lt;span class=&quot;regexp&quot;&gt;/\d&amp;#123;3,5&amp;#125;?/g&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&quot;123&quot;, &quot;456&quot;, &quot;789&quot;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt; 分组&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;有时候我们希望使用量词的时候匹配多个字符，而不是像上面例子只是匹配一个，比如希望匹配Byron出现20次的字符串，我们如果写成 &lt;code&gt;Byron{20}&lt;/code&gt; 的话匹配的是Byro＋n出现20次，怎么把Byron作为一个整体呢？使用()就可以达到次目的，我们称为分组&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;(Byron){20}&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f59x2j5kqdj205d02pq2u.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;如果希望匹配Byron或Casper出现20次该怎么办呢？可以使用字符 ｜ 达到或的功效&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;(Byron|Casper){20}&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59x3jwy1tj206t03o0sr.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;我们看到图中有个＃1的东东，那是什么？使用分组的正则表达式会把匹配项也放到分组中，默认就是按数字编号分发的，各异根据编号获得捕获的分组内容，这个在一些希望具体操作第几个匹配项的函数中很有用&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;(Byron).(ok)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79gw1f59x66zwamj2084027aa2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;如果有分组嵌套的情况，外面的组的编号靠前&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;((^|%&amp;gt;)[^\t]*)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59x6ueoj2j209n03v74i.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;有时候我们不希望捕获某些分组，只需要在分组内加上 ?: 就可以了，着并不意味着该分组内容不属于正则表达式，只是不会给这个分组加编号了而已&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;(?:Byron).(ok)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79gw1f59x7tvlh9j207r024wef.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;其实在C#等语言中分组还可以起名字，不过JavaScript不支持&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;前瞻&lt;/strong&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;表达式&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;exp1(?=exp2)&lt;/td&gt;
-&lt;td&gt;匹配后面是exp2的exp1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;exp1(?!exp2)&lt;/td&gt;
-&lt;td&gt;匹配后面不是exp2的exp1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;说的有些抽象，看个例子 &lt;code&gt;good(?=Byron)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f59xc3hgdhj206w025q2v.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?=Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodByron123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&#39;good&#39;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?=Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/bad(?=Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;通过上面例子可以看出 exp1(?=exp2) 表达式会匹配exp1表达式，但只有其后面内容是exp2的时候才会匹配，也就是两个条件，exp1(?!exp2) 比较类似&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;good(?!Byron)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f59xcccxmej206f022q2v.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?!Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodByron123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//null &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/good(?!Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//[&#39;good&#39;] &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;regexp&quot;&gt;/bad(?!Byron)/&lt;/span&gt;).exec(&lt;span class=&quot;string&quot;&gt;&#39;goodCasper123&#39;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/dolphinX/p/3486214.html&quot;&gt;http://www.cnblogs.com/dolphinX/p/3486214.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h3&gt;&lt;p&gt;JavaScript种正则表达式有两种定义方式，定义一个匹配类似 &lt;code&gt;&amp;lt;%XXX%&amp;gt;&lt;/code&gt;的字符串&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;构造函数&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;RegExp&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;%[^%&amp;gt;]+%&amp;gt;&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;g&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;字面量&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; reg=&lt;span class=&quot;regexp&quot;&gt;/&amp;lt;%[^%&amp;gt;]%&amp;gt;/g&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
-&lt;li&gt;g： global，全文搜索，默认搜索到第一个结果接停止&lt;/li&gt;
-&lt;li&gt;i： ingore case，忽略大小写，默认大小写敏感&lt;/li&gt;
-&lt;li&gt;m： multiple lines，多行搜索（更改^ 和$的含义，使它们分别在任意一行对待行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配）&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
     
   </entry>
   
