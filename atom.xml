@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-11-14T07:30:12.000Z</updated>
+  <updated>2016-11-14T08:34:34.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS逻辑运算符小技巧</title>
+    <link href="http://zhenghe39.com/2016/11/14/JS%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+    <id>http://zhenghe39.com/2016/11/14/JS逻辑运算符小技巧/</id>
+    <published>2016-11-14T08:29:42.000Z</published>
+    <updated>2016-11-14T08:34:34.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;!!&quot;&gt;&lt;/a&gt;!!&lt;/h3&gt;&lt;p&gt;!!相当于三元运算符，返回boolean值&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; ret = !!&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementById;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//等同于&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; ret = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementById ? &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt; : &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Note：当值是非空字符串/非零数字时返回true，而当值是空字符串、0或者null时返回false。&lt;/p&gt;
+&lt;h3 id=&quot;amp-amp-和&quot;&gt;&lt;a href=&quot;#amp-amp-和&quot; class=&quot;headerlink&quot; title=&quot;&amp;amp;&amp;amp; 和 ||&quot;&gt;&lt;/a&gt;&amp;amp;&amp;amp; 和 ||&lt;/h3&gt;&lt;p&gt;&lt;code&gt;a() &amp;amp;&amp;amp; b()&lt;/code&gt;:如果执行a()后返回true，则执行b()并返回b的值；如果执行a()后返回false，则整个表达式返回a()的值，b()不执行；&lt;br&gt;&lt;code&gt;a() || b()&lt;/code&gt; :如果执行a()后返回true，则整个表达式返回a()的值，b()不执行；如果执行a()后返回false，则执行b()并返回b()的值；&lt;br&gt;Note:非0的整数都为true，undefined、null和空字符串”” 为false&lt;br&gt;&lt;strong&gt;eg.&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;alert((&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; || &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//结果4 ①&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;alert(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; || &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//结果3 ②&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;alert(&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt; || &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;//结果4 ③&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;!!&quot;&gt;&lt;/a&gt;!!&lt;/h3&gt;&lt;p&gt;!!相当于三元运算符，返回boolean值&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Maven" scheme="http://zhenghe39.com/tags/Maven/"/>
+    
+  </entry>
   
   <entry>
     <title>常见Maven插件的使用</title>
@@ -1224,44 +1251,6 @@ Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services ca
     
     
       <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Stop the cascade</title>
-    <link href="http://zhenghe39.com/2016/06/21/%E8%BD%AC%E8%BD%BD-Stop-the-cascade/"/>
-    <id>http://zhenghe39.com/2016/06/21/转载-Stop-the-cascade/</id>
-    <published>2016-06-21T15:38:50.000Z</published>
-    <updated>2016-07-11T09:17:45.000Z</updated>
-    
-    <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://markdotto.com/2012/03/02/stop-the-cascade/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://markdotto.com/2012/03/02/stop-the-cascade/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Cascading styles is at the core of CSS—hell, it’s in the name—but experience has shown that building systems with too many &lt;em&gt;cascading styles&lt;/em&gt; can be detrimental. Some times it’s completely necessary to just &lt;strong&gt;stop the cascade&lt;/strong&gt;.&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;Let’s take the modal of &lt;a href=&quot;http://getbootstrap.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bootstrap&lt;/a&gt; as an example.&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal-header&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;Modal title&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal-body&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;Modal subheader&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;h3&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;Content for the modal, like additional text and forms, goes here.&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;modal-footer&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;button&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;btn&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;Done&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;button&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Notice how we namespace classes at key levels—each class name begins with &lt;code&gt;modal-&lt;/code&gt;as a prefix. &lt;a href=&quot;http://www.markdotto.com/2012/02/16/scope-css-classes-with-prefixes/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Class name prefixing&lt;/a&gt; makes our code more durable and easier to maintain, but it also better enables us to scope styles to only the relevant elements.&lt;/p&gt;
-&lt;p&gt;Consider this snippet of CSS used to style the modal heading:&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.modal&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;h3&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;By using this generic selector, we inadvertently change the styles of the &lt;code&gt;h3&lt;/code&gt; in the &lt;code&gt;.modal-body&lt;/code&gt;. We’ve introduced an instance of cascading styles—any &lt;code&gt;h3&lt;/code&gt;throughout the &lt;code&gt;.modal&lt;/code&gt; will be center aligned. Therefore, if we wanted the other instances of &lt;code&gt;h3&lt;/code&gt; to be left-aligned, we’d have to override our brand new styles with something like this:&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.modal&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;.modal-body&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;h3&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; left&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;It’s worth noting that this example isn’t without its flaws, but that’s the point. With a little more time and thought, one can easily avoid this problem, avoiding extra lines of code and more complications in the overall system. Had we done things differently and altered our selector, our CSS might look like this:&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;.modal-header&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;h3&lt;/span&gt; &lt;span class=&quot;rules&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;rule&quot;&gt;&lt;span class=&quot;attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;By limiting the scope of a selector, we reduce the likelihood that we need additional code down the line by strengthening each component and limiting the effects of their styles. If done right, we can create an entire system of independent and durable, yet still flexible, components. It’s a promising approach I think, but one not to employ with an iron first.&lt;/p&gt;
-&lt;p&gt;Some CSS should be allowed to cascade. Base typography, links, and the such are prime examples of something not to redeclare over and over again. This would only serve to weigh down a project and make it even more unmanageable. Instead, the goal as always is to strike a balance.&lt;/p&gt;
-&lt;p&gt;Find ways to isolate components and make them more durable by limiting the scope of their CSS. You’ll discover that components can be more easily rearranged without causing adverse effects and the amount of code necessary will likely decrease.&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载自&lt;a href=&quot;http://markdotto.com/2012/03/02/stop-the-cascade/&quot;&gt;http://markdotto.com/2012/03/02/stop-the-cascade/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Cascading styles is at the core of CSS—hell, it’s in the name—but experience has shown that building systems with too many &lt;em&gt;cascading styles&lt;/em&gt; can be detrimental. Some times it’s completely necessary to just &lt;strong&gt;stop the cascade&lt;/strong&gt;.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
     
   </entry>
   
