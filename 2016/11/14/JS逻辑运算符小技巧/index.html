@@ -61,10 +61,14 @@
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <h3 id=""><a href="#" class="headerlink" title="!!"></a>!!</h3><p>!!相当于三元运算符，返回boolean值</p>
+                <h3 id=""><a href="#" class="headerlink" title="!!"></a>!!</h3><p><code>!!</code>相当于三元运算符，返回boolean值</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> ret = !!<span class="built_in">document</span>.getElementById;</span><br><span class="line"><span class="comment">//等同于</span></span><br><span class="line"><span class="keyword">var</span> ret = <span class="built_in">document</span>.getElementById ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
-<p>Note：当值是非空字符串/非零数字时返回true，而当值是空字符串、0或者null时返回false。</p>
-<h3 id="amp-amp-和"><a href="#amp-amp-和" class="headerlink" title="&amp;&amp; 和 ||"></a>&amp;&amp; 和 ||</h3><p><code>a() &amp;&amp; b()</code>:如果执行a()后返回true，则执行b()并返回b的值；如果执行a()后返回false，则整个表达式返回a()的值，b()不执行；<br><code>a() || b()</code> :如果执行a()后返回true，则整个表达式返回a()的值，b()不执行；如果执行a()后返回false，则执行b()并返回b()的值；<br>Note:非0的整数都为true，undefined、null和空字符串”” 为false<br><strong>eg.</strong><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert((<span class="number">1</span> &amp;&amp; <span class="number">3</span> || <span class="number">0</span>) &amp;&amp; <span class="number">4</span>); <span class="comment">//结果4 ①</span></span><br><span class="line">alert(<span class="number">1</span> &amp;&amp; <span class="number">3</span> || <span class="number">0</span> &amp;&amp; <span class="number">4</span>); <span class="comment">//结果3 ②</span></span><br><span class="line">alert(<span class="number">0</span> &amp;&amp; <span class="number">3</span> || <span class="number">1</span> &amp;&amp; <span class="number">4</span>); <span class="comment">//结果4 ③</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Note</strong>：当值是非空字符串/非零数字时返回true，而当值是空字符串、0或者null时返回false。</p>
+<h3 id="amp-amp-和"><a href="#amp-amp-和" class="headerlink" title="&amp;&amp; 和 ||"></a>&amp;&amp; 和 ||</h3><ul>
+<li><code>a() &amp;&amp; b()</code>:如果执行a()后返回true，则执行b()并返回b的值；如果执行a()后返回false，则整个表达式返回a()的值，b()不执行；</li>
+<li><code>a() || b()</code> :如果执行a()后返回true，则整个表达式返回a()的值，b()不执行；如果执行a()后返回false，则执行b()并返回b()的值；</li>
+</ul>
+<p><strong>Note</strong>:非0的整数都为true，undefined、null和空字符串”” 为false<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">alert((<span class="number">1</span> &amp;&amp; <span class="number">3</span> || <span class="number">0</span>) &amp;&amp; <span class="number">4</span>); <span class="comment">//结果4 </span></span><br><span class="line">alert(<span class="number">1</span> &amp;&amp; <span class="number">3</span> || <span class="number">0</span> &amp;&amp; <span class="number">4</span>); <span class="comment">//结果3 </span></span><br><span class="line">alert(<span class="number">0</span> &amp;&amp; <span class="number">3</span> || <span class="number">1</span> &amp;&amp; <span class="number">4</span>); <span class="comment">//结果4</span></span><br></pre></td></tr></table></figure></p>
 
             
         </div>
