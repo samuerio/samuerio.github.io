@@ -44,6 +44,138 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-08-25T01:29:38.000Z">
+                    <a href="/2016/08/25/native-ajax/">2016-08-25</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/08/25/native-ajax/"  itemprop="url" >
+                    Native ajax
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <figure class="highlight"><table><tr><td class="code"><pre><span class="line">function addURLParam(url,name,value)&#123;</span><br><span class="line">    url += (url.indexOf('?') == -1) ? '?' : '&amp;';</span><br><span class="line">    url += encodeURIComponent(name) + '=' + encodeURIComponent(value);//必须</span><br><span class="line">    return url;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var xhr = new XMLHttpRequest();//不建议重用XHR对象</span><br><span class="line">//xhr状态改变事件准备</span><br><span class="line">xhr.onreadystatechange = function()&#123;</span><br><span class="line">    if(4 === xhr.readyState)&#123;//已收到全部响应数据，而且可以在客户端使用了(XMLHttpRequest对象状态的说明)</span><br><span class="line">        if(xhr.status === 200 || xhr.status === 304)&#123;//响应Http状态的说明，成功返回的标识：200/304</span><br><span class="line">            //收到服务器的响应后，响应数据会自动填充XHR对象的属性</span><br><span class="line">            alert(xhr.responseText);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            alert('Request was unsuccessful: '+xhr.statusText+xhr.status);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var url = 'exmple.php';</span><br><span class="line">addURLParam(url,'userName','Zhe');</span><br><span class="line">addURLParam(url,'password','111111');</span><br><span class="line">xhr.open(‘get',url,false);//此时并未发送，而只是启动一个请求以备发送</span><br><span class="line">xhr.send(null);</span><br></pre></td></tr></table></figure>
+                     <div style="text-align:center;">
+                            <a  href="/2016/08/25/native-ajax/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-07-11T09:23:51.000Z">
+                    <a href="/2016/07/11/转载-Css3-media媒体查询器用法总结/">2016-07-11</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/07/11/转载-Css3-media媒体查询器用法总结/"  itemprop="url" >
+                    media媒体查询器用法总结
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <p>转载来自 520UED <a href="http://www.520ued.com/article/53882d7ab992a7c43f5c204b">http://www.520ued.com/article/53882d7ab992a7c43f5c204b</a></p>
+<p>   随着响应式设计模型的诞生，Web网站又要发生翻天腹地的改革浪潮，可能有些人会觉得在国内IE6用户居高不下的情况下，这些新的技术还不会广泛的蔓延下去，那你就错了，如今淘宝，凡客，携程等等公司都已经在大胆的尝试了这项技术，并完美的应用在了自己的网站上了。再不更新知识你就老了。我今天就总结一下响应式设计的核心CSS技术Media(媒体查询器)的用法。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/07/11/转载-Css3-media媒体查询器用法总结/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-06-28T05:23:00.000Z">
+                    <a href="/2016/06/28/Java基本类型转数据库类型/">2016-06-28</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/06/28/Java基本类型转数据库类型/"  itemprop="url" >
+                    Java基本类型转数据库类型
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <p><img src="http://ww3.sinaimg.cn/large/8b826b79gw1f5avjvoovqj216k0bc422.jpg" alt=""></p>
+<p><code>prestatement.setObject(int parameterIndex,Object x) throws SQLException</code>尝试将Java类型转化为对应的数据库类型。那么这里的Java类型Object会转换为哪种数据库类型呢</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/06/28/Java基本类型转数据库类型/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-06-27T08:24:14.000Z">
+                    <a href="/2016/06/27/JavaScript-正则表达式/">2016-06-27</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/06/27/JavaScript-正则表达式/"  itemprop="url" >
+                    Javascript正则表达式
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <p>转载自<a href="http://www.cnblogs.com/dolphinX/p/3486214.html">http://www.cnblogs.com/dolphinX/p/3486214.html</a></p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>JavaScript种正则表达式有两种定义方式，定义一个匹配类似 <code>&lt;%XXX%&gt;</code>的字符串</p>
+<p><strong>构造函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'&lt;%[^%&gt;]+%&gt;'</span>,<span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>字面量</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="regexp">/&lt;%[^%&gt;]%&gt;/g</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>g： global，全文搜索，默认搜索到第一个结果接停止</li>
+<li>i： ingore case，忽略大小写，默认大小写敏感</li>
+<li>m： multiple lines，多行搜索（更改^ 和$的含义，使它们分别在任意一行对待行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配）</li>
+</ul>
+                     <div style="text-align:center;">
+                            <a  href="/2016/06/27/JavaScript-正则表达式/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-06-23T15:13:13.000Z">
                     <a href="/2016/06/23/JSP与Servlet/">2016-06-23</a>
                 </time>
@@ -168,143 +300,6 @@
     </article>
 
     
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-19T23:35:12.000Z">
-                    <a href="/2016/06/20/JS下的JSON解析及序列化/">2016-06-20</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/JS下的JSON解析及序列化/"  itemprop="url" >
-                    JS下的JSON解析及序列化
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <blockquote>
-<p>JSON是一种网络传输常用的数据格式,表现形式为有特殊规则的字符串</p>
-</blockquote>
-<h3 id="解析JSON"><a href="#解析JSON" class="headerlink" title="解析JSON"></a>解析JSON</h3><p>eval是比较古老的解析JSON数据的方式：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> data = <span class="string">'&#123;"name":"sam","age":25,"isSuccess":false&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"("</span>+data+<span class="string">")"</span>));</span><br></pre></td></tr></table></figure>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/20/JS下的JSON解析及序列化/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-19T23:33:52.000Z">
-                    <a href="/2016/06/20/Oracle数据库的监听器/">2016-06-20</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/Oracle数据库的监听器/"  itemprop="url" >
-                    Oracle数据库的监听器
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <blockquote>
-<p>Oracle数据库需要配置监听程序，用于监听<strong>客户端的连接请求</strong></p>
-</blockquote>
-<p><img src="http://ww2.sinaimg.cn/large/8b826b79jw1f1fenxg9j1j20dk04t0th.jpg" alt=""></p>
-<p>以下为「SID」ZHeOracle数据库的监听器配置过程，有如下两种配置方式：</p>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/20/Oracle数据库的监听器/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-19T23:26:30.000Z">
-                    <a href="/2016/06/20/清除浮动/">2016-06-20</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/20/清除浮动/"  itemprop="url" >
-                    清除浮动
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <h3 id="浮动元素下面加clearfix的空标签"><a href="#浮动元素下面加clearfix的空标签" class="headerlink" title="浮动元素下面加clearfix的空标签"></a>浮动元素下面加clearfix的空标签</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">‘clearfix’</span>&gt;</span><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="class">.clearfix</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">zoom</span>:<span class="value"><span class="number">1</span></span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span>,<span class="class">.clearfix</span><span class="pseudo">:before</span><span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">""</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="class">.clearfix</span><span class="pseudo">:after</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">clear</span>:<span class="value"> both</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/20/清除浮动/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-19T04:08:41.000Z">
-                    <a href="/2016/06/19/转载-BFC神奇背后的原理/">2016-06-19</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/19/转载-BFC神奇背后的原理/"  itemprop="url" >
-                    BFC神奇背后的原理
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <p>转载自：<a href="http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html">http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html</a>，部分内容略作调整。</p>
-<h3 id="BFC是什么？"><a href="#BFC是什么？" class="headerlink" title="BFC是什么？"></a>BFC是什么？</h3><p>在解释 BFC 是什么之前，需要先介绍 Box、Formatting Context的概念。</p>
-<p><strong>Box</strong></p>
-<p>Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。 不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。让我们看看有哪些盒子：</p>
-<ul>
-<li>block-level box : display 属性为 block, list-item, table 的元素，会生成 block-level box。并且参与 block fomatting context；</li>
-<li>inline-level box : display属性为 inline, inline-block, inline-table 的元素，会生成 inline-level box。并且参与 inline formatting context；</li>
-<li>run-in box : css3 中才有， 这儿先不讲了。</li>
-</ul>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/19/转载-BFC神奇背后的原理/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
     <nav class='pagination'>
     
         <a href = '/page/3/' class='alignleft prev'>上一页</a>
@@ -396,7 +391,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Http/' title=Http>Http</a>
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
                     </li>
                 
             
@@ -414,7 +409,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
                     </li>
                 
             
@@ -426,13 +427,19 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/svn/' title=svn>svn</a>
+                        <a  href='/tags/Node/' title=Node>Node</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
                     </li>
                 
             
@@ -444,13 +451,19 @@
             
                 
                     <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
                         <a  href='/tags/Dom/' title=Dom>Dom</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
                     </li>
                 
             
@@ -498,7 +511,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Html/' title=Html>Html</a>
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
                     </li>
                 
             

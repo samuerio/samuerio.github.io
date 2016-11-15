@@ -44,6 +44,132 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-03-21T07:17:20.000Z">
+                    <a href="/2016/03/21/Mongodb的启动和备份/">2016-03-21</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/03/21/Mongodb的启动和备份/"  itemprop="url" >
+                    Mongodb的启动和备份
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-03-14T01:25:23.000Z">
+                    <a href="/2016/03/14/浅谈JS闭包和this关键字/">2016-03-14</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/03/14/浅谈JS闭包和this关键字/"  itemprop="url" >
+                    浅谈JS闭包和this关键字
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<p><a href="https://developer.mozilla.org/cn/docs/Web/JavaScript/Closures">闭包</a>是指有权访问另外一个函数作用域变量的函数</p>
+</blockquote>
+<p>举个简单的栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAddFn</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> extra = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b+extra;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回的匿名函数有权访问getAddFn作用域中的<code>extra</code>变量，故形成了一个闭包。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/03/14/浅谈JS闭包和this关键字/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-03-13T13:15:56.000Z">
+                    <a href="/2016/03/13/JS原型链实现继承/">2016-03-13</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/03/13/JS原型链实现继承/"  itemprop="url" >
+                    JS原型链实现继承
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <blockquote>
+<p>ECMAScript只支持实现继承，不支持接口继承，并将原型链作为其主要的实现方式。</p>
+</blockquote>
+<p>每个对象上的__proto__和prototype属性都保存有原型的引用，并且，对__proto__赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/03/13/JS原型链实现继承/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+                <time datetime="2016-03-13T09:02:24.000Z">
+                    <a href="/2016/03/13/负margin与absolute、relative/">2016-03-13</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/03/13/负margin与absolute、relative/"  itemprop="url" >
+                    负margin与absolute、relative
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <h3 id="负margin"><a href="#负margin" class="headerlink" title="负margin"></a>负margin</h3><blockquote>
+<p>参考线是保持不动的</p>
+</blockquote>
+<p><img src="http://ww4.sinaimg.cn/large/8b826b79jw1f1vcf9d4gag20fg0dsjrh.gif" alt=""></p>
+<p>margin-top、margin-left是以外元素为参考线，margin-right、margin-bottom则以元素本身为参考线。</p>
+<p>负margin在一定程度上可以替代「relative」「absolute」达到一定的布局效果。并且负margin始终是处于「标准文档流」中的，对整体布局影响小。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/03/13/负margin与absolute、relative/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-03-13T08:21:24.000Z">
                     <a href="/2016/03/13/Css省略号与换行/">2016-03-13</a>
                 </time>
@@ -191,7 +317,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Http/' title=Http>Http</a>
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
                     </li>
                 
             
@@ -209,7 +335,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
                     </li>
                 
             
@@ -221,13 +353,19 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/svn/' title=svn>svn</a>
+                        <a  href='/tags/Node/' title=Node>Node</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
                     </li>
                 
             
@@ -239,13 +377,19 @@
             
                 
                     <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
                         <a  href='/tags/Dom/' title=Dom>Dom</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
                     </li>
                 
             
@@ -293,7 +437,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Html/' title=Html>Html</a>
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
                     </li>
                 
             
