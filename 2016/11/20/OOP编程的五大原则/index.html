@@ -62,7 +62,10 @@
         <div class="post-body" itemprop="articleBody">
             
                 <h3 id="SRP"><a href="#SRP" class="headerlink" title="SRP"></a>SRP</h3><p>SRP(Single Responsibility Principle):单一职责原则</p>
-<h3 id="LSP"><a href="#LSP" class="headerlink" title="LSP"></a>LSP</h3><p>LSP(Liskov Substitution):里氏替换原则<br>Java运行时多态(继承、接口)特性，可以将设计中的静态结构改为动态结构，维持设计的封闭性。“多态”由继承语义实现，那我们如何去度量继承关系的质量呢？，这时候就需要「里氏替换原则」了.<br>里氏替换原则：继承必须确保超类所拥有的行为在子类中仍然成立。<br>举个栗子：类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 </p>
+<h3 id="LSP"><a href="#LSP" class="headerlink" title="LSP"></a>LSP</h3><p>LSP(Liskov Substitution):里氏替换原则</p>
+<p>Java运行时多态(继承、接口)特性，可以将设计中的静态结构改为动态结构，维持设计的封闭性。“多态”由继承语义实现，那我们如何去度量继承关系的质量呢？，这时候就需要「里氏替换原则」了.</p>
+<p>里氏替换原则：继承必须确保超类所拥有的行为在子类中仍然成立。</p>
+<p><strong>举个栗子</strong>：类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 </p>
 <h3 id="OCP"><a href="#OCP" class="headerlink" title="OCP"></a>OCP</h3><p>OCP(Closed for Modification;Open for Extension):开闭原则<br><strong>为什么需要OCP呢？</strong><br>  你给系统封装了访问MySql数据库的类，使得系统支持MySql。某一天，需求增加了，要对SQL Server数据库进行支持，你可能觉得这很简单，类里加个Type参数，if-else区别处理就好。但是需求继续膨胀，SQLite、Oracle…都要支持，继续else-if,else-if，加着加着你突然发现原来运行正常的MySql出现了异常，debug发现原来耦合太多，改着改着把既有的改错了。</p>
 <p><strong>如何OCP呢？</strong><br>  你抽离出数据库访问的接口类IDatabase，使得系统对数据的访问依赖接口而不是具体的实现类，让MySql数据库访问类实现IDatabase，间接使得系统支持了MySql。后面如果需要支持其他数据库，只要单独创建一个新类实现IDatabase接口即可，对既有的Mysql访问实现类不需要做任何改动(Closed for Modification).</p>
 <h3 id="DIP"><a href="#DIP" class="headerlink" title="DIP"></a>DIP</h3><p>DIP(Dependence Inversion Principle):依赖倒置<br>原则：要依赖于抽象，不要依赖于具体</p>

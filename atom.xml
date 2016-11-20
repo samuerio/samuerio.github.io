@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-11-20T07:13:05.000Z</updated>
+  <updated>2016-11-20T13:47:12.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -20,10 +20,13 @@
     <link href="http://zhenghe39.com/2016/11/20/OOP%E7%BC%96%E7%A8%8B%E7%9A%84%E4%BA%94%E5%A4%A7%E5%8E%9F%E5%88%99/"/>
     <id>http://zhenghe39.com/2016/11/20/OOP编程的五大原则/</id>
     <published>2016-11-20T07:07:19.000Z</published>
-    <updated>2016-11-20T07:13:05.000Z</updated>
+    <updated>2016-11-20T13:47:12.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;SRP&quot;&gt;&lt;a href=&quot;#SRP&quot; class=&quot;headerlink&quot; title=&quot;SRP&quot;&gt;&lt;/a&gt;SRP&lt;/h3&gt;&lt;p&gt;SRP(Single Responsibility Principle):单一职责原则&lt;/p&gt;
-&lt;h3 id=&quot;LSP&quot;&gt;&lt;a href=&quot;#LSP&quot; class=&quot;headerlink&quot; title=&quot;LSP&quot;&gt;&lt;/a&gt;LSP&lt;/h3&gt;&lt;p&gt;LSP(Liskov Substitution):里氏替换原则&lt;br&gt;Java运行时多态(继承、接口)特性，可以将设计中的静态结构改为动态结构，维持设计的封闭性。“多态”由继承语义实现，那我们如何去度量继承关系的质量呢？，这时候就需要「里氏替换原则」了.&lt;br&gt;里氏替换原则：继承必须确保超类所拥有的行为在子类中仍然成立。&lt;br&gt;举个栗子：类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 &lt;/p&gt;
+&lt;h3 id=&quot;LSP&quot;&gt;&lt;a href=&quot;#LSP&quot; class=&quot;headerlink&quot; title=&quot;LSP&quot;&gt;&lt;/a&gt;LSP&lt;/h3&gt;&lt;p&gt;LSP(Liskov Substitution):里氏替换原则&lt;/p&gt;
+&lt;p&gt;Java运行时多态(继承、接口)特性，可以将设计中的静态结构改为动态结构，维持设计的封闭性。“多态”由继承语义实现，那我们如何去度量继承关系的质量呢？，这时候就需要「里氏替换原则」了.&lt;/p&gt;
+&lt;p&gt;里氏替换原则：继承必须确保超类所拥有的行为在子类中仍然成立。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;举个栗子&lt;/strong&gt;：类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 &lt;/p&gt;
 &lt;h3 id=&quot;OCP&quot;&gt;&lt;a href=&quot;#OCP&quot; class=&quot;headerlink&quot; title=&quot;OCP&quot;&gt;&lt;/a&gt;OCP&lt;/h3&gt;&lt;p&gt;OCP(Closed for Modification;Open for Extension):开闭原则&lt;br&gt;&lt;strong&gt;为什么需要OCP呢？&lt;/strong&gt;&lt;br&gt;  你给系统封装了访问MySql数据库的类，使得系统支持MySql。某一天，需求增加了，要对SQL Server数据库进行支持，你可能觉得这很简单，类里加个Type参数，if-else区别处理就好。但是需求继续膨胀，SQLite、Oracle…都要支持，继续else-if,else-if，加着加着你突然发现原来运行正常的MySql出现了异常，debug发现原来耦合太多，改着改着把既有的改错了。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;如何OCP呢？&lt;/strong&gt;&lt;br&gt;  你抽离出数据库访问的接口类IDatabase，使得系统对数据的访问依赖接口而不是具体的实现类，让MySql数据库访问类实现IDatabase，间接使得系统支持了MySql。后面如果需要支持其他数据库，只要单独创建一个新类实现IDatabase接口即可，对既有的Mysql访问实现类不需要做任何改动(Closed for Modification).&lt;/p&gt;
 &lt;h3 id=&quot;DIP&quot;&gt;&lt;a href=&quot;#DIP&quot; class=&quot;headerlink&quot; title=&quot;DIP&quot;&gt;&lt;/a&gt;DIP&lt;/h3&gt;&lt;p&gt;DIP(Dependence Inversion Principle):依赖倒置&lt;br&gt;原则：要依赖于抽象，不要依赖于具体&lt;/p&gt;
