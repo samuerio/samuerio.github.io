@@ -175,7 +175,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
                     </li>
                 
             
@@ -193,19 +199,31 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Http/' title=Http>Http</a>
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                        <a  href='/tags/OOP/' title=OOP>OOP</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                        <a  href='/tags/MvvM/' title=MvvM>MvvM</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
                     </li>
                 
             
@@ -217,7 +235,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
                     </li>
                 
             
@@ -229,7 +247,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
                     </li>
                 
             
@@ -247,7 +265,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
                     </li>
                 
             
@@ -283,19 +301,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/编码/' title=编码>编码</a>
-                    </li>
-                
-            
-                
-                    <li class="tagslist-item">
-                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
                     </li>
                 
             
@@ -354,22 +366,23 @@
             fixOffsetClass:'post-toc-fix',
             distinguishLineScale:0,
             events:{
-                'scrollNav':function($curNavItem,$navMenu,curNavItemHeight,curNavItemTop){
-                    if(!$curNavItem){
+                'scrollNav':function(navItem,$navMenu){
+                    if(!navItem){
                         return;
                     }
 
                     $('.highlight-title').show();
                     $('.highlight-title').css({
-                        //'top':$curNavItem.offset().top-$navMenu.offset().top,
-                        'top':curNavItemTop,
-                        'height':curNavItemHeight+'px'
+                        'top':navItem.top,
+                        'height':navItem.height+'px'
                     });
                 }
             }
         });
         /*
         navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            $('.highlight-title').hide();
+
             if(!$curNavItem){
                 return;
             }

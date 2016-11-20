@@ -1,0 +1,413 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/fonts/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> JSP标签 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            
+            <div class='headband'></div>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2016/11/20/JSP标签/"  itemprop="url" >
+                    JSP标签
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2016-11-20</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>JSP标签能让你快捷地操作<code>域对象</code>里面的变量，提供逻辑判断，遍历等。</p>
+<h3 id="JSP内置标签"><a href="#JSP内置标签" class="headerlink" title="JSP内置标签"></a>JSP内置标签</h3><ul>
+<li>静态包含：<code>@include</code>指令实现。原理是先合并再进行翻译，要避免变量重名。</li>
+<li>动态包含：<code>&lt;jsp:include page=&quot;&quot; /&gt;</code>使用内置标签。原理是先翻译再合并。动态包含可以使用<code>&lt;jsp:param/&gt;</code>标签携带参数到被包含页面。</li>
+</ul>
+<h3 id="JSTL标签库"><a href="#JSTL标签库" class="headerlink" title="JSTL标签库"></a>JSTL标签库</h3><p>JSTL即Java Standard Tag Library，包含：</p>
+<ul>
+<li>核心标签库（c： 设置变量，获取变量，条件判断，循环  ）（主要）</li>
+<li>EL函数库  （ fn：对String常用的方法 ）</li>
+</ul>
+<p><strong>核心库中常用的几种标签</strong></p>
+<ul>
+<li><code>&lt;c:set&gt;&lt;/c:set&gt;</code>      – 设置数据</li>
+<li><code>&lt;c:out value=&quot;&quot;&gt;&lt;/c:out&gt;</code>   –得到数据</li>
+<li><code>&lt;c:if test=&quot;&quot;&gt;&lt;/c:if&gt;</code>      –单条件判断</li>
+<li><code>&lt;c:choose&gt;&lt;/c:choose&gt;</code>    –多条件判断</li>
+<li><code>&lt;c:when test=&quot;&quot;&gt;&lt;/c:when&gt;</code></li>
+<li><code>&lt;c:otherwise&gt;&lt;/c:otherwise&gt;</code></li>
+<li><code>&lt;c:forEach&gt;&lt;/c:forEach&gt;</code>      –循环，遍历集合或数组</li>
+<li><code>&lt;c:forTokens items=&quot;&quot; delims=&quot;&quot;&gt;&lt;/c:forTokens&gt;</code>  -循环字符串</li>
+<li><code>&lt;c:redirect&gt;&lt;/c:redirect&gt;</code>    –重定向</li>
+</ul>
+<p><strong>引入核心库</strong><br><figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;%@ taglib uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> prefix=<span class="string">"c"</span>%&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>使用案例</strong><br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%--使用set标签设置数据，默认是在pageContext域中设置,也可以指定域保存 --%&gt;</span><br><span class="line">    &lt;c:set var="name" value="eric" scope="request"&gt;&lt;/c:set&gt;</span><br><span class="line">        $&#123;requestScope.name&#125;</span><br><span class="line">       </span><br><span class="line">    &lt;%-- out标签，从域对象中得到数据,</span><br><span class="line">        default属性:设置默认值，当属性为null时，就会用默认值代替</span><br><span class="line">        escapeXml:是否对内容进行转义，false:不进行转义，true：进行转义</span><br><span class="line">        什么是转义：特殊字符不会被识别作用，当普通字符输出</span><br><span class="line">    --%&gt;</span><br><span class="line">    &lt;c:out value="$&#123;name&#125;" default="abc" escapeXml="false"&gt;&lt;/c:out&gt;m</span><br><span class="line">   </span><br><span class="line">    &lt;%--if标签：单条间判断--%&gt;</span><br><span class="line">    &lt;c:if test="$&#123;1&gt;2&#125;"&gt;</span><br><span class="line">            条件成立执行的内容</span><br><span class="line">    &lt;/c:if&gt;</span><br><span class="line">   </span><br><span class="line">    &lt;%--choose标签:多条件判断 --%&gt;</span><br><span class="line">    &lt;c:set var="id" value="001"&gt;&lt;/c:set&gt;</span><br><span class="line">    &lt;c:choose&gt;</span><br><span class="line">        &lt;c:when test="$&#123;id=002&#125;"&gt;此用户是002&lt;/c:when&gt;</span><br><span class="line">        &lt;c:when test="$&#123;id=001&#125;"&gt;此用户是001&lt;/c:when&gt;</span><br><span class="line">        &lt;c:otherwise&gt;不存在此用户&lt;/c:otherwise&gt;</span><br><span class="line">    &lt;/c:choose&gt;</span><br><span class="line">   </span><br><span class="line">    &lt;%--遍历List</span><br><span class="line">        begin:从哪个元素开始遍历，第一个下标为0</span><br><span class="line">        end:到哪个元素结束</span><br><span class="line">        step:步长</span><br><span class="line">        items：需要遍历的对象的名称</span><br><span class="line">        var：每个元素对象的名称</span><br><span class="line">        varStatus：当前遍历对象的状态，即：已经遍历了几个元素。</span><br><span class="line">    --%&gt;</span><br><span class="line">    &lt;c:forEach items="$&#123;list&#125;" var="student" varStatus="varSta"&gt;</span><br><span class="line">        序号$&#123;varSta.count&#125;-姓名$&#123;student.name&#125;-年龄$&#123;student.age&#125;</span><br><span class="line">    &lt;/c:forEach&gt;</span><br><span class="line">     </span><br><span class="line">    &lt;%--遍历Map--%&gt;</span><br><span class="line">    &lt;c:forEach items="$&#123;map&#125;" var="entry" varStatus="varSta"&gt;</span><br><span class="line">    序号$&#123;varSta.count&#125;-编号$&#123;entry.key&#125;-姓名$&#123;entry.value.name&#125;   </span><br><span class="line">    &lt;/c:forEach&gt;     </span><br><span class="line">         </span><br><span class="line">    &lt;%--forTokens便签 ：循环字符串，可以切割后将子串都输出</span><br><span class="line">     items:要循环的对象</span><br><span class="line">     delims：以什么东西切割字符串</span><br><span class="line">    var：切割后的单个对象的名称</span><br><span class="line">    --%&gt;</span><br><span class="line">    &lt;c:forTokens items="$&#123;str&#125;" delims="-" var="s"&gt;</span><br><span class="line">        $&#123;s&#125; &lt;br/&gt;</span><br><span class="line">    &lt;/c:forTokens&gt;</span><br><span class="line">         </span><br><span class="line">    &lt;%--重定向 标签--%&gt;</span><br><span class="line">    &lt;c:redirect url="http://www.baidu.com"&gt;&lt;/c:redirect&gt;</span><br><span class="line">             </span><br><span class="line">  &lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/20/JSP标签/"
+           data-title="JSP标签" data-url="http://zhenghe39.com/2016/11/20/JSP标签/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+                
+                
+                
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='sidebar-nav-content'>
+                    
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#JSP内置标签"><span class="nav-menu-text">JSP内置标签</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#JSTL标签库"><span class="nav-menu-text">JSTL标签库</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+                        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Maven/' title=Maven>Maven</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/OOP/' title=OOP>OOP</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/MvvM/' title=MvvM>MvvM</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Node/' title=Node>Node</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/SPA/' title=SPA>SPA</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/软件设计/' title=软件设计>软件设计</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/vi/' title=vi>vi</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+                    </div>
+                </div>
+        </div>
+    </aside>
+
+
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
+<script>
+      /*
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+        */
+
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
+            activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
+            distinguishLineScale:0,
+            events:{
+                'scrollNav':function(navItem,$navMenu){
+                    if(!navItem){
+                        return;
+                    }
+
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        'top':navItem.top,
+                        'height':navItem.height+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            $('.highlight-title').hide();
+
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
+</script>
+    </body>
+</html>

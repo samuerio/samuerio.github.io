@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2016-11-15T16:14:41.000Z</updated>
+  <updated>2016-11-20T07:13:05.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,169 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>OOP编程的五大原则</title>
+    <link href="http://zhenghe39.com/2016/11/20/OOP%E7%BC%96%E7%A8%8B%E7%9A%84%E4%BA%94%E5%A4%A7%E5%8E%9F%E5%88%99/"/>
+    <id>http://zhenghe39.com/2016/11/20/OOP编程的五大原则/</id>
+    <published>2016-11-20T07:07:19.000Z</published>
+    <updated>2016-11-20T07:13:05.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;SRP&quot;&gt;&lt;a href=&quot;#SRP&quot; class=&quot;headerlink&quot; title=&quot;SRP&quot;&gt;&lt;/a&gt;SRP&lt;/h3&gt;&lt;p&gt;SRP(Single Responsibility Principle):单一职责原则&lt;/p&gt;
+&lt;h3 id=&quot;LSP&quot;&gt;&lt;a href=&quot;#LSP&quot; class=&quot;headerlink&quot; title=&quot;LSP&quot;&gt;&lt;/a&gt;LSP&lt;/h3&gt;&lt;p&gt;LSP(Liskov Substitution):里氏替换原则&lt;br&gt;Java运行时多态(继承、接口)特性，可以将设计中的静态结构改为动态结构，维持设计的封闭性。“多态”由继承语义实现，那我们如何去度量继承关系的质量呢？，这时候就需要「里氏替换原则」了.&lt;br&gt;里氏替换原则：继承必须确保超类所拥有的行为在子类中仍然成立。&lt;br&gt;举个栗子：类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 &lt;/p&gt;
+&lt;h3 id=&quot;OCP&quot;&gt;&lt;a href=&quot;#OCP&quot; class=&quot;headerlink&quot; title=&quot;OCP&quot;&gt;&lt;/a&gt;OCP&lt;/h3&gt;&lt;p&gt;OCP(Closed for Modification;Open for Extension):开闭原则&lt;br&gt;&lt;strong&gt;为什么需要OCP呢？&lt;/strong&gt;&lt;br&gt;  你给系统封装了访问MySql数据库的类，使得系统支持MySql。某一天，需求增加了，要对SQL Server数据库进行支持，你可能觉得这很简单，类里加个Type参数，if-else区别处理就好。但是需求继续膨胀，SQLite、Oracle…都要支持，继续else-if,else-if，加着加着你突然发现原来运行正常的MySql出现了异常，debug发现原来耦合太多，改着改着把既有的改错了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如何OCP呢？&lt;/strong&gt;&lt;br&gt;  你抽离出数据库访问的接口类IDatabase，使得系统对数据的访问依赖接口而不是具体的实现类，让MySql数据库访问类实现IDatabase，间接使得系统支持了MySql。后面如果需要支持其他数据库，只要单独创建一个新类实现IDatabase接口即可，对既有的Mysql访问实现类不需要做任何改动(Closed for Modification).&lt;/p&gt;
+&lt;h3 id=&quot;DIP&quot;&gt;&lt;a href=&quot;#DIP&quot; class=&quot;headerlink&quot; title=&quot;DIP&quot;&gt;&lt;/a&gt;DIP&lt;/h3&gt;&lt;p&gt;DIP(Dependence Inversion Principle):依赖倒置&lt;br&gt;原则：要依赖于抽象，不要依赖于具体&lt;/p&gt;
+&lt;h3 id=&quot;ISP&quot;&gt;&lt;a href=&quot;#ISP&quot; class=&quot;headerlink&quot; title=&quot;ISP&quot;&gt;&lt;/a&gt;ISP&lt;/h3&gt;&lt;p&gt;ISP:接口隔离原则&lt;br&gt;原则：使用多个专门的接口比使用单一的总接口要好。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;SRP&quot;&gt;&lt;a href=&quot;#SRP&quot; class=&quot;headerlink&quot; title=&quot;SRP&quot;&gt;&lt;/a&gt;SRP&lt;/h3&gt;&lt;p&gt;SRP(Single Responsibility Principle):单一职责原则&lt;/p&gt;
+&lt;h3 id=&quot;LSP&quot;&gt;&lt;a hr
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="OOP" scheme="http://zhenghe39.com/tags/OOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MvvM的认识</title>
+    <link href="http://zhenghe39.com/2016/11/20/MvvM%E7%9A%84%E8%AE%A4%E8%AF%86/"/>
+    <id>http://zhenghe39.com/2016/11/20/MvvM的认识/</id>
+    <published>2016-11-20T06:57:14.000Z</published>
+    <updated>2016-11-20T07:01:49.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f9ykyv3ucnj20fg0brwen.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Model&lt;/code&gt;：业务逻辑相关的数据对象，通常从数据库映射而来，可以说是与数据库对应的model。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;View&lt;/code&gt;：展现出来的用户界面。&lt;/p&gt;
+&lt;p&gt;基本上，绝大多数软件所做的工作无非就是从数据存储中读出数据，展现到用户界面上，然后从用户界面接收输入，写入到数据存储里面去。所以，对于数据存储（model）和界面（view）这两层，大家基本没什么异议。&lt;/p&gt;
+&lt;p&gt;但是，如何把model展现到view上，以及如何把数据从view写入到model里，不同的人有不同的意见:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MVC派的看法是，界面上的每个变化都是一个事件，我只需要针对每个事件写一堆代码，来把用户的输入转换成model里的对象就行了，这堆代码可以叫controller。&lt;/li&gt;
+&lt;li&gt;MVVM派的看法是，我给view里面的各种控件也定义一个对应的数据对象，这样，只要修改这个数据对象，view里面显示的内容就自动跟着刷新，而在view 里做了任何操作，这个数据对象也跟着自动更新，这样多美。所以：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;ViewModel&lt;/code&gt;：就是与界面（view）对应的Model。因为，数据库结构往往是不能直接跟界面控件一一对应上的.所以，需要再定义一个数据对象专门对应view上的控件。而ViewModel的职责就是把model对象封装成可以显示和接受输入的界面数据对象。至于viewmodel的数据随着view自动刷新，并且同步到model里去，这部分代码可以写成公用的框架。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f9ykyv3ucnj20fg0brwen.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Model&lt;/code&gt;：业务逻辑相关的数据对象，通常从数据库映射而来，可以说是
+    
+    </summary>
+    
+      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
+    
+    
+      <category term="MvvM" scheme="http://zhenghe39.com/tags/MvvM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>EL表达式</title>
+    <link href="http://zhenghe39.com/2016/11/20/EL%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://zhenghe39.com/2016/11/20/EL表达式/</id>
+    <published>2016-11-20T06:02:43.000Z</published>
+    <updated>2016-11-20T06:15:21.000Z</updated>
+    
+    <content type="html">&lt;p&gt;由于Html页面中嵌入Java代码，是十分不利于开发者和美工分工的，为了尽量别在Jsp页面中使用Java代码,&lt;br&gt;为此El表达式出来了。&lt;/p&gt;
+&lt;p&gt;语法：&lt;code&gt;${变量或表达式}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于输出域中数据{若没有指定域对象，EL表达式就会依次在page-&amp;gt;request-&amp;gt;session-&amp;gt;application域里找那个名字的变量}/${域范围.name}&lt;/li&gt;
+&lt;li&gt;输出对象里的属性&lt;/li&gt;
+&lt;li&gt;输出集合对象的值${personList[0]}/${personMap[“ppp”]}&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;用于计算表达式:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#31639;&amp;#26415;&amp;#65306;$&amp;#123;12+13-12*5+100&amp;#125;&amp;#10;&amp;#27604;&amp;#36739;&amp;#65306;$&amp;#123;5&amp;#60;3&amp;#125;&amp;#10;&amp;#36923;&amp;#36753;&amp;#65306;$&amp;#123;5&amp;#60;6&amp;#38;&amp;#38;7&amp;#62;8&amp;#125;&amp;#10;&amp;#21028;&amp;#31354; &amp;#21028;&amp;#26029;&amp;#26159;&amp;#21542;null$&amp;#123;name==null &amp;#125;&amp;#10;&amp;#21028;&amp;#26029;&amp;#26159;&amp;#21542;&amp;#26159;&amp;#31354;&amp;#23383;&amp;#31526;&amp;#20018;$&amp;#123;name==&amp;#34;&amp;#34;&amp;#125;&amp;#10;&amp;#36824;&amp;#26377;&amp;#19968;&amp;#31181;empty&amp;#20851;&amp;#38190;&amp;#23383;&amp;#21487;&amp;#20197;&amp;#29992;&amp;#26469;&amp;#21028;&amp;#26029;&amp;#31354;&amp;#21644;null&amp;#65292;&amp;#29992;&amp;#27861;&amp;#65306;$&amp;#123;empty name &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;EL表达式内置对象：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pageContext   –等价于jsp的pageContext内置对象&lt;/li&gt;
+&lt;li&gt;pageScope      –指定域获取&lt;/li&gt;
+&lt;li&gt;requestScope&lt;/li&gt;
+&lt;li&gt;sessionScope&lt;/li&gt;
+&lt;li&gt;applicationScope&lt;/li&gt;
+&lt;li&gt;param       –请求参数&lt;/li&gt;
+&lt;li&gt;paramValues&lt;/li&gt;
+&lt;li&gt;header       –请求头&lt;/li&gt;
+&lt;li&gt;headerValues&lt;/li&gt;
+&lt;li&gt;cookie       –获取cookie&lt;/li&gt;
+&lt;li&gt;initParm     –获取web应用全局参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;show code&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%=pageContext.getRequest() %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--EL获取web上下文 --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          $&amp;#123;pageContext.request.contextPath &amp;#125; &amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          $&amp;#123;pageContext.request.remoteHost &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;a href=&quot;$&amp;#123;pageContext.request.contextPath &amp;#125;/04.el1.jsp&quot;&amp;gt;页面&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;hr/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%-- param / paramValues --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--jsp接收参数 --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              String name = request.getParameter(&quot;name&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              //out.write(name);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              String[] names = request.getParameterValues(&quot;name&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              for(String n:names)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                  out.write(n+&quot;&amp;lt;br/&amp;gt;&quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--EL获取参数 --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          EL: $&amp;#123;param[&quot;name&quot;]&amp;#125;&amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          EL: $&amp;#123;paramValues[&quot;name&quot;][0] &amp;#125; - $&amp;#123;paramValues[&quot;name&quot;][1] &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;hr/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--请求有： header / headerValues --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--jsp获取头 --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%=request.getHeader(&quot;user-agent&quot;) %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%=request.getHeaders(&quot;user-agent&quot;) %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--EL获取请求头 --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          EL: $&amp;#123;header[&quot;user-agent&quot;] &amp;#125;&amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          EL: $&amp;#123;headerValues[&quot;user-agent&quot;][0] &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;hr/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--cookie:  --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--jsp获取cookie --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%=request.getCookies() %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--EL获取 Cookie--%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          $&amp;#123;cookie[&quot;JSESSIONID&quot;].name &amp;#125; - $&amp;#123;cookie[&quot;JSESSIONID&quot;].value &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;hr/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;lt;%--EL获取全局参数--%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          $&amp;#123;initParam[&quot;AAA&quot;] &amp;#125; - $&amp;#123;initParam[&quot;BBB&quot;] &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;以上就是EL的内容，重点在引用属性时会调用它的&lt;code&gt;getXxxx&lt;/code&gt;方法
+　　　　　　&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由于Html页面中嵌入Java代码，是十分不利于开发者和美工分工的，为了尽量别在Jsp页面中使用Java代码,&lt;br&gt;为此El表达式出来了。&lt;/p&gt;
+&lt;p&gt;语法：&lt;code&gt;${变量或表达式}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;作用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用于输出域中数据{
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Jsp" scheme="http://zhenghe39.com/tags/Jsp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JSP标签</title>
+    <link href="http://zhenghe39.com/2016/11/20/JSP%E6%A0%87%E7%AD%BE/"/>
+    <id>http://zhenghe39.com/2016/11/20/JSP标签/</id>
+    <published>2016-11-20T04:45:46.000Z</published>
+    <updated>2016-11-20T06:00:53.000Z</updated>
+    
+    <content type="html">&lt;p&gt;JSP标签能让你快捷地操作&lt;code&gt;域对象&lt;/code&gt;里面的变量，提供逻辑判断，遍历等。&lt;/p&gt;
+&lt;h3 id=&quot;JSP内置标签&quot;&gt;&lt;a href=&quot;#JSP内置标签&quot; class=&quot;headerlink&quot; title=&quot;JSP内置标签&quot;&gt;&lt;/a&gt;JSP内置标签&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;静态包含：&lt;code&gt;@include&lt;/code&gt;指令实现。原理是先合并再进行翻译，要避免变量重名。&lt;/li&gt;
+&lt;li&gt;动态包含：&lt;code&gt;&amp;lt;jsp:include page=&amp;quot;&amp;quot; /&amp;gt;&lt;/code&gt;使用内置标签。原理是先翻译再合并。动态包含可以使用&lt;code&gt;&amp;lt;jsp:param/&amp;gt;&lt;/code&gt;标签携带参数到被包含页面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;JSTL标签库&quot;&gt;&lt;a href=&quot;#JSTL标签库&quot; class=&quot;headerlink&quot; title=&quot;JSTL标签库&quot;&gt;&lt;/a&gt;JSTL标签库&lt;/h3&gt;&lt;p&gt;JSTL即Java Standard Tag Library，包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;核心标签库（c： 设置变量，获取变量，条件判断，循环  ）（主要）&lt;/li&gt;
+&lt;li&gt;EL函数库  （ fn：对String常用的方法 ）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;核心库中常用的几种标签&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:set&amp;gt;&amp;lt;/c:set&amp;gt;&lt;/code&gt;      – 设置数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:out value=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/c:out&amp;gt;&lt;/code&gt;   –得到数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:if test=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/c:if&amp;gt;&lt;/code&gt;      –单条件判断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:choose&amp;gt;&amp;lt;/c:choose&amp;gt;&lt;/code&gt;    –多条件判断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:when test=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/c:when&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:otherwise&amp;gt;&amp;lt;/c:otherwise&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:forEach&amp;gt;&amp;lt;/c:forEach&amp;gt;&lt;/code&gt;      –循环，遍历集合或数组&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:forTokens items=&amp;quot;&amp;quot; delims=&amp;quot;&amp;quot;&amp;gt;&amp;lt;/c:forTokens&amp;gt;&lt;/code&gt;  -循环字符串&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;c:redirect&amp;gt;&amp;lt;/c:redirect&amp;gt;&lt;/code&gt;    –重定向&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;引入核心库&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight jsp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%@ taglib uri=&lt;span class=&quot;string&quot;&gt;&quot;http://java.sun.com/jsp/jstl/core&quot;&lt;/span&gt; prefix=&lt;span class=&quot;string&quot;&gt;&quot;c&quot;&lt;/span&gt;%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用案例&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%--使用set标签设置数据，默认是在pageContext域中设置,也可以指定域保存 --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:set var=&quot;name&quot; value=&quot;eric&quot; scope=&quot;request&quot;&amp;gt;&amp;lt;/c:set&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        $&amp;#123;requestScope.name&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;       &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%-- out标签，从域对象中得到数据,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        default属性:设置默认值，当属性为null时，就会用默认值代替&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        escapeXml:是否对内容进行转义，false:不进行转义，true：进行转义&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        什么是转义：特殊字符不会被识别作用，当普通字符输出&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:out value=&quot;$&amp;#123;name&amp;#125;&quot; default=&quot;abc&quot; escapeXml=&quot;false&quot;&amp;gt;&amp;lt;/c:out&amp;gt;m&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%--if标签：单条间判断--%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:if test=&quot;$&amp;#123;1&amp;gt;2&amp;#125;&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            条件成立执行的内容&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/c:if&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%--choose标签:多条件判断 --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:set var=&quot;id&quot; value=&quot;001&quot;&amp;gt;&amp;lt;/c:set&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:choose&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;c:when test=&quot;$&amp;#123;id=002&amp;#125;&quot;&amp;gt;此用户是002&amp;lt;/c:when&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;c:when test=&quot;$&amp;#123;id=001&amp;#125;&quot;&amp;gt;此用户是001&amp;lt;/c:when&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;lt;c:otherwise&amp;gt;不存在此用户&amp;lt;/c:otherwise&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/c:choose&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%--遍历List&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        begin:从哪个元素开始遍历，第一个下标为0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        end:到哪个元素结束&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        step:步长&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        items：需要遍历的对象的名称&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        var：每个元素对象的名称&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        varStatus：当前遍历对象的状态，即：已经遍历了几个元素。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:forEach items=&quot;$&amp;#123;list&amp;#125;&quot; var=&quot;student&quot; varStatus=&quot;varSta&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        序号$&amp;#123;varSta.count&amp;#125;-姓名$&amp;#123;student.name&amp;#125;-年龄$&amp;#123;student.age&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/c:forEach&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%--遍历Map--%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:forEach items=&quot;$&amp;#123;map&amp;#125;&quot; var=&quot;entry&quot; varStatus=&quot;varSta&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    序号$&amp;#123;varSta.count&amp;#125;-编号$&amp;#123;entry.key&amp;#125;-姓名$&amp;#123;entry.value.name&amp;#125;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/c:forEach&amp;gt;     &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%--forTokens便签 ：循环字符串，可以切割后将子串都输出&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     items:要循环的对象&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     delims：以什么东西切割字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var：切割后的单个对象的名称&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    --%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:forTokens items=&quot;$&amp;#123;str&amp;#125;&quot; delims=&quot;-&quot; var=&quot;s&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        $&amp;#123;s&amp;#125; &amp;lt;br/&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;/c:forTokens&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;%--重定向 标签--%&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;c:redirect url=&quot;http://www.baidu.com&quot;&amp;gt;&amp;lt;/c:redirect&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;             &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;lt;/body&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JSP标签能让你快捷地操作&lt;code&gt;域对象&lt;/code&gt;里面的变量，提供逻辑判断，遍历等。&lt;/p&gt;
+&lt;h3 id=&quot;JSP内置标签&quot;&gt;&lt;a href=&quot;#JSP内置标签&quot; class=&quot;headerlink&quot; title=&quot;JSP内置标签&quot;&gt;&lt;/a&gt;JSP内置标签&lt;/h3
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Jsp" scheme="http://zhenghe39.com/tags/Jsp/"/>
+    
+  </entry>
   
   <entry>
     <title>json-lib的用法</title>
@@ -94,14 +257,20 @@
     <link href="http://zhenghe39.com/2016/11/15/Myeclipse%E7%9A%84%E9%85%8D%E7%BD%AE%E6%81%A2%E5%A4%8D/"/>
     <id>http://zhenghe39.com/2016/11/15/Myeclipse的配置恢复/</id>
     <published>2016-11-15T05:03:40.000Z</published>
-    <updated>2016-11-15T05:13:23.000Z</updated>
+    <updated>2016-11-20T06:53:14.000Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;配置Maven路径&quot;&gt;&lt;a href=&quot;#配置Maven路径&quot; class=&quot;headerlink&quot; title=&quot;配置Maven路径&quot;&gt;&lt;/a&gt;配置Maven路径&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f9spndd6hhj21fi0k4wij.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;配置Tomcat路径-amp-amp-编码&quot;&gt;&lt;a href=&quot;#配置Tomcat路径-amp-amp-编码&quot; class=&quot;headerlink&quot; title=&quot;配置Tomcat路径 &amp;amp;&amp;amp; 编码&quot;&gt;&lt;/a&gt;配置Tomcat路径 &amp;amp;&amp;amp; 编码&lt;/h3&gt;</content>
+    <content type="html">&lt;h3 id=&quot;1-配置Maven路径&quot;&gt;&lt;a href=&quot;#1-配置Maven路径&quot; class=&quot;headerlink&quot; title=&quot;1.配置Maven路径&quot;&gt;&lt;/a&gt;1.配置Maven路径&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b826b79gw1f9spndd6hhj21fi0k4wij.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2-配置Tomcat路径-amp-amp-编码格式&quot;&gt;&lt;a href=&quot;#2-配置Tomcat路径-amp-amp-编码格式&quot; class=&quot;headerlink&quot; title=&quot;2.配置Tomcat路径 &amp;amp;&amp;amp; 编码格式&quot;&gt;&lt;/a&gt;2.配置Tomcat路径 &amp;amp;&amp;amp; 编码格式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f9yjz7ivsmj21540nm439.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f9yjzll509j215s0fqdi9.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f9yk02ibhnj217a0vun49.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/65e4f1e6gw1f9yk0cwugij21kw0nktg1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;3-设置theme风格，编辑器字体、控制台字体&quot;&gt;&lt;a href=&quot;#3-设置theme风格，编辑器字体、控制台字体&quot; class=&quot;headerlink&quot; title=&quot;3.设置theme风格，编辑器字体、控制台字体&quot;&gt;&lt;/a&gt;3.设置theme风格，编辑器字体、控制台字体&lt;/h3&gt;&lt;p&gt;字体：&lt;br&gt;    全局Text-font为 Manoco 16&lt;br&gt;    控制台为 Manoco 12&lt;/p&gt;
+&lt;h3 id=&quot;4-设置用户使用习惯：快捷键等-content-Assist调整、toggle-comment调整&quot;&gt;&lt;a href=&quot;#4-设置用户使用习惯：快捷键等-content-Assist调整、toggle-comment调整&quot; class=&quot;headerlink&quot; title=&quot;4.设置用户使用习惯：快捷键等{content Assist调整、toggle comment调整}&quot;&gt;&lt;/a&gt;4.设置用户使用习惯：快捷键等{content Assist调整、toggle comment调整}&lt;/h3&gt;&lt;p&gt;关闭「自动补全代码」功能 &amp;amp;&amp;amp; 设置Content Assist 快捷键为&lt;code&gt;CMD+/&lt;/code&gt; &amp;amp;&amp;amp; 设置toggle Comment快捷键为&lt;code&gt;option+/&lt;/code&gt;。&lt;br&gt;Note：别忘了设置&lt;code&gt;Add Block Comment&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/65e4f1e6gw1f9yk5fd4aej20ps078myh.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;5-关闭自动编译并设置「编译快捷键」为control-C&quot;&gt;&lt;a href=&quot;#5-关闭自动编译并设置「编译快捷键」为control-C&quot; class=&quot;headerlink&quot; title=&quot;5.关闭自动编译并设置「编译快捷键」为control+C&quot;&gt;&lt;/a&gt;5.关闭自动编译并设置「编译快捷键」为control+C&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/65e4f1e6gw1f9ykq9zigyj210c0ls0x6.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/65e4f1e6gw1f9ykqk4kyvj21kw0mhn1s.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;6-关闭HTML、JSP所关联的设计器视图&quot;&gt;&lt;a href=&quot;#6-关闭HTML、JSP所关联的设计器视图&quot; class=&quot;headerlink&quot; title=&quot;6.关闭HTML、JSP所关联的设计器视图&quot;&gt;&lt;/a&gt;6.关闭HTML、JSP所关联的设计器视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/65e4f1e6gw1f9ykrk0mxpj21jq0w4wjc.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;7-添加Ccip插件开发视图-amp-amp-SVN视图&quot;&gt;&lt;a href=&quot;#7-添加Ccip插件开发视图-amp-amp-SVN视图&quot; class=&quot;headerlink&quot; title=&quot;7.添加Ccip插件开发视图 &amp;amp;&amp;amp; SVN视图&quot;&gt;&lt;/a&gt;7.添加Ccip插件开发视图 &amp;amp;&amp;amp; SVN视图&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/65e4f1e6gw1f9yks9iyjdj20ii0iqdhv.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;8-设置系统编码&quot;&gt;&lt;a href=&quot;#8-设置系统编码&quot; class=&quot;headerlink&quot; title=&quot;8.设置系统编码&quot;&gt;&lt;/a&gt;8.设置系统编码&lt;/h3&gt;</content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;配置Maven路径&quot;&gt;&lt;a href=&quot;#配置Maven路径&quot; class=&quot;headerlink&quot; title=&quot;配置Maven路径&quot;&gt;&lt;/a&gt;配置Maven路径&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b82
+      &lt;h3 id=&quot;1-配置Maven路径&quot;&gt;&lt;a href=&quot;#1-配置Maven路径&quot; class=&quot;headerlink&quot; title=&quot;1.配置Maven路径&quot;&gt;&lt;/a&gt;1.配置Maven路径&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/la
     
     </summary>
     
@@ -613,354 +782,6 @@ Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services ca
     
     
       <category term="Css" scheme="http://zhenghe39.com/tags/Css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP缓存</title>
-    <link href="http://zhenghe39.com/2016/09/14/HTTP%E7%BC%93%E5%AD%98/"/>
-    <id>http://zhenghe39.com/2016/09/14/HTTP缓存/</id>
-    <published>2016-09-14T15:37:33.000Z</published>
-    <updated>2016-09-15T03:30:30.000Z</updated>
-    
-    <content type="html">&lt;p&gt;转载来自 Google Developer &lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;通过网络获取内容既缓慢，成本又高：大的响应需要在客户端和服务器之间进行多次往返通信，这拖延了浏览器可以使用和处理内容的时间，同时也增加了访问者的数据成本。因此，缓存和重用以前获取的资源的能力成为优化性能很关键的一个方面。&lt;/p&gt;
-&lt;p&gt;好消息是每个浏览器都实现了 HTTP 缓存！ 我们所要做的就是，确保每个服务器响应都提供正确的 HTTP 头指令，以指导浏览器何时可以缓存响应以及可以缓存多久。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果在应用中使用 Webview 来获取和显示网页内容，可能需要提供额外的配置标志，以确保启用了 HTTP 缓存，并根据用途设置了合理的缓存大小，同时，确保缓存持久化。查看平台文档并确认您的设置！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f7tjm8f3azj209p071aac.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;服务器在返回响应时，还会发出一组 HTTP 头，用来描述内容类型、长度、缓存指令、验证令牌等。例如，在上图的交互中，服务器返回了一个 1024 字节的响应，指导客户端缓存响应长达 120 秒，并提供验证令牌（x234dff），在响应过期之后，可以用来验证资源是否被修改。&lt;/p&gt;
-&lt;h3 id=&quot;使用-ETag-验证缓存的响应&quot;&gt;&lt;a href=&quot;#使用-ETag-验证缓存的响应&quot; class=&quot;headerlink&quot; title=&quot;使用 ETag 验证缓存的响应&quot;&gt;&lt;/a&gt;使用 ETag 验证缓存的响应&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;服务器通过 ETag HTTP 头传递验证令牌&lt;br&gt;通过验证令牌可以进行高效的资源更新检查：如果资源未更改，则不会传输任何数据。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;让我们假设在首次获取资源 120 秒之后，浏览器又对该资源发起了新请求。首先，浏览器会检查本地缓存并找到之前的响应，不幸的是，这个响应现在已经’过期’，无法在使用。此时，浏览器也可以直接发出新请求，获取新的完整响应，但是这样做效率较低，因为如果资源未被更改过，我们就没有理由再去下载与缓存中已有的完全相同的字节。&lt;/p&gt;
-&lt;p&gt;这就是 ETag 头中指定的验证令牌所要解决的问题：服务器会生成并返回一个随机令牌，通常是文件内容的哈希值或者某个其他指纹码。客户端不必了解指纹码是如何生成的，只需要在下一个请求中将其发送给服务器：如果指纹码仍然一致，说明资源未被修改，我们就可以跳过下载。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/801b780agw1f7u19tccqrj20d605zjro.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;作为网络开发人员，您如何利用高效的重新验证？ 浏览器代替我们完成了所有的工作：自动检测是否已指定了验证令牌，并会将验证令牌附加到发出的请求上，根据从服务器收到的响应，在必要时更新缓存时间戳。&lt;strong&gt;实际上，我们唯一要做的就是确保服务器提供必要的 ETag 令牌：查看服务器文档中是否有必要的配置标志。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;提示：HTML5 Boilerplate 项目包含了所有最流行的服务器的[配置文件样例](https://github.com/h5bp/server-configs)，并且为每个配置标志和设置都提供了详细的注释：在列表中找到您喜欢的服务器，查找适合的设置，然后复制/确认您的服务器配置了推荐的设置。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Cache-Control&quot;&gt;&lt;a href=&quot;#Cache-Control&quot; class=&quot;headerlink&quot; title=&quot;Cache-Control&quot;&gt;&lt;/a&gt;Cache-Control&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;每个资源都可以通过 Cache-Control HTTP 头来定义自己的缓存策略&lt;br&gt;Cache-Control 指令控制谁在什么条件下可以缓存响应以及可以缓存多久&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;最好的请求是不必与服务器进行通信的请求：通过响应的本地副本，我们可以避免所有的网络延迟以及数据传输的数据成本。为此，HTTP 规范允许服务器返回 &lt;a href=&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;一系列不同的 Cache-Control 指令&lt;/a&gt;，控制浏览器或者其他中继缓存如何缓存某个响应以及缓存多长时间。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Cache-Control 头在 HTTP/1.1 规范中定义，取代了之前用来定义响应缓存策略的头（例如 Expires）。当前的所有浏览器都支持 Cache-Control，因此，使用它就够了。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/801b780agw1f7u1j8x1v4j209w077wer.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;no-cache 和 no-store&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;no-cache表示必须先与服务器确认返回的响应是否被更改，然后才能使用该响应来满足后续对同一个网址的请求。因此，如果存在合适的验证令牌 (ETag)，no-cache 会发起往返通信来验证缓存的响应，如果资源未被更改，可以避免下载。&lt;/p&gt;
-&lt;p&gt;相比之下，no-store更加简单，直接禁止浏览器和所有中继缓存存储返回的任何版本的响应 - 例如：一个包含个人隐私数据或银行数据的响应。每次用户请求该资源时，都会向服务器发送一个请求，每次都会下载完整的响应。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;public和 private&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;如果响应被标记为public，即使有关联的 HTTP 认证，甚至响应状态码无法正常缓存，响应也可以被缓存。大多数情况下，public不是必须的，因为明确的缓存信息（例如max-age）已表示 响应可以被缓存。&lt;/p&gt;
-&lt;p&gt;相比之下，浏览器可以缓存private响应，但是通常只为单个用户缓存，因此，不允许任何中继缓存对其进行缓存 - 例如，用户浏览器可以缓存包含用户私人信息的 HTML 网页，但是 CDN 不能缓存。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;max-age&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;该指令指定从当前请求开始，允许获取的响应被重用的最长时间（单位为秒） - 例如：max-age=60表示响应可以再缓存和重用 60 秒。&lt;/p&gt;
-&lt;h3 id=&quot;定义最优-Cache-Control-策略&quot;&gt;&lt;a href=&quot;#定义最优-Cache-Control-策略&quot; class=&quot;headerlink&quot; title=&quot;定义最优 Cache-Control 策略&quot;&gt;&lt;/a&gt;定义最优 Cache-Control 策略&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/801b780agw1f7u1mqi2txj20gj0go0tu.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;按照上面的决策树来确定您的应用使用的特定资源或一组资源的最优缓存策略。理想情况下，目标应该是在客户端上缓存尽可能多的响应、缓存尽可能长的时间，并且为每个响应提供验证令牌，以便进行高效的重新验证。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;cache-control&lt;/th&gt;
-&lt;th&gt;max-age=86400&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;说明&lt;/td&gt;
-&lt;td&gt;浏览器和任何中继缓存可以将响应（如果是&lt;code&gt;public&lt;/code&gt;的）缓存长达一天（60 秒 x 60 分 x 24 小时）&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;cache-control&lt;/th&gt;
-&lt;th&gt;private, max-age=600&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;说明&lt;/td&gt;
-&lt;td&gt;客户端浏览器只能将响应缓存最长 10 分钟（60 秒 x 10 分&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;根据 HTTP Archive，在排名最高的 300,000 个网站中（Alexa 排名），&lt;a href=&quot;http://httparchive.org/trends.php#maxage0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;所有下载的响应中，几乎有半数可以由浏览器进行缓存&lt;/a&gt;，对于重复性网页浏览和访问来说，这是一个巨大的节省！ 当然，这并不意味着特定的应用会有 50% 的资源可以被缓存：有些网站可以缓存 90% 以上的资源， 而有些网站有许多私密的或者时间要求苛刻的数据，根本无法被缓存。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;审查您的网页，确定哪些资源可以被缓存，并确保可以返回正确的 Cache-Control 和 ETag 头。&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&quot;废弃和更新已缓存的响应&quot;&gt;&lt;a href=&quot;#废弃和更新已缓存的响应&quot; class=&quot;headerlink&quot; title=&quot;废弃和更新已缓存的响应&quot;&gt;&lt;/a&gt;废弃和更新已缓存的响应&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;在资源”过期”之前，将一直使用本地缓存的响应&lt;br&gt;通过将文件内容指纹码嵌入网址，我们可以强制客户端更新到新版的响应&lt;br&gt;为了获得最佳性能，每个应用需要定义自己的缓存层级&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;浏览器发出的所有 HTTP 请求会首先被路由到浏览器的缓存，以查看是否缓存了可以用于实现请求的有效响应。如果有匹配的响应，会直接从缓存中读取响应，这样就避免了网络延迟以及传输产生的数据成本。&lt;strong&gt;然而，如果我们希望更新或废弃已缓存的响应，该怎么办？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;例如，假设我们已经告诉访问者某个 CSS 样式表缓存长达 24 小时 (max-age=86400)，但是设计人员刚刚提交了一个更新，我们希望所有用户都能使用。我们该如何通知所有访问者缓存的 CSS 副本已过时，需要更新缓存？ 这是一个欺骗性的问题 - 实际上，至少在不更改资源网址的情况下，我们做不到。&lt;/p&gt;
-&lt;p&gt;一旦浏览器缓存了响应，在过期以前，将一直使用缓存的版本，这是由 max-age 或者 expires 指定的，或者直到因为某些原因从缓存中删除，例如用户清除了浏览器缓存。因此，在构建网页时，不同的用户可能使用的是文件的不同版本；刚获取该资源的用户将使用新版本，而缓存过之前副本（但是依然有效）的用户将继续使用旧版本的响应。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;所以，我们如何才能鱼和熊掌兼得：客户端缓存和快速更新？&lt;/strong&gt; 很简单，在资源内容更改时，我们可以更改资源的网址，强制用户下载新响应。通常情况下，可以通过在文件名中嵌入文件的指纹码（或版本号）来实现 - 例如 style.&lt;strong&gt;x234dff&lt;/strong&gt;.css。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/801b780agw1f7u36dsstgj20gw080dgg.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;因为能够定义每个资源的缓存策略，所以，我们可以定义’缓存层级’，这样，不但可以控制每个响应的缓存时间，还可以控制访问者看到新版本的速度。例如，我们一起分析一下上面的例子：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HTML 被标记成no-cache，这意味着浏览器在每次请求时都会重新验证文档，如果内容更改，会获取最新版本。同时，在 HTML 标记中，我们在 CSS 和 JavaScript 资源的网址中嵌入指纹码：如果这些文件的内容更改，网页的 HTML 也会随之更改，并将下载 HTML 响应的新副本。&lt;/li&gt;
-&lt;li&gt;允许浏览器和中继缓存（例如 CDN）缓存 CSS，过期时间设置为 1 年。注意，我们可以放心地使用 1 年的’远期过期’，因为我们在文件名中嵌入了文件指纹码：如果 CSS 更新，网址也会随之更改。&lt;/li&gt;
-&lt;li&gt;JavaScript 过期时间也设置为 1 年，但是被标记为 private，也许是因为包含了 CDN 不应缓存的一些用户私人数据。&lt;/li&gt;
-&lt;li&gt;缓存图片时不包含版本或唯一指纹码，过期时间设置为 1 天。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;组合使用 ETag、Cache-Control 和唯一网址，我们可以提供最佳的方案：较长的过期时间，控制可以缓存响应的位置，以及按需更新。&lt;/p&gt;
-&lt;h3 id=&quot;缓存检查表&quot;&gt;&lt;a href=&quot;#缓存检查表&quot; class=&quot;headerlink&quot; title=&quot;缓存检查表&quot;&gt;&lt;/a&gt;缓存检查表&lt;/h3&gt;&lt;p&gt;不存在最佳的缓存策略。根据您的通信模式、提供的数据类型以及应用特定的数据更新要求，必须定义和配置每个资源最适合的设置以及整体的’缓存层级’。&lt;/p&gt;
-&lt;p&gt;在定义缓存策略时，要记住下列技巧和方法：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;使用一致的网址&lt;/strong&gt;：如果您在不同的网址上提供相同的内容，将会多次获取和存储该内容。提示：注意，网址区分大小写！&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;确保服务器提供验证令牌 (ETag)&lt;/strong&gt;：通过验证令牌，如果服务器上的资源未被更改，就不必传输相同的字节。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;确定中继缓存可以缓存哪些资源&lt;/strong&gt;：对所有用户的响应完全相同的资源很适合由 CDN 或其他中继缓存进行缓存。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;确定每个资源的最优缓存周期&lt;/strong&gt;：不同的资源可能有不同的更新要求。审查并确定每个资源适合的 max-age。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;确定网站的最佳缓存层级&lt;/strong&gt;：对 HTML 文档组合使用包含内容指纹码的资源网址以及短时间或 no-cache 的生命周期，可以控制客户端获取更新的速度。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;搅动最小化&lt;/strong&gt;：有些资源的更新比其他资源频繁。如果资源的特定部分（例如 JavaScript 函数或一组 CSS 样式）会经常更新，应考虑将其代码作为单独的文件提供。这样，每次获取更新时，剩余内容（例如不会频繁更新的库代码）可以从缓存中获取，确保下载的内容量最少。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载来自 Google Developer &lt;a href=&quot;https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control&quot;&gt;https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching?hl=zh-cn#cache-control&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;通过网络获取内容既缓慢，成本又高：大的响应需要在客户端和服务器之间进行多次往返通信，这拖延了浏览器可以使用和处理内容的时间，同时也增加了访问者的数据成本。因此，缓存和重用以前获取的资源的能力成为优化性能很关键的一个方面。&lt;/p&gt;
-&lt;p&gt;好消息是每个浏览器都实现了 HTTP 缓存！ 我们所要做的就是，确保每个服务器响应都提供正确的 HTTP 头指令，以指导浏览器何时可以缓存响应以及可以缓存多久。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="Http" scheme="http://zhenghe39.com/tags/Http/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浅谈IOC</title>
-    <link href="http://zhenghe39.com/2016/09/05/%E6%B5%85%E8%B0%88IOC/"/>
-    <id>http://zhenghe39.com/2016/09/05/浅谈IOC/</id>
-    <published>2016-09-05T06:30:27.000Z</published>
-    <updated>2016-09-05T07:14:51.000Z</updated>
-    
-    <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;IOC的理论背景&quot;&gt;&lt;a href=&quot;#IOC的理论背景&quot; class=&quot;headerlink&quot; title=&quot;IOC的理论背景&quot;&gt;&lt;/a&gt;IOC的理论背景&lt;/h3&gt;&lt;p&gt;我们知道在面向对象设计的软件系统中，它的底层都是由N个对象构成的，各个对象之间通过相互合作，最终实现系统地业务逻辑[1]。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/72f96cbagw1f7iq5n53sfj209k05l0t0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;　　如果我们打开机械式手表的后盖，就会看到与上面类似的情形，各个齿轮分别带动时针、分针和秒针顺时针旋转，从而在表盘上产生正确的时间。图1中描述的就是这样的一个齿轮组，它拥有多个独立的齿轮，这些齿轮相互啮合在一起，协同工作，共同完成某项任务。我们可以看到，在这样的齿轮组中，如果有一个齿轮出了问题，就可能会影响到整个齿轮组的正常运转。&lt;br&gt;　　&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-　&lt;/p&gt;
-&lt;p&gt;　齿轮组中齿轮之间的啮合关系,与软件系统中对象之间的耦合关系非常相似。对象之间的耦合关系是无法避免的，也是必要的，这是协同工作的基础。现在，伴随着工业级应用的规模越来越庞大，对象之间的依赖关系也越来越复杂，经常会出现对象之间的多重依赖性关系，因此，架构师和设计师对于系统的分析和设计，将面临更大的挑战。对象之间耦合度过高的系统，必然会出现牵一发而动全身的情形。&lt;br&gt;　&lt;br&gt;　&lt;img src=&quot;http://ww2.sinaimg.cn/large/65e4f1e6gw1f7iq92w25mj208105hglu.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;　&lt;br&gt;　　　耦合关系不仅会出现在对象与对象之间，也会出现在软件系统的各模块之间，以及软件系统和硬件系统之间。如何降低系统之间、模块之间和对象之间的耦合度，是软件工程永远追求的目标之一。为了解决对象之间的耦合度过高的问题，软件专家Michael Mattson 1996年提出了IOC理论，用来实现对象之间的“解耦”，目前这个理论已经被成功地应用到实践当中。
-　　　&lt;/p&gt;
-&lt;h3 id=&quot;什么是IOC&quot;&gt;&lt;a href=&quot;#什么是IOC&quot; class=&quot;headerlink&quot; title=&quot;什么是IOC&quot;&gt;&lt;/a&gt;什么是IOC&lt;/h3&gt;&lt;p&gt;IOC是Inversion of Control的缩写，多数书籍翻译成“控制反转”。&lt;/p&gt;
-&lt;p&gt;　　1996年，Michael Mattson在一篇有关探讨面向对象框架的文章中，首先提出了IOC 这个概念。对于面向对象设计及编程的基本思想，前面我们已经讲了很多了，不再赘述，简单来说就是把复杂系统分解成相互合作的对象，这些对象类通过封装以后，内部实现对外部是透明的，从而降低了解决问题的复杂度，而且可以灵活地被重用和扩展。&lt;/p&gt;
-&lt;p&gt;　　IOC理论提出的观点大体是这样的：借助于“第三方”实现具有依赖关系的对象之间的解耦。如下图&lt;br&gt;　　&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/65e4f1e6gw1f7iq9nu1n0j20a8051t8y.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;　大家看到了吧，由于引进了中间位置的“第三方”，也就是IOC容器，使得A、B、C、D这4个对象没有了耦合关系，齿轮之间的传动全部依靠“第三方”了，全部对象的控制权全部上缴给“第三方”IOC容器，所以，IOC容器成了整个系统的关键核心，它起到了一种类似“粘合剂”的作用，把系统中的所有对象粘合在一起发挥作用，如果没有这个“粘合剂”，对象与对象之间会彼此失去联系，这就是有人把IOC容器比喻成“粘合剂”的由来。&lt;/p&gt;
-&lt;p&gt;　　我们再来做个试验：把上图中间的IOC容器拿掉，然后再来看看这套系统&lt;br&gt;　　&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/801b780agw1f7iqbwd8umj20b505eq2z.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;　我们现在看到的画面，就是我们要实现整个系统所需要完成的全部内容。这时候，A、B、C、D这4个对象之间已经没有了耦合关系，彼此毫无联系，这样的话，当你在实现A的时候，根本无须再去考虑B、C和D了，对象之间的依赖关系已经降低到了最低程度。所以，如果真能实现IOC容器，对于系统开发而言，这将是一件多么美好的事情，参与开发的每一成员只要实现自己的类就可以了，跟别人没有任何关系！&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;我们再来看看，控制反转(IOC)到底为什么要起这么个名字？我们来对比一下：
-
-软件系统在没有引入IOC容器之前，如图1所示，对象A依赖于对象B，那么对象A在初始化或者运行到某一点的时候，自己必须主动去创建对象B或者使用已经创建的对象B。无论是创建还是使用对象B，控制权都在自己手上。
-
-软件系统在引入IOC容器之后，这种情形就完全改变了，如图3所示，由于IOC容器的加入，对象A与对象B之间失去了直接联系，所以，当对象A运行到需要对象B的时候，IOC容器会主动创建一个对象B注入到对象A需要的地方。
-
-通过前后的对比，我们不难看出来：对象A获得依赖对象B的过程,由主动行为变为了被动行为，控制权颠倒过来了，这就是“控制反转”这个名称的由来。
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;IOC也叫依赖注入-DI&quot;&gt;&lt;a href=&quot;#IOC也叫依赖注入-DI&quot; class=&quot;headerlink&quot; title=&quot;IOC也叫依赖注入(DI)&quot;&gt;&lt;/a&gt;IOC也叫依赖注入(DI)&lt;/h3&gt;&lt;p&gt;2004年，Martin Fowler探讨了同一个问题，既然IOC是控制反转，那么到底是“哪些方面的控制被反转了呢？”，经过详细地分析和论证后，他得出了答案：“获得依赖对象的过程被反转了”。控制被反转之后，获得依赖对象的过程由自身管理变为了由IOC容器主动注入。于是，他给“控制反转”取了一个更合适的名字叫做“依赖注入（Dependency Injection）”。他的这个答案，实际上给出了实现IOC的方法：注入。所谓依赖注入，就是由IOC容器在运行期间，动态地将某种依赖关系注入到对象之中。&lt;/p&gt;
-&lt;p&gt;　　所以，依赖注入(DI)和控制反转(IOC)是从不同的角度的描述的同一件事情，就是指通过引入IOC容器，利用依赖关系注入的方式，实现对象之间的解耦。&lt;/p&gt;
-&lt;p&gt;　　学过IOC的人可能都看过Martin Fowler(老马,2004年post)的这篇文章：Inversion of Control Containers and the Dependency Injection pattern[2]。
-　　&lt;/p&gt;
-&lt;h3 id=&quot;IOC容器的一些产品&quot;&gt;&lt;a href=&quot;#IOC容器的一些产品&quot; class=&quot;headerlink&quot; title=&quot;IOC容器的一些产品&quot;&gt;&lt;/a&gt;IOC容器的一些产品&lt;/h3&gt;&lt;p&gt;　Sun ONE技术体系下的IOC容器有：轻量级的有Spring、Guice、Pico Container、Avalon、HiveMind；重量级的有EJB；不轻不重的有JBoss，Jdon等等。Spring框架作为Java开发中SSH(Struts、Spring、Hibernate)三剑客之一，大中小项目中都有使用，非常成熟，应用广泛，EJB在关键性的工业级项目中也被使用，比如某些电信业务。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载自&lt;a href=&quot;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&quot;&gt;http://www.cnblogs.com/DebugLZQ/archive/2013/06/05/3107957.html&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;IOC的理论背景&quot;&gt;&lt;a href=&quot;#IOC的理论背景&quot; class=&quot;headerlink&quot; title=&quot;IOC的理论背景&quot;&gt;&lt;/a&gt;IOC的理论背景&lt;/h3&gt;&lt;p&gt;我们知道在面向对象设计的软件系统中，它的底层都是由N个对象构成的，各个对象之间通过相互合作，最终实现系统地业务逻辑[1]。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/72f96cbagw1f7iq5n53sfj209k05l0t0.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;　　如果我们打开机械式手表的后盖，就会看到与上面类似的情形，各个齿轮分别带动时针、分针和秒针顺时针旋转，从而在表盘上产生正确的时间。图1中描述的就是这样的一个齿轮组，它拥有多个独立的齿轮，这些齿轮相互啮合在一起，协同工作，共同完成某项任务。我们可以看到，在这样的齿轮组中，如果有一个齿轮出了问题，就可能会影响到整个齿轮组的正常运转。&lt;br&gt;　　&lt;br&gt;
-    
-    </summary>
-    
-      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="软件设计" scheme="http://zhenghe39.com/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shell的环境变量</title>
-    <link href="http://zhenghe39.com/2016/09/01/shell%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/"/>
-    <id>http://zhenghe39.com/2016/09/01/shell环境变量/</id>
-    <published>2016-09-01T13:33:33.000Z</published>
-    <updated>2016-09-01T13:36:30.000Z</updated>
-    
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;作用于当前shell和任意子shell环境，开机就添加到本地变量中.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;查看&quot;&gt;&lt;a href=&quot;#查看&quot; class=&quot;headerlink&quot; title=&quot;查看&quot;&gt;&lt;/a&gt;查看&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;所有环境变量&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79jw1f1hsycv4w7j20vi0mqqb7.jpg&quot; alt=&quot;所有环境变量&quot;&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;环境变量PATH&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79jw1f1ht1tetq9j20vo02ujt1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;修改&quot;&gt;&lt;a href=&quot;#修改&quot; class=&quot;headerlink&quot; title=&quot;修改&quot;&gt;&lt;/a&gt;修改&lt;/h3&gt;&lt;p&gt;以下为环境变量配置文件，加载顺序为（从上至下）：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;em&gt;系统级&lt;/em&gt;（所有用户登录都会先执行）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;/etc/profile&lt;/li&gt;
-&lt;li&gt;/etc/paths&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;em&gt;用户级&lt;/em&gt;（当前用户登录先执行）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;~/.bash_profile &lt;em&gt;补充说明&lt;/em&gt;：用户登录时执行，并调用「~/.bashrc」(这两个都是~的隐藏文件要用ls -a才可查看）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;~/.bash_login&lt;ul&gt;
-&lt;li&gt;~/.profile&lt;/li&gt;
-&lt;li&gt;~/.bashrc &lt;em&gt;补充说明&lt;/em&gt;：每次打开新的终端时执行，并调用/etc/bashrc&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;作用于当前shell和任意子shell环境，开机就添加到本地变量中.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;查看&quot;&gt;&lt;a href=&quot;#查看&quot; class=&quot;headerlink&quot; title=&quot;查看&quot;&gt;&lt;/a&gt;查看&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;所有环境变量&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/8b826b79jw1f1hsycv4w7j20vi0mqqb7.jpg&quot; alt=&quot;所有环境变量&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Shell" scheme="http://zhenghe39.com/tags/Shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shell下的权限控制</title>
-    <link href="http://zhenghe39.com/2016/09/01/Shell%E4%B8%8B%E7%9A%84%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/"/>
-    <id>http://zhenghe39.com/2016/09/01/Shell下的权限控制/</id>
-    <published>2016-09-01T09:52:02.000Z</published>
-    <updated>2016-09-01T09:52:49.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;用户授权（sudo）&quot;&gt;&lt;a href=&quot;#用户授权（sudo）&quot; class=&quot;headerlink&quot; title=&quot;用户授权（sudo）&quot;&gt;&lt;/a&gt;用户授权（sudo）&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;若当前用户没有执行某命令的权限可以使用sudo给其授权&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;文件-目录授权（chmod）&quot;&gt;&lt;a href=&quot;#文件-目录授权（chmod）&quot; class=&quot;headerlink&quot; title=&quot;文件/目录授权（chmod）&quot;&gt;&lt;/a&gt;文件/目录授权（chmod）&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;权限&lt;/th&gt;
-&lt;th&gt;r&lt;/th&gt;
-&lt;th&gt;w&lt;/th&gt;
-&lt;th&gt;x&lt;/th&gt;
-&lt;th&gt;-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;含义&lt;/td&gt;
-&lt;td&gt;read&lt;/td&gt;
-&lt;td&gt;write&lt;/td&gt;
-&lt;td&gt;execute&lt;/td&gt;
-&lt;td&gt;相应权限未被授予&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h4 id=&quot;查看权限&quot;&gt;&lt;a href=&quot;#查看权限&quot; class=&quot;headerlink&quot; title=&quot;查看权限&quot;&gt;&lt;/a&gt;查看权限&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ls -l file/directory&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b826b79gw1f1ighhgbxkj20vo024t9h.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;profile文件，权限信息分析：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;-rwxrwxr-x&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;首位&lt;code&gt;-&lt;/code&gt;    :    类型&lt;/li&gt;
-&lt;li&gt;rwx    :    User&lt;/li&gt;
-&lt;li&gt;rwx    :    Group&lt;/li&gt;
-&lt;li&gt;r—x    :    Other&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&quot;改变权限&quot;&gt;&lt;a href=&quot;#改变权限&quot; class=&quot;headerlink&quot; title=&quot;改变权限&quot;&gt;&lt;/a&gt;改变权限&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;方式一:&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;chmod [ugoa..] [+-=] [rwx] file...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;u「user」g「group」o「other」a「all」&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;eg.&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;chmod -r file : 删除所有用户对file的&lt;code&gt;r&lt;/code&gt;权限&lt;/li&gt;
-&lt;li&gt;chmod u +r file : 增加所有用户对file的&lt;code&gt;r&lt;/code&gt;权限&lt;/li&gt;
-&lt;li&gt;chmod =r file : 所有用户对file只有&lt;code&gt;r&lt;/code&gt;权限&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;方式二:&lt;/strong&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;chmod XXX file (chmod -R &lt;span class=&quot;number&quot;&gt;775&lt;/span&gt; directory | chmod &lt;span class=&quot;number&quot;&gt;775&lt;/span&gt; file)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;权限组合&lt;/th&gt;
-&lt;th&gt;二进制数&lt;/th&gt;
-&lt;th&gt;十进制数&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt; 可读可写可执行&lt;/td&gt;
-&lt;td&gt;rwx&lt;/td&gt;
-&lt;td&gt;111&lt;/td&gt;
-&lt;td&gt;7&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt; 可读可执行&lt;/td&gt;
-&lt;td&gt;r-x&lt;/td&gt;
-&lt;td&gt;101&lt;/td&gt;
-&lt;td&gt;5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt; 可读可写&lt;/td&gt;
-&lt;td&gt;rw-&lt;/td&gt;
-&lt;td&gt;110&lt;/td&gt;
-&lt;td&gt;6&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;em&gt;eg.&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;chmod 777 file : 所有用户对file有&lt;code&gt;rwx&lt;/code&gt;权限&lt;/li&gt;
-&lt;li&gt;chmod 175 file : file创建者对file有&lt;code&gt;x&lt;/code&gt;权限，group对file有&lt;code&gt;rwx&lt;/code&gt;权限，othor对file有&lt;code&gt;rx&lt;/code&gt;权限&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;用户授权（sudo）&quot;&gt;&lt;a href=&quot;#用户授权（sudo）&quot; class=&quot;headerlink&quot; title=&quot;用户授权（sudo）&quot;&gt;&lt;/a&gt;用户授权（sudo）&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;若当前用户没有执行某命令的权限可以使用sudo给其授权&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;文件-目录授权（chmod）&quot;&gt;&lt;a href=&quot;#文件-目录授权（chmod）&quot; class=&quot;headerlink&quot; title=&quot;文件/目录授权（chmod）&quot;&gt;&lt;/a&gt;文件/目录授权（chmod）&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;权限&lt;/th&gt;
-&lt;th&gt;r&lt;/th&gt;
-&lt;th&gt;w&lt;/th&gt;
-&lt;th&gt;x&lt;/th&gt;
-&lt;th&gt;-&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;含义&lt;/td&gt;
-&lt;td&gt;read&lt;/td&gt;
-&lt;td&gt;write&lt;/td&gt;
-&lt;td&gt;execute&lt;/td&gt;
-&lt;td&gt;相应权限未被授予&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Shell" scheme="http://zhenghe39.com/tags/Shell/"/>
     
   </entry>
   

@@ -1,0 +1,417 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/fonts/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> EL表达式 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            
+            <div class='headband'></div>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2016/11/20/EL表达式/"  itemprop="url" >
+                    EL表达式
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2016-11-20</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>由于Html页面中嵌入Java代码，是十分不利于开发者和美工分工的，为了尽量别在Jsp页面中使用Java代码,<br>为此El表达式出来了。</p>
+<p>语法：<code>${变量或表达式}</code></p>
+<p>作用：</p>
+<ul>
+<li>用于输出域中数据{若没有指定域对象，EL表达式就会依次在page-&gt;request-&gt;session-&gt;application域里找那个名字的变量}/${域范围.name}</li>
+<li>输出对象里的属性</li>
+<li>输出集合对象的值${personList[0]}/${personMap[“ppp”]}</li>
+<li><p>用于计算表达式:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#31639;&#26415;&#65306;$&#123;12+13-12*5+100&#125;&#10;&#27604;&#36739;&#65306;$&#123;5&#60;3&#125;&#10;&#36923;&#36753;&#65306;$&#123;5&#60;6&#38;&#38;7&#62;8&#125;&#10;&#21028;&#31354; &#21028;&#26029;&#26159;&#21542;null$&#123;name==null &#125;&#10;&#21028;&#26029;&#26159;&#21542;&#26159;&#31354;&#23383;&#31526;&#20018;$&#123;name==&#34;&#34;&#125;&#10;&#36824;&#26377;&#19968;&#31181;empty&#20851;&#38190;&#23383;&#21487;&#20197;&#29992;&#26469;&#21028;&#26029;&#31354;&#21644;null&#65292;&#29992;&#27861;&#65306;$&#123;empty name &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>EL表达式内置对象：</p>
+<ul>
+<li>pageContext   –等价于jsp的pageContext内置对象</li>
+<li>pageScope      –指定域获取</li>
+<li>requestScope</li>
+<li>sessionScope</li>
+<li>applicationScope</li>
+<li>param       –请求参数</li>
+<li>paramValues</li>
+<li>header       –请求头</li>
+<li>headerValues</li>
+<li>cookie       –获取cookie</li>
+<li>initParm     –获取web应用全局参数</li>
+</ul>
+<p><strong>show code</strong><br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">          &lt;%=pageContext.getRequest() %&gt;</span><br><span class="line">          &lt;br/&gt;</span><br><span class="line">          &lt;%--EL获取web上下文 --%&gt;</span><br><span class="line">          $&#123;pageContext.request.contextPath &#125; &lt;br/&gt;</span><br><span class="line">          $&#123;pageContext.request.remoteHost &#125;</span><br><span class="line">          &lt;a href="$&#123;pageContext.request.contextPath &#125;/04.el1.jsp"&gt;页面&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">          &lt;hr/&gt;</span><br><span class="line">          &lt;%-- param / paramValues --%&gt;</span><br><span class="line">          &lt;%--jsp接收参数 --%&gt;</span><br><span class="line">          &lt;%</span><br><span class="line">              String name = request.getParameter("name");</span><br><span class="line">              //out.write(name);</span><br><span class="line"></span><br><span class="line">              String[] names = request.getParameterValues("name");</span><br><span class="line">              for(String n:names)&#123;</span><br><span class="line">                  out.write(n+"&lt;br/&gt;");</span><br><span class="line">              &#125;</span><br><span class="line">          %&gt;</span><br><span class="line"></span><br><span class="line">          &lt;%--EL获取参数 --%&gt;</span><br><span class="line">          &lt;br/&gt;</span><br><span class="line">          EL: $&#123;param["name"]&#125;&lt;br/&gt;</span><br><span class="line">          EL: $&#123;paramValues["name"][0] &#125; - $&#123;paramValues["name"][1] &#125;</span><br><span class="line"></span><br><span class="line">          &lt;hr/&gt;</span><br><span class="line">          &lt;%--请求有： header / headerValues --%&gt;</span><br><span class="line">          &lt;%--jsp获取头 --%&gt;</span><br><span class="line">          &lt;%=request.getHeader("user-agent") %&gt;</span><br><span class="line"></span><br><span class="line">          &lt;%=request.getHeaders("user-agent") %&gt;</span><br><span class="line">          &lt;br/&gt;</span><br><span class="line">          &lt;%--EL获取请求头 --%&gt;</span><br><span class="line">          EL: $&#123;header["user-agent"] &#125;&lt;br/&gt;</span><br><span class="line">          EL: $&#123;headerValues["user-agent"][0] &#125;</span><br><span class="line"></span><br><span class="line">          &lt;hr/&gt;</span><br><span class="line">          &lt;%--cookie:  --%&gt;</span><br><span class="line">          &lt;%--jsp获取cookie --%&gt;</span><br><span class="line">          &lt;%=request.getCookies() %&gt;</span><br><span class="line">          &lt;br/&gt;</span><br><span class="line">          &lt;%--EL获取 Cookie--%&gt;</span><br><span class="line">          $&#123;cookie["JSESSIONID"].name &#125; - $&#123;cookie["JSESSIONID"].value &#125;</span><br><span class="line"></span><br><span class="line">          &lt;hr/&gt;</span><br><span class="line">          &lt;%--EL获取全局参数--%&gt;</span><br><span class="line">          $&#123;initParam["AAA"] &#125; - $&#123;initParam["BBB"] &#125;</span><br><span class="line">  &lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以上就是EL的内容，重点在引用属性时会调用它的<code>getXxxx</code>方法
+　　　　　　</p>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/20/EL表达式/"
+           data-title="EL表达式" data-url="http://zhenghe39.com/2016/11/20/EL表达式/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+                
+                
+                
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='sidebar-nav-content'>
+                    
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+                        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Maven/' title=Maven>Maven</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/OOP/' title=OOP>OOP</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/MvvM/' title=MvvM>MvvM</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Node/' title=Node>Node</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/SPA/' title=SPA>SPA</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/软件设计/' title=软件设计>软件设计</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/vi/' title=vi>vi</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+                    </div>
+                </div>
+        </div>
+    </aside>
+
+
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
+<script>
+      /*
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+        */
+
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
+            activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
+            distinguishLineScale:0,
+            events:{
+                'scrollNav':function(navItem,$navMenu){
+                    if(!navItem){
+                        return;
+                    }
+
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        'top':navItem.top,
+                        'height':navItem.height+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            $('.highlight-title').hide();
+
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
+</script>
+    </body>
+</html>
