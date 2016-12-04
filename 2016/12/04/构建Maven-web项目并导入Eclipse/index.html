@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Scope CSS classes with prefixes | issUn </title>
+        <title> 构建Maven web项目并导入Eclipse | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -45,8 +45,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/21/转载-Scope-CSS-classes-with-prefixes/"  itemprop="url" >
-                    Scope CSS classes with prefixes
+                <a class="post-title-link" href="/2016/12/04/构建Maven-web项目并导入Eclipse/"  itemprop="url" >
+                    构建Maven web项目并导入Eclipse
                 </a>
             </h1>
             
@@ -55,30 +55,26 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-06-21</time>
+                    <span class="post-meta-time" >2016-12-04</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <p>转载自：<a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/" target="_blank" rel="external">http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/</a></p>
-<p>When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.</p>
-<a id="more"></a>
-<p>Taking the <code>chained classes</code> approach, your CSS selectors might look something like this for a given set of components:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.success &#123; ... &#125;</span><br><span class="line">.btn.success &#123; .. &#125;</span><br><span class="line">.alert.success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<p>We have here a global base class, <code>.success</code>, that might house all the commonalities between successful buttons and alerts. Then, at the individual component level, we add on or override as necessary. However, this wide open class and chained approach exposes developers to a number of questions and potential paint points:</p>
-<ul>
-<li>What’s that base class stand for?</li>
-<li>What elements will be affected at the root level?</li>
-<li>How many elements have .success chained onto them?</li>
-<li>Can it be extended further to more components?</li>
-<li>What if one instance of .success uses green text on a white background while another uses white text on a green background?</li>
-</ul>
-<p>And those questions barely scratch the surface. This solution isn’t necessarily bad, but when scale, brevity, and flexibility are your top requirements, it might not be the best idea. A better solution might be using prefixed classes.</p>
-<p><code>Prefixed classes</code> guide developers towards a simpler and more maintainable direction for building an extensive CSS design system. Here’s what we have if we take away the generic base class and scope things per component with prefixes:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.btn-success &#123; ... &#125;</span><br><span class="line">.alert-success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<p>This way, <strong>the base class is at the component level</strong> and not the entire system level. In other words, our base classes have become <code>.btn</code> and <code>.alert</code>, not <code>.success</code>. There’s no bleeding of styles or behavior from one component to another here because we treat components in a “successful state” as an idea across the design system. That is to say, we have a shared idea of what “success” looks for buttons and alerts, but the execution is scoped entirely to each independent component. No questions of where common styles are used and no concern of unintended effects, making each component more durable and flexible.</p>
-<p>While a very tactical and detail-oriented practice, building components that inherently isolate themselves for improved modularity and customization in a system like Bootstrap makes for better code and a more enjoyable project down the line.</p>
+                <h3 id="使用Maven-Archetype插件"><a href="#使用Maven-Archetype插件" class="headerlink" title="使用Maven Archetype插件"></a>使用Maven Archetype插件</h3><p>直接使用<a href="http://maven.apache.org/archetype/maven-archetype-plugin/" target="_blank" rel="external">Maven Archetype Plugin</a>进行web项目骨架的生成</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId=com.samuerio.mavenweb -DartifactId=mavenweb-test -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false</span><br></pre></td></tr></table></figure>
+<p>Eclipse导入时选<code>Existing Maven Projects</code>即可，Eclipse就能将其识别为Maven Web项目。最后调整项目的<code>Build Path</code>,由默认的<code>mavenweb-test/target/classes</code>调整为<code>mavenweb-test/src/main/webapp/WEB-INF/classes</code>就大工完成了。</p>
+<h3 id="手动构建Maven-Web项目"><a href="#手动构建Maven-Web项目" class="headerlink" title="手动构建Maven Web项目"></a>手动构建Maven Web项目</h3><p>创建项目文件夹，并添加<code>pom.xml</code>文件<br><img src="http://ww4.sinaimg.cn/large/006tNc79gw1faf3en27w0j30q2032dha.jpg" alt=""></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">project</span> <span class="attribute">xmlns</span>=<span class="value">"http://maven.apache.org/POM/4.0.0"</span> <span class="attribute">xmlns:xsi</span>=<span class="value">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">  <span class="attribute">xsi:schemaLocation</span>=<span class="value">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="title">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>com.samuerio.mavenweb<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>manual-mavenweb-test<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="title">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">name</span>&gt;</span>manual-mavenweb-test<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="title">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">finalName</span>&gt;</span>manual-mavenweb-test<span class="tag">&lt;/<span class="title">finalName</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>创建Maven Web的<code>src/main/java</code> 、<code>src/main/resources</code>、<code>src/test/java</code>、<code>src/test/resources</code>、<code>src/main/webapp</code>等目录<br><img src="http://ww4.sinaimg.cn/large/006tNc79gw1faf3tosgnjj30h60ae3zj.jpg" alt=""></p>
+<p><strong>导入Eclipse</strong></p>
+<p>Eclipse导入时选<code>Existing Maven Projects</code>。以这种方式构建的Maven Web项目导入时Eclipse不会自动将其识别为Web项目，需要改其Eclipse的配置文件，好让IDE识别。</p>
+<p><strong>1.编辑.project文件</strong></p>
+<p>找到<code>&lt;natures&gt;&lt;/natures&gt;</code>添加上,并刷新项目</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">nature</span>&gt;</span>org.eclipse.wst.common.project.facet.core.nature<span class="tag">&lt;/<span class="title">nature</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">nature</span>&gt;</span>org.eclipse.wst.common.modulecore.ModuleCoreNature<span class="tag">&lt;/<span class="title">nature</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>2.编辑项目的Project Facets</strong></p>
+<p>打开项目<code>properties</code>，找到Project Facets,并勾选上右侧的Dynamic Web Module和Java<br><img src="http://ww2.sinaimg.cn/large/006tNc79gw1faf4f3hslzj317u0oyqdo.jpg" alt=""></p>
+<p>并点击底部的<code>Further configuration available...</code>进行WebContent变量的配置(默认的为WebRoot将其调整为webapp路径即可)<br><img src="http://ww4.sinaimg.cn/large/006tNc79gw1faf4o0eaqwj30t20iygnq.jpg" alt=""><br>最后同上面一样进行<code>Build Path</code>调整即可。</p>
 
             
         </div>
@@ -90,8 +86,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/21/转载-Scope-CSS-classes-with-prefixes/"
-           data-title="Scope CSS classes with prefixes" data-url="http://zhenghe39.com/2016/06/21/转载-Scope-CSS-classes-with-prefixes/">
+      <div class="ds-thread" data-thread-key="2016/12/04/构建Maven-web项目并导入Eclipse/"
+           data-title="构建Maven web项目并导入Eclipse" data-url="http://zhenghe39.com/2016/12/04/构建Maven-web项目并导入Eclipse/">
       </div>
     
   </div>
@@ -116,7 +112,7 @@
                     
                     <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
-                        
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#使用Maven-Archetype插件"><span class="nav-menu-text">使用Maven Archetype插件</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#手动构建Maven-Web项目"><span class="nav-menu-text">手动构建Maven Web项目</span></a></li></ol>
                     </div>
                     
                     <div class='nav-panel  ' id='site-info' >

@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Scope CSS classes with prefixes | issUn </title>
+        <title></title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,91 +35,78 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-post '>
+                    <div class='content-wrap content-wrap-normal '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-    
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
+     <section  class="collapse">
+        <span class="archive-move-on"></span>
+        <span class="archive-page-counter">
+          
+
+          
             
-            <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/21/转载-Scope-CSS-classes-with-prefixes/"  itemprop="url" >
-                    Scope CSS classes with prefixes
-                </a>
-            </h1>
+          
+          好目前共计 51 篇日志。继续努力。
+        </span>
+        
+        
             
-                <div class="post-meta">
-                    <a href = "/" class="post-meta-avatar">
-                        <img src="/favicon.ico" alt="issUn" >
-                        <span>issUn</span>
-                    </a>
-                    <span class="post-meta-time" >2016-06-21</time>
+            
+            
+                
+                <div class="collapse-title">
+                      <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
                 </div>
             
-        </header>
-        <div class="post-body" itemprop="articleBody">
             
-                <p>转载自：<a href="http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/" target="_blank" rel="external">http://markdotto.com/2012/02/16/scope-css-classes-with-prefixes/</a></p>
-<p>When building a CSS design system like Bootstrap, it’s important to keep things simple, durable, and flexible. This is no easy task, especially on larger teams and projects where the number of components can become quite high. To help improve this situation in a CSS design system, you might consider using prefixed classes instead of chained classes.</p>
-<a id="more"></a>
-<p>Taking the <code>chained classes</code> approach, your CSS selectors might look something like this for a given set of components:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.success &#123; ... &#125;</span><br><span class="line">.btn.success &#123; .. &#125;</span><br><span class="line">.alert.success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<p>We have here a global base class, <code>.success</code>, that might house all the commonalities between successful buttons and alerts. Then, at the individual component level, we add on or override as necessary. However, this wide open class and chained approach exposes developers to a number of questions and potential paint points:</p>
-<ul>
-<li>What’s that base class stand for?</li>
-<li>What elements will be affected at the root level?</li>
-<li>How many elements have .success chained onto them?</li>
-<li>Can it be extended further to more components?</li>
-<li>What if one instance of .success uses green text on a white background while another uses white text on a green background?</li>
-</ul>
-<p>And those questions barely scratch the surface. This solution isn’t necessarily bad, but when scale, brevity, and flexibility are your top requirements, it might not be the best idea. A better solution might be using prefixed classes.</p>
-<p><code>Prefixed classes</code> guide developers towards a simpler and more maintainable direction for building an extensive CSS design system. Here’s what we have if we take away the generic base class and scope things per component with prefixes:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">.btn-success &#123; ... &#125;</span><br><span class="line">.alert-success &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<p>This way, <strong>the base class is at the component level</strong> and not the entire system level. In other words, our base classes have become <code>.btn</code> and <code>.alert</code>, not <code>.success</code>. There’s no bleeding of styles or behavior from one component to another here because we treat components in a “successful state” as an idea across the design system. That is to say, we have a shared idea of what “success” looks for buttons and alerts, but the execution is scoped entirely to each independent component. No questions of where common styles are used and no concern of unintended effects, making each component more durable and flexible.</p>
-<p>While a very tactical and detail-oriented practice, building components that inherently isolate themselves for improved modularity and customization in a system like Bootstrap makes for better code and a more enjoyable project down the line.</p>
+            
+    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
+        <header class="collapse-post-header">
+            <h1 class="collapse-post-title">
+                <a  href="/2016/12/04/构建Maven-web项目并导入Eclipse/" itemprop="url">
+                    
+                        <span itemprop="name">构建Maven web项目并导入Eclipse</span>
+                    
+                </a>
+            </h1>
 
-            
-        </div>
+            <div class="collapse-post-meta">
+                <time  itemprop="dateCreated"
+                      datetime="2016-12-04T21:19:58+08:00"
+                      content="2016-12-04" >
+                    12-04
+                </time>
+            </div>
+        </header>
     </article>
 
-
+        
+    </section>
+    <nav class='pagination'>
+    
+    
+    <div class='clearfix'></div>
+</nav>
 
                         </div>
                         
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/06/21/转载-Scope-CSS-classes-with-prefixes/"
-           data-title="Scope CSS classes with prefixes" data-url="http://zhenghe39.com/2016/06/21/转载-Scope-CSS-classes-with-prefixes/">
-      </div>
-    
-  </div>
-
 
 
                     </div>
                     
- 
+    
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
+                    
                 
                 
-                <ul class='sidebar-nav' >
-                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
-                    &nbsp&nbsp
-                    <li href="#site-info" data-toggle="tab" >站点概况</li>
-                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel post-toc active' id='post-toc'>
-                        <div class='highlight-title' style='display:none;' ></div>
-                        
-                    </div>
-                    
-                    <div class='nav-panel  ' id='site-info' >
+                    <div class='nav-panel active ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
