@@ -99,11 +99,11 @@ Integrates Homebrew formulae with OS X&apos;s launchctl manager. Services can be
     [sudo] brew services cleanup
     Remove all unused services.
 </code></pre><ul>
-<li>brew service list：列出所有已安装的服务</li>
-<li>brew service start formula：启动服务</li>
-<li>brew service stop formula：关闭服务</li>
-<li>brew service restart formula：重启服务</li>
-<li>brew service cleanup：移除废弃的服务</li>
+<li>brew services list：列出所有已安装的服务</li>
+<li>brew services start formula：启动服务</li>
+<li>brew services stop formula：关闭服务</li>
+<li>brew services restart formula：重启服务</li>
+<li>brew services cleanup：移除废弃的服务</li>
 </ul>
 <h3 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h3><p><code>$ brew tap &lt;github_user/repo&gt;</code> ：安装他人扩展的brew服务<br>由于brew和包含的包源都是通过github来管理，人为的维护管理，除了自己的源还允许别人的源添加进行。</p>
 <p>eg.举例说明一下，Mac OS 比较歧视 PHP ，所以每次系统更新都会把常用的开发包（Ruby、Python 等）也顺带着更新到最新版本。（吐槽：Java 都已经被抛弃不再默认安装了），而 brew 居然也不包含 PHP 的包，那怎么办呢？<br><code>$ brew tap josegonzalez/php</code><br>命令完成之后，执行（当前最新是 php 5.5 版本，请根据需要替换）<br><code>$ brew install php55</code></p>

@@ -602,7 +602,7 @@
     <link href="http://zhenghe39.com/2016/11/14/Brew%E7%94%A8%E6%B3%95/"/>
     <id>http://zhenghe39.com/2016/11/14/Brew用法/</id>
     <published>2016-11-14T06:25:42.000Z</published>
-    <updated>2016-11-14T06:32:39.000Z</updated>
+    <updated>2016-12-31T09:13:00.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;brew update : 更新formula库，执行任何指令前最好先更新指令库&lt;/li&gt;
@@ -642,11 +642,11 @@ Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services ca
     [sudo] brew services cleanup
     Remove all unused services.
 &lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;brew service list：列出所有已安装的服务&lt;/li&gt;
-&lt;li&gt;brew service start formula：启动服务&lt;/li&gt;
-&lt;li&gt;brew service stop formula：关闭服务&lt;/li&gt;
-&lt;li&gt;brew service restart formula：重启服务&lt;/li&gt;
-&lt;li&gt;brew service cleanup：移除废弃的服务&lt;/li&gt;
+&lt;li&gt;brew services list：列出所有已安装的服务&lt;/li&gt;
+&lt;li&gt;brew services start formula：启动服务&lt;/li&gt;
+&lt;li&gt;brew services stop formula：关闭服务&lt;/li&gt;
+&lt;li&gt;brew services restart formula：重启服务&lt;/li&gt;
+&lt;li&gt;brew services cleanup：移除废弃的服务&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;安装扩展&quot;&gt;&lt;a href=&quot;#安装扩展&quot; class=&quot;headerlink&quot; title=&quot;安装扩展&quot;&gt;&lt;/a&gt;安装扩展&lt;/h3&gt;&lt;p&gt;&lt;code&gt;$ brew tap &amp;lt;github_user/repo&amp;gt;&lt;/code&gt; ：安装他人扩展的brew服务&lt;br&gt;由于brew和包含的包源都是通过github来管理，人为的维护管理，除了自己的源还允许别人的源添加进行。&lt;/p&gt;
 &lt;p&gt;eg.举例说明一下，Mac OS 比较歧视 PHP ，所以每次系统更新都会把常用的开发包（Ruby、Python 等）也顺带着更新到最新版本。（吐槽：Java 都已经被抛弃不再默认安装了），而 brew 居然也不包含 PHP 的包，那怎么办呢？&lt;br&gt;&lt;code&gt;$ brew tap josegonzalez/php&lt;/code&gt;&lt;br&gt;命令完成之后，执行（当前最新是 php 5.5 版本，请根据需要替换）&lt;br&gt;&lt;code&gt;$ brew install php55&lt;/code&gt;&lt;/p&gt;
