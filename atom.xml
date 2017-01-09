@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-01-09T02:25:34.000Z</updated>
+  <updated>2017-01-09T07:21:33.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,105 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Web应用中调优线程池的重要性</title>
+    <link href="http://zhenghe39.com/2017/01/09/Java-Web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%B0%83%E4%BC%98%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/"/>
+    <id>http://zhenghe39.com/2017/01/09/Java-Web应用中调优线程池的重要性/</id>
+    <published>2017-01-09T05:30:49.000Z</published>
+    <updated>2017-01-09T07:21:33.000Z</updated>
+    
+    <content type="html">&lt;p&gt;转载自&lt;a href=&quot;http://www.infoq.com/cn/articles/the-importance-of-thread-pool-in-java-web-application&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.infoq.com/cn/articles/the-importance-of-thread-pool-in-java-web-application&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;不论你是否关注，Java Web应用都或多或少的使用了线程池来处理请求。线程池的实现细节可能会被忽视，但是有关于线程池的使用和调优迟早是需要了解的。本文主要介绍Java线程池的使用和如何正确的配置线程池。&lt;/p&gt;
+&lt;h3 id=&quot;单线程&quot;&gt;&lt;a href=&quot;#单线程&quot; class=&quot;headerlink&quot; title=&quot;单线程&quot;&gt;&lt;/a&gt;单线程&lt;/h3&gt;&lt;p&gt;我们先从基础开始。无论使用哪种应用服务器或者框架（如Tomcat、Jetty等），他们都有类似的基础实现。Web服务的基础是套接字（socket），套接字负责监听端口，等待TCP连接，并接受TCP连接。一旦TCP连接被接受，即可从新创建的TCP连接中读取和发送数据。&lt;/p&gt;
+&lt;p&gt;为了能够理解上述流程，我们不直接使用任何应用服务器，而是从零开始构建一个简单的Web服务。该服务是大部分应用服务器的缩影。一个简单的单线程Web服务大概是这样的：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ServerSocket listener = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ServerSocket(&lt;span class=&quot;number&quot;&gt;8080&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Socket socket = listener.accept();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     handleRequest(socket);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (IOException e) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     e.printStackTrace();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;finally&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; listener.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上述代码创建了一个服务端套接字（&lt;a href=&quot;https://docs.oracle.com/javase/7/docs/api/java/net/ServerSocket.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ServerSocket&lt;/a&gt;），监听8080端口，然后循环检查这个套接字，查看是否有新的连接。一旦有新的连接被接受，这个套接字会被传入handleRequest方法。这个方法会将数据流解析成HTTP请求，进行响应，并写入响应数据。在这个简单的示例中，handleRequest方法仅仅实现数据流的读入，返回一个简单的响应数据。在通常实现中，该方法还会复杂的多，比如从数据库读取数据等。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; String response =&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   “HTTP/&lt;span class=&quot;number&quot;&gt;1.0&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;200&lt;/span&gt; OK\r\n” +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   “Content-type: text/plain\r\n” +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   “\r\n” +&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   “Hello World\r\n”;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;handleRequest&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Socket socket)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; IOException &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;comment&quot;&gt;// Read the input stream, and return “200 OK”&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   BufferedReader in = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BufferedReader(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; InputStreamReader(socket.getInputStream()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   log.info(in.readLine());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   OutputStream out = socket.getOutputStream();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   out.write(response.getBytes(StandardCharsets.UTF_8));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125; &lt;span class=&quot;keyword&quot;&gt;finally&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   socket.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;由于只有一个线程来处理请求，每个请求都必须等待前一个请求处理完成之后才能够被响应。假设一个请求响应时间为100毫秒，那么这个服务器的每秒响应数（tps）只有10。&lt;/p&gt;
+&lt;h3 id=&quot;多线程&quot;&gt;&lt;a href=&quot;#多线程&quot; class=&quot;headerlink&quot; title=&quot;多线程&quot;&gt;&lt;/a&gt;多线程&lt;/h3&gt;&lt;p&gt;虽然handleRequest方法可能阻塞在IO上，但是CPU仍然可以处理更多的请求。但是在单线程情况下，这是无法做到的。因此，可以通过创建多线程的方式，来提升服务器的并行处理能力。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HandleRequestRunnable&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Runnable&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;final&lt;/span&gt; Socket socket;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HandleRequestRunnable&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Socket socket)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.socket = socket;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     handleRequest(socket);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125; &lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt; (IOException e) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     e.printStackTrace();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ServerSocket listener = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ServerSocket(&lt;span class=&quot;number&quot;&gt;8080&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Socket socket = listener.accept();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Thread(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HandleRequestRunnable(socket)).start();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;finally&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; listener.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这里，accept()方法仍然在主线程中调用，但是一旦TCP连接建立之后，将会创建一个新的线程来处理新的请求，既在新的线程中执行前文中的handleRequest方法。&lt;/p&gt;
+&lt;p&gt;通过创建新的线程，主线程可以继续接受新的TCP连接，且这些信求可以并行的处理。这个方式称为“每个请求一个线程（thread per request）”。当然，还有其他方式来提高处理性能，例如NGINX和Node.js使用的异步事件驱动模型，但是它们不使用线程池，因此不在本文的讨论范围。&lt;/p&gt;
+&lt;p&gt;在每个请求一个线程实现中，创建一个线程（和后续的销毁）开销是非常昂贵的，因为JVM和操作系统都需要分配资源。另外，上面的实现还有一个问题，即创建的线程数是不可控的，这将可能导致系统资源被迅速耗尽。&lt;/p&gt;
+&lt;h3 id=&quot;资源耗尽&quot;&gt;&lt;a href=&quot;#资源耗尽&quot; class=&quot;headerlink&quot; title=&quot;资源耗尽&quot;&gt;&lt;/a&gt;资源耗尽&lt;/h3&gt;&lt;p&gt;每个线程都需要一定的栈内存空间。在最近的64位JVM中，默认的栈大小是1024KB。如果服务器收到大量请求，或者handleRequest方法执行很慢，服务器可能因为创建了大量线程而崩溃。例如有1000个并行的请求，创建出来的1000个线程需要使用1GB的JVM内存作为线程栈空间。另外，每个线程代码执行过程中创建的对象，还可能会在堆上创建对象。这样的情况恶化下去，将会超出JVM堆内存，并产生大量的垃圾回收操作，最终引发内存溢出（OutOfMemoryErrors）。&lt;/p&gt;
+&lt;p&gt;这些线程不仅仅会消耗内存，它们还会使用其他有限的资源，例如文件句柄、数据库连接等。不可控的创建线程，还可能引发其他类型的错误和崩溃。因此，避免资源耗尽的一个重要方式，就是避免不可控的数据结构。&lt;/p&gt;
+&lt;p&gt;顺便说下，由于线程栈大小引发的内存问题，可以通过-Xss开关来调整栈大小。缩小线程栈大小之后，可以减少每个线程的开销，但是可能会引发栈溢出（StackOverflowErrors）。对于一般应用程序而言，默认的1024KB过于富裕，调小为256KB或者512KB可能更为合适。Java允许的最小值是160KB。&lt;/p&gt;
+&lt;h3 id=&quot;线程池&quot;&gt;&lt;a href=&quot;#线程池&quot; class=&quot;headerlink&quot; title=&quot;线程池&quot;&gt;&lt;/a&gt;线程池&lt;/h3&gt;&lt;p&gt;为了避免持续创建新线程，可以通过使用简单的线程池来限定线程池的上限。线程池会管理所有线程，如果线程数还没有达到上限，线程池会创建线程到上限，且尽可能复用空闲的线程。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ServerSocket listener = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ServerSocket(&lt;span class=&quot;number&quot;&gt;8080&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ExecutorService executor = Executors.newFixedThreadPool(&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   Socket socket = listener.accept();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   executor.submit( &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HandleRequestRunnable(socket) );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125; &lt;span class=&quot;keyword&quot;&gt;finally&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; listener.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在这个示例中，没有直接创建线程，而是使用了ExecutorService。它将需要执行的任务（需要实现Runnables接口）提交到线程池，使用线程池中的线程执行代码。示例中，使用线程数量为4的固定大小线程池来处理所有请求。这限制了处理请求的线程数量，也限制了资源的使用。&lt;/p&gt;
+&lt;p&gt;除了通过&lt;a href=&quot;https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html#newFixedThreadPool%28int%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;newFixedThreadPool&lt;/a&gt;方法创建固定大小线程池，Executors类还提供了&lt;a href=&quot;https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html#newCachedThreadPool%28%29&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;newCachedThreadPool&lt;/a&gt;方法。复用线程池还是有可能导致不可控的线程数，但是它会尽可能使用之前已经创建的空闲线程。通常该类型线程池适合使用在不会被外部资源阻塞的短任务上。&lt;/p&gt;
+&lt;h3 id=&quot;工作队列&quot;&gt;&lt;a href=&quot;#工作队列&quot; class=&quot;headerlink&quot; title=&quot;工作队列&quot;&gt;&lt;/a&gt;工作队列&lt;/h3&gt;&lt;p&gt;使用了固定大小线程池之后，如果所有的线程都繁忙，再新来一个请求将会发生什么呢？ThreadPoolExecutor使用一个队列来保存等待处理的请求，固定大小线程池默认使用无限制的链表。注意，这又可能引起资源耗尽问题，但只要线程处理的速度大于队列增长的速度就不会发生。然后前面示例中，每个排队的请求都会持有套接字，在一些操作系统中，这将会消耗文件句柄。由于操作系统会限制进程打开的文件句柄数，因此最好限制下工作队列的大小。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; ExecutorService &lt;span class=&quot;title&quot;&gt;newBoundedFixedThreadPool&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; nThreads, &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; capacity)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ThreadPoolExecutor(nThreads, nThreads,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;number&quot;&gt;0L&lt;/span&gt;, TimeUnit.MILLISECONDS,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; LinkedBlockingQueue&amp;lt;Runnable&amp;gt;(capacity),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ThreadPoolExecutor.DiscardPolicy());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;boundedThreadPoolServerSocket&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; IOException &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; ServerSocket listener = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ServerSocket(&lt;span class=&quot;number&quot;&gt;8080&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; ExecutorService executor = newBoundedFixedThreadPool(&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;16&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     Socket socket = listener.accept();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     executor.submit( &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; HandleRequestRunnable(socket) );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125; &lt;span class=&quot;keyword&quot;&gt;finally&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   listener.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这里我们没有直接使用Executors.newFixedThreadPool方法来创建线程池，而是自己构建了ThreadPoolExecutor对象，并将工作队列长度限制为16个元素。&lt;/p&gt;
+&lt;p&gt;如果所有的线程都繁忙，新的任务将会填充到队列中，由于队列限制了大小为16个元素，如果超过这个限制，就需要由构造ThreadPoolExecutor对象时的最后一个参数来处理了。示例中，使用了&lt;a href=&quot;https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.DiscardPolicy.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;抛弃策略（DiscardPolicy）&lt;/a&gt;，即当队列到达上限时，将抛弃新来的任务。初次之外，还有&lt;a href=&quot;https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.AbortPolicy.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中止策略（AbortPolicy）&lt;/a&gt;和&lt;a href=&quot;https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.CallerRunsPolicy.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;调用者执行策略（CallerRunsPolicy）&lt;/a&gt;。前者将抛出一个异常，而后者会再调用者线程中执行任务。&lt;/p&gt;
+&lt;p&gt;对于Web应用来说，最优的默认策略应该是抛弃或者中止策略，并返回一个错误给客户端（如&lt;a href=&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HTTP 503&lt;/a&gt;错误）。当然也可以通过增加工作队列长度的方式，避免抛弃客户端请求，但是用户请求一般不愿意进行长时间的等待，且这样会更多的消耗服务器资源。工作队列的用途，不是无限制的响应客户端请求，而是平滑突发暴增的请求。通常情况下，工作队列应该是空的。&lt;/p&gt;
+&lt;h3 id=&quot;线程数调优&quot;&gt;&lt;a href=&quot;#线程数调优&quot; class=&quot;headerlink&quot; title=&quot;线程数调优&quot;&gt;&lt;/a&gt;线程数调优&lt;/h3&gt;&lt;p&gt;前面的示例展示了如何创建和使用线程池，但是，使用线程池的核心问题在于应该使用多少线程。首先，我们要确保达到线程上限时，不会引起资源耗尽。这里的资源包括内存（堆和栈）、打开文件句柄数量、TCP连接数、远程数据库连接数和其他有限的资源。特别的，如果线程任务是计算密集型的，CPU核心数量也是资源限制之一，一般情况下线程数量不要超过CPU核心数量。&lt;/p&gt;
+&lt;p&gt;由于线程数的选定依赖于应用程序的类型，可能需要经过大量性能测试之后，才能得出最优的结果。当然，也可以通过增加资源数的方式，来提升应用程序的性能。例如，修改JVM堆内存大小，或者修改操作系统的文件句柄上限等。然后，这些调整最终还是会触及理论上限。&lt;/p&gt;
+&lt;h3 id=&quot;利特尔法则&quot;&gt;&lt;a href=&quot;#利特尔法则&quot; class=&quot;headerlink&quot; title=&quot;利特尔法则&quot;&gt;&lt;/a&gt;利特尔法则&lt;/h3&gt;&lt;p&gt;利特尔法则描述了在稳定系统中，三个变量之间的关系。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/006tNc79gw1fbkekly6g5j308j01sdfn.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其中L表示平均请求数量，λ表示请求的频率，W表示响应请求的平均时间。举例来说，如果每秒请求数为10次，每个请求处理时间为1秒，那么在任何时刻都有10个请求正在被处理。回到我们的话题，就是需要使用10个线程来进行处理。如果单个请求的处理时间翻倍，那么处理的线程数也要翻倍，变成20个。&lt;/p&gt;
+&lt;p&gt;理解了处理时间对于请求处理效率的影响之后，我们会发现，通常理论上限可能不是线程池大小的最佳值。线程池上限还需要参考任务处理时间。&lt;/p&gt;
+&lt;p&gt;假设JVM可以并行处理1000个任务，如果每个请求处理时间不超过30秒，那么在最坏情况下，每秒最多只能处理33.3个请求。然而，如果每个请求只需要500毫秒，那么应用程序每秒可以处理2000个请求。&lt;/p&gt;
+&lt;p&gt;作者 金灵杰 发布于 2016年2月16日 | 欲知区块链、VR、TensorFlow等潮流技术和框架，请锁定QCon北京站！ 8  讨论&lt;br&gt;分享到： 微博 微信 Facebook Twitter 有道云笔记 邮件分享&lt;br&gt;稍后阅读我的阅读清单&lt;br&gt;不论你是否关注，Java Web应用都或多或少的使用了线程池来处理请求。线程池的实现细节可能会被忽视，但是有关于线程池的使用和调优迟早是需要了解的。本文主要介绍Java线程池的使用和如何正确的配置线程池。&lt;/p&gt;
+&lt;p&gt;单线程&lt;/p&gt;
+&lt;p&gt;我们先从基础开始。无论使用哪种应用服务器或者框架（如Tomcat、Jetty等），他们都有类似的基础实现。Web服务的基础是套接字（socket），套接字负责监听端口，等待TCP连接，并接受TCP连接。一旦TCP连接被接受，即可从新创建的TCP连接中读取和发送数据。&lt;/p&gt;
+&lt;p&gt;为了能够理解上述流程，我们不直接使用任何应用服务器，而是从零开始构建一个简单的Web服务。该服务是大部分应用服务器的缩影。一个简单的单线程Web服务大概是这样的：&lt;/p&gt;
+&lt;p&gt;ServerSocket listener = new ServerSocket(8080);&lt;br&gt;try {&lt;br&gt; while (true) {&lt;br&gt;   Socket socket = listener.accept();&lt;br&gt;   try {&lt;br&gt;     handleRequest(socket);&lt;br&gt;   } catch (IOException e) {&lt;br&gt;     e.printStackTrace();&lt;br&gt;   }&lt;br&gt; }&lt;br&gt;} finally {&lt;br&gt; listener.close();&lt;br&gt;}&lt;br&gt;上述代码创建了一个服务端套接字（ServerSocket），监听8080端口，然后循环检查这个套接字，查看是否有新的连接。一旦有新的连接被接受，这个套接字会被传入handleRequest方法。这个方法会将数据流解析成HTTP请求，进行响应，并写入响应数据。在这个简单的示例中，handleRequest方法仅仅实现数据流的读入，返回一个简单的响应数据。在通常实现中，该方法还会复杂的多，比如从数据库读取数据等。&lt;/p&gt;
+&lt;p&gt;final static String response =&lt;br&gt;   “HTTP/1.0 200 OK\r\n” +&lt;br&gt;   “Content-type: text/plain\r\n” +&lt;br&gt;   “\r\n” +&lt;br&gt;   “Hello World\r\n”;&lt;/p&gt;
+&lt;p&gt;public static void handleRequest(Socket socket) throws IOException {&lt;br&gt; // Read the input stream, and return “200 OK”&lt;br&gt; try {&lt;br&gt;   BufferedReader in = new BufferedReader(&lt;br&gt;     new InputStreamReader(socket.getInputStream()));&lt;br&gt;   log.info(in.readLine());&lt;/p&gt;
+&lt;p&gt;   OutputStream out = socket.getOutputStream();&lt;br&gt;   out.write(response.getBytes(StandardCharsets.UTF_8));&lt;br&gt; } finally {&lt;br&gt;   socket.close();&lt;br&gt; }&lt;br&gt;}&lt;br&gt;相关厂商内容&lt;/p&gt;
+&lt;p&gt;关于红包、SSD云盘等核心技术集锦！ 基于KVM架构的新一代云主机，如何让速度更快更稳定？ 一项关于提升云主机稳定性的实践 基于KVM架构的新一代云主机，如何让速度更快更稳定？ 杭州免费沙龙：从技术实践看如何提升企业研发效能&lt;br&gt;由于只有一个线程来处理请求，每个请求都必须等待前一个请求处理完成之后才能够被响应。假设一个请求响应时间为100毫秒，那么这个服务器的每秒响应数（tps）只有10。&lt;/p&gt;
+&lt;p&gt;多线程&lt;/p&gt;
+&lt;p&gt;虽然handleRequest方法可能阻塞在IO上，但是CPU仍然可以处理更多的请求。但是在单线程情况下，这是无法做到的。因此，可以通过创建多线程的方式，来提升服务器的并行处理能力。&lt;/p&gt;
+&lt;p&gt;public static class HandleRequestRunnable implements Runnable {&lt;/p&gt;
+&lt;p&gt; final Socket socket;&lt;/p&gt;
+&lt;p&gt; public HandleRequestRunnable(Socket socket) {&lt;br&gt;   this.socket = socket;&lt;br&gt; }&lt;/p&gt;
+&lt;p&gt; public void run() {&lt;br&gt;   try {&lt;br&gt;     handleRequest(socket);&lt;br&gt;   } catch (IOException e) {&lt;br&gt;     e.printStackTrace();&lt;br&gt;   }&lt;br&gt; }&lt;br&gt;}&lt;/p&gt;
+&lt;p&gt;ServerSocket listener = new ServerSocket(8080);&lt;br&gt;try {&lt;br&gt; while (true) {&lt;br&gt;   Socket socket = listener.accept();&lt;br&gt;   new Thread(new HandleRequestRunnable(socket)).start();&lt;br&gt; }&lt;br&gt;} finally {&lt;br&gt; listener.close();&lt;br&gt;}&lt;br&gt;这里，accept()方法仍然在主线程中调用，但是一旦TCP连接建立之后，将会创建一个新的线程来处理新的请求，既在新的线程中执行前文中的handleRequest方法。&lt;/p&gt;
+&lt;p&gt;通过创建新的线程，主线程可以继续接受新的TCP连接，且这些信求可以并行的处理。这个方式称为“每个请求一个线程（thread per request）”。当然，还有其他方式来提高处理性能，例如NGINX和Node.js使用的异步事件驱动模型，但是它们不使用线程池，因此不在本文的讨论范围。&lt;/p&gt;
+&lt;p&gt;在每个请求一个线程实现中，创建一个线程（和后续的销毁）开销是非常昂贵的，因为JVM和操作系统都需要分配资源。另外，上面的实现还有一个问题，即创建的线程数是不可控的，这将可能导致系统资源被迅速耗尽。&lt;/p&gt;
+&lt;p&gt;资源耗尽&lt;/p&gt;
+&lt;p&gt;每个线程都需要一定的栈内存空间。在最近的64位JVM中，默认的栈大小是1024KB。如果服务器收到大量请求，或者handleRequest方法执行很慢，服务器可能因为创建了大量线程而崩溃。例如有1000个并行的请求，创建出来的1000个线程需要使用1GB的JVM内存作为线程栈空间。另外，每个线程代码执行过程中创建的对象，还可能会在堆上创建对象。这样的情况恶化下去，将会超出JVM堆内存，并产生大量的垃圾回收操作，最终引发内存溢出（OutOfMemoryErrors）。&lt;/p&gt;
+&lt;p&gt;这些线程不仅仅会消耗内存，它们还会使用其他有限的资源，例如文件句柄、数据库连接等。不可控的创建线程，还可能引发其他类型的错误和崩溃。因此，避免资源耗尽的一个重要方式，就是避免不可控的数据结构。&lt;/p&gt;
+&lt;p&gt;顺便说下，由于线程栈大小引发的内存问题，可以通过-Xss开关来调整栈大小。缩小线程栈大小之后，可以减少每个线程的开销，但是可能会引发栈溢出（StackOverflowErrors）。对于一般应用程序而言，默认的1024KB过于富裕，调小为256KB或者512KB可能更为合适。Java允许的最小值是160KB。&lt;/p&gt;
+&lt;p&gt;线程池&lt;/p&gt;
+&lt;p&gt;为了避免持续创建新线程，可以通过使用简单的线程池来限定线程池的上限。线程池会管理所有线程，如果线程数还没有达到上限，线程池会创建线程到上限，且尽可能复用空闲的线程。&lt;/p&gt;
+&lt;p&gt;ServerSocket listener = new ServerSocket(8080);&lt;br&gt;ExecutorService executor = Executors.newFixedThreadPool(4);&lt;br&gt;try {&lt;br&gt; while (true) {&lt;br&gt;   Socket socket = listener.accept();&lt;br&gt;   executor.submit( new HandleRequestRunnable(socket) );&lt;br&gt; }&lt;br&gt;} finally {&lt;br&gt; listener.close();&lt;br&gt;}&lt;br&gt;在这个示例中，没有直接创建线程，而是使用了ExecutorService。它将需要执行的任务（需要实现Runnables接口）提交到线程池，使用线程池中的线程执行代码。示例中，使用线程数量为4的固定大小线程池来处理所有请求。这限制了处理请求的线程数量，也限制了资源的使用。&lt;/p&gt;
+&lt;p&gt;除了通过newFixedThreadPool方法创建固定大小线程池，Executors类还提供了newCachedThreadPool方法。复用线程池还是有可能导致不可控的线程数，但是它会尽可能使用之前已经创建的空闲线程。通常该类型线程池适合使用在不会被外部资源阻塞的短任务上。&lt;/p&gt;
+&lt;p&gt;工作队列&lt;/p&gt;
+&lt;p&gt;使用了固定大小线程池之后，如果所有的线程都繁忙，再新来一个请求将会发生什么呢？ThreadPoolExecutor使用一个队列来保存等待处理的请求，固定大小线程池默认使用无限制的链表。注意，这又可能引起资源耗尽问题，但只要线程处理的速度大于队列增长的速度就不会发生。然后前面示例中，每个排队的请求都会持有套接字，在一些操作系统中，这将会消耗文件句柄。由于操作系统会限制进程打开的文件句柄数，因此最好限制下工作队列的大小。&lt;/p&gt;
+&lt;p&gt;public static ExecutorService newBoundedFixedThreadPool(int nThreads, int capacity) {&lt;br&gt; return new ThreadPoolExecutor(nThreads, nThreads,&lt;br&gt;     0L, TimeUnit.MILLISECONDS,&lt;br&gt;     new LinkedBlockingQueue&lt;runnable&gt;(capacity),&lt;br&gt;     new ThreadPoolExecutor.DiscardPolicy());&lt;br&gt;}&lt;/runnable&gt;&lt;/p&gt;
+&lt;p&gt;public static void boundedThreadPoolServerSocket() throws IOException {&lt;br&gt; ServerSocket listener = new ServerSocket(8080);&lt;br&gt; ExecutorService executor = newBoundedFixedThreadPool(4, 16);&lt;br&gt; try {&lt;br&gt;   while (true) {&lt;br&gt;     Socket socket = listener.accept();&lt;br&gt;     executor.submit( new HandleRequestRunnable(socket) );&lt;br&gt;   }&lt;br&gt; } finally {&lt;br&gt;   listener.close();&lt;br&gt; }&lt;br&gt;}&lt;br&gt;这里我们没有直接使用Executors.newFixedThreadPool方法来创建线程池，而是自己构建了ThreadPoolExecutor对象，并将工作队列长度限制为16个元素。&lt;/p&gt;
+&lt;p&gt;如果所有的线程都繁忙，新的任务将会填充到队列中，由于队列限制了大小为16个元素，如果超过这个限制，就需要由构造ThreadPoolExecutor对象时的最后一个参数来处理了。示例中，使用了抛弃策略（DiscardPolicy），即当队列到达上限时，将抛弃新来的任务。初次之外，还有中止策略（AbortPolicy）和调用者执行策略（CallerRunsPolicy）。前者将抛出一个异常，而后者会再调用者线程中执行任务。&lt;/p&gt;
+&lt;p&gt;对于Web应用来说，最优的默认策略应该是抛弃或者中止策略，并返回一个错误给客户端（如HTTP 503错误）。当然也可以通过增加工作队列长度的方式，避免抛弃客户端请求，但是用户请求一般不愿意进行长时间的等待，且这样会更多的消耗服务器资源。工作队列的用途，不是无限制的响应客户端请求，而是平滑突发暴增的请求。通常情况下，工作队列应该是空的。&lt;/p&gt;
+&lt;p&gt;线程数调优&lt;/p&gt;
+&lt;p&gt;前面的示例展示了如何创建和使用线程池，但是，使用线程池的核心问题在于应该使用多少线程。首先，我们要确保达到线程上限时，不会引起资源耗尽。这里的资源包括内存（堆和栈）、打开文件句柄数量、TCP连接数、远程数据库连接数和其他有限的资源。特别的，如果线程任务是计算密集型的，CPU核心数量也是资源限制之一，一般情况下线程数量不要超过CPU核心数量。&lt;/p&gt;
+&lt;p&gt;由于线程数的选定依赖于应用程序的类型，可能需要经过大量性能测试之后，才能得出最优的结果。当然，也可以通过增加资源数的方式，来提升应用程序的性能。例如，修改JVM堆内存大小，或者修改操作系统的文件句柄上限等。然后，这些调整最终还是会触及理论上限。&lt;/p&gt;
+&lt;p&gt;利特尔法则&lt;/p&gt;
+&lt;p&gt;利特尔法则描述了在稳定系统中，三个变量之间的关系。&lt;/p&gt;
+&lt;p&gt;其中L表示平均请求数量，λ表示请求的频率，W表示响应请求的平均时间。举例来说，如果每秒请求数为10次，每个请求处理时间为1秒，那么在任何时刻都有10个请求正在被处理。回到我们的话题，就是需要使用10个线程来进行处理。如果单个请求的处理时间翻倍，那么处理的线程数也要翻倍，变成20个。&lt;/p&gt;
+&lt;p&gt;理解了处理时间对于请求处理效率的影响之后，我们会发现，通常理论上限可能不是线程池大小的最佳值。线程池上限还需要参考任务处理时间。&lt;/p&gt;
+&lt;p&gt;假设JVM可以并行处理1000个任务，如果每个请求处理时间不超过30秒，那么在最坏情况下，每秒最多只能处理33.3个请求。然而，如果每个请求只需要500毫秒，那么应用程序每秒可以处理2000个请求。&lt;/p&gt;
+&lt;h3 id=&quot;拆分线程池&quot;&gt;&lt;a href=&quot;#拆分线程池&quot; class=&quot;headerlink&quot; title=&quot;拆分线程池&quot;&gt;&lt;/a&gt;拆分线程池&lt;/h3&gt;&lt;p&gt;在微服务或者面向服务架构（SOA）中，通常需要访问多个后端服务。如果其中一个服务性能下降，可能会引起线程池线程耗尽，从而影响对其他服务的请求。&lt;/p&gt;
+&lt;p&gt;应对后端服务失效的有效办法是隔离每个服务所使用的线程池。在这种模式下，仍然有一个分派的线程池，将任务分派到不同的后端请求线程池中。该线程池可能因为一个缓慢的后端而没有负载，而将负担转移到了请求缓慢后端的线程池中。&lt;/p&gt;
+&lt;p&gt;另外，多线程池模式还需要避免死锁问题。如果每个线程都阻塞在等待未被处理请求的结果上时，就会发生死锁。因此，多线程池模式下，需要了解每个线程池执行的任务和它们之间的依赖，这样可以尽可能避免死锁问题。&lt;/p&gt;
+&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;即使没有在应用程序中直接使用线程池，它们也很有可能在应用程序中被应用服务器或者框架间接使用。Tomcat、JBoss、Undertow、Dropwizard等框架，都提供了调优线程池（servlet执行使用的线程池）的选项。&lt;/p&gt;
+&lt;p&gt;希望本文能够提升对线程池的了解。通过了解应用的需求，组合最大线程数和平均响应时间，可以得出一个合适的线程池配置。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;转载自&lt;a href=&quot;http://www.infoq.com/cn/articles/the-importance-of-thread-pool-in-java-web-application&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http:/
+    
+    </summary>
+    
+      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="Java" scheme="http://zhenghe39.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>开源前端框架纵横谈</title>
@@ -755,88 +854,6 @@ Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services ca
     
     
       <category term="Tool" scheme="http://zhenghe39.com/tags/Tool/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>构建单页Web应用</title>
-    <link href="http://zhenghe39.com/2016/11/03/%E6%9E%84%E5%BB%BA%E5%8D%95%E9%A1%B5Web%E5%BA%94%E7%94%A8/"/>
-    <id>http://zhenghe39.com/2016/11/03/构建单页Web应用/</id>
-    <published>2016-11-03T14:32:25.000Z</published>
-    <updated>2016-11-03T14:50:46.000Z</updated>
-    
-    <content type="html">&lt;p&gt;转载自&lt;a href=&quot;https://github.com/xufei/blog/issues/5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/xufei/blog/issues/5&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;单页应用是什么？&quot;&gt;&lt;a href=&quot;#单页应用是什么？&quot; class=&quot;headerlink&quot; title=&quot;单页应用是什么？&quot;&gt;&lt;/a&gt;单页应用是什么？&lt;/h3&gt;&lt;p&gt;让我们先来看几个网站：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://coding.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;coding&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.teambition.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;teambition&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://c9.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cloud9&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;注意这几个网站的相同点，那就是在浏览器中，做了原先“应当”在客户端做的事情。它们的界面切换非常流畅，响应很迅速，跟传统的网页明显不一样，它们是什么呢？这就是单页Web应用。&lt;/p&gt;
-&lt;p&gt;所谓单页应用，指的是在一个页面上集成多种功能，甚至整个系统就只有一个页面，所有的业务功能都是它的子模块，通过特定的方式挂接到主界面上。它是AJAX技术的进一步升华，把AJAX的无刷新机制发挥到极致，因此能造就与桌面程序媲美的流畅用户体验。&lt;/p&gt;
-&lt;p&gt;其实单页应用我们并不陌生，很多人写过ExtJS的项目，用它实现的系统，很天然的就已经是单页的了，也有人用jQuery或者其他框架实现过类似的东西。用各种JS框架，甚至不用框架，都是可以实现单页应用的，它只是一种理念。有些框架适用于开发这种系统，如果使用它们，可以得到很多便利。&lt;/p&gt;
-&lt;h3 id=&quot;开发框架&quot;&gt;&lt;a href=&quot;#开发框架&quot; class=&quot;headerlink&quot; title=&quot;开发框架&quot;&gt;&lt;/a&gt;开发框架&lt;/h3&gt;&lt;p&gt;ExtJS可以称为第一代单页应用框架的典型，它封装了各种UI组件，用户主要使用JavaScript来完成整个前端部分，甚至包括布局。随着功能逐渐增加，ExtJS的体积也逐渐增大，即使用于内部系统的开发，有时候也显得笨重了，更不用说开发以上这类运行在互联网上的系统。&lt;/p&gt;
-&lt;p&gt;jQuery由于偏重DOM操作，它的插件体系又比较松散，所以比ExtJS这个体系更适合开发在公网运行的单页系统，整个解决方案会相对比较轻量、灵活。&lt;/p&gt;
-&lt;p&gt;但由于jQuery主要面向上层操作，它对代码的组织是缺乏约束的。如何在代码急剧膨胀的情况下控制每个模块的内聚性，并且适当在模块之间产生数据传递与共享，就成为了一种有挑战的事情。&lt;/p&gt;
-&lt;p&gt;为了解决单页应用规模增大时候的代码逻辑问题，出现了不少MV*框架，他们的基本思路都是在JS层创建模块分层和通信机制。有的是MVC，有的是MVP，有的是MVVM，而且，它们几乎都在这些模式上产生了变异，以适应前端开发的特点。&lt;/p&gt;
-&lt;p&gt;这类框架包括Backbone，Knockout，AngularJS，Avalon等。&lt;/p&gt;
-&lt;h3 id=&quot;组件化&quot;&gt;&lt;a href=&quot;#组件化&quot; class=&quot;headerlink&quot; title=&quot;组件化&quot;&gt;&lt;/a&gt;组件化&lt;/h3&gt;&lt;p&gt;这些在前端做分层的框架推动了代码的组件化，所谓组件化，在传统的Web产品中，更多的指UI组件，但其实组件是一个广泛概念，传统Web产品中UI组件占比高的原因是它的厚度不足，随着客户端代码比例的增加，相当一部分的业务逻辑也前端化，由此催生了很多非界面型组件的出现。&lt;/p&gt;
-&lt;p&gt;分层带来的一个优势是，每层的职责更专一了，由此，可以对其作单元测试的覆盖，以保证其质量。传统UI层测试最头疼的问题是UI层和逻辑混杂在一起，比如往往会在远程请求的回调中更改DOM，当引入分层之后，这些东西都可以分别被测试，然后再通过场景测试来保证整体流程。&lt;/p&gt;
-&lt;h3 id=&quot;代码隔离&quot;&gt;&lt;a href=&quot;#代码隔离&quot; class=&quot;headerlink&quot; title=&quot;代码隔离&quot;&gt;&lt;/a&gt;代码隔离&lt;/h3&gt;&lt;p&gt;与开发传统页面型网站相比，实现单页应用的过程中，有一些比较值得特别关注的点。&lt;/p&gt;
-&lt;p&gt;从单页应用的特点来看，它比页面型网站更加依赖于JavaScript，而由于页面的单页化，各种子功能的JavaScript代码聚集到了同一个作用域，所以代码的隔离、模块化变得很重要。&lt;/p&gt;
-&lt;p&gt;在单页应用中，页面模板的使用是很普遍的。很多框架内置了特定的模板，也有的框架需要引入第三方的模板。这种模板是界面片段，我们可以把它们类比成JavaScript模块，它们是另一种类型的组件。&lt;/p&gt;
-&lt;p&gt;模板也一样有隔离的需要。不隔离模板，会造成什么问题呢？模板间的冲突主要存在于id属性上，如果一个模板中包含固定的id，当它被批量渲染的时候，会造成同一个页面的作用域中出现多个相同id的元素，产生不可预测的后果。因此，我们需要在模板中避免使用id，如果有对DOM的访问需求，应当通过其他选择器来完成。如果一个单页应用的组件化程度非常高，很可能整个应用中都没有元素id的使用。&lt;/p&gt;
-&lt;h3 id=&quot;代码合并与加载策略&quot;&gt;&lt;a href=&quot;#代码合并与加载策略&quot; class=&quot;headerlink&quot; title=&quot;代码合并与加载策略&quot;&gt;&lt;/a&gt;代码合并与加载策略&lt;/h3&gt;&lt;p&gt;人们对于单页系统的加载时间容忍度与Web页面不同，如果说他们愿意为购物页面的加载等待3秒，有可能会愿意为单页应用的首次加载等待5-10秒，但在此之后，各种功能的使用应当都比较流畅，所有子功能页面尽量要在1-2秒时间内切换成功，否则他们就会感觉这个系统很慢。&lt;/p&gt;
-&lt;p&gt;从这些特点来看，我们可以把更多的公共功能放到首次加载，以减小每次加载的载入量，有一些站点甚至把所有的界面和逻辑全部放到首页加载，每次业务界面切换的时候，只产生数据请求，因此它的响应是非常迅速的，比如青云的控制台就是这么做的。&lt;/p&gt;
-&lt;p&gt;通常在单页应用中，无需像网站型产品一样，为了防止文件加载阻塞渲染，把js放到html后面加载，因为它的界面基本都是动态生成的。&lt;/p&gt;
-&lt;p&gt;当切换功能的时候，除了产生数据请求，还需要渲染界面，这个新渲染的界面部件一般是界面模板，它从哪里来呢？来源无非是两种，一种是即时请求，像请求数据那样通过AJAX获取过来，另一种是内置于主界面的某些位置，比如script标签或者不可见的textarea中，后者在切换功能的时候速度有优势，但是加重了主页面的负担。&lt;/p&gt;
-&lt;p&gt;在传统的页面型网站中，页面之间是互相隔离的，因此，如果在页面间存在可复用的代码，一般是提取成单独的文件，并且可能会需要按照每个页面的需求去进行合并。单页应用中，如果总的代码量不大，可以整体打包一次在首页载入，如果大到一定规模，再作运行时加载，加载的粒度可以搞得比较大，不同的块之间没有重复部分。&lt;/p&gt;
-&lt;h3 id=&quot;路由与状态的管理&quot;&gt;&lt;a href=&quot;#路由与状态的管理&quot; class=&quot;headerlink&quot; title=&quot;路由与状态的管理&quot;&gt;&lt;/a&gt;路由与状态的管理&lt;/h3&gt;&lt;p&gt;我们最开始看到的几个在线应用，有的是对路由作了管理的，有的没有。&lt;/p&gt;
-&lt;p&gt;管理路由的目的是什么呢？是为了能减少用户的导航成本。比如说我们有一个功能，经历过多次导航菜单的点击，才呈现出来。如果用户想要把这个功能地址分享给别人，他怎么才能做到呢？&lt;/p&gt;
-&lt;p&gt;传统的页面型产品是不存在这个问题的，因为它就是以页面为单位的，也有的时候，服务端路由处理了这一切。但是在单页应用中，这成为了问题，因为我们只有一个页面，界面上的各种功能区块是动态生成的。所以我们要通过对路由的管理，来实现这样的功能。&lt;/p&gt;
-&lt;p&gt;具体的做法就是把产品功能划分为若干状态，每个状态映射到相应的路由，然后通过pushState这样的机制，动态解析路由，使之与功能界面匹配。&lt;/p&gt;
-&lt;p&gt;有了路由之后，我们的单页面产品就可以前进后退，就像是在不同页面之间一样。&lt;/p&gt;
-&lt;p&gt;其实在Web产品之外，早就有了管理路由的技术方案，Adobe Flex中，就会把比如TabNavigator，甚至下拉框的选中状态对应到url上，因为它也是单“页面”的产品模式，需要面对同样的问题。&lt;/p&gt;
-&lt;p&gt;当产品状态复杂到一定程度的时候，路由又变得很难应用了，因为状态的管理极其麻烦，比如开始的时候我们演示的c9.io在线IDE，它就没法把状态对应到url上。&lt;/p&gt;
-&lt;h3 id=&quot;缓存与本地存储&quot;&gt;&lt;a href=&quot;#缓存与本地存储&quot; class=&quot;headerlink&quot; title=&quot;缓存与本地存储&quot;&gt;&lt;/a&gt;缓存与本地存储&lt;/h3&gt;&lt;p&gt;在单页应用的运作机制中，缓存是一个很重要的环节。&lt;/p&gt;
-&lt;p&gt;由于这类系统的前端部分几乎全是静态文件，所以它能够有机会利用浏览器的缓存机制，而比如动态加载的界面模板，也完全可以做一些自定义的缓存机制，在非首次的请求中直接取缓存的版本，以加快加载速度。&lt;/p&gt;
-&lt;p&gt;甚至，也出现了一些方案，在动态加载JavaScript代码的同时，把它们也缓存起来。比如Addy Osmani的这个basket.js，就利用了HTML5 localStorage作了js和css文件的缓存。&lt;/p&gt;
-&lt;p&gt;在单页产品中，业务代码也常常会需要跟本地存储打交道，存储一些临时数据，可以使用localStorage或者localStorageDB来简化自己的业务代码。&lt;/p&gt;
-&lt;h3 id=&quot;服务端通信&quot;&gt;&lt;a href=&quot;#服务端通信&quot; class=&quot;headerlink&quot; title=&quot;服务端通信&quot;&gt;&lt;/a&gt;服务端通信&lt;/h3&gt;&lt;p&gt;传统的Web产品通常使用JSONP或者AJAX这样的方式与服务端通信，但在单页Web应用中，有很大一部分采用WebSocket这样的实时通讯方式。&lt;/p&gt;
-&lt;p&gt;WebSocket与传统基于HTTP的通信机制相比，有很大的优势。它可以让服务端很便利地使用反向推送，前端只响应确实产生业务数据的事件，减少一遍又一遍无意义的AJAX轮询。&lt;/p&gt;
-&lt;p&gt;由于WebSocket只在比较先进的浏览器上被支持，有一些库提供了在不同浏览器中的兼容方案，比如socket.io，它在不支持WebSocket的浏览器上会降级成使用AJAX或JSONP等方式，对业务代码完全透明、兼容。&lt;/p&gt;
-&lt;h3 id=&quot;内存管理&quot;&gt;&lt;a href=&quot;#内存管理&quot; class=&quot;headerlink&quot; title=&quot;内存管理&quot;&gt;&lt;/a&gt;内存管理&lt;/h3&gt;&lt;p&gt;传统的Web页面一般是不需要考虑内存的管理的，因为用户的停留时间相对少，即使出现内存泄漏，可能很快就被刷新页面之类的操作冲掉了，但单页应用是不同的，它的用户很可能会把它开一整天，因此，我们需要对其中的DOM操作、网络连接等部分格外小心。&lt;/p&gt;
-&lt;h3 id=&quot;样式的规划&quot;&gt;&lt;a href=&quot;#样式的规划&quot; class=&quot;headerlink&quot; title=&quot;样式的规划&quot;&gt;&lt;/a&gt;样式的规划&lt;/h3&gt;&lt;p&gt;在单页应用中，因为页面的集成度高，所有页面聚集到同一作用域，样式的规划也变得重要了。&lt;/p&gt;
-&lt;p&gt;样式规划主要是几个方面：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;基准样式的分离&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;这里面主要包括浏览器样式的重设、全局字体的设置、布局的基本约定和响应式支持。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;组件样式的划分&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;这里面是两个层面的规划，首先是各种界面组件及其子元素的样式，其次是一些修饰样式。组件样式应当尽量减少互相依赖，各组件的样式允许冗余。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;堆叠次序的管理&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;传统Web页面的特点是元素多，但是层次少，单页应用会有些不同。&lt;/p&gt;
-&lt;p&gt;在单页应用中，需要提前为各种UI组件规划堆叠次序，也就是z-index，比如说，我们可能会有各种弹出对话框，浮动层，它们可能组合成各种堆叠状态。新的对话框的z-index需要比旧的高，才能确保盖在它上面。诸如此类，都需要我们对这些可能的遮盖作规划，那么，怎样去规划呢？&lt;/p&gt;
-&lt;p&gt;了解通信知识的人，应当会知道，不同的频率段被划分给不同的通信方式使用，在一些国家，领空的使用也是有划分的，我们也可以用同样的方式来预先分段，不同类型的组件的z-index落到各自的区间，以避免它们的冲突。&lt;/p&gt;
-&lt;h3 id=&quot;单页应用的产品形态&quot;&gt;&lt;a href=&quot;#单页应用的产品形态&quot; class=&quot;headerlink&quot; title=&quot;单页应用的产品形态&quot;&gt;&lt;/a&gt;单页应用的产品形态&lt;/h3&gt;&lt;p&gt;我们在开始的时候提到，存在着很多新型Web产品，使用单页应用的方式构建，但实际上，这类产品不仅仅存在于Web上。点开Chrome商店，我们会发现很多离线应用，这些产品都可以算是单页应用的体现。&lt;/p&gt;
-&lt;p&gt;除了各种浏览器插件，借助node-webkit这样的外壳平台，我们可以使用Web技术来构建本地应用，产品的主要部分仍然是我们熟悉的单页应用。&lt;/p&gt;
-&lt;p&gt;单页应用的流行程度正在逐渐增加，大家如果关注了一些初创型互联网企业，会发现其中很大一部分的产品模式是单页化的。这种模式能带给用户流畅的体验，在开发阶段，对JavaScript技能水平要求较高。&lt;/p&gt;
-&lt;p&gt;单页应用开发过程中，前后端是天然分离的，双方以API为分界。前端作为服务的消费者，后端作为服务的提供者。在此模式下，前端将会推动后端的服务化。当后端不再承担模板渲染、输出页面这样工作的情况下，它可以更专注于所提供的API的实现，而在这样的情况下，Web前端与各种移动终端的地位对等，也逐渐使得后端API不必再为每个端作差异化设计了。&lt;/p&gt;
-&lt;h3 id=&quot;部署模式的改变&quot;&gt;&lt;a href=&quot;#部署模式的改变&quot; class=&quot;headerlink&quot; title=&quot;部署模式的改变&quot;&gt;&lt;/a&gt;部署模式的改变&lt;/h3&gt;&lt;p&gt;在现在这个时代，我们已经可以看到一种产品的出现了，那就是“无后端”的Web应用。这是一种什么东西呢？基于这种理念，你的产品很可能只需要自己编写静态Web页面，在某种BaaS（Backend as a Service）云平台上定制服务端API和云存储，集成这个平台提供的SDK，通过AJAX等方式与之打交道，实现注册认证、社交、消息推送、实时通信、云存储等功能。&lt;/p&gt;
-&lt;p&gt;我们观察一下这种模式，会发现前后端的部署已经完全分离了，前端代码完全静态化，这意味着可以把它们放置到CDN上，访问将大大地加速，而服务端托管在BaaS云上，开发者也不必去关注一些部署方面的繁琐细节。&lt;/p&gt;
-&lt;p&gt;假设你是一名创业者，正在做的是一种实时协同的单页产品，可以在云平台上，快速定制后端服务，把绝大部分宝贵的时间花在开发产品本身上。&lt;/p&gt;
-&lt;h3 id=&quot;单页应用的缺陷&quot;&gt;&lt;a href=&quot;#单页应用的缺陷&quot; class=&quot;headerlink&quot; title=&quot;单页应用的缺陷&quot;&gt;&lt;/a&gt;单页应用的缺陷&lt;/h3&gt;&lt;p&gt;单页应用最根本的缺陷就是不利于SEO，因为界面的绝大部分都是动态生成的，所以搜索引擎很不容易索引它。&lt;/p&gt;
-&lt;h3 id=&quot;产品单页化带来的挑战&quot;&gt;&lt;a href=&quot;#产品单页化带来的挑战&quot; class=&quot;headerlink&quot; title=&quot;产品单页化带来的挑战&quot;&gt;&lt;/a&gt;产品单页化带来的挑战&lt;/h3&gt;&lt;p&gt;一个产品想要单页化，首先是它必须适合单页的形态。其次，在这个过程中，对开发模式会产生一些变更，对开发技能也会有一些要求。&lt;/p&gt;
-&lt;p&gt;开发者的JavaScript技能必须过关，同时需要对组件化、设计模式有所认识，他所面对的不再是一个简单的页面，而是一个运行在浏览器环境中的桌面软件。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;转载自&lt;a href=&quot;https://github.com/xufei/blog/issues/5&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/xufei/blog/issues/5&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=
-    
-    </summary>
-    
-      <category term="精选转载" scheme="http://zhenghe39.com/categories/%E7%B2%BE%E9%80%89%E8%BD%AC%E8%BD%BD/"/>
-    
-    
-      <category term="SPA" scheme="http://zhenghe39.com/tags/SPA/"/>
     
   </entry>
   

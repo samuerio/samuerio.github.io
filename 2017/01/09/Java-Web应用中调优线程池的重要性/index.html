@@ -1,0 +1,466 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/fonts/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> Java Web应用中调优线程池的重要性 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            
+            <div class='headband'></div>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/01/09/Java-Web应用中调优线程池的重要性/"  itemprop="url" >
+                    Java Web应用中调优线程池的重要性
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-01-09</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>转载自<a href="http://www.infoq.com/cn/articles/the-importance-of-thread-pool-in-java-web-application" target="_blank" rel="external">http://www.infoq.com/cn/articles/the-importance-of-thread-pool-in-java-web-application</a></p>
+<p>不论你是否关注，Java Web应用都或多或少的使用了线程池来处理请求。线程池的实现细节可能会被忽视，但是有关于线程池的使用和调优迟早是需要了解的。本文主要介绍Java线程池的使用和如何正确的配置线程池。</p>
+<h3 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h3><p>我们先从基础开始。无论使用哪种应用服务器或者框架（如Tomcat、Jetty等），他们都有类似的基础实现。Web服务的基础是套接字（socket），套接字负责监听端口，等待TCP连接，并接受TCP连接。一旦TCP连接被接受，即可从新创建的TCP连接中读取和发送数据。</p>
+<p>为了能够理解上述流程，我们不直接使用任何应用服务器，而是从零开始构建一个简单的Web服务。该服务是大部分应用服务器的缩影。一个简单的单线程Web服务大概是这样的：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ServerSocket listener = <span class="keyword">new</span> ServerSocket(<span class="number">8080</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">   Socket socket = listener.accept();</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">     handleRequest(socket);</span><br><span class="line">   &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> listener.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码创建了一个服务端套接字（<a href="https://docs.oracle.com/javase/7/docs/api/java/net/ServerSocket.html" target="_blank" rel="external">ServerSocket</a>），监听8080端口，然后循环检查这个套接字，查看是否有新的连接。一旦有新的连接被接受，这个套接字会被传入handleRequest方法。这个方法会将数据流解析成HTTP请求，进行响应，并写入响应数据。在这个简单的示例中，handleRequest方法仅仅实现数据流的读入，返回一个简单的响应数据。在通常实现中，该方法还会复杂的多，比如从数据库读取数据等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">static</span> String response =</span><br><span class="line">   “HTTP/<span class="number">1.0</span> <span class="number">200</span> OK\r\n” +</span><br><span class="line">   “Content-type: text/plain\r\n” +</span><br><span class="line">   “\r\n” +</span><br><span class="line">   “Hello World\r\n”;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(Socket socket)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"> <span class="comment">// Read the input stream, and return “200 OK”</span></span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">   BufferedReader in = <span class="keyword">new</span> BufferedReader(</span><br><span class="line">     <span class="keyword">new</span> InputStreamReader(socket.getInputStream()));</span><br><span class="line">   log.info(in.readLine());</span><br><span class="line"></span><br><span class="line">   OutputStream out = socket.getOutputStream();</span><br><span class="line">   out.write(response.getBytes(StandardCharsets.UTF_8));</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">   socket.close();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于只有一个线程来处理请求，每个请求都必须等待前一个请求处理完成之后才能够被响应。假设一个请求响应时间为100毫秒，那么这个服务器的每秒响应数（tps）只有10。</p>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>虽然handleRequest方法可能阻塞在IO上，但是CPU仍然可以处理更多的请求。但是在单线程情况下，这是无法做到的。因此，可以通过创建多线程的方式，来提升服务器的并行处理能力。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">HandleRequestRunnable</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">final</span> Socket socket;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">HandleRequestRunnable</span><span class="params">(Socket socket)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.socket = socket;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">     handleRequest(socket);</span><br><span class="line">   &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">     e.printStackTrace();</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ServerSocket listener = <span class="keyword">new</span> ServerSocket(<span class="number">8080</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">   Socket socket = listener.accept();</span><br><span class="line">   <span class="keyword">new</span> Thread(<span class="keyword">new</span> HandleRequestRunnable(socket)).start();</span><br><span class="line"> &#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> listener.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里，accept()方法仍然在主线程中调用，但是一旦TCP连接建立之后，将会创建一个新的线程来处理新的请求，既在新的线程中执行前文中的handleRequest方法。</p>
+<p>通过创建新的线程，主线程可以继续接受新的TCP连接，且这些信求可以并行的处理。这个方式称为“每个请求一个线程（thread per request）”。当然，还有其他方式来提高处理性能，例如NGINX和Node.js使用的异步事件驱动模型，但是它们不使用线程池，因此不在本文的讨论范围。</p>
+<p>在每个请求一个线程实现中，创建一个线程（和后续的销毁）开销是非常昂贵的，因为JVM和操作系统都需要分配资源。另外，上面的实现还有一个问题，即创建的线程数是不可控的，这将可能导致系统资源被迅速耗尽。</p>
+<h3 id="资源耗尽"><a href="#资源耗尽" class="headerlink" title="资源耗尽"></a>资源耗尽</h3><p>每个线程都需要一定的栈内存空间。在最近的64位JVM中，默认的栈大小是1024KB。如果服务器收到大量请求，或者handleRequest方法执行很慢，服务器可能因为创建了大量线程而崩溃。例如有1000个并行的请求，创建出来的1000个线程需要使用1GB的JVM内存作为线程栈空间。另外，每个线程代码执行过程中创建的对象，还可能会在堆上创建对象。这样的情况恶化下去，将会超出JVM堆内存，并产生大量的垃圾回收操作，最终引发内存溢出（OutOfMemoryErrors）。</p>
+<p>这些线程不仅仅会消耗内存，它们还会使用其他有限的资源，例如文件句柄、数据库连接等。不可控的创建线程，还可能引发其他类型的错误和崩溃。因此，避免资源耗尽的一个重要方式，就是避免不可控的数据结构。</p>
+<p>顺便说下，由于线程栈大小引发的内存问题，可以通过-Xss开关来调整栈大小。缩小线程栈大小之后，可以减少每个线程的开销，但是可能会引发栈溢出（StackOverflowErrors）。对于一般应用程序而言，默认的1024KB过于富裕，调小为256KB或者512KB可能更为合适。Java允许的最小值是160KB。</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>为了避免持续创建新线程，可以通过使用简单的线程池来限定线程池的上限。线程池会管理所有线程，如果线程数还没有达到上限，线程池会创建线程到上限，且尽可能复用空闲的线程。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ServerSocket listener = <span class="keyword">new</span> ServerSocket(<span class="number">8080</span>);</span><br><span class="line">ExecutorService executor = Executors.newFixedThreadPool(<span class="number">4</span>);</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line"> <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">   Socket socket = listener.accept();</span><br><span class="line">   executor.submit( <span class="keyword">new</span> HandleRequestRunnable(socket) );</span><br><span class="line"> &#125;</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line"> listener.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个示例中，没有直接创建线程，而是使用了ExecutorService。它将需要执行的任务（需要实现Runnables接口）提交到线程池，使用线程池中的线程执行代码。示例中，使用线程数量为4的固定大小线程池来处理所有请求。这限制了处理请求的线程数量，也限制了资源的使用。</p>
+<p>除了通过<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html#newFixedThreadPool%28int%29" target="_blank" rel="external">newFixedThreadPool</a>方法创建固定大小线程池，Executors类还提供了<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html#newCachedThreadPool%28%29" target="_blank" rel="external">newCachedThreadPool</a>方法。复用线程池还是有可能导致不可控的线程数，但是它会尽可能使用之前已经创建的空闲线程。通常该类型线程池适合使用在不会被外部资源阻塞的短任务上。</p>
+<h3 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h3><p>使用了固定大小线程池之后，如果所有的线程都繁忙，再新来一个请求将会发生什么呢？ThreadPoolExecutor使用一个队列来保存等待处理的请求，固定大小线程池默认使用无限制的链表。注意，这又可能引起资源耗尽问题，但只要线程处理的速度大于队列增长的速度就不会发生。然后前面示例中，每个排队的请求都会持有套接字，在一些操作系统中，这将会消耗文件句柄。由于操作系统会限制进程打开的文件句柄数，因此最好限制下工作队列的大小。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newBoundedFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads, <span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">     <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">     <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(capacity),</span><br><span class="line">     <span class="keyword">new</span> ThreadPoolExecutor.DiscardPolicy());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">boundedThreadPoolServerSocket</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"> ServerSocket listener = <span class="keyword">new</span> ServerSocket(<span class="number">8080</span>);</span><br><span class="line"> ExecutorService executor = newBoundedFixedThreadPool(<span class="number">4</span>, <span class="number">16</span>);</span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">   <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">     Socket socket = listener.accept();</span><br><span class="line">     executor.submit( <span class="keyword">new</span> HandleRequestRunnable(socket) );</span><br><span class="line">   &#125;</span><br><span class="line"> &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">   listener.close();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里我们没有直接使用Executors.newFixedThreadPool方法来创建线程池，而是自己构建了ThreadPoolExecutor对象，并将工作队列长度限制为16个元素。</p>
+<p>如果所有的线程都繁忙，新的任务将会填充到队列中，由于队列限制了大小为16个元素，如果超过这个限制，就需要由构造ThreadPoolExecutor对象时的最后一个参数来处理了。示例中，使用了<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.DiscardPolicy.html" target="_blank" rel="external">抛弃策略（DiscardPolicy）</a>，即当队列到达上限时，将抛弃新来的任务。初次之外，还有<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.AbortPolicy.html" target="_blank" rel="external">中止策略（AbortPolicy）</a>和<a href="https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ThreadPoolExecutor.CallerRunsPolicy.html" target="_blank" rel="external">调用者执行策略（CallerRunsPolicy）</a>。前者将抛出一个异常，而后者会再调用者线程中执行任务。</p>
+<p>对于Web应用来说，最优的默认策略应该是抛弃或者中止策略，并返回一个错误给客户端（如<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.4" target="_blank" rel="external">HTTP 503</a>错误）。当然也可以通过增加工作队列长度的方式，避免抛弃客户端请求，但是用户请求一般不愿意进行长时间的等待，且这样会更多的消耗服务器资源。工作队列的用途，不是无限制的响应客户端请求，而是平滑突发暴增的请求。通常情况下，工作队列应该是空的。</p>
+<h3 id="线程数调优"><a href="#线程数调优" class="headerlink" title="线程数调优"></a>线程数调优</h3><p>前面的示例展示了如何创建和使用线程池，但是，使用线程池的核心问题在于应该使用多少线程。首先，我们要确保达到线程上限时，不会引起资源耗尽。这里的资源包括内存（堆和栈）、打开文件句柄数量、TCP连接数、远程数据库连接数和其他有限的资源。特别的，如果线程任务是计算密集型的，CPU核心数量也是资源限制之一，一般情况下线程数量不要超过CPU核心数量。</p>
+<p>由于线程数的选定依赖于应用程序的类型，可能需要经过大量性能测试之后，才能得出最优的结果。当然，也可以通过增加资源数的方式，来提升应用程序的性能。例如，修改JVM堆内存大小，或者修改操作系统的文件句柄上限等。然后，这些调整最终还是会触及理论上限。</p>
+<h3 id="利特尔法则"><a href="#利特尔法则" class="headerlink" title="利特尔法则"></a>利特尔法则</h3><p>利特尔法则描述了在稳定系统中，三个变量之间的关系。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tNc79gw1fbkekly6g5j308j01sdfn.jpg" alt=""></p>
+<p>其中L表示平均请求数量，λ表示请求的频率，W表示响应请求的平均时间。举例来说，如果每秒请求数为10次，每个请求处理时间为1秒，那么在任何时刻都有10个请求正在被处理。回到我们的话题，就是需要使用10个线程来进行处理。如果单个请求的处理时间翻倍，那么处理的线程数也要翻倍，变成20个。</p>
+<p>理解了处理时间对于请求处理效率的影响之后，我们会发现，通常理论上限可能不是线程池大小的最佳值。线程池上限还需要参考任务处理时间。</p>
+<p>假设JVM可以并行处理1000个任务，如果每个请求处理时间不超过30秒，那么在最坏情况下，每秒最多只能处理33.3个请求。然而，如果每个请求只需要500毫秒，那么应用程序每秒可以处理2000个请求。</p>
+<p>作者 金灵杰 发布于 2016年2月16日 | 欲知区块链、VR、TensorFlow等潮流技术和框架，请锁定QCon北京站！ 8  讨论<br>分享到： 微博 微信 Facebook Twitter 有道云笔记 邮件分享<br>稍后阅读我的阅读清单<br>不论你是否关注，Java Web应用都或多或少的使用了线程池来处理请求。线程池的实现细节可能会被忽视，但是有关于线程池的使用和调优迟早是需要了解的。本文主要介绍Java线程池的使用和如何正确的配置线程池。</p>
+<p>单线程</p>
+<p>我们先从基础开始。无论使用哪种应用服务器或者框架（如Tomcat、Jetty等），他们都有类似的基础实现。Web服务的基础是套接字（socket），套接字负责监听端口，等待TCP连接，并接受TCP连接。一旦TCP连接被接受，即可从新创建的TCP连接中读取和发送数据。</p>
+<p>为了能够理解上述流程，我们不直接使用任何应用服务器，而是从零开始构建一个简单的Web服务。该服务是大部分应用服务器的缩影。一个简单的单线程Web服务大概是这样的：</p>
+<p>ServerSocket listener = new ServerSocket(8080);<br>try {<br> while (true) {<br>   Socket socket = listener.accept();<br>   try {<br>     handleRequest(socket);<br>   } catch (IOException e) {<br>     e.printStackTrace();<br>   }<br> }<br>} finally {<br> listener.close();<br>}<br>上述代码创建了一个服务端套接字（ServerSocket），监听8080端口，然后循环检查这个套接字，查看是否有新的连接。一旦有新的连接被接受，这个套接字会被传入handleRequest方法。这个方法会将数据流解析成HTTP请求，进行响应，并写入响应数据。在这个简单的示例中，handleRequest方法仅仅实现数据流的读入，返回一个简单的响应数据。在通常实现中，该方法还会复杂的多，比如从数据库读取数据等。</p>
+<p>final static String response =<br>   “HTTP/1.0 200 OK\r\n” +<br>   “Content-type: text/plain\r\n” +<br>   “\r\n” +<br>   “Hello World\r\n”;</p>
+<p>public static void handleRequest(Socket socket) throws IOException {<br> // Read the input stream, and return “200 OK”<br> try {<br>   BufferedReader in = new BufferedReader(<br>     new InputStreamReader(socket.getInputStream()));<br>   log.info(in.readLine());</p>
+<p>   OutputStream out = socket.getOutputStream();<br>   out.write(response.getBytes(StandardCharsets.UTF_8));<br> } finally {<br>   socket.close();<br> }<br>}<br>相关厂商内容</p>
+<p>关于红包、SSD云盘等核心技术集锦！ 基于KVM架构的新一代云主机，如何让速度更快更稳定？ 一项关于提升云主机稳定性的实践 基于KVM架构的新一代云主机，如何让速度更快更稳定？ 杭州免费沙龙：从技术实践看如何提升企业研发效能<br>由于只有一个线程来处理请求，每个请求都必须等待前一个请求处理完成之后才能够被响应。假设一个请求响应时间为100毫秒，那么这个服务器的每秒响应数（tps）只有10。</p>
+<p>多线程</p>
+<p>虽然handleRequest方法可能阻塞在IO上，但是CPU仍然可以处理更多的请求。但是在单线程情况下，这是无法做到的。因此，可以通过创建多线程的方式，来提升服务器的并行处理能力。</p>
+<p>public static class HandleRequestRunnable implements Runnable {</p>
+<p> final Socket socket;</p>
+<p> public HandleRequestRunnable(Socket socket) {<br>   this.socket = socket;<br> }</p>
+<p> public void run() {<br>   try {<br>     handleRequest(socket);<br>   } catch (IOException e) {<br>     e.printStackTrace();<br>   }<br> }<br>}</p>
+<p>ServerSocket listener = new ServerSocket(8080);<br>try {<br> while (true) {<br>   Socket socket = listener.accept();<br>   new Thread(new HandleRequestRunnable(socket)).start();<br> }<br>} finally {<br> listener.close();<br>}<br>这里，accept()方法仍然在主线程中调用，但是一旦TCP连接建立之后，将会创建一个新的线程来处理新的请求，既在新的线程中执行前文中的handleRequest方法。</p>
+<p>通过创建新的线程，主线程可以继续接受新的TCP连接，且这些信求可以并行的处理。这个方式称为“每个请求一个线程（thread per request）”。当然，还有其他方式来提高处理性能，例如NGINX和Node.js使用的异步事件驱动模型，但是它们不使用线程池，因此不在本文的讨论范围。</p>
+<p>在每个请求一个线程实现中，创建一个线程（和后续的销毁）开销是非常昂贵的，因为JVM和操作系统都需要分配资源。另外，上面的实现还有一个问题，即创建的线程数是不可控的，这将可能导致系统资源被迅速耗尽。</p>
+<p>资源耗尽</p>
+<p>每个线程都需要一定的栈内存空间。在最近的64位JVM中，默认的栈大小是1024KB。如果服务器收到大量请求，或者handleRequest方法执行很慢，服务器可能因为创建了大量线程而崩溃。例如有1000个并行的请求，创建出来的1000个线程需要使用1GB的JVM内存作为线程栈空间。另外，每个线程代码执行过程中创建的对象，还可能会在堆上创建对象。这样的情况恶化下去，将会超出JVM堆内存，并产生大量的垃圾回收操作，最终引发内存溢出（OutOfMemoryErrors）。</p>
+<p>这些线程不仅仅会消耗内存，它们还会使用其他有限的资源，例如文件句柄、数据库连接等。不可控的创建线程，还可能引发其他类型的错误和崩溃。因此，避免资源耗尽的一个重要方式，就是避免不可控的数据结构。</p>
+<p>顺便说下，由于线程栈大小引发的内存问题，可以通过-Xss开关来调整栈大小。缩小线程栈大小之后，可以减少每个线程的开销，但是可能会引发栈溢出（StackOverflowErrors）。对于一般应用程序而言，默认的1024KB过于富裕，调小为256KB或者512KB可能更为合适。Java允许的最小值是160KB。</p>
+<p>线程池</p>
+<p>为了避免持续创建新线程，可以通过使用简单的线程池来限定线程池的上限。线程池会管理所有线程，如果线程数还没有达到上限，线程池会创建线程到上限，且尽可能复用空闲的线程。</p>
+<p>ServerSocket listener = new ServerSocket(8080);<br>ExecutorService executor = Executors.newFixedThreadPool(4);<br>try {<br> while (true) {<br>   Socket socket = listener.accept();<br>   executor.submit( new HandleRequestRunnable(socket) );<br> }<br>} finally {<br> listener.close();<br>}<br>在这个示例中，没有直接创建线程，而是使用了ExecutorService。它将需要执行的任务（需要实现Runnables接口）提交到线程池，使用线程池中的线程执行代码。示例中，使用线程数量为4的固定大小线程池来处理所有请求。这限制了处理请求的线程数量，也限制了资源的使用。</p>
+<p>除了通过newFixedThreadPool方法创建固定大小线程池，Executors类还提供了newCachedThreadPool方法。复用线程池还是有可能导致不可控的线程数，但是它会尽可能使用之前已经创建的空闲线程。通常该类型线程池适合使用在不会被外部资源阻塞的短任务上。</p>
+<p>工作队列</p>
+<p>使用了固定大小线程池之后，如果所有的线程都繁忙，再新来一个请求将会发生什么呢？ThreadPoolExecutor使用一个队列来保存等待处理的请求，固定大小线程池默认使用无限制的链表。注意，这又可能引起资源耗尽问题，但只要线程处理的速度大于队列增长的速度就不会发生。然后前面示例中，每个排队的请求都会持有套接字，在一些操作系统中，这将会消耗文件句柄。由于操作系统会限制进程打开的文件句柄数，因此最好限制下工作队列的大小。</p>
+<p>public static ExecutorService newBoundedFixedThreadPool(int nThreads, int capacity) {<br> return new ThreadPoolExecutor(nThreads, nThreads,<br>     0L, TimeUnit.MILLISECONDS,<br>     new LinkedBlockingQueue<runnable>(capacity),<br>     new ThreadPoolExecutor.DiscardPolicy());<br>}</runnable></p>
+<p>public static void boundedThreadPoolServerSocket() throws IOException {<br> ServerSocket listener = new ServerSocket(8080);<br> ExecutorService executor = newBoundedFixedThreadPool(4, 16);<br> try {<br>   while (true) {<br>     Socket socket = listener.accept();<br>     executor.submit( new HandleRequestRunnable(socket) );<br>   }<br> } finally {<br>   listener.close();<br> }<br>}<br>这里我们没有直接使用Executors.newFixedThreadPool方法来创建线程池，而是自己构建了ThreadPoolExecutor对象，并将工作队列长度限制为16个元素。</p>
+<p>如果所有的线程都繁忙，新的任务将会填充到队列中，由于队列限制了大小为16个元素，如果超过这个限制，就需要由构造ThreadPoolExecutor对象时的最后一个参数来处理了。示例中，使用了抛弃策略（DiscardPolicy），即当队列到达上限时，将抛弃新来的任务。初次之外，还有中止策略（AbortPolicy）和调用者执行策略（CallerRunsPolicy）。前者将抛出一个异常，而后者会再调用者线程中执行任务。</p>
+<p>对于Web应用来说，最优的默认策略应该是抛弃或者中止策略，并返回一个错误给客户端（如HTTP 503错误）。当然也可以通过增加工作队列长度的方式，避免抛弃客户端请求，但是用户请求一般不愿意进行长时间的等待，且这样会更多的消耗服务器资源。工作队列的用途，不是无限制的响应客户端请求，而是平滑突发暴增的请求。通常情况下，工作队列应该是空的。</p>
+<p>线程数调优</p>
+<p>前面的示例展示了如何创建和使用线程池，但是，使用线程池的核心问题在于应该使用多少线程。首先，我们要确保达到线程上限时，不会引起资源耗尽。这里的资源包括内存（堆和栈）、打开文件句柄数量、TCP连接数、远程数据库连接数和其他有限的资源。特别的，如果线程任务是计算密集型的，CPU核心数量也是资源限制之一，一般情况下线程数量不要超过CPU核心数量。</p>
+<p>由于线程数的选定依赖于应用程序的类型，可能需要经过大量性能测试之后，才能得出最优的结果。当然，也可以通过增加资源数的方式，来提升应用程序的性能。例如，修改JVM堆内存大小，或者修改操作系统的文件句柄上限等。然后，这些调整最终还是会触及理论上限。</p>
+<p>利特尔法则</p>
+<p>利特尔法则描述了在稳定系统中，三个变量之间的关系。</p>
+<p>其中L表示平均请求数量，λ表示请求的频率，W表示响应请求的平均时间。举例来说，如果每秒请求数为10次，每个请求处理时间为1秒，那么在任何时刻都有10个请求正在被处理。回到我们的话题，就是需要使用10个线程来进行处理。如果单个请求的处理时间翻倍，那么处理的线程数也要翻倍，变成20个。</p>
+<p>理解了处理时间对于请求处理效率的影响之后，我们会发现，通常理论上限可能不是线程池大小的最佳值。线程池上限还需要参考任务处理时间。</p>
+<p>假设JVM可以并行处理1000个任务，如果每个请求处理时间不超过30秒，那么在最坏情况下，每秒最多只能处理33.3个请求。然而，如果每个请求只需要500毫秒，那么应用程序每秒可以处理2000个请求。</p>
+<h3 id="拆分线程池"><a href="#拆分线程池" class="headerlink" title="拆分线程池"></a>拆分线程池</h3><p>在微服务或者面向服务架构（SOA）中，通常需要访问多个后端服务。如果其中一个服务性能下降，可能会引起线程池线程耗尽，从而影响对其他服务的请求。</p>
+<p>应对后端服务失效的有效办法是隔离每个服务所使用的线程池。在这种模式下，仍然有一个分派的线程池，将任务分派到不同的后端请求线程池中。该线程池可能因为一个缓慢的后端而没有负载，而将负担转移到了请求缓慢后端的线程池中。</p>
+<p>另外，多线程池模式还需要避免死锁问题。如果每个线程都阻塞在等待未被处理请求的结果上时，就会发生死锁。因此，多线程池模式下，需要了解每个线程池执行的任务和它们之间的依赖，这样可以尽可能避免死锁问题。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>即使没有在应用程序中直接使用线程池，它们也很有可能在应用程序中被应用服务器或者框架间接使用。Tomcat、JBoss、Undertow、Dropwizard等框架，都提供了调优线程池（servlet执行使用的线程池）的选项。</p>
+<p>希望本文能够提升对线程池的了解。通过了解应用的需求，组合最大线程数和平均响应时间，可以得出一个合适的线程池配置。</p>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/09/Java-Web应用中调优线程池的重要性/"
+           data-title="Java Web应用中调优线程池的重要性" data-url="http://zhenghe39.com/2017/01/09/Java-Web应用中调优线程池的重要性/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+                
+                
+                
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='sidebar-nav-content'>
+                    
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#单线程"><span class="nav-menu-text">单线程</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#多线程"><span class="nav-menu-text">多线程</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#资源耗尽"><span class="nav-menu-text">资源耗尽</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#线程池"><span class="nav-menu-text">线程池</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#工作队列"><span class="nav-menu-text">工作队列</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#线程数调优"><span class="nav-menu-text">线程数调优</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#利特尔法则"><span class="nav-menu-text">利特尔法则</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#拆分线程池"><span class="nav-menu-text">拆分线程池</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#总结"><span class="nav-menu-text">总结</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+                        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Maven/' title=Maven>Maven</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/OOP/' title=OOP>OOP</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/MvvM/' title=MvvM>MvvM</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/SPA/' title=SPA>SPA</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/软件设计/' title=软件设计>软件设计</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/vi/' title=vi>vi</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Node/' title=Node>Node</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+                    </div>
+                </div>
+        </div>
+    </aside>
+
+
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
+<script>
+      /*
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+        */
+
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
+            activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
+            distinguishLineScale:0,
+            events:{
+                'scrollNav':function(navItem,$navMenu){
+                    if(!navItem){
+                        return;
+                    }
+
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        'top':navItem.top,
+                        'height':navItem.height+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            $('.highlight-title').hide();
+
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
+</script>
+    </body>
+</html>
