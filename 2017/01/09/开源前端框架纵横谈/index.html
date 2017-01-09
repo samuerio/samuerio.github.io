@@ -67,7 +67,7 @@
 <p>今天的JavaScript框架和库繁多复杂，很大程度上源于Web前端开发本身的特殊性。从当初的可有可无到今天各种功能完备的HTML5标 准，JavaScript在Web应用中的职责和定位经历了巨大的变化。加上长期以来各种浏览器对ECMA标准支持参差不齐的复杂环境，这导致大家对于 JavaScript能做什么、该做什么、应该怎么做一直无法形成共识。一个Web应用可以把所有业务逻辑全部放在服务器端，几乎不依赖 JavaScript；也可以完全用JavaScript构建客户端，服务器只负责数据接口；更有可能选择介于两者之间的折中方案。整体架构选择的多样性 使得不同的应用对于前端架构有着截然不同的需求。这意味着很难有一个前端库或框架可以满足所有人，也使得开发者在找不到完美方案的情况下选择重复造轮子。 同时，由于JavaScript是一门相当灵活的语言，不同背景的开发者借鉴了许多不同的软件设计思想来构建他们理想中的JavaScript框架，这也 导致不同的框架/库在解决同一个问题时经常有不同的方案，例如单页应用的设计模式问题。</p>
 <h3 id="框架vs-库"><a href="#框架vs-库" class="headerlink" title="框架vs.库"></a>框架vs.库</h3><p>众所周知，在前端开发中对于库（Library）和框架（Framework）的区分向来是有些模糊的。像jQuery、YUI这些项目的官方描述都是 “库”，却经常在各种地方被人们称作“框架”。近两年出现的一些MVC项目号称框架，实际上却更像库。此外，在同样号称框架的各个项目之间所覆盖的功能也 都有所不同。传统软件工程对于库和框架的区分主要着眼于对应用运行流程的控制权。框架提供架构，控制运行流程，让开发者在合适的地方书写针对具体问题的代 码；而库则附属于架构，不控制运行流程，只提供可调用的函数。但由于上述Web前端开发的特殊性，这样的定义显得有些过于严格：真正称得上框架的项目很 少，却又经常需要和作为库的项目进行比较。因此，在比较JavaScript开源项目时，是框架还是库并不特别重要，首先应该分析该项目覆盖了前端开发中 的哪些问题（下文为了论述方便，一律用框架指代各类JavaScript开源项目）。</p>
 <h3 id="前端开发可能面对的需求"><a href="#前端开发可能面对的需求" class="headerlink" title="前端开发可能面对的需求"></a>前端开发可能面对的需求</h3><p>前端开发中最常见的问题大致可以分为：封装原生API和常用任务、基础架构、富应用架构、视觉交互，以及工具链。下面我们逐个分析。</p>
-<h5 id="封装原生API和常用任务"><a href="#封装原生API和常用任务" class="headerlink" title="封装原生API和常用任务"></a>封装原生API和常用任务</h5><p>JavaScript的原生API存在以下问题。</p>
+<h4 id="封装原生API和常用任务"><a href="#封装原生API和常用任务" class="headerlink" title="封装原生API和常用任务"></a>封装原生API和常用任务</h4><p>JavaScript的原生API存在以下问题。</p>
 <ul>
 <li>对象、方法名烦琐。</li>
 <li>缺少一些常用任务的语法糖。</li>
@@ -80,21 +80,21 @@
 <li>Ajax：简化烦琐的XMLHttpRequest API，并且加强其语义性。</li>
 <li>语言增强：主要提供一些对数组和对象进行操作的便利函数。jQuery包含一些，但更典型的有Underscore和Lodash。</li>
 </ul>
-<h5 id="基础架构"><a href="#基础架构" class="headerlink" title="基础架构"></a>基础架构</h5><p>这一部分通常是各类框架中比较底层的功能，决定了采用此框架的代码是如何被组织到一起的。目标是提高代码的可维护性、可协作性和可测试性。</p>
+<h4 id="基础架构"><a href="#基础架构" class="headerlink" title="基础架构"></a>基础架构</h4><p>这一部分通常是各类框架中比较底层的功能，决定了采用此框架的代码是如何被组织到一起的。目标是提高代码的可维护性、可协作性和可测试性。</p>
 <p><strong>模块管理：</strong>对大型的JavaScript项目来说，模块化开发是必需的。有些框架只提供基本的模块注册机制以防止全局变量污染和冲突，而另一些则提供包括 模块依赖解析、文件加载、压缩打包的功能。目前JavaScript模块管理有两个互相竞争的标准，一个是AMD（Asynchronous Module Definition），采用的框架有Dojo，单独的模块管理库有RequireJS；另一个是CommonJS的模块标准，采用者有模块管理库 SeaJS，以及基于SeaJS的开放型框架Arale。面向对象：JavaScript有原型继承，并且可以非常灵活地进行动态混入，但很多大型项目还是需要一个统一的面向对象的继承/扩展系统。对 此，John Resig、Douglas Crockford、Nicholas Zakas等各路JavaScript大神都曾经进行研究并给出过各自的解决方案，许多框架中也包含类似的解决方案。对此感兴趣的同学推荐阅读Arale 文档中的这篇文章：<a href="http://aralejs.org/class/docs/competitors.html" target="_blank" rel="external">http://aralejs.org/class/docs/competitors.html </a>。</p>
 <p><strong>自定义事件系统：</strong>为了提高模块的可复用性、整个系统的容错性和灵活性，各个模块之间需要尽量解耦，使得相互之间尽可能减少依赖。要实现这样的解耦，一个自定义的事件机制 (通常借鉴Pub-Sub、Observer、Mediator等设计模式) 是很好的手段。</p>
 <p><strong>组件系统：</strong>定义如何使用和书写组件、组件之间如何相互调用和通信等。</p>
-<h5 id="富应用架构"><a href="#富应用架构" class="headerlink" title="富应用架构"></a>富应用架构</h5><p>这一部分的主要目的是利用设计模式进一步提高代码复用，使得开发者的精力可以主要集中在实现应用本身的功能上</p>
+<h4 id="富应用架构"><a href="#富应用架构" class="headerlink" title="富应用架构"></a>富应用架构</h4><p>这一部分的主要目的是利用设计模式进一步提高代码复用，使得开发者的精力可以主要集中在实现应用本身的功能上</p>
 <p><strong>代码逻辑分层：</strong>把对视觉界面、交互逻辑和数据的处理清晰地分开。就这一点而言，大部分框架借鉴了经典的MVC模式，但传统的MVC在前端并不适合直接套 用，因此各个框架对此的处理都略有不同，有些采用了MVP（Model-View-Presenter）或是MVVM（Model-View- ViewModel）模式。著名前端布道师Addy Osmani有详细的分析，本文受篇幅所限不再赘述。</p>
 <p><strong>数据绑定：</strong>把界面和数据模型进行绑定，使得一方变化的时候另一方也会自动变化，可以省去手动更新DOM的操作。</p>
 <p><strong>数据与服务器端的同步：</strong>服务器端提供符合REST规范的API，前端的数据模型可以封装同步操作，可以省去手动发送Ajax请求的过程。</p>
 <p><strong>模板渲染：</strong>在前端存储和渲染可复用的HTML模版，这样更新界面时不需要再向服务器发送额外的请求。</p>
 <p>URL路径、应用状态和历史管理：无论是从搜索引擎还是用户体验的角度来看，大型单页应用都应该提供和应用的状态相对应的URL，同时不破坏后退键的功能。</p>
-<h5 id="视觉交互"><a href="#视觉交互" class="headerlink" title="视觉交互"></a>视觉交互</h5><p>传统型大框架会包含这部分内容，通常是基于自身架构上的扩展，对框架自身有依赖性。但一些新框架则只专注于架构，对扩展部分彻底持开放态度，提倡让开发者自己选择最合适的工具。</p>
+<h4 id="视觉交互"><a href="#视觉交互" class="headerlink" title="视觉交互"></a>视觉交互</h4><p>传统型大框架会包含这部分内容，通常是基于自身架构上的扩展，对框架自身有依赖性。但一些新框架则只专注于架构，对扩展部分彻底持开放态度，提倡让开发者自己选择最合适的工具。</p>
 <p><strong>效果和动画：</strong>用原生JavaScript实现动画是一个比较烦琐的过程，尤其是当需要精确的时间和缓动（easing）处理时。因此一些框架如jQuery提供一个API简洁的动画引擎，并封装了常见的动画效果。</p>
 <p><strong>UI组件库：</strong>这是传统型的大框架的主要卖点之一，大量现成的UI组件以及与框架本身的亲和性，可以大幅提高开发效率。YUI、Dojo是典型代表。在选择时，需要注意的一点是可定制性。</p>
 <p><strong>数据绘图：</strong>这是一类比较特定的需求，但其实现的复杂程度也非常高。ExtJS封装了强大的数据图表功能，除此之外也有专门针对数据可视化的库如D3.js。</p>
-<h5 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h5><p>随着前端项目越来越大，维护和上线的流程也越来越复杂。利用好各类工具实现自动化，可以大幅提高效率。随着Node.js社区的迅猛发展，各类基于JavaScript的命令行工具大量出现，这其中就有许多针对前端开发的优秀项目。</p>
+<h4 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h4><p>随着前端项目越来越大，维护和上线的流程也越来越复杂。利用好各类工具实现自动化，可以大幅提高效率。随着Node.js社区的迅猛发展，各类基于JavaScript的命令行工具大量出现，这其中就有许多针对前端开发的优秀项目。</p>
 <p><strong>编译工具：</strong>这里的编译严格来说是指js的组合和压缩。通常大型项目都会有多达几百KB的js文件，采用模块化开发的话，文件数量也会非常庞大，进行压缩打 包是必不可少的过程。大型框架如Closure Library、Dojo、YUI都自带编译工具。如果使用了模块管理库，例如RequireJS和SeaJS，也可以使用它们自带的打包工具。其他情况 下则可以自己写build script，也可以借助任务化的编译工具如Grunt.js或者Jake。</p>
 <p><strong>包管理工具：</strong>很久以来，前端开发者都需要自己下载、管理各类第三方库。前端的包管理机制的好处是可以更方便地管理第三库的版本和相互之间的依赖。目前国外 比较流行的单纯的前端包管理工具有Twitter的Bower，也有混合了包管理和编译于一体的Ender.js和Volo.js，更有集组件框架、包管理和编译于一体的Component。国内方面，SeaJS提供包管理+编译工具spm。</p>
 <p><strong>单元测试工具：</strong>前端也需要单元测试。同样的，传统的大型框架也大多自带单元测试工具。单独的测试框架中比较流行而且简单易用的有QUnit、 Jasmine、Mocha等。此外，还有一些更复杂的前端测试框架，包含了在各类浏览器里的自动化测试，这又可以单独开出一个话题，限于篇幅不再深入， 感兴趣的朋友可以参考：<a href="http://stackoverflow.com/questions/300855/looking-for-a-" target="_blank" rel="external">http://stackoverflow.com/questions/300855/looking-for-a-</a> better-javascript-unit-test-tool。</p>
@@ -166,7 +166,7 @@
                     
                     <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
-                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#框架vs-库"><span class="nav-menu-text">框架vs.库</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#前端开发可能面对的需求"><span class="nav-menu-text">前端开发可能面对的需求</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-5"><a class="nav-menu-link" href="#封装原生API和常用任务"><span class="nav-menu-text">封装原生API和常用任务</span></a></li><li class="nav-menu-item nav-menu-level-5"><a class="nav-menu-link" href="#基础架构"><span class="nav-menu-text">基础架构</span></a></li><li class="nav-menu-item nav-menu-level-5"><a class="nav-menu-link" href="#富应用架构"><span class="nav-menu-text">富应用架构</span></a></li><li class="nav-menu-item nav-menu-level-5"><a class="nav-menu-link" href="#视觉交互"><span class="nav-menu-text">视觉交互</span></a></li><li class="nav-menu-item nav-menu-level-5"><a class="nav-menu-link" href="#工具链"><span class="nav-menu-text">工具链</span></a></li></ol></li></ol></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#框架的分类"><span class="nav-menu-text">框架的分类</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#选择框架时应该考虑什么"><span class="nav-menu-text">选择框架时应该考虑什么</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#总结"><span class="nav-menu-text">总结</span></a></li></ol>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#框架vs-库"><span class="nav-menu-text">框架vs.库</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#前端开发可能面对的需求"><span class="nav-menu-text">前端开发可能面对的需求</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#封装原生API和常用任务"><span class="nav-menu-text">封装原生API和常用任务</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#基础架构"><span class="nav-menu-text">基础架构</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#富应用架构"><span class="nav-menu-text">富应用架构</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#视觉交互"><span class="nav-menu-text">视觉交互</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#工具链"><span class="nav-menu-text">工具链</span></a></li></ol></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#框架的分类"><span class="nav-menu-text">框架的分类</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#选择框架时应该考虑什么"><span class="nav-menu-text">选择框架时应该考虑什么</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#总结"><span class="nav-menu-text">总结</span></a></li></ol>
                     </div>
                     
                     <div class='nav-panel  ' id='site-info' >
