@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-01-10T15:42:12.000Z</updated>
+  <updated>2017-01-11T15:31:37.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2016年终总结</title>
+    <link href="http://zhenghe39.com/2017/01/11/2016%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
+    <id>http://zhenghe39.com/2017/01/11/2016年终总结/</id>
+    <published>2017-01-11T15:29:38.000Z</published>
+    <updated>2017-01-11T15:31:37.000Z</updated>
+    
+    <content type="html">&lt;p&gt;2016是我进阶成长的重要一年。开通了Github账户，并且也将自己独立完成的作品开源了出来，也算是对开源社区贡献了自己的一份力吧:-D。拥有了自己的独立博客，并且博客的主题还是自己设计的，果然还是自己的主题用着舒服。这一整年里也做了许多尝试，Node制作了微信公众号的后台，Redux+React+React-router+Antd组件+Java制作了技能树应用，使用Jersey来制作了Restful API，也尝试用组件化的思维完成了一些Java组件&amp;amp;&amp;amp;前端组件，收获颇丰。&lt;/p&gt;
+&lt;h3 id=&quot;Github开源项目&quot;&gt;&lt;a href=&quot;#Github开源项目&quot; class=&quot;headerlink&quot; title=&quot;Github开源项目&quot;&gt;&lt;/a&gt;Github开源项目&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;3月份创建了weiXinHelper项目&lt;/li&gt;
+&lt;li&gt;5月份创建了web-component项目&lt;/li&gt;
+&lt;li&gt;7月份创建了hexo-theme-cream项目&lt;/li&gt;
+&lt;li&gt;8月份创建了component-poi项目&lt;/li&gt;
+&lt;li&gt;11月份创建了skilltree-app项目&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;github统计：总共完成了469 contributions，拥有了21个Repositories。&lt;/p&gt;
+&lt;h3 id=&quot;阅读书籍&quot;&gt;&lt;a href=&quot;#阅读书籍&quot; class=&quot;headerlink&quot; title=&quot;阅读书籍&quot;&gt;&lt;/a&gt;阅读书籍&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;《锋利的jQuery》(不错的jQuery入门书籍)&lt;/li&gt;
+&lt;li&gt;《The Node Beginner Book》（非常通俗易懂的Node入门书籍）&lt;/li&gt;
+&lt;li&gt;《深入浅出Nodejs》（虽然篇幅少，但都是干货）&lt;/li&gt;
+&lt;li&gt;《ES6-in-depth》&lt;/li&gt;
+&lt;li&gt;《尽管去做-无压工作的艺术》&lt;/li&gt;
+&lt;li&gt;《Javascript高级程序设计》（Javascript经典书籍，收益颇丰，值得一读）&lt;/li&gt;
+&lt;li&gt;《Maven实战》&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;展望&quot;&gt;&lt;a href=&quot;#展望&quot; class=&quot;headerlink&quot; title=&quot;展望&quot;&gt;&lt;/a&gt;展望&lt;/h3&gt;&lt;p&gt;今年最火的人工智能非赢过人类世界国军的Alpha Go莫属。可预见的未来是，人工智能将越来越普及，并且会深远地影响人类社会。在新的一年里，我希望掌握一些「人工智能」方面的编程，并懂得使用Hadoop、Spark等大数据的工具来挖掘数据的魅力。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2016是我进阶成长的重要一年。开通了Github账户，并且也将自己独立完成的作品开源了出来，也算是对开源社区贡献了自己的一份力吧:-D。拥有了自己的独立博客，并且博客的主题还是自己设计的，果然还是自己的主题用着舒服。这一整年里也做了许多尝试，Node制作了微信公众号的后台
+    
+    </summary>
+    
+      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
+    
+    
+      <category term="随笔" scheme="http://zhenghe39.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Web应用中调优线程池的重要性</title>
@@ -782,76 +823,6 @@
     
     
       <category term="Maven" scheme="http://zhenghe39.com/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Brew用法</title>
-    <link href="http://zhenghe39.com/2016/11/14/Brew%E7%94%A8%E6%B3%95/"/>
-    <id>http://zhenghe39.com/2016/11/14/Brew用法/</id>
-    <published>2016-11-14T06:25:42.000Z</published>
-    <updated>2016-12-31T09:13:00.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;brew update : 更新formula库，执行任何指令前最好先更新指令库&lt;/li&gt;
-&lt;li&gt;brew install [formula]&lt;/li&gt;
-&lt;li&gt;brew uninstall [formula]&lt;/li&gt;
-&lt;li&gt;brew list : 查看已经安装的formula&lt;/li&gt;
-&lt;li&gt;brew info [formula] : 查看formula信息，若已安装，则会显示相关安装信息&lt;/li&gt;
-&lt;li&gt;brew upgrade [formula]  / brew upgrade : formula的版本更新/所有已安装formula版本更新&lt;/li&gt;
-&lt;li&gt;brew search [formula] : 搜索formula的所有版本&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;eg:&lt;/em&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ brew search grails&amp;#10;grails                        homebrew/versions/grails20    homebrew/versions/grails22&amp;#10;homebrew/versions/grails224   homebrew/versions/grails13    homebrew/versions/grails21&amp;#10;homebrew/versions/grails223   homebrew/versions/grails23&amp;#10;$ brew install homebrew/versions/grails223&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;服务管理&quot;&gt;&lt;a href=&quot;#服务管理&quot; class=&quot;headerlink&quot; title=&quot;服务管理&quot;&gt;&lt;/a&gt;服务管理&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;brew services
-    Easily start and stop formulae via launchctl
-Integrates Homebrew formulae with OS X&amp;apos;s launchctl manager. Services can be
-    added to either /Library/LaunchDaemons or ~/Library/LaunchAgents.
-    Basically, items in /Library/LaunchDaemons are started at boot, while those
-    in ~/Library/LaunchAgents are started at login.
-
-    When started with sudo, it operates on /Library/LaunchDaemons; otherwise,
-    it operates on ~/Library/LaunchAgents.
-
-    On start the plist file is generated and written to a Tempfile, and then
-    copied to the launch path (existing plists are overwritten).
-
-    [sudo] brew services list
-    List all running services for the current user (or root)
-
-    [sudo] brew services start formula
-    Install and start the service formula at login (or boot).
-
-    [sudo] brew services stop formula|--all
-    Stop the service formula after it was launched at login (or boot).
-
-    [sudo] brew services restart formula
-    Stop (if necessary), install and start the service formula at login (or boot).
-
-    [sudo] brew services cleanup
-    Remove all unused services.
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;brew services list：列出所有已安装的服务&lt;/li&gt;
-&lt;li&gt;brew services start formula：启动服务&lt;/li&gt;
-&lt;li&gt;brew services stop formula：关闭服务&lt;/li&gt;
-&lt;li&gt;brew services restart formula：重启服务&lt;/li&gt;
-&lt;li&gt;brew services cleanup：移除废弃的服务&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;安装扩展&quot;&gt;&lt;a href=&quot;#安装扩展&quot; class=&quot;headerlink&quot; title=&quot;安装扩展&quot;&gt;&lt;/a&gt;安装扩展&lt;/h3&gt;&lt;p&gt;&lt;code&gt;$ brew tap &amp;lt;github_user/repo&amp;gt;&lt;/code&gt; ：安装他人扩展的brew服务&lt;br&gt;由于brew和包含的包源都是通过github来管理，人为的维护管理，除了自己的源还允许别人的源添加进行。&lt;/p&gt;
-&lt;p&gt;eg.举例说明一下，Mac OS 比较歧视 PHP ，所以每次系统更新都会把常用的开发包（Ruby、Python 等）也顺带着更新到最新版本。（吐槽：Java 都已经被抛弃不再默认安装了），而 brew 居然也不包含 PHP 的包，那怎么办呢？&lt;br&gt;&lt;code&gt;$ brew tap josegonzalez/php&lt;/code&gt;&lt;br&gt;命令完成之后，执行（当前最新是 php 5.5 版本，请根据需要替换）&lt;br&gt;&lt;code&gt;$ brew install php55&lt;/code&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;常用指令&quot;&gt;&lt;a href=&quot;#常用指令&quot; class=&quot;headerlink&quot; title=&quot;常用指令&quot;&gt;&lt;/a&gt;常用指令&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;brew update : 更新formula库，执行任何指令前最好先更新指令库&lt;/li&gt;
-&lt;li&gt;brew i
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Tool" scheme="http://zhenghe39.com/tags/Tool/"/>
     
   </entry>
   
