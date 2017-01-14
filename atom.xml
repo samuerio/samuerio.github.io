@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-01-14T14:36:14.000Z</updated>
+  <updated>2017-01-14T14:36:48.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://zhenghe39.com/2017/01/14/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/"/>
     <id>http://zhenghe39.com/2017/01/14/Oracle数据库的备份与恢复/</id>
     <published>2017-01-14T14:10:16.000Z</published>
-    <updated>2017-01-14T14:36:14.000Z</updated>
+    <updated>2017-01-14T14:36:48.000Z</updated>
     
     <content type="html">&lt;p&gt;本文是以&lt;code&gt;PL/SQL Develop&lt;/code&gt;为例进行备份和恢复的说明。&lt;/p&gt;
 &lt;h3 id=&quot;备份&quot;&gt;&lt;a href=&quot;#备份&quot; class=&quot;headerlink&quot; title=&quot;备份&quot;&gt;&lt;/a&gt;备份&lt;/h3&gt;&lt;p&gt;备份有两种选择：一种是备份&lt;code&gt;表结构&lt;/code&gt;，而另外一种是备份&lt;code&gt;表结构和数据&lt;/code&gt;&lt;/p&gt;
@@ -37,7 +37,7 @@
 &lt;h4 id=&quot;导入表结构&quot;&gt;&lt;a href=&quot;#导入表结构&quot; class=&quot;headerlink&quot; title=&quot;导入表结构&quot;&gt;&lt;/a&gt;导入表结构&lt;/h4&gt;&lt;p&gt;若备份的是只是表结构，那么只要按如下步骤导入即可。步骤：Tools—import tables&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://ww3.sinaimg.cn/large/006y8lVagw1fbqj5ryvxuj30ce08q3z9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;导入表结构和数据&quot;&gt;&lt;a href=&quot;#导入表结构和数据&quot; class=&quot;headerlink&quot; title=&quot;导入表结构和数据&quot;&gt;&lt;/a&gt;导入表结构和数据&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;https://ww1.sinaimg.cn/large/006y8lVagw1fbqj663gn0j30ce08qaaw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;值得注意的是这种导入方式都是导入到当前连接用户中。&lt;/p&gt;
+&lt;p&gt;值得注意的是这两种导入方式都是导入到&lt;code&gt;当前连接用户&lt;/code&gt;中。&lt;/p&gt;
 </content>
     
     <summary type="html">
