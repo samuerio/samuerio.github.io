@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/fonts/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> State 设计，Redux 开发第一步 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            
+            <div class='headband'></div>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/01/27/State-设计，Redux-开发第一步/"  itemprop="url" >
+                    State 设计，Redux 开发第一步
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-01-27</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>转载来自<a href="http://www.jianshu.com/p/ba8654cb77b6" target="_blank" rel="external">http://www.jianshu.com/p/ba8654cb77b6</a></p>
+<p>State是整个应用的数据，本质上是一个普通对象。<br>State决定了整个应用的组件如何渲染，渲染的结果是什么。可以说，State是应用的灵魂，组件是应用的肉体。</p>
+<p>所以，在项目开发初期，设计一份健壮灵活的State尤其重要，对后续的开发有很大的帮助。<br>请注意，并不强制要求所有的数据都保存到State中，有些属于组件的数据是完全可以留给组件自身去维护的。</p>
+<p>在设计State的过程中，对State进行拆分和改造是很有必要的，通常来说，我们可以从横向和纵向两个维度来对State进行拆分和改造。</p>
+<h3 id="如何横向拆分State"><a href="#如何横向拆分State" class="headerlink" title="如何横向拆分State?"></a>如何横向拆分State?</h3><p>通常，应用越庞大，State所包含的数据也就越多，数据结构也就越复杂。<br>为了便于管理这复杂的数据结构，我们通常会根据数据类别做一个横向的拆分。<br>就拿好奇心日报来说，先来个 <code>不太好的示范</code>，我们有首页列表、研究所列表：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    homeList: [&#123;&#125;, &#123;&#125;],</span><br><span class="line">    paperList: [&#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来，试想一下：好奇心日报还有其他类型的列表，比如tag列表、category列表：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    homeList: [&#123;&#125;, &#123;&#125;],</span><br><span class="line">    paperList: [&#123;&#125;, &#123;&#125;]</span><br><span class="line">    <span class="comment">// 其他的列表页数据</span></span><br><span class="line">    tagList: [&#123;&#125;, &#123;&#125;],</span><br><span class="line">    categoryList: [&#123;&#125;, &#123;&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以我们的数据结构应该设计成这个样子吗？<br>这样的话，我们的State很快就会变得臃肿并且难以维护，并且下一步的Reducer设计会变得格外吃力。那我们尝试根据 <strong>数据类别</strong> 做一个横向拆分的设计：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 文章相关的数据结构</span></span><br><span class="line">    articles: &#123;</span><br><span class="line">        <span class="comment">// 首页列表页</span></span><br><span class="line">        list: [&#123;&#125;, &#123;&#125;],</span><br><span class="line">        <span class="comment">// Tag列表页</span></span><br><span class="line">        tagList: [&#123;&#125;, &#123;&#125;]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 研究所相关的数据结构</span></span><br><span class="line">    papers: &#123;</span><br><span class="line">        <span class="comment">// 研究所列表页</span></span><br><span class="line">        list: [&#123;&#125;, &#123;&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是的，本质上就是将同一类别的数据归档：</p>
+<ul>
+<li>articles：state.articles，保存文章相关的数据，比如各种列表页</li>
+<li>papers：state.papers，保存研究所相关的数据，比如各种列表页</li>
+</ul>
+<p>那么，这样设计的好处是什么呢？</p>
+<ul>
+<li>分治法让State数据解耦，彼此间独立，我们可以对articles、papers分别管理。</li>
+<li>数据按类别区分，同一类数据的处理逻辑(Reducer)可以放到一起，代码上更便于维护。</li>
+</ul>
+<p>有人会问了，怎样才能对articles、papers分别管理呢？可以参考另外一篇博客 <a href="http://www.jianshu.com/p/938f8121ba0f" target="_blank" rel="external">Reducer 最佳实践</a></p>
+<p>拆分State其实就是分治法，articles数据有一个专门的管理器，papers数据有一个专门的管理器，这样才能保证代码逻辑清晰，且彼此不关联。<br>数据分拆了，我们可以更细粒度的管理数据，这是横向的拆分，那纵向的问题怎么解决呢？所谓纵向，其实就是数据嵌套深的问题。</p>
+<h3 id="如何纵向改造State？"><a href="#如何纵向改造State？" class="headerlink" title="如何纵向改造State？"></a>如何纵向改造State？</h3><h5 id="为什么要解决数据嵌套的问题呢？"><a href="#为什么要解决数据嵌套的问题呢？" class="headerlink" title="为什么要解决数据嵌套的问题呢？"></a>为什么要解决数据嵌套的问题呢？</h5><p>举两个栗子你就清楚了</p>
+<p><strong>场景一</strong>:好奇心日报有很多列表页，每个列表都存储了一份article/paper的详细字段，严重冗余，并且没有办法同步更新。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 文章相关的数据结构，显然id=3的文章数据冗余了一份</span></span><br><span class="line">    articles: &#123;</span><br><span class="line">        <span class="comment">// 首页列表页</span></span><br><span class="line">        list: [&#123; id: <span class="number">1</span>, title: xxx &#125;, &#123; id: <span class="number">3</span>, title: xxx &#125;],</span><br><span class="line">        <span class="comment">// Tag列表页</span></span><br><span class="line">        tagList: [&#123; id: <span class="number">2</span>, title: xxx &#125;, &#123; id: <span class="number">3</span>, title: xxx &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>场景二</strong>:好奇心日报的问卷的表结构复杂，想要增删改查都需要三次循环，简直是噩梦。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 首先是paper表，包含paper的相关信息，以及一个question数组</span></span><br><span class="line"><span class="comment">// 其次是question表，包含question的相关信息，以及一个option数组</span></span><br><span class="line"><span class="comment">// 最后才是option表，包含option的相关信息。</span></span><br><span class="line">papers: [&#123;</span><br><span class="line">   id: xxx,</span><br><span class="line">    title: xxx,</span><br><span class="line">    questions: [&#123;</span><br><span class="line">        id: xxx,</span><br><span class="line">        title: xxx,</span><br><span class="line">        sequence: xxx,</span><br><span class="line">        options: [&#123;</span><br><span class="line">            id: xxx,</span><br><span class="line">            title: xxx,</span><br><span class="line">            sequence: xxx</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;] </span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>现在假如我们选中某个option，需要更新option的selected=true，怎么办呢？<br>我们需要三层循环，找到option，然后设置selected=true。而这仅仅是一个很简单的需求而已。类似的场景有很多，我们需要纵向的遍历数据结构，不仅性能差，代码冗余，维护起来也相当困难。</p>
+<p>那么我们的想法就是数据扁平化，所谓的数据扁平化是什么意思呢？看以下代码就清楚了：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 扁平化之后的数据</span></span><br><span class="line">papers: [id1, id2]</span><br><span class="line">papersHash: &#123;</span><br><span class="line">    id1: &#123;</span><br><span class="line">        id: xxx,</span><br><span class="line">        title: xxx,</span><br><span class="line">        questions: [id1, id2]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">questionsHash: &#123;</span><br><span class="line">    id1: &#123;</span><br><span class="line">        id: xxx,</span><br><span class="line">        title: xxx,</span><br><span class="line">        sequence: xxx,</span><br><span class="line">        options: [id1, id2]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">optionsHash: &#123;</span><br><span class="line">    id1: &#123;</span><br><span class="line">        id: xxx,</span><br><span class="line">        title: xxx,</span><br><span class="line">        sequence: xxx</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面的结构可以看到，扁平化之后，数据被抽离到一个hash对象中，根据key-value 键值对可以轻松获取指定对象的值。而关联部分只存储id作为索引。<br>比如前面的场景，我们想要更新某个option，很简单，直接根据id更新optionsHash中的值即可。</p>
+<h5 id="那么，如何才能简单的扁平化数据呢？"><a href="#那么，如何才能简单的扁平化数据呢？" class="headerlink" title="那么，如何才能简单的扁平化数据呢？"></a>那么，如何才能简单的扁平化数据呢？</h5><p>推荐 <a href="https://github.com/paularmstrong/normalizr" target="_blank" rel="external">normalizr.js</a> 这个库，使用方法也很简单，定义好schema，声明各个schema之间的关系，然后就OK啦。<br>简单给个schema的例子，更多的内容，大家可以去看官方文档。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Schema, arrayOf, normalize &#125; <span class="keyword">from</span> <span class="string">'normalizr'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> paperSchema = <span class="keyword">new</span> Schema(<span class="string">'papers'</span>);</span><br><span class="line"><span class="keyword">const</span> questionSchema = <span class="keyword">new</span> Schema(<span class="string">'questions'</span>);</span><br><span class="line"><span class="keyword">const</span> optionsSchema = <span class="keyword">new</span> Schema(<span class="string">'options'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明paper.quesitons字段，是一个questionSchema的数组</span></span><br><span class="line">paperSchema.define(&#123;</span><br><span class="line">    questions: arrayOf(questionSchema)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 声明question.options字段，是一个optionsSchema的数组</span></span><br><span class="line">questionSchema.defind(&#123;</span><br><span class="line">    options: arrayOf(optionsSchema)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 比如我们获取到的研究所数据是papers</span></span><br><span class="line"><span class="keyword">let</span> normalizeData = normalize(papers, arrayOf(paperSchema));</span><br><span class="line"><span class="comment">// 最后得到的normalizeData结果就是</span></span><br><span class="line"><span class="comment">// normalizeData = &#123;</span></span><br><span class="line"><span class="comment">//     result: [id1, id2, ...],</span></span><br><span class="line"><span class="comment">//     entities: &#123;</span></span><br><span class="line"><span class="comment">//         papers: &#123;</span></span><br><span class="line"><span class="comment">//             id1: &#123;&#125;</span></span><br><span class="line"><span class="comment">//         &#125;,</span></span><br><span class="line"><span class="comment">//         questions: &#123;</span></span><br><span class="line"><span class="comment">//             id1: &#123;&#125;</span></span><br><span class="line"><span class="comment">//         &#125;,</span></span><br><span class="line"><span class="comment">//         options: &#123;</span></span><br><span class="line"><span class="comment">//             id1: &#123;&#125;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<p>到此为止，State的横向拆分（分治法）和纵向拆分（扁平化）都已经完成。<br>Redux给我们的启示是面向数据编程。所以开发之前根据实际需求设计好State的数据结构，是一个项目的灵魂。也影响和决定了后续的开发。<br>当然，开发初期遇到State需要调整，请大胆的调整，而产品趋于成熟，对State的调整应该越谨慎越好。</p>
+<h3 id="总结说点啥？"><a href="#总结说点啥？" class="headerlink" title="总结说点啥？"></a>总结说点啥？</h3><p>请记住，开发之前先梳理需求，然后设计State的数据结构，这个重要性就好比数据库设计之于后台。它影响和决定了后续的开发。<br>State本身就是一个普通对象，为了能够进行更细粒度的管理和维护，我们考虑从横向/纵向两个维度来对State进行拆分和改造。</p>
+<ul>
+<li>横向设计State：把State扔到一个超级reducer中是不明智的，我们应该根据数据类别对State进行拆分，为不同类别的数据提供专门的管理器。</li>
+<li>纵向设计State：尽量将State进行扁平化处理，这样可以更灵活的对数据进行增删改查，并且避免冗余数据的问题。</li>
+</ul>
+<p>此外，State的本质就是普通对象，之所以如此“处心积虑”的设计State，无非是为了让开发速度更快，逻辑更清晰，维护更方便。<br>如果你的应用本身就很简单，那就不要过度设计State，甚至可以不引入Redux。</p>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/27/State-设计，Redux-开发第一步/"
+           data-title="State 设计，Redux 开发第一步" data-url="http://zhenghe39.com/2017/01/27/State-设计，Redux-开发第一步/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+                
+                
+                
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='sidebar-nav-content'>
+                    
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#如何横向拆分State"><span class="nav-menu-text">如何横向拆分State?</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#如何纵向改造State？"><span class="nav-menu-text">如何纵向改造State？</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-5"><a class="nav-menu-link" href="#为什么要解决数据嵌套的问题呢？"><span class="nav-menu-text">为什么要解决数据嵌套的问题呢？</span></a></li><li class="nav-menu-item nav-menu-level-5"><a class="nav-menu-link" href="#那么，如何才能简单的扁平化数据呢？"><span class="nav-menu-text">那么，如何才能简单的扁平化数据呢？</span></a></li></ol></li></ol></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#总结说点啥？"><span class="nav-menu-text">总结说点啥？</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+                        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Maven/' title=Maven>Maven</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/随笔/' title=随笔>随笔</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/OOP/' title=OOP>OOP</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/MvvM/' title=MvvM>MvvM</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Node/' title=Node>Node</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/SPA/' title=SPA>SPA</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/软件设计/' title=软件设计>软件设计</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/vi/' title=vi>vi</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Redux/' title=Redux>Redux</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+                    </div>
+                </div>
+        </div>
+    </aside>
+
+
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
+<script>
+      /*
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+        */
+
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
+            activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
+            distinguishLineScale:0,
+            events:{
+                'scrollNav':function(navItem,$navMenu){
+                    if(!navItem){
+                        return;
+                    }
+
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        'top':navItem.top,
+                        'height':navItem.height+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            $('.highlight-title').hide();
+
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
+</script>
+    </body>
+</html>
