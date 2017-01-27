@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title></title>
+        <title> Javascript的属性类型 | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,78 +35,93 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-normal '>
+                    <div class='content-wrap content-wrap-post '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-     <section  class="collapse">
-        <span class="archive-move-on"></span>
-        <span class="archive-page-counter">
-          
-
-          
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
             
-          
-          好目前共计 58 篇日志。继续努力。
-        </span>
-        
-        
-            
-            
-            
-                
-                <div class="collapse-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-                </div>
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/15/Myeclipse的配置恢复/" itemprop="url">
-                    
-                        <span itemprop="name">Myeclipse的配置恢复</span>
-                    
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/01/27/Javascript的属性类型/"  itemprop="url" >
+                    Javascript的属性类型
                 </a>
             </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-15T13:03:40+08:00"
-                      content="2016-11-15" >
-                    11-15
-                </time>
-            </div>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-01-27</time>
+                </div>
+            
         </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>ECMAScript中包含两种属性：<code>数据属性</code>和<code>访问器属性</code>。为了表示特征是内部值，该规范把它们放在了两对儿方括号中，eg.[[Enumerable]]。</p>
+<h3 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h3><ul>
+<li>[[Configurable]]</li>
+<li>[[Enumerable]]</li>
+<li>[[Writable]]</li>
+<li>[[Value]]</li>
+</ul>
+<p>Note：包含一个数据值的位置，在这个位置可以读取和写入值。<strong>注意</strong>：对于直接在对象上定义的属性，除[[Value]]为指定值外，其他特性都为true。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(person,<span class="string">"name"</span>,&#123;</span><br><span class="line">  configurable:<span class="literal">false</span>,</span><br><span class="line">  enumerable:<span class="literal">false</span>,</span><br><span class="line">  writable:<span class="literal">false</span>,</span><br><span class="line">  value:<span class="string">'xiaoli'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Note：使用<code>defineProperty</code>方法，若不指定，configurable、enumerable、writable等默认值为false。</p>
+<h3 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h3><ul>
+<li>[[Configurable]]</li>
+<li>[[Enumerable]]</li>
+<li>[[Get]]</li>
+<li>[[Set]]</li>
+</ul>
+<p>访问器属性不包含数据值，但包含<code>get</code>和<code>set</code>函数。访问器属性的常用方式：设置一个属性的值会导致其他属性发生变化。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">  _year:<span class="number">2004</span>,</span><br><span class="line">  edition:<span class="number">1</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(book,<span class="string">'year'</span>,&#123;</span><br><span class="line">  get:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._year;</span><br><span class="line">  &#125;,</span><br><span class="line">  set:<span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(newValue &gt; <span class="number">2004</span>)&#123;</span><br><span class="line">      <span class="keyword">this</span>._year = newValue</span><br><span class="line">      <span class="keyword">this</span>.edition += newValue - <span class="number">2004</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">book.year = <span class="number">2005</span>;</span><br><span class="line">alert(book.edition);<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<h3 id="定义多个属性"><a href="#定义多个属性" class="headerlink" title="定义多个属性"></a>定义多个属性</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperties(book,&#123;</span><br><span class="line">  _year:&#123;</span><br><span class="line">    value:<span class="number">2004</span></span><br><span class="line">  &#125;,</span><br><span class="line">  edition:&#123;</span><br><span class="line">    value:<span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="获取属性的描述器"><a href="#获取属性的描述器" class="headerlink" title="获取属性的描述器"></a>获取属性的描述器</h3><p><code>Object.getOwnPropertyDescriptor(object,propertyName)</code>可以获取给定属性的描述对象。若为访问器属性，则这个对象的属性有：configurable、enumerable、get和set；若为数据属性，则有configurable、enumerable、writable和value。</p>
+
+            
+        </div>
     </article>
 
-        
-    </section>
-    <nav class='pagination'>
-    
-    
-    <div class='clearfix'></div>
-</nav>
+
 
                         </div>
                         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/27/Javascript的属性类型/"
+           data-title="Javascript的属性类型" data-url="http://zhenghe39.com/2017/01/27/Javascript的属性类型/">
+      </div>
+    
+  </div>
+
 
 
                     </div>
                     
-    
+ 
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
-                    
                 
                 
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel active ' id='site-info' >
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#数据属性"><span class="nav-menu-text">数据属性</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#访问器属性"><span class="nav-menu-text">访问器属性</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#定义多个属性"><span class="nav-menu-text">定义多个属性</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#获取属性的描述器"><span class="nav-menu-text">获取属性的描述器</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>

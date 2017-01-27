@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-01-27T14:15:17.000Z</updated>
+  <updated>2017-01-27T15:00:02.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript的属性类型</title>
+    <link href="http://zhenghe39.com/2017/01/27/Javascript%E7%9A%84%E5%B1%9E%E6%80%A7%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://zhenghe39.com/2017/01/27/Javascript的属性类型/</id>
+    <published>2017-01-27T14:48:18.000Z</published>
+    <updated>2017-01-27T15:00:02.000Z</updated>
+    
+    <content type="html">&lt;p&gt;ECMAScript中包含两种属性：&lt;code&gt;数据属性&lt;/code&gt;和&lt;code&gt;访问器属性&lt;/code&gt;。为了表示特征是内部值，该规范把它们放在了两对儿方括号中，eg.[[Enumerable]]。&lt;/p&gt;
+&lt;h3 id=&quot;数据属性&quot;&gt;&lt;a href=&quot;#数据属性&quot; class=&quot;headerlink&quot; title=&quot;数据属性&quot;&gt;&lt;/a&gt;数据属性&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;[[Configurable]]&lt;/li&gt;
+&lt;li&gt;[[Enumerable]]&lt;/li&gt;
+&lt;li&gt;[[Writable]]&lt;/li&gt;
+&lt;li&gt;[[Value]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note：包含一个数据值的位置，在这个位置可以读取和写入值。&lt;strong&gt;注意&lt;/strong&gt;：对于直接在对象上定义的属性，除[[Value]]为指定值外，其他特性都为true。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; person = &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.defineProperty(person,&lt;span class=&quot;string&quot;&gt;&quot;name&quot;&lt;/span&gt;,&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  configurable:&lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  enumerable:&lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  writable:&lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  value:&lt;span class=&quot;string&quot;&gt;&#39;xiaoli&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Note：使用&lt;code&gt;defineProperty&lt;/code&gt;方法，若不指定，configurable、enumerable、writable等默认值为false。&lt;/p&gt;
+&lt;h3 id=&quot;访问器属性&quot;&gt;&lt;a href=&quot;#访问器属性&quot; class=&quot;headerlink&quot; title=&quot;访问器属性&quot;&gt;&lt;/a&gt;访问器属性&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;[[Configurable]]&lt;/li&gt;
+&lt;li&gt;[[Enumerable]]&lt;/li&gt;
+&lt;li&gt;[[Get]]&lt;/li&gt;
+&lt;li&gt;[[Set]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;访问器属性不包含数据值，但包含&lt;code&gt;get&lt;/code&gt;和&lt;code&gt;set&lt;/code&gt;函数。访问器属性的常用方式：设置一个属性的值会导致其他属性发生变化。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; book = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  _year:&lt;span class=&quot;number&quot;&gt;2004&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  edition:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.defineProperty(book,&lt;span class=&quot;string&quot;&gt;&#39;year&#39;&lt;/span&gt;,&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  get:&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;._year;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  set:&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;newValue&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(newValue &amp;gt; &lt;span class=&quot;number&quot;&gt;2004&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;._year = newValue&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.edition += newValue - &lt;span class=&quot;number&quot;&gt;2004&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;book.year = &lt;span class=&quot;number&quot;&gt;2005&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;alert(book.edition);&lt;span class=&quot;comment&quot;&gt;//2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;定义多个属性&quot;&gt;&lt;a href=&quot;#定义多个属性&quot; class=&quot;headerlink&quot; title=&quot;定义多个属性&quot;&gt;&lt;/a&gt;定义多个属性&lt;/h3&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.defineProperties(book,&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  _year:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    value:&lt;span class=&quot;number&quot;&gt;2004&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  edition:&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    value:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;获取属性的描述器&quot;&gt;&lt;a href=&quot;#获取属性的描述器&quot; class=&quot;headerlink&quot; title=&quot;获取属性的描述器&quot;&gt;&lt;/a&gt;获取属性的描述器&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Object.getOwnPropertyDescriptor(object,propertyName)&lt;/code&gt;可以获取给定属性的描述对象。若为访问器属性，则这个对象的属性有：configurable、enumerable、get和set；若为数据属性，则有configurable、enumerable、writable和value。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ECMAScript中包含两种属性：&lt;code&gt;数据属性&lt;/code&gt;和&lt;code&gt;访问器属性&lt;/code&gt;。为了表示特征是内部值，该规范把它们放在了两对儿方括号中，eg.[[Enumerable]]。&lt;/p&gt;
+&lt;h3 id=&quot;数据属性&quot;&gt;&lt;a href=&quot;#数据属性&quot; c
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>React.createClass versus extends React.Component</title>
@@ -454,7 +497,7 @@
     <link href="http://zhenghe39.com/2016/11/20/OOP%E7%BC%96%E7%A8%8B%E7%9A%84%E4%BA%94%E5%A4%A7%E5%8E%9F%E5%88%99/"/>
     <id>http://zhenghe39.com/2016/11/20/OOP编程的五大原则/</id>
     <published>2016-11-20T07:07:19.000Z</published>
-    <updated>2016-12-04T13:04:11.000Z</updated>
+    <updated>2017-01-27T14:48:50.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;SRP&quot;&gt;&lt;a href=&quot;#SRP&quot; class=&quot;headerlink&quot; title=&quot;SRP&quot;&gt;&lt;/a&gt;SRP&lt;/h3&gt;&lt;p&gt;SRP(Single Responsibility Principle):单一职责原则&lt;/p&gt;
 &lt;h3 id=&quot;LSP&quot;&gt;&lt;a href=&quot;#LSP&quot; class=&quot;headerlink&quot; title=&quot;LSP&quot;&gt;&lt;/a&gt;LSP&lt;/h3&gt;&lt;p&gt;LSP(Liskov Substitution):里氏替换原则&lt;/p&gt;
@@ -856,32 +899,6 @@
     
     
       <category term="mongodb" scheme="http://zhenghe39.com/tags/mongodb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Meta标签</title>
-    <link href="http://zhenghe39.com/2016/11/14/meta%E6%A0%87%E7%AD%BE/"/>
-    <id>http://zhenghe39.com/2016/11/14/meta标签/</id>
-    <published>2016-11-14T10:27:59.000Z</published>
-    <updated>2016-11-14T10:30:59.000Z</updated>
-    
-    <content type="html">&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;Content-Type&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;text/html; charset=UTF-8&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;使用带有 &lt;code&gt;http-equiv&lt;/code&gt;属性的&lt;code&gt;&amp;lt;meta&amp;gt;&lt;/code&gt; 标签时，服务器将把名称/值对添加到发送给浏览器的内容头部&lt;br&gt;例如:&lt;br&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;charset&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;iso-8859-1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;expires&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;31 Dec 2008&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这样发送到浏览器的头部就应该包含：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;content-type: text/html&amp;#10;charset:iso-8859-1&amp;#10;expires:31 Dec 2008&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;当然，只有浏览器可以接受这些附加的头部字段，并能以适当的方式使用它们时，这些字段才有意义。&lt;br&gt;Note：服务器至少要发送一个：&lt;code&gt;content-type:text/html&lt;/code&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;meta&lt;/span&gt; &lt;sp
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Html" scheme="http://zhenghe39.com/tags/Html/"/>
     
   </entry>
   
