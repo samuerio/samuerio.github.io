@@ -230,7 +230,10 @@
                      <blockquote>
 <p>ECMAScript只支持实现继承，不支持接口继承，并将原型链作为其主要的实现方式。</p>
 </blockquote>
-<p>每个对象上的__proto__和prototype属性都保存有原型的引用，并且，对__proto__赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。</p>
+<p>只要创建一个新函数，就会为该函数创建一个<code>prototype</code>属性，该属性指向函数的原型对象，并且原型对象会自动获得<code>constructor</code>(构造函数)属性，同时该属性指向这个新建函数。</p>
+<p>当调用构造函数创建了一个新实例后，该实例的内部将包含一个指针<code>[[Prototype]]</code>（内部属性）,可通过<code>Object.getPrototypeOf(instanceObj)</code>获取该属性，而且Firfox、Safari和Chrome都支持通过<code>\_\_proto\_\_</code>访问该属性。</p>
+<p><img src="okhcxnfdh.bkt.clouddn.com/Screenshot of PDF Expert -17-1-28 下午3-32-34-.png" alt=""></p>
+<p>对__proto__赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:A.prototype.__proto__ = B.prototype。</p>
                      <div style="text-align:center;">
                             <a  href="/2016/03/13/JS原型链实现继承/" >
                               阅读全文 &raquo;
