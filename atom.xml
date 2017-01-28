@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-01-27T15:00:02.000Z</updated>
+  <updated>2017-01-28T09:23:57.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript遍历属性</title>
+    <link href="http://zhenghe39.com/2017/01/28/Javascript%E9%81%8D%E5%8E%86%E5%B1%9E%E6%80%A7/"/>
+    <id>http://zhenghe39.com/2017/01/28/Javascript遍历属性/</id>
+    <published>2017-01-28T08:18:35.000Z</published>
+    <updated>2017-01-28T09:23:57.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;In的用法&quot;&gt;&lt;a href=&quot;#In的用法&quot; class=&quot;headerlink&quot; title=&quot;In的用法&quot;&gt;&lt;/a&gt;In的用法&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;in obj&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;in单独使用时，会在通过对象能够访问给定属性时返回true，无论该属性存在于实例中还是原型中。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; person = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;person.name = &lt;span class=&quot;string&quot;&gt;&#39;Lilei&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;name&#39;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; person)&lt;span class=&quot;comment&quot;&gt;//true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以下是判别某个属性是否位于该对象原型上：&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;hasPrototypeProperty&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;object,name&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; !object.hasOwnProperty(name) &amp;amp;&amp;amp; (name &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; object);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Note:&lt;code&gt;hasOwnProperty(propertyName)&lt;/code&gt;可以检测一个属性是存在实例中，还是存在于原型中。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;for-in&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在使用&lt;code&gt;for-in&lt;/code&gt;循环时，会返回实例中的属性&amp;amp;&amp;amp;原型中的属性，值得注意的是就连&lt;code&gt;不可枚举[[Enumerable]]&lt;/code&gt;的属性也会返回。&lt;/p&gt;
+&lt;h3 id=&quot;keys&quot;&gt;&lt;a href=&quot;#keys&quot; class=&quot;headerlink&quot; title=&quot;keys&quot;&gt;&lt;/a&gt;keys&lt;/h3&gt;&lt;p&gt;要取得对象上所有&lt;code&gt;可枚举&lt;/code&gt;的&lt;code&gt;实例属性&lt;/code&gt;，可以使用&lt;code&gt;Object.keys(obj)&lt;/code&gt;方法，返回一个包含所有可枚举属性的字符串数组。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Person&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Person.prototype.name = &lt;span class=&quot;string&quot;&gt;&#39;Lilei&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Person.prototype.age = &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.keys(Person.prototype));&lt;span class=&quot;comment&quot;&gt;//[&quot;name&quot;, &quot;age&quot;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;getOwnPropertyNames&quot;&gt;&lt;a href=&quot;#getOwnPropertyNames&quot; class=&quot;headerlink&quot; title=&quot;getOwnPropertyNames&quot;&gt;&lt;/a&gt;getOwnPropertyNames&lt;/h3&gt;&lt;p&gt;若要获取对象上所有的&lt;code&gt;实例属性&lt;/code&gt;，无论是否可枚举，可以使用&lt;code&gt;Object.getOwnPropertyNames(obj)&lt;/code&gt;。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Person&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Person.prototype.name = &lt;span class=&quot;string&quot;&gt;&#39;Lilei&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Person.prototype.age = &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.getOwnPropertyNames(Person.prototype));&lt;span class=&quot;comment&quot;&gt;//[&quot;constructor&quot;, &quot;name&quot;, &quot;age&quot;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;In的用法&quot;&gt;&lt;a href=&quot;#In的用法&quot; class=&quot;headerlink&quot; title=&quot;In的用法&quot;&gt;&lt;/a&gt;In的用法&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;in obj&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;in单独使用时，会在通过对象能够访问给定属性时返回tr
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>Javascript的属性类型</title>
@@ -870,35 +904,6 @@
     
     
       <category term="svn" scheme="http://zhenghe39.com/tags/svn/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MongoDB-Java驱动的使用</title>
-    <link href="http://zhenghe39.com/2016/11/14/MongoDB-Java%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://zhenghe39.com/2016/11/14/MongoDB-Java驱动的使用/</id>
-    <published>2016-11-14T11:33:54.000Z</published>
-    <updated>2016-11-14T11:41:59.000Z</updated>
-    
-    <content type="html">&lt;p&gt;使用的Mongodb-Java驱动版本为&lt;code&gt;mongo-2.10.1.jar&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;获取数据库连接&quot;&gt;&lt;a href=&quot;#获取数据库连接&quot; class=&quot;headerlink&quot; title=&quot;获取数据库连接&quot;&gt;&lt;/a&gt;获取数据库连接&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Mongo mongo = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; MongoClient(&lt;span class=&quot;string&quot;&gt;&quot;127.0.0.1&quot;&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;27017&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//连接mongodb服务器&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DB db = mongo.getDB(&lt;span class=&quot;string&quot;&gt;&quot;UserDB&quot;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//数据库“UserDB”&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;DBCollection deptCollection = db.getCollection(&lt;span class=&quot;string&quot;&gt;&quot;Dept&quot;&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//获得集合“Dept”&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//获得当前服务器下的所有数据库名称&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (String str : mongo.getDatabaseNames()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	System.out.println(str);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//获得当前数据库里面的所有聚集集合&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (String str : db.getCollectionNames()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;聚集集合名称： &quot;&lt;/span&gt;+str);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;增&quot;&gt;&lt;a href=&quot;#增&quot; class=&quot;headerlink&quot; title=&quot;增&quot;&gt;&lt;/a&gt;增&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;DBObject dbObject=&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject();&lt;span class=&quot;comment&quot;&gt;//document的实体对象，BSON数据类型在java中的抽象&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbObject.put(&lt;span class=&quot;string&quot;&gt;&quot;_id&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ObjectId(&lt;span class=&quot;string&quot;&gt;&quot;558ac250f6e449a1a8a7f7d5&quot;&lt;/span&gt;));&lt;span class=&quot;comment&quot;&gt;//添加键-值对&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbObject.put(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;world&quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.save(dbObject).getN()&lt;span class=&quot;comment&quot;&gt;//1条记录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.insert(dbObject, dbObject2).getN()&lt;span class=&quot;comment&quot;&gt;//多条记录&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;删&quot;&gt;&lt;a href=&quot;#删&quot; class=&quot;headerlink&quot; title=&quot;删&quot;&gt;&lt;/a&gt;删&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//通过document固有标识_id删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.remove(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;_id&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; ObjectId(&lt;span class=&quot;string&quot;&gt;&quot;558ac250f6e449a1a8a7f7d5&quot;&lt;/span&gt;))).getN();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//通过其他标识删除&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.remove(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;age&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;45&quot;&lt;/span&gt;)).getN();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;改&quot;&gt;&lt;a href=&quot;#改&quot; class=&quot;headerlink&quot; title=&quot;改&quot;&gt;&lt;/a&gt;改&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//这种修改是除了_id没有变外的整个document替换&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.update(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;world&quot;&lt;/span&gt;), &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;ssss&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;illlooooo&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//这种修改是只修改某个键的值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dbCollection.update(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;world&quot;&lt;/span&gt;), &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;$set&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;Hello&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;Java&quot;&lt;/span&gt;)));&lt;span class=&quot;comment&quot;&gt;//修改操作&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;查&quot;&gt;&lt;a href=&quot;#查&quot; class=&quot;headerlink&quot; title=&quot;查&quot;&gt;&lt;/a&gt;查&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//只查询一条数据，多条去第一条   &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;findOne: &quot;&lt;/span&gt; + dbCollection.findOne());  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;findOne: &quot;&lt;/span&gt; + dbCollection.findOne(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;tag&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;LV&quot;&lt;/span&gt;)));    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;findOne: &quot;&lt;/span&gt; + dbCollection.findOne(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;tag&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;LV&quot;&lt;/span&gt;), &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;tag&quot;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;)));&lt;span class=&quot;comment&quot;&gt;//显示&quot;tag&quot;这个键值对&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//多记录查询：根据age查询documents&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&quot;find age=45: &quot;&lt;/span&gt;+&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		dbCollection.find(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; BasicDBObject(&lt;span class=&quot;string&quot;&gt;&quot;age&quot;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&quot;45&quot;&lt;/span&gt;)).toArray());&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用的Mongodb-Java驱动版本为&lt;code&gt;mongo-2.10.1.jar&lt;/code&gt;&lt;/p&gt;
-&lt;h3 id=&quot;获取数据库连接&quot;&gt;&lt;a href=&quot;#获取数据库连接&quot; class=&quot;headerlink&quot; title=&quot;获取数据库连接&quot;&gt;&lt;/a&gt;获取数据库连接&lt;
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="mongodb" scheme="http://zhenghe39.com/tags/mongodb/"/>
     
   </entry>
   

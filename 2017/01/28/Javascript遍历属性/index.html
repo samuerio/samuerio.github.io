@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title></title>
+        <title> Javascript遍历属性 | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,184 +35,84 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-normal '>
+                    <div class='content-wrap content-wrap-post '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-     <section  class="collapse">
-        <span class="archive-move-on"></span>
-        <span class="archive-page-counter">
-          
-
-          
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
             
-          
-          好目前共计 59 篇日志。继续努力。
-        </span>
-        
-        
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/01/28/Javascript遍历属性/"  itemprop="url" >
+                    Javascript遍历属性
+                </a>
+            </h1>
             
-            
-            
-                
-                <div class="collapse-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-01-28</time>
                 </div>
             
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/06/20/JS下的JSON解析及序列化/" itemprop="url">
-                    
-                        <span itemprop="name">JS下的JSON解析及序列化</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-06-20T07:35:12+08:00"
-                      content="2016-06-20" >
-                    06-20
-                </time>
-            </div>
         </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <h3 id="In的用法"><a href="#In的用法" class="headerlink" title="In的用法"></a>In的用法</h3><p><strong>in obj</strong></p>
+<p>in单独使用时，会在通过对象能够访问给定属性时返回true，无论该属性存在于实例中还是原型中。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">'Lilei'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'name'</span> <span class="keyword">in</span> person)<span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<p>以下是判别某个属性是否位于该对象原型上：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasPrototypeProperty</span>(<span class="params">object,name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !object.hasOwnProperty(name) &amp;&amp; (name <span class="keyword">in</span> object);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Note:<code>hasOwnProperty(propertyName)</code>可以检测一个属性是存在实例中，还是存在于原型中。</p>
+<p><strong>for-in</strong></p>
+<p>在使用<code>for-in</code>循环时，会返回实例中的属性&amp;&amp;原型中的属性，值得注意的是就连<code>不可枚举[[Enumerable]]</code>的属性也会返回。</p>
+<h3 id="keys"><a href="#keys" class="headerlink" title="keys"></a>keys</h3><p>要取得对象上所有<code>可枚举</code>的<code>实例属性</code>，可以使用<code>Object.keys(obj)</code>方法，返回一个包含所有可枚举属性的字符串数组。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = <span class="string">'Lilei'</span>;</span><br><span class="line">Person.prototype.age = <span class="number">4</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(Person.prototype));<span class="comment">//["name", "age"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="getOwnPropertyNames"><a href="#getOwnPropertyNames" class="headerlink" title="getOwnPropertyNames"></a>getOwnPropertyNames</h3><p>若要获取对象上所有的<code>实例属性</code>，无论是否可枚举，可以使用<code>Object.getOwnPropertyNames(obj)</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name = <span class="string">'Lilei'</span>;</span><br><span class="line">Person.prototype.age = <span class="number">4</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(Person.prototype));<span class="comment">//["constructor", "name", "age"]</span></span><br></pre></td></tr></table></figure>
+
+            
+        </div>
     </article>
 
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/04/10/消灭CallBack导致的函数金字塔/" itemprop="url">
-                    
-                        <span itemprop="name">消灭CallBack导致的函数金字塔</span>
-                    
-                </a>
-            </h1>
 
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-04-10T14:56:15+08:00"
-                      content="2016-04-10" >
-                    04-10
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/03/14/浅谈JS闭包和this关键字/" itemprop="url">
-                    
-                        <span itemprop="name">浅谈JS闭包和this关键字</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-03-14T09:25:23+08:00"
-                      content="2016-03-14" >
-                    03-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/03/13/JS原型链实现继承/" itemprop="url">
-                    
-                        <span itemprop="name">JS原型链实现继承</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-03-13T21:15:56+08:00"
-                      content="2016-03-13" >
-                    03-13
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/02/27/JS事件/" itemprop="url">
-                    
-                        <span itemprop="name">JS事件</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-02-27T21:34:37+08:00"
-                      content="2016-02-27" >
-                    02-27
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-    </section>
-    <nav class='pagination'>
-    
-        <a href = '/tags/Javascript/' class='alignleft prev'>上一页</a>
-    
-    
-    <div class='clearfix'></div>
-</nav>
 
                         </div>
                         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/28/Javascript遍历属性/"
+           data-title="Javascript遍历属性" data-url="http://zhenghe39.com/2017/01/28/Javascript遍历属性/">
+      </div>
+    
+  </div>
+
 
 
                     </div>
                     
-    
+ 
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
-                    
                 
                 
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel active ' id='site-info' >
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#In的用法"><span class="nav-menu-text">In的用法</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#keys"><span class="nav-menu-text">keys</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#getOwnPropertyNames"><span class="nav-menu-text">getOwnPropertyNames</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>

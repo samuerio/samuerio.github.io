@@ -44,6 +44,58 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-09-01T09:52:02.000Z">
+                    <a href="/2016/09/01/Shell下的权限控制/">2016-09-01</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/09/01/Shell下的权限控制/"  itemprop="url" >
+                    Shell下的权限控制
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <h2 id="用户授权（sudo）"><a href="#用户授权（sudo）" class="headerlink" title="用户授权（sudo）"></a>用户授权（sudo）</h2><blockquote>
+<p>若当前用户没有执行某命令的权限可以使用sudo给其授权</p>
+</blockquote>
+<h2 id="文件-目录授权（chmod）"><a href="#文件-目录授权（chmod）" class="headerlink" title="文件/目录授权（chmod）"></a>文件/目录授权（chmod）</h2><table>
+<thead>
+<tr>
+<th>权限</th>
+<th>r</th>
+<th>w</th>
+<th>x</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>含义</td>
+<td>read</td>
+<td>write</td>
+<td>execute</td>
+<td>相应权限未被授予</td>
+</tr>
+</tbody>
+</table>
+                     <div style="text-align:center;">
+                            <a  href="/2016/09/01/Shell下的权限控制/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-09-01T08:47:28.000Z">
                     <a href="/2016/09/01/Java反射的应用/">2016-09-01</a>
                 </time>
@@ -238,46 +290,6 @@
 <p><code>prestatement.setObject(int parameterIndex,Object x) throws SQLException</code>尝试将Java类型转化为对应的数据库类型。那么这里的Java类型Object会转换为哪种数据库类型呢</p>
                      <div style="text-align:center;">
                             <a  href="/2016/06/28/Java基本类型转数据库类型/" >
-                              阅读全文 &raquo;
-                            </a>
-                      </div>
-                
-            
-        </div>
-    </article>
-
-    
-        
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
-            
-                <time datetime="2016-06-27T08:24:14.000Z">
-                    <a href="/2016/06/27/JavaScript-正则表达式/">2016-06-27</a>
-                </time>
-            
-            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
-                <a class="post-title-link" href="/2016/06/27/JavaScript-正则表达式/"  itemprop="url" >
-                    Javascript正则表达式
-                </a>
-            </h1>
-            
-        </header>
-        <div class="post-body" itemprop="articleBody">
-            
-                
-                     <p>转载自<a href="http://www.cnblogs.com/dolphinX/p/3486214.html">http://www.cnblogs.com/dolphinX/p/3486214.html</a></p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>JavaScript种正则表达式有两种定义方式，定义一个匹配类似 <code>&lt;%XXX%&gt;</code>的字符串</p>
-<p><strong>构造函数</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'&lt;%[^%&gt;]+%&gt;'</span>,<span class="string">'g'</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>字面量</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> reg=<span class="regexp">/&lt;%[^%&gt;]%&gt;/g</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>g： global，全文搜索，默认搜索到第一个结果接停止</li>
-<li>i： ingore case，忽略大小写，默认大小写敏感</li>
-<li>m： multiple lines，多行搜索（更改^ 和$的含义，使它们分别在任意一行对待行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配）</li>
-</ul>
-                     <div style="text-align:center;">
-                            <a  href="/2016/06/27/JavaScript-正则表达式/" >
                               阅读全文 &raquo;
                             </a>
                       </div>
