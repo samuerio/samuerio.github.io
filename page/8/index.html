@@ -44,6 +44,42 @@
     <article class="post" itemscope itemtype="http://schema.org/Article" >
         <header class="post-header" >
             
+                <time datetime="2016-03-13T13:15:56.000Z">
+                    <a href="/2016/03/13/JS原型链实现继承/">2016-03-13</a>
+                </time>
+            
+            <h1 class="post-title" style="margin-bottom:20px;" itemprop="name headline" >
+                <a class="post-title-link" href="/2016/03/13/JS原型链实现继承/"  itemprop="url" >
+                    JS原型链实现继承
+                </a>
+            </h1>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                
+                     <blockquote>
+<p>ECMAScript只支持实现继承，不支持接口继承，并将原型链作为其主要的实现方式。</p>
+</blockquote>
+<p>只要创建一个新函数，就会为该函数创建一个<code>prototype</code>属性，该属性指向函数的原型对象，并且原型对象会自动获得<code>constructor</code>(构造函数)属性，同时该属性指向这个新建函数。</p>
+<p>当调用构造函数创建了一个新实例后，该实例的内部将包含一个指针<code>[[Prototype]]</code>（内部属性）,可通过<code>Object.getPrototypeOf(instanceObj)</code>获取该属性，而且Firfox、Safari和Chrome都支持通过<code>__proto__</code>访问该属性。</p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/Screenshot of PDF Expert -17-1-28 下午3-32-34-.png" alt=""></p>
+<p>对<code>__proto__</code>赋值可以改变对象的原型。A继承B，只要实现A原型的原型为B原型即实现原型链:<code>A.prototype.__proto__ = B.prototype</code>。</p>
+                     <div style="text-align:center;">
+                            <a  href="/2016/03/13/JS原型链实现继承/" >
+                              阅读全文 &raquo;
+                            </a>
+                      </div>
+                
+            
+        </div>
+    </article>
+
+    
+        
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
                 <time datetime="2016-03-13T09:02:24.000Z">
                     <a href="/2016/03/13/负margin与absolute、relative/">2016-03-13</a>
                 </time>
