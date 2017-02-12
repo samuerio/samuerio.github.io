@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/fonts/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> select radio checkbox标选中值的获取与赋值 | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            
+            <div class='headband'></div>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/02/12/select-radio-checkbox标选中值的获取与赋值/"  itemprop="url" >
+                    select radio checkbox标选中值的获取与赋值
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-02-12</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p><strong>案例</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span> <span class="attribute">lang</span>=<span class="value">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">form</span> <span class="attribute">id</span>=<span class="value">"testForm"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">name</span>=<span class="value">"sexRadio"</span> <span class="attribute">value</span>=<span class="value">"man"</span> <span class="attribute">id</span>=<span class="value">"111"</span> /&gt;</span><span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"111"</span> &gt;</span>男<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">name</span>=<span class="value">"sexRadio"</span> <span class="attribute">value</span>=<span class="value">"woman"</span> <span class="attribute">id</span>=<span class="value">"222"</span> /&gt;</span><span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"222"</span> &gt;</span>女<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">select</span> <span class="attribute">name</span>=<span class="value">"sexSelect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"none"</span> <span class="attribute">selected</span> &gt;</span>请选择<span class="tag">&lt;/<span class="title">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"woman"</span>&gt;</span>女<span class="tag">&lt;/<span class="title">option</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="title">option</span> <span class="attribute">value</span>=<span class="value">"man"</span>&gt;</span>男<span class="tag">&lt;/<span class="title">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="title">select</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">br</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">name</span>=<span class="value">"isDefault"</span> <span class="attribute">id</span>=<span class="value">"333"</span> <span class="attribute">value</span>=<span class="value">"true"</span> /&gt;</span><span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"333"</span> &gt;</span>是否默认<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取被选中的值"><a href="#获取被选中的值" class="headerlink" title="获取被选中的值"></a>获取被选中的值</h3><p><strong>jQuery实现</strong></p>
+<p>select:<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[name=sexSelect]'</span>).val();</span><br></pre></td></tr></table></figure></p>
+<p>radio:<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[name=sexRadio]:checked'</span>).val();</span><br><span class="line">  <span class="comment">//判别是否选中</span></span><br><span class="line">  $(<span class="string">'[name=sexRadio][value=woman]'</span>).prop(<span class="string">'checked’);//return true/false</span></span><br></pre></td></tr></table></figure></p>
+<p>check:<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[name=isDefault]:checked'</span>).val();</span><br><span class="line">  <span class="comment">//判别是否选中</span></span><br><span class="line">  $(<span class="string">'[name=isDefault]'</span>).prop(<span class="string">'checked'</span>);</span><br></pre></td></tr></table></figure></p>
+<p><strong>Native JS</strong></p>
+<p>select:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByName(<span class="string">'sexSelect'</span>)[<span class="number">0</span>].value</span><br><span class="line"><span class="comment">//获取选中的option的序号</span></span><br><span class="line"><span class="built_in">document</span>.getElementsByName(<span class="string">'sexSelect'</span>)[<span class="number">0</span>].selectedIndex</span><br><span class="line"><span class="comment">//获取options的值</span></span><br><span class="line"><span class="keyword">var</span> options = <span class="built_in">document</span>.getElementsByName(<span class="string">'sexSelect'</span>)[<span class="number">0</span>].options<span class="comment">//HTMLOptionsCollection[3]</span></span><br><span class="line">options[<span class="number">0</span>].text<span class="comment">//文本内容</span></span><br><span class="line">options[<span class="number">0</span>].value<span class="comment">//选项值</span></span><br><span class="line">options[<span class="number">0</span>].selected<span class="comment">//是否选中</span></span><br></pre></td></tr></table></figure>
+<p>radio:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> radioDoms = <span class="built_in">document</span>.getElementsByName(<span class="string">'sexRadio'</span>);</span><br><span class="line"><span class="keyword">var</span> checkedVal = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> idx=<span class="number">0</span>; idx&lt;radioDoms.length; idx++)&#123;</span><br><span class="line">  <span class="keyword">var</span> radioDom = radioDoms[idx];</span><br><span class="line">  <span class="keyword">if</span>(radioDom.checked)&#123;</span><br><span class="line">    checkedVal = radioDom.value;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>check:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">document</span>.getElementsByName(<span class="string">'isDefault'</span>)[<span class="number">0</span>].checked)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">document</span>.getElementsByName(<span class="string">'isDefault'</span>)[<span class="number">0</span>].value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置选中值"><a href="#设置选中值" class="headerlink" title="设置选中值"></a>设置选中值</h3><p><strong>jQuery</strong></p>
+<p>select:<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[name=sexSelect]'</span>).val(<span class="string">'woman'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>radio:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[name=sexRadio][value=woman]'</span>).prop(<span class="string">'checked'</span>,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p>check:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="string">'[name=isDefault]'</span>).prop(<span class="string">'checked'</span>,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>Native JS</strong></p>
+<p>select:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByName(<span class="string">'sexSelect'</span>)[<span class="number">0</span>].value = <span class="string">'man'</span>;</span><br></pre></td></tr></table></figure>
+<p>radio:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> radioDoms = <span class="built_in">document</span>.getElementsByName(<span class="string">'sex'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> idx=<span class="number">0</span>; idx&lt;radioDoms.length; idx++)&#123;</span><br><span class="line">  <span class="keyword">var</span> radioDom = radioDoms[idx];</span><br><span class="line">  <span class="keyword">if</span>(!radioDom.checked &amp;&amp; radioDom.value === <span class="string">'man'</span>)&#123;</span><br><span class="line">    radioDom.checked = <span class="literal">true</span>;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    radioDom.checked = <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>check:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementsByName(<span class="string">'isDefault'</span>)[<span class="number">0</span>].checked = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/12/select-radio-checkbox标选中值的获取与赋值/"
+           data-title="select radio checkbox标选中值的获取与赋值" data-url="http://zhenghe39.com/2017/02/12/select-radio-checkbox标选中值的获取与赋值/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+                
+                
+                
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='sidebar-nav-content'>
+                    
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#获取被选中的值"><span class="nav-menu-text">获取被选中的值</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#设置选中值"><span class="nav-menu-text">设置选中值</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+                        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Maven/' title=Maven>Maven</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/随笔/' title=随笔>随笔</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/OOP/' title=OOP>OOP</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/MvvM/' title=MvvM>MvvM</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Node/' title=Node>Node</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Redux/' title=Redux>Redux</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/SPA/' title=SPA>SPA</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/软件设计/' title=软件设计>软件设计</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/vi/' title=vi>vi</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/React/' title=React>React</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+                    </div>
+                </div>
+        </div>
+    </aside>
+
+
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
+<script>
+      /*
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+        */
+
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
+            activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
+            distinguishLineScale:0,
+            events:{
+                'scrollNav':function(navItem,$navMenu){
+                    if(!navItem){
+                        return;
+                    }
+
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        'top':navItem.top,
+                        'height':navItem.height+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            $('.highlight-title').hide();
+
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
+</script>
+    </body>
+</html>
