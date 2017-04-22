@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Dom坐标参数的获取 | issUn </title>
+        <title> Presentational Components And Container Components | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -45,8 +45,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/11/14/Dom坐标参数的获取/"  itemprop="url" >
-                    Dom坐标参数的获取
+                <a class="post-title-link" href="/2017/04/22/Presentational-Components-And-Container-Components/"  itemprop="url" >
+                    Presentational Components And Container Components
                 </a>
             </h1>
             
@@ -55,15 +55,39 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-11-14</time>
+                    <span class="post-meta-time" >2017-04-22</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <h3 id="获取Dom相对于视窗的坐标"><a href="#获取Dom相对于视窗的坐标" class="headerlink" title="获取Dom相对于视窗的坐标"></a>获取Dom相对于视窗的坐标</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//jQuery </span></span><br><span class="line">$el.offset();</span><br><span class="line"></span><br><span class="line"><span class="comment">//Native</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getOffset</span>(<span class="params">el</span>)</span>&#123;</span><br><span class="line">  <span class="comment">//返回一个TextRectangle对象，包含left, top, right和bottom几个只读属性，以px为单位来表示边界框相对视窗左上角的位置。</span></span><br><span class="line">  <span class="keyword">const</span> box = el.getBoundingClientRect();</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    top: box.top + <span class="built_in">window</span>.pageYOffset - <span class="built_in">document</span>.documentElement.clientTop,</span><br><span class="line">    left: box.left + <span class="built_in">window</span>.pageXOffset - <span class="built_in">document</span>.documentElement.clientLeft</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="获取Dom相对于父元素的坐标"><a href="#获取Dom相对于父元素的坐标" class="headerlink" title="获取Dom相对于父元素的坐标"></a>获取Dom相对于父元素的坐标</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//jQuery&#10;$el.position();&#10;//Native&#10;&#123;&#10;  left:el.offsetLeft,&#10;  top:el.offsetTop&#10;&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="鼠标事件对象的坐标参数"><a href="#鼠标事件对象的坐标参数" class="headerlink" title="鼠标事件对象的坐标参数"></a>鼠标事件对象的坐标参数</h3><p><code>event.clientX</code>和<code>event.pageX</code>的参照点都是浏览器内容区域的左上角。不同的是，<code>clientX</code>的参照点会随滚动条的移动而移动，而<code>pageX</code>的参照点不会随滚动条而变动。</p>
+                <h3 id="Presentational-Component"><a href="#Presentational-Component" class="headerlink" title="Presentational Component"></a>Presentational Component</h3><ol>
+<li>关注展示层<code>how things look</code></li>
+<li>内部可能有<code>Presentational &amp;&amp; Container Component</code>，有自己的Dom markup 和 样式</li>
+<li>经常通过<code>this.props.children</code>来包含其他组件</li>
+<li>不依赖App的其他部分，例如<code>Flux action or store</code></li>
+<li>不定义数据如何获取以及改变</li>
+<li>通过<code>props</code>接收数据以及事件回调</li>
+<li>基本不拥有自己的<code>state</code>，即使有，也是<code>UI State</code>（例如<code>isView</code>，切换报表与表格的<code>flag</code>），而不是<code>data State</code>。</li>
+<li>通常为<code>Functional Component</code>除非它们需要State、lifecycle hooks，or performance optimizations。</li>
+<li>Examples: Page,Sidebar,Story,UserInfo,List</li>
+</ol>
+<h3 id="Container-Component"><a href="#Container-Component" class="headerlink" title="Container Component"></a>Container Component</h3><ol>
+<li>关注<code>how things work</code></li>
+<li>可能包含其他<code>Presentational Component</code> 和 子 <code>Container Component</code>，但是经常没有任何<code>DOM markup</code>，除了<code>Wrapping divs</code></li>
+<li>提供数据和修改数据的行为给<code>Presentational Component</code> 和 <code>子 Container Component</code></li>
+<li>Call Flux actions and provide these as callbacks to the presentational components</li>
+<li>经常是有状态的，并且经常是数据源</li>
+<li>Are usually generated using higher order components such as connect() from React Redux, createContainer() from Relay, or Container.create() from Flux Utils, rather than written by hand</li>
+<li>Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList.</li>
+</ol>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><code>Container Component</code>是包含App的业务逻辑（例如State的修改方式等等），而<code>Presentational Component</code>就像Ant这种UI组件库一样，只是接收外部数据，以及放出一些交互事件的钩子。</p>
+<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>In practice,React is the V(View) and the C(Controller).At our office, we call them stateless and container components(view-controllers if we’re Flux).The idea is pretty simple:components can’t be concerned with both presentation and data-fetching.</p>
+<p>以下为错误案例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// CommentList.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123; comments: [] &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="string">"/my-comments.json"</span>,</span><br><span class="line">      dataType: <span class="string">'json'</span>,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">comments</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;comments: comments&#125;);</span><br><span class="line">      &#125;.bind(<span class="keyword">this</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="title">ul</span>&gt;</span> &#123;this.state.comments.map(renderComment)&#125; <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  renderComment(&#123;body, author&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="title">li</span>&gt;</span>&#123;body&#125;—&#123;author&#125;<span class="tag">&lt;/<span class="title">li</span>&gt;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要调整为：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// CommentList.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="title">ul</span>&gt;</span> &#123;this.props.comments.map(renderComment)&#125; <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  renderComment(&#123;body, author&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="title">li</span>&gt;</span>&#123;body&#125;—&#123;author&#125;<span class="tag">&lt;/<span class="title">li</span>&gt;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// CommentListContainer.js</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentListContainer</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.state = &#123; comments: [] &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="string">"/my-comments.json"</span>,</span><br><span class="line">      dataType: <span class="string">'json'</span>,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">comments</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;comments: comments&#125;);</span><br><span class="line">      &#125;.bind(<span class="keyword">this</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="title">CommentList</span> <span class="attribute">comments</span>=<span class="value">&#123;this.state.comments&#125;</span> /&gt;</span>;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             
         </div>
@@ -75,8 +99,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/14/Dom坐标参数的获取/"
-           data-title="Dom坐标参数的获取" data-url="http://zhenghe39.com/2016/11/14/Dom坐标参数的获取/">
+      <div class="ds-thread" data-thread-key="2017/04/22/Presentational-Components-And-Container-Components/"
+           data-title="Presentational Components And Container Components" data-url="http://zhenghe39.com/2017/04/22/Presentational-Components-And-Container-Components/">
       </div>
     
   </div>
@@ -101,7 +125,7 @@
                     
                     <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
-                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#获取Dom相对于视窗的坐标"><span class="nav-menu-text">获取Dom相对于视窗的坐标</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#获取Dom相对于父元素的坐标"><span class="nav-menu-text">获取Dom相对于父元素的坐标</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#鼠标事件对象的坐标参数"><span class="nav-menu-text">鼠标事件对象的坐标参数</span></a></li></ol>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#Presentational-Component"><span class="nav-menu-text">Presentational Component</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#Container-Component"><span class="nav-menu-text">Container Component</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#概述"><span class="nav-menu-text">概述</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#最佳实践"><span class="nav-menu-text">最佳实践</span></a></li></ol>
                     </div>
                     
                     <div class='nav-panel  ' id='site-info' >

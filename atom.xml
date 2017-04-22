@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-04-22T07:48:10.000Z</updated>
+  <updated>2017-04-22T14:07:48.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Presentational Components And Container Components</title>
+    <link href="http://zhenghe39.com/2017/04/22/Presentational-Components-And-Container-Components/"/>
+    <id>http://zhenghe39.com/2017/04/22/Presentational-Components-And-Container-Components/</id>
+    <published>2017-04-22T13:48:56.000Z</published>
+    <updated>2017-04-22T14:07:48.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;Presentational-Component&quot;&gt;&lt;a href=&quot;#Presentational-Component&quot; class=&quot;headerlink&quot; title=&quot;Presentational Component&quot;&gt;&lt;/a&gt;Presentational Component&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;关注展示层&lt;code&gt;how things look&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内部可能有&lt;code&gt;Presentational &amp;amp;&amp;amp; Container Component&lt;/code&gt;，有自己的Dom markup 和 样式&lt;/li&gt;
+&lt;li&gt;经常通过&lt;code&gt;this.props.children&lt;/code&gt;来包含其他组件&lt;/li&gt;
+&lt;li&gt;不依赖App的其他部分，例如&lt;code&gt;Flux action or store&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;不定义数据如何获取以及改变&lt;/li&gt;
+&lt;li&gt;通过&lt;code&gt;props&lt;/code&gt;接收数据以及事件回调&lt;/li&gt;
+&lt;li&gt;基本不拥有自己的&lt;code&gt;state&lt;/code&gt;，即使有，也是&lt;code&gt;UI State&lt;/code&gt;（例如&lt;code&gt;isView&lt;/code&gt;，切换报表与表格的&lt;code&gt;flag&lt;/code&gt;），而不是&lt;code&gt;data State&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;通常为&lt;code&gt;Functional Component&lt;/code&gt;除非它们需要State、lifecycle hooks，or performance optimizations。&lt;/li&gt;
+&lt;li&gt;Examples: Page,Sidebar,Story,UserInfo,List&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;Container-Component&quot;&gt;&lt;a href=&quot;#Container-Component&quot; class=&quot;headerlink&quot; title=&quot;Container Component&quot;&gt;&lt;/a&gt;Container Component&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;关注&lt;code&gt;how things work&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;可能包含其他&lt;code&gt;Presentational Component&lt;/code&gt; 和 子 &lt;code&gt;Container Component&lt;/code&gt;，但是经常没有任何&lt;code&gt;DOM markup&lt;/code&gt;，除了&lt;code&gt;Wrapping divs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;提供数据和修改数据的行为给&lt;code&gt;Presentational Component&lt;/code&gt; 和 &lt;code&gt;子 Container Component&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Call Flux actions and provide these as callbacks to the presentational components&lt;/li&gt;
+&lt;li&gt;经常是有状态的，并且经常是数据源&lt;/li&gt;
+&lt;li&gt;Are usually generated using higher order components such as connect() from React Redux, createContainer() from Relay, or Container.create() from Flux Utils, rather than written by hand&lt;/li&gt;
+&lt;li&gt;Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Container Component&lt;/code&gt;是包含App的业务逻辑（例如State的修改方式等等），而&lt;code&gt;Presentational Component&lt;/code&gt;就像Ant这种UI组件库一样，只是接收外部数据，以及放出一些交互事件的钩子。&lt;/p&gt;
+&lt;h3 id=&quot;最佳实践&quot;&gt;&lt;a href=&quot;#最佳实践&quot; class=&quot;headerlink&quot; title=&quot;最佳实践&quot;&gt;&lt;/a&gt;最佳实践&lt;/h3&gt;&lt;p&gt;In practice,React is the V(View) and the C(Controller).At our office, we call them stateless and container components(view-controllers if we’re Flux).The idea is pretty simple:components can’t be concerned with both presentation and data-fetching.&lt;/p&gt;
+&lt;p&gt;以下为错误案例：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// CommentList.js&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;CommentList&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;React&lt;/span&gt;.&lt;span class=&quot;title&quot;&gt;Component&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  constructor(props) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;(props);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.state = &amp;#123; comments: [] &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  componentDidMount() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    $.ajax(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      url: &lt;span class=&quot;string&quot;&gt;&quot;/my-comments.json&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      dataType: &lt;span class=&quot;string&quot;&gt;&#39;json&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      success: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;comments&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.setState(&amp;#123;comments: comments&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;.bind(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  render() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;ul&lt;/span&gt;&amp;gt;&lt;/span&gt; &amp;#123;this.state.comments.map(renderComment)&amp;#125; &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;ul&lt;/span&gt;&amp;gt;&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  renderComment(&amp;#123;body, author&amp;#125;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;li&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;#123;body&amp;#125;—&amp;#123;author&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;li&lt;/span&gt;&amp;gt;&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;要调整为：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// CommentList.js&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;CommentList&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;React&lt;/span&gt;.&lt;span class=&quot;title&quot;&gt;Component&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  constructor(props) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;(props);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  render() &amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;ul&lt;/span&gt;&amp;gt;&lt;/span&gt; &amp;#123;this.props.comments.map(renderComment)&amp;#125; &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;ul&lt;/span&gt;&amp;gt;&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  renderComment(&amp;#123;body, author&amp;#125;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;li&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;#123;body&amp;#125;—&amp;#123;author&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;li&lt;/span&gt;&amp;gt;&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// CommentListContainer.js&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;CommentListContainer&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;React&lt;/span&gt;.&lt;span class=&quot;title&quot;&gt;Component&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  constructor() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.state = &amp;#123; comments: [] &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  componentDidMount() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    $.ajax(&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      url: &lt;span class=&quot;string&quot;&gt;&quot;/my-comments.json&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      dataType: &lt;span class=&quot;string&quot;&gt;&#39;json&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      success: &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;comments&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.setState(&amp;#123;comments: comments&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;.bind(&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  render() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;CommentList&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;comments&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&amp;#123;this.state.comments&amp;#125;&lt;/span&gt; /&amp;gt;&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Presentational-Component&quot;&gt;&lt;a href=&quot;#Presentational-Component&quot; class=&quot;headerlink&quot; title=&quot;Presentational Component&quot;&gt;&lt;/a&gt;Presentational
+    
+    </summary>
+    
+      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
+    
+    
+      <category term="React" scheme="http://zhenghe39.com/tags/React/"/>
+    
+  </entry>
   
   <entry>
     <title>State和Props的区别</title>
@@ -907,35 +956,6 @@
     
     
       <category term="Myeclipse" scheme="http://zhenghe39.com/tags/Myeclipse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tomcat对静态资源的缓存</title>
-    <link href="http://zhenghe39.com/2016/11/15/Tomcat%E5%AF%B9%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E7%9A%84%E7%BC%93%E5%AD%98/"/>
-    <id>http://zhenghe39.com/2016/11/15/Tomcat对静态资源的缓存/</id>
-    <published>2016-11-15T04:50:47.000Z</published>
-    <updated>2016-11-15T05:01:58.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;Tomcat-Http-Dispatcher解析&quot;&gt;&lt;a href=&quot;#Tomcat-Http-Dispatcher解析&quot; class=&quot;headerlink&quot; title=&quot;Tomcat Http Dispatcher解析&quot;&gt;&lt;/a&gt;Tomcat Http Dispatcher解析&lt;/h3&gt;&lt;p&gt;对于所有Http请求都是访问抽象类&lt;code&gt;HttpServlet&lt;/code&gt;的实例，其子类包括:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;JspServlet(JSP请求访问)&lt;/li&gt;
-&lt;li&gt;自定义servlet(web.xml中配置的servlet映射的URL路径访问)&lt;/li&gt;
-&lt;li&gt;DefaultServlet(静态资源访问，例如HTML pages、images、css、js等等)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;Tomcat默认对静态资源提供etag、last-modifed&quot;&gt;&lt;a href=&quot;#Tomcat默认对静态资源提供etag、last-modifed&quot; class=&quot;headerlink&quot; title=&quot;Tomcat默认对静态资源提供etag、last_modifed&quot;&gt;&lt;/a&gt;Tomcat默认对静态资源提供etag、last_modifed&lt;/h3&gt;&lt;p&gt;对于第一次访问的静态资源，在DefaultServlet的serveResource方法中就给其Response设置了&lt;code&gt;Etag&lt;/code&gt;及&lt;code&gt;Last-Modified header&lt;/code&gt;返回给浏览器。浏览器下次访问相同静态资源的时候，会默认给Request带If-Modified-Since和if_no_match值，用于校验静态资源是否有改动。若未改动返回304，取浏览器的静态资源缓存使用(PS:Etag对应if_no_match值，Last-Modified对应If-Modified-Since值)。&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/8b826b79gw1f9spgaoj66j21300aggnl.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Tomcat-Http-Dispatcher解析&quot;&gt;&lt;a href=&quot;#Tomcat-Http-Dispatcher解析&quot; class=&quot;headerlink&quot; title=&quot;Tomcat Http Dispatcher解析&quot;&gt;&lt;/a&gt;Tomcat Http Di
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="Tomcat" scheme="http://zhenghe39.com/tags/Tomcat/"/>
     
   </entry>
   
