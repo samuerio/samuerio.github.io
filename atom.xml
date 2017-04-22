@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-04-22T14:07:48.000Z</updated>
+  <updated>2017-04-22T14:10:56.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://zhenghe39.com/2017/04/22/Presentational-Components-And-Container-Components/"/>
     <id>http://zhenghe39.com/2017/04/22/Presentational-Components-And-Container-Components/</id>
     <published>2017-04-22T13:48:56.000Z</published>
-    <updated>2017-04-22T14:07:48.000Z</updated>
+    <updated>2017-04-22T14:10:56.000Z</updated>
     
-    <content type="html">&lt;h3 id=&quot;Presentational-Component&quot;&gt;&lt;a href=&quot;#Presentational-Component&quot; class=&quot;headerlink&quot; title=&quot;Presentational Component&quot;&gt;&lt;/a&gt;Presentational Component&lt;/h3&gt;&lt;ol&gt;
+    <content type="html">&lt;h3 id=&quot;Presentational-Component&quot;&gt;&lt;a href=&quot;#Presentational-Component&quot; class=&quot;headerlink&quot; title=&quot;Presentational Component&quot;&gt;&lt;/a&gt;Presentational Component&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;关注展示层&lt;code&gt;how things look&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;内部可能有&lt;code&gt;Presentational &amp;amp;&amp;amp; Container Component&lt;/code&gt;，有自己的Dom markup 和 样式&lt;/li&gt;
 &lt;li&gt;经常通过&lt;code&gt;this.props.children&lt;/code&gt;来包含其他组件&lt;/li&gt;
@@ -32,8 +32,8 @@
 &lt;li&gt;基本不拥有自己的&lt;code&gt;state&lt;/code&gt;，即使有，也是&lt;code&gt;UI State&lt;/code&gt;（例如&lt;code&gt;isView&lt;/code&gt;，切换报表与表格的&lt;code&gt;flag&lt;/code&gt;），而不是&lt;code&gt;data State&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;通常为&lt;code&gt;Functional Component&lt;/code&gt;除非它们需要State、lifecycle hooks，or performance optimizations。&lt;/li&gt;
 &lt;li&gt;Examples: Page,Sidebar,Story,UserInfo,List&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;Container-Component&quot;&gt;&lt;a href=&quot;#Container-Component&quot; class=&quot;headerlink&quot; title=&quot;Container Component&quot;&gt;&lt;/a&gt;Container Component&lt;/h3&gt;&lt;ol&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Container-Component&quot;&gt;&lt;a href=&quot;#Container-Component&quot; class=&quot;headerlink&quot; title=&quot;Container Component&quot;&gt;&lt;/a&gt;Container Component&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;关注&lt;code&gt;how things work&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;可能包含其他&lt;code&gt;Presentational Component&lt;/code&gt; 和 子 &lt;code&gt;Container Component&lt;/code&gt;，但是经常没有任何&lt;code&gt;DOM markup&lt;/code&gt;，除了&lt;code&gt;Wrapping divs&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;提供数据和修改数据的行为给&lt;code&gt;Presentational Component&lt;/code&gt; 和 &lt;code&gt;子 Container Component&lt;/code&gt;&lt;/li&gt;
@@ -41,7 +41,7 @@
 &lt;li&gt;经常是有状态的，并且经常是数据源&lt;/li&gt;
 &lt;li&gt;Are usually generated using higher order components such as connect() from React Redux, createContainer() from Relay, or Container.create() from Flux Utils, rather than written by hand&lt;/li&gt;
 &lt;li&gt;Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 &lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Container Component&lt;/code&gt;是包含App的业务逻辑（例如State的修改方式等等），而&lt;code&gt;Presentational Component&lt;/code&gt;就像Ant这种UI组件库一样，只是接收外部数据，以及放出一些交互事件的钩子。&lt;/p&gt;
 &lt;h3 id=&quot;最佳实践&quot;&gt;&lt;a href=&quot;#最佳实践&quot; class=&quot;headerlink&quot; title=&quot;最佳实践&quot;&gt;&lt;/a&gt;最佳实践&lt;/h3&gt;&lt;p&gt;In practice,React is the V(View) and the C(Controller).At our office, we call them stateless and container components(view-controllers if we’re Flux).The idea is pretty simple:components can’t be concerned with both presentation and data-fetching.&lt;/p&gt;
 &lt;p&gt;以下为错误案例：&lt;/p&gt;

@@ -61,7 +61,7 @@
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <h3 id="Presentational-Component"><a href="#Presentational-Component" class="headerlink" title="Presentational Component"></a>Presentational Component</h3><ol>
+                <h3 id="Presentational-Component"><a href="#Presentational-Component" class="headerlink" title="Presentational Component"></a>Presentational Component</h3><ul>
 <li>关注展示层<code>how things look</code></li>
 <li>内部可能有<code>Presentational &amp;&amp; Container Component</code>，有自己的Dom markup 和 样式</li>
 <li>经常通过<code>this.props.children</code>来包含其他组件</li>
@@ -71,8 +71,8 @@
 <li>基本不拥有自己的<code>state</code>，即使有，也是<code>UI State</code>（例如<code>isView</code>，切换报表与表格的<code>flag</code>），而不是<code>data State</code>。</li>
 <li>通常为<code>Functional Component</code>除非它们需要State、lifecycle hooks，or performance optimizations。</li>
 <li>Examples: Page,Sidebar,Story,UserInfo,List</li>
-</ol>
-<h3 id="Container-Component"><a href="#Container-Component" class="headerlink" title="Container Component"></a>Container Component</h3><ol>
+</ul>
+<h3 id="Container-Component"><a href="#Container-Component" class="headerlink" title="Container Component"></a>Container Component</h3><ul>
 <li>关注<code>how things work</code></li>
 <li>可能包含其他<code>Presentational Component</code> 和 子 <code>Container Component</code>，但是经常没有任何<code>DOM markup</code>，除了<code>Wrapping divs</code></li>
 <li>提供数据和修改数据的行为给<code>Presentational Component</code> 和 <code>子 Container Component</code></li>
@@ -80,7 +80,7 @@
 <li>经常是有状态的，并且经常是数据源</li>
 <li>Are usually generated using higher order components such as connect() from React Redux, createContainer() from Relay, or Container.create() from Flux Utils, rather than written by hand</li>
 <li>Examples: UserPage, FollowersSidebar, StoryContainer, FollowedUserList.</li>
-</ol>
+</ul>
 <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><code>Container Component</code>是包含App的业务逻辑（例如State的修改方式等等），而<code>Presentational Component</code>就像Ant这种UI组件库一样，只是接收外部数据，以及放出一些交互事件的钩子。</p>
 <h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>In practice,React is the V(View) and the C(Controller).At our office, we call them stateless and container components(view-controllers if we’re Flux).The idea is pretty simple:components can’t be concerned with both presentation and data-fetching.</p>
 <p>以下为错误案例：</p>
