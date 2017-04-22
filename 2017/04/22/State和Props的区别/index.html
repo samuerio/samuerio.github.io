@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Jsp的静态包含及动态包含 | issUn </title>
+        <title> State和Props的区别 | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -45,8 +45,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/08/25/Jsp的静态包含及动态包含/"  itemprop="url" >
-                    Jsp的静态包含及动态包含
+                <a class="post-title-link" href="/2017/04/22/State和Props的区别/"  itemprop="url" >
+                    State和Props的区别
                 </a>
             </h1>
             
@@ -55,19 +55,21 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-08-25</time>
+                    <span class="post-meta-time" >2017-04-22</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <p><strong>主文件</strong></p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@page import="java.io.PrintWriter"  %&gt;</span><br><span class="line">&lt;%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">String path = request.getContextPath();</span><br><span class="line">String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;base href="&lt;%=basePath%&gt;"&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;title&gt;测试动态包含&lt;/title&gt;</span><br><span class="line">	&lt;meta http-equiv="pragma" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="cache-control" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="expires" content="0"&gt;    </span><br><span class="line">	&lt;meta http-equiv="keywords" content="keyword1,keyword2,keyword3"&gt;</span><br><span class="line">	&lt;meta http-equiv="description" content="This is my page"&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;% </span><br><span class="line">  	String requestParam1 = "test";</span><br><span class="line">  	String requestParam2 = "request";</span><br><span class="line">  %&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  	&lt;!-- 动态包含：请求完一个JSP页面，再请求另外一个JSP页面。最终会解析为两个Servlet --&gt;</span><br><span class="line">  	&lt;jsp:include page="demo.jsp"&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam1 %&gt;" name="requestParam1"/&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam2 %&gt;" name="requestParam2"/&gt;</span><br><span class="line">  	&lt;/jsp:include&gt;</span><br><span class="line">  	&lt;br&gt;</span><br><span class="line">    This is my JSP page. </span><br><span class="line">    &lt;!-- 静态包含：会合并完再进行解析，最终生成一个Servlet --&gt;</span><br><span class="line">    &lt;%@include file = "demo2.jsp" %&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>demo.jsp</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;% </span><br><span class="line">		String param1 = request.getParameter("requestParam1");</span><br><span class="line">		String param2 = request.getParameter("requestParam2");</span><br><span class="line">		out.println("param1: "+param1);</span><br><span class="line">		out.println("param2: "+param2);</span><br><span class="line">	%&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>demo2.jsp</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"</span><br><span class="line">    pageEncoding="UTF-8"%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;% out.println("dd"); %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+                <h3 id="划分State和Props的使用场景"><a href="#划分State和Props的使用场景" class="headerlink" title="划分State和Props的使用场景"></a>划分State和Props的使用场景</h3><p><strong>State</strong></p>
+<p><code>State</code>为组件的内部状态，当组件需要在某个时间点改变它的某些状态时，那么这些状态需要位于State上面，否则它需要位于<code>Props</code>上。最重要的区别点是，<code>State</code>是组件可以自己改变的。</p>
+<p><strong>Props</strong></p>
+<p><code>Props</code>是一个组件的配置，它们是从上级组件传递进来的，组件内部无法直接改变<code>Props</code>的值。虽然可以从上级那里传递修改<code>Props</code>的钩子函数给组件来间接修改它的值，但当应用中组件通信非常频繁时，就会有众多钩子函数，这样就导致了交互逻辑变得异常复杂不利于维护，只推荐在通信不频繁的应用中采用这种间接通信的方式。</p>
+<h3 id="组件应该要有State吗"><a href="#组件应该要有State吗" class="headerlink" title="组件应该要有State吗?"></a>组件应该要有State吗?</h3><p><code>state</code>是可选的。因为<code>state</code>变得越复杂那么它的可预见性就越低，没有<code>state</code>的组件是可预见的。尽管你在交互的APP上不可能不使用state，但是你应该避免拥有太多有状态的组件。</p>
+<h4 id="组件类型"><a href="#组件类型" class="headerlink" title="组件类型"></a>组件类型</h4><p><strong>Stateless Component(Presentational Component)</strong></p>
+<p>Only props,no state.There’s not much going on besides the <code>render()</code>function and all their logic revolves around the props they receive.This makes them very easy to follow(and test for that matter).</p>
+<p><strong>Stateful Component(Container Component)</strong></p>
+<p>Both props and state.We also call these state managers.They are in charge of client-server communication(XHR,web sockets,etc.),processing data and responding to user events.These sort of logistics should be encapsulated in a moderate number of <code>Stateful Components</code>,while all visualization and formatting logic should move downstream into as many Stateless Components as possible.</p>
 
             
         </div>
@@ -79,8 +81,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/25/Jsp的静态包含及动态包含/"
-           data-title="Jsp的静态包含及动态包含" data-url="http://zhenghe39.com/2016/08/25/Jsp的静态包含及动态包含/">
+      <div class="ds-thread" data-thread-key="2017/04/22/State和Props的区别/"
+           data-title="State和Props的区别" data-url="http://zhenghe39.com/2017/04/22/State和Props的区别/">
       </div>
     
   </div>
@@ -105,7 +107,7 @@
                     
                     <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
-                        
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#划分State和Props的使用场景"><span class="nav-menu-text">划分State和Props的使用场景</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#组件应该要有State吗"><span class="nav-menu-text">组件应该要有State吗?</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#组件类型"><span class="nav-menu-text">组件类型</span></a></li></ol></li></ol>
                     </div>
                     
                     <div class='nav-panel  ' id='site-info' >

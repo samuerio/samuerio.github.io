@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Jsp的静态包含及动态包含 | issUn </title>
+        <title></title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,80 +35,78 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-post '>
+                    <div class='content-wrap content-wrap-normal '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-    
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
+     <section  class="collapse">
+        <span class="archive-move-on"></span>
+        <span class="archive-page-counter">
+          
+
+          
             
-            <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/08/25/Jsp的静态包含及动态包含/"  itemprop="url" >
-                    Jsp的静态包含及动态包含
-                </a>
-            </h1>
+          
+          好目前共计 62 篇日志。继续努力。
+        </span>
+        
+        
             
-                <div class="post-meta">
-                    <a href = "/" class="post-meta-avatar">
-                        <img src="/favicon.ico" alt="issUn" >
-                        <span>issUn</span>
-                    </a>
-                    <span class="post-meta-time" >2016-08-25</time>
+            
+            
+                
+                <div class="collapse-title">
+                      <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
                 </div>
             
-        </header>
-        <div class="post-body" itemprop="articleBody">
             
-                <p><strong>主文件</strong></p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@page import="java.io.PrintWriter"  %&gt;</span><br><span class="line">&lt;%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">String path = request.getContextPath();</span><br><span class="line">String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;base href="&lt;%=basePath%&gt;"&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;title&gt;测试动态包含&lt;/title&gt;</span><br><span class="line">	&lt;meta http-equiv="pragma" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="cache-control" content="no-cache"&gt;</span><br><span class="line">	&lt;meta http-equiv="expires" content="0"&gt;    </span><br><span class="line">	&lt;meta http-equiv="keywords" content="keyword1,keyword2,keyword3"&gt;</span><br><span class="line">	&lt;meta http-equiv="description" content="This is my page"&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;% </span><br><span class="line">  	String requestParam1 = "test";</span><br><span class="line">  	String requestParam2 = "request";</span><br><span class="line">  %&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">  	&lt;!-- 动态包含：请求完一个JSP页面，再请求另外一个JSP页面。最终会解析为两个Servlet --&gt;</span><br><span class="line">  	&lt;jsp:include page="demo.jsp"&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam1 %&gt;" name="requestParam1"/&gt;</span><br><span class="line">  		&lt;jsp:param value="&lt;%= requestParam2 %&gt;" name="requestParam2"/&gt;</span><br><span class="line">  	&lt;/jsp:include&gt;</span><br><span class="line">  	&lt;br&gt;</span><br><span class="line">    This is my JSP page. </span><br><span class="line">    &lt;!-- 静态包含：会合并完再进行解析，最终生成一个Servlet --&gt;</span><br><span class="line">    &lt;%@include file = "demo2.jsp" %&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>demo.jsp</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;% </span><br><span class="line">		String param1 = request.getParameter("requestParam1");</span><br><span class="line">		String param2 = request.getParameter("requestParam2");</span><br><span class="line">		out.println("param1: "+param1);</span><br><span class="line">		out.println("param2: "+param2);</span><br><span class="line">	%&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<p>demo2.jsp</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;%@ page language="java" contentType="text/html; charset=UTF-8"</span><br><span class="line">    pageEncoding="UTF-8"%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;% out.println("dd"); %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+            
+    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
+        <header class="collapse-post-header">
+            <h1 class="collapse-post-title">
+                <a  href="/2017/04/22/State和Props的区别/" itemprop="url">
+                    
+                        <span itemprop="name">State和Props的区别</span>
+                    
+                </a>
+            </h1>
 
-            
-        </div>
+            <div class="collapse-post-meta">
+                <time  itemprop="dateCreated"
+                      datetime="2017-04-22T14:58:41+08:00"
+                      content="2017-04-22" >
+                    04-22
+                </time>
+            </div>
+        </header>
     </article>
 
-
+        
+    </section>
+    <nav class='pagination'>
+    
+    
+    <div class='clearfix'></div>
+</nav>
 
                         </div>
                         
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/08/25/Jsp的静态包含及动态包含/"
-           data-title="Jsp的静态包含及动态包含" data-url="http://zhenghe39.com/2016/08/25/Jsp的静态包含及动态包含/">
-      </div>
-    
-  </div>
-
 
 
                     </div>
                     
- 
+    
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
+                    
                 
                 
-                <ul class='sidebar-nav' >
-                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
-                    &nbsp&nbsp
-                    <li href="#site-info" data-toggle="tab" >站点概况</li>
-                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel post-toc active' id='post-toc'>
-                        <div class='highlight-title' style='display:none;' ></div>
-                        
-                    </div>
-                    
-                    <div class='nav-panel  ' id='site-info' >
+                    <div class='nav-panel active ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
