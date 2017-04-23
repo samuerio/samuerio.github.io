@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-04-23T07:36:37.000Z</updated>
+  <updated>2017-04-23T08:50:59.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>nginx常用指令</title>
+    <link href="http://zhenghe39.com/2017/04/23/nginx%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"/>
+    <id>http://zhenghe39.com/2017/04/23/nginx常用指令/</id>
+    <published>2017-04-23T08:49:00.000Z</published>
+    <updated>2017-04-23T08:50:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;启动&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nginx -c /usr/local/nginx/conf/nignx.conf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;停止&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nginx -s stop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;重启&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nginx -s reload&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;查看nginx进程&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ps -ef|grep nginx&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;启动&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nginx -c /usr/local/nginx/conf/nign
+    
+    </summary>
+    
+      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="Nginx" scheme="http://zhenghe39.com/tags/Nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>Web 技術中的 Session 是什麼？</title>
@@ -939,35 +970,6 @@
     
     
       <category term="Java" scheme="http://zhenghe39.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nodejs网络编程策略</title>
-    <link href="http://zhenghe39.com/2016/11/15/Nodejs%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E7%AD%96%E7%95%A5/"/>
-    <id>http://zhenghe39.com/2016/11/15/Nodejs网络编程策略/</id>
-    <published>2016-11-15T15:59:26.000Z</published>
-    <updated>2016-11-15T16:01:16.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;4种网络编程策略：&quot;&gt;&lt;a href=&quot;#4种网络编程策略：&quot; class=&quot;headerlink&quot; title=&quot;4种网络编程策略：&quot;&gt;&lt;/a&gt;4种网络编程策略：&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;服务器为每个客户端请求分配一个线程/进程，使用阻塞式I/O。Apache就是这种策略，由于阻塞，这种策略很难实现高性能，但非常简单，可以实现复杂的交互逻辑。&lt;/li&gt;
-&lt;li&gt;服务器用一个线程处理所有客户端请求，使用非阻塞I/O及事件机制。nodejs就是这种策略。这种策略简单，也能提供足够的性能，但无法充分利用多核CPU资源。&lt;/li&gt;
-&lt;li&gt;服务器会分配多个线程来处理请求，但每个线程只处理其中一组客户端的请求，使用非阻塞的I/O及事件机制。这是对第二种策略的简单改进，在多线程并发上容易出现bug。&lt;/li&gt;
-&lt;li&gt;服务器会分配多个线程来处理请求，但每个线程只处理其中一组客户端的请求，使用异步I/O。这种策略在支持异步I/O的操作系统上性能非常高，但实现起来很难，主要用在windows平台上。&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;4种网络编程策略：&quot;&gt;&lt;a href=&quot;#4种网络编程策略：&quot; class=&quot;headerlink&quot; title=&quot;4种网络编程策略：&quot;&gt;&lt;/a&gt;4种网络编程策略：&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;服务器为每个客户端请求分配一个线程/进程，使用阻塞式I/O。Apache
-    
-    </summary>
-    
-      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
-    
-    
-      <category term="Node" scheme="http://zhenghe39.com/tags/Node/"/>
     
   </entry>
   
