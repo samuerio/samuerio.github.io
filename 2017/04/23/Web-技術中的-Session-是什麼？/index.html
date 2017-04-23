@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title></title>
+        <title> Web 技術中的 Session 是什麼？ | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,267 +35,92 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-normal '>
+                    <div class='content-wrap content-wrap-post '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-     <section  class="collapse">
-        <span class="archive-move-on"></span>
-        <span class="archive-page-counter">
-          
-
-          
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
             
-          
-          好目前共计 64 篇日志。继续努力。
-        </span>
-        
-        
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/04/23/Web-技術中的-Session-是什麼？/"  itemprop="url" >
+                    Web 技術中的 Session 是什麼？
+                </a>
+            </h1>
             
-            
-            
-                
-                <div class="collapse-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-04-23</time>
                 </div>
             
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2017/04/23/Web-技術中的-Session-是什麼？/" itemprop="url">
-                    
-                        <span itemprop="name">Web 技術中的 Session 是什麼？</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2017-04-23T15:31:05+08:00"
-                      content="2017-04-23" >
-                    04-23
-                </time>
-            </div>
         </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>本文转载自<a href="http://fred-zone.blogspot.jp/2014/01/web-session.html" target="_blank" rel="external">http://fred-zone.blogspot.jp/2014/01/web-session.html</a></p>
+<h3 id="Session-是什麼？"><a href="#Session-是什麼？" class="headerlink" title="Session 是什麼？"></a>Session 是什麼？</h3><p>Session 之所以會存在，是因為 HTTP 為 stateless 的設計，Server 和 Client 不會一直保持連線狀態，也不會有雙方狀態的即時更新，所以，Server 並不知道 Client 的狀態（像是是否已經登入）。因此，後來的網站開發者，採用 Session 這樣的設計來解決這問題。有趣的是，Session 機制在最早的 CGI 年代，是完全要程式設計師徒手寫出來的，搞死了很多人，不像現在的網站開發者有現成的許多解決方案可以選擇，不必完全了解也可以使用。</p>
+<h3 id="Session-的原理"><a href="#Session-的原理" class="headerlink" title="Session 的原理"></a>Session 的原理</h3><p>很多人在討論 Session 時，不免與 Cookie 牽扯上關係，反而不小心偏了重點，所以在了解 Session 時必須有個觀念，就算沒有 Cookie 的存在，Session 機制也可以正常運作。Cookie 在 Session 機制中，可以扮演許多角色，也可以對原始的 Session 機制做許多改良，但不用急著過早討論。從 Session 為什麼被需要來切入，自運作原理來了解，反而比較實際也易懂。最後再來討論 Cookie 在裡面所扮演的角色，才會比較清楚。</p>
+<p>簡單來說，Session 的機制就像是你去飲料店下了單以後，得到號碼牌，然後你走開幾步，店員就忘了你是誰。所以，如果你想去取飲料，你就得靠這張號碼牌，去跟店員領，店員會跟據這號碼牌，認定你是顧客、是否點過餐、知道你點了什麼東西，然後可以接著給你屬於你的飲料。</p>
+<p>理解 Session 的原理後，回到 HTTP 上就是一樣的。只是，在網頁技術中，有兩種方法讓 Client 取得號碼牌，一個是用 Cookie，另一個是直接輸出並嵌入頁面之中的方法（就是要你把號碼背起來）。</p>
+<p>拿號碼牌去 Server 要資料，主要也分為兩種方法，Cookie 和運用標準的 Query string/POST body方法。（其實只要能把號碼傳到 Server 上，任何方法都行）</p>
+<p>只不過，因為實作上的困難度考量，還有現今的 Browser 預設都支援 Cookie，所以在現有的網站框架中，都預設採用 Cookie 來發號碼牌和兌換資料。Cookie 的交換會在建立連線時，在背景自動完成，因此開發者不必考慮Client/Server的號碼牌交換問題。因為 Browser 會在建立連線後，第一時間就自動在背景把 Cookie 上傳到 Server，Server 也在回傳資料時，第一時間自動把 Cookie 回傳給 Client。</p>
+<p>所以，除非是有必要（像是 Browser/Client 不支援 Cookie 的情況），才會保留另一種實作。</p>
+<p>BTW, 飲料店拿號碼牌的例子應該很容易解釋清楚 Session 的原理。</p>
+<h3 id="Cookie-based-Session"><a href="#Cookie-based-Session" class="headerlink" title="Cookie-based Session"></a>Cookie-based Session</h3><p>這邊要注意的是，有一種 Session 會讓很多很多人感到混亂，就是 cookie-based session。問題在於名稱上的誤導，你可能會想，既然幾乎所有的 Session 機制都會用到 cookie，是否都可以稱做 cookie-based session？</p>
+<p>其實大多數人說的 cookie-based session ，指的是儲存資料方式的不同，不是指領號碼牌時，是否有用到 cookie。（不過如果早個十年，當時講的 cookie-based session，可能多半指的就是領號碼牌時，有沒有用到 cookie。摔碗！）</p>
+<p>很多人在討論 Cookie 與 Session 的關係時，兩種用到 Cookie 的地方，時常混在一起講，這就不免要雞同鴨講筆戰一番了。</p>
+<p>事實上，在最原始的 Session 設計，大多開發者都將資料存在 Server 上，也就是你點了什麼飲料，都是記錄在 Server 裡，可能是 Database、記憶體或是檔案，可以以任何一種形式儲存。然後，當你去領飲料時，店員會輸入你的號碼，用你的號碼得知你是否點過餐、點了什麼東西。</p>
+<p>一般的小網站，這樣的解決方案並沒有什麼問題。但是對今天這種超大流量的網站服務來說，因為他們有無數台對外的 Server，有如無數個服務窗口，讓顧客總是隨機進入其中一個窗口來兌換飲料，所以後端怎麼存放和共享這個 session 資料，又要兼顧效能和方便維護，就變成是很大的問題。</p>
+<p>因此 Cookie-based Session 就被提出為一個解決方案，把資料暫存放在 Cookie 中，讓 Client 自己負責保存。簡單來說，就是把你點什麼飲料，通通直接寫在號碼牌上。Server 就可以直接看你的號碼牌上寫了什麼，而不必花大量時間去後面建立大規模的 Server 來處理 Session 。</p>
+<p>不過，這邊要特別提到，因為 cookie 有 4K 資料大小的限制，很多網站服務會選擇 cookie-based 和後端儲存並行的方案。</p>
+<p>或許有人會問到 Cookie 是否有可能被篡改？這類安全問題，通常會使用加密手段來解決。一般來說，Cookie-based session 的 cookie 會被加密，只有 Server 才知道如何解開，Client 並沒有能力可以存取，只是得到一個看不懂的包裹，所以不會有安全性的問題（當然還是有機會被破）。</p>
+<p>由於仍然存在風險，這也是其中一個原因，為什麼有些網站仍然會採用 cookie-based 和後端儲存 Session 並行的解決方案，或是會避免把敏感資料放在 Cookie-based Session 上。</p>
+<h3 id="什麼是-Session-傳值？"><a href="#什麼是-Session-傳值？" class="headerlink" title="什麼是 Session 傳值？"></a>什麼是 Session 傳值？</h3><p>時常會聽到『使用 Session 傳值』這類說法，其實就是利用 Session 機制儲存資料，讓不同頁面之間可以互相傳遞資料。其原理通常是使用 Query String 或 POST body 等方法，把資料往 Server 傳之後，在 Server 端將 Client 上傳的資料存在 Session 之中。之後的連線或開啟其它頁面時，因為你拿的號碼牌是同一個，所以在不同的頁面之下，仍然可以讀到前一次所儲存在 Session 的狀態</p>
+
+            
+        </div>
     </article>
 
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2017/01/27/React-createClass-versus-extends-React-Component/" itemprop="url">
-                    
-                        <span itemprop="name">React.createClass versus extends React.Component</span>
-                    
-                </a>
-            </h1>
 
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2017-01-27T21:20:10+08:00"
-                      content="2017-01-27" >
-                    01-27
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2017/01/27/State-设计，Redux-开发第一步/" itemprop="url">
-                    
-                        <span itemprop="name">State 设计，Redux 开发第一步</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2017-01-27T16:37:18+08:00"
-                      content="2017-01-27" >
-                    01-27
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2017/01/09/Java-Web应用中调优线程池的重要性/" itemprop="url">
-                    
-                        <span itemprop="name">Java Web应用中调优线程池的重要性</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2017-01-09T13:30:49+08:00"
-                      content="2017-01-09" >
-                    01-09
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2017/01/09/开源前端框架纵横谈/" itemprop="url">
-                    
-                        <span itemprop="name">开源前端框架纵横谈</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2017-01-09T09:21:29+08:00"
-                      content="2017-01-09" >
-                    01-09
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-                
-                <div class="collapse-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-                </div>
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/03/构建单页Web应用/" itemprop="url">
-                    
-                        <span itemprop="name">构建单页Web应用</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-03T22:32:25+08:00"
-                      content="2016-11-03" >
-                    11-03
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/09/14/HTTP缓存/" itemprop="url">
-                    
-                        <span itemprop="name">HTTP缓存</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-09-14T23:37:33+08:00"
-                      content="2016-09-14" >
-                    09-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/09/05/浅谈IOC/" itemprop="url">
-                    
-                        <span itemprop="name">浅谈IOC</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-09-05T14:30:27+08:00"
-                      content="2016-09-05" >
-                    09-05
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-    </section>
-    <nav class='pagination'>
-    
-    
-            <a href = '/categories/精选转载/page/2/' class='alignright next'>下一页</a>
-    
-    <div class='clearfix'></div>
-</nav>
 
                         </div>
                         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/23/Web-技術中的-Session-是什麼？/"
+           data-title="Web 技術中的 Session 是什麼？" data-url="http://zhenghe39.com/2017/04/23/Web-技術中的-Session-是什麼？/">
+      </div>
+    
+  </div>
+
 
 
                     </div>
                     
-    
+ 
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
-                    
                 
                 
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel active ' id='site-info' >
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#Session-是什麼？"><span class="nav-menu-text">Session 是什麼？</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#Session-的原理"><span class="nav-menu-text">Session 的原理</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#Cookie-based-Session"><span class="nav-menu-text">Cookie-based Session</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#什麼是-Session-傳值？"><span class="nav-menu-text">什麼是 Session 傳值？</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
