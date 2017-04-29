@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> Oracle数据库的备份与恢复 | issUn </title>
+        <title></title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,89 +35,78 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-post '>
+                    <div class='content-wrap content-wrap-normal '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-    
-    <article class="post" itemscope itemtype="http://schema.org/Article" >
-        <header class="post-header" >
+     <section  class="collapse">
+        <span class="archive-move-on"></span>
+        <span class="archive-page-counter">
+          
+
+          
             
-            <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2017/01/14/Oracle数据库的备份与恢复/"  itemprop="url" >
-                    Oracle数据库的备份与恢复
-                </a>
-            </h1>
+          
+          好目前共计 66 篇日志。继续努力。
+        </span>
+        
+        
             
-                <div class="post-meta">
-                    <a href = "/" class="post-meta-avatar">
-                        <img src="/favicon.ico" alt="issUn" >
-                        <span>issUn</span>
-                    </a>
-                    <span class="post-meta-time" >2017-01-14</time>
+            
+            
+                
+                <div class="collapse-title">
+                      <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
                 </div>
             
-        </header>
-        <div class="post-body" itemprop="articleBody">
             
-                <p>本文是以<code>PL/SQL Develop</code>为例进行备份和恢复的说明。备份时是以<code>system</code>这个超级用户身份登录，但恢复时要以<code>需要导入的用户</code>的身份进行登录。</p>
-<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>备份有两种选择：一种是备份<code>表结构</code>，而另外一种是备份<code>表结构和数据</code></p>
-<h4 id="备份表结构"><a href="#备份表结构" class="headerlink" title="备份表结构"></a><code>备份表结构</code></h4><p>步骤：Tools—export user objects</p>
-<p><img src="https://ww4.sinaimg.cn/large/006y8lVagw1fbqip9kgjmj30cd09et9o.jpg" alt=""></p>
-<p>用户ZHE下有这些用户对象，选中Export导出.sql文件。</p>
-<h4 id="备份表结构和数据"><a href="#备份表结构和数据" class="headerlink" title="备份表结构和数据"></a><code>备份表结构和数据</code></h4><p>步骤：Tools—export tables</p>
-<p><img src="https://ww2.sinaimg.cn/large/006y8lVagw1fbqiqo367rj30cj0c2gn5.jpg" alt=""></p>
-<p>导出的文件格式为.dmp</p>
-<h3 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h3><p><strong>准备工作（创建表空间和用户）</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--确保要创建的表空间不存在</span></span><br><span class="line"><span class="operator"><span class="keyword">drop</span> <span class="keyword">tablespace</span> zhe_tbs <span class="keyword">including</span> <span class="keyword">contents</span> <span class="keyword">and</span> <span class="keyword">datafiles</span>;</span></span><br><span class="line"><span class="comment">--创建表空间</span></span><br><span class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">tablespace</span> zhe_tbs <span class="keyword">datafile</span> <span class="string">'C:\oracletablespace\zhe.dbf'</span> <span class="keyword">size</span> <span class="number">50</span><span class="keyword">M</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--确保要创建的用户不存在</span></span><br><span class="line"><span class="operator"><span class="keyword">drop</span> <span class="keyword">user</span> zhe <span class="keyword">cascade</span>;</span></span><br><span class="line"><span class="comment">--删除创建用户，设置密码，指定表空间</span></span><br><span class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">user</span> zhe <span class="keyword">identified</span> <span class="keyword">by</span> kebike1348 <span class="keyword">default</span> <span class="keyword">tablespace</span> zhe_tbs;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">--给用户授权</span></span><br><span class="line"><span class="operator"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span>,dba <span class="keyword">to</span> zhe;</span></span><br></pre></td></tr></table></figure>
-<p>由于备份的数据库表可能原来是存放在某个表空间（比如原来是存放在zhe_tbs表空间），那么现在要被导入的数据库若无zhe_tbs表空间那么执行导入操作时就会报错。上面的SQL就是创建zhe_tbs表空间，并给用户zhe授权以下角色：</p>
-<p><img src="https://ww4.sinaimg.cn/large/006y8lVagw1fbqj497i9yj30bz026aa3.jpg" alt=""></p>
-<h4 id="导入表结构"><a href="#导入表结构" class="headerlink" title="导入表结构"></a><code>导入表结构</code></h4><p>若备份的是只是表结构，那么只要按如下步骤导入即可。步骤：Tools—import tables</p>
-<p><img src="https://ww3.sinaimg.cn/large/006y8lVagw1fbqj5ryvxuj30ce08q3z9.jpg" alt=""></p>
-<h4 id="导入表结构和数据"><a href="#导入表结构和数据" class="headerlink" title="导入表结构和数据"></a><code>导入表结构和数据</code></h4><p><img src="https://ww1.sinaimg.cn/large/006y8lVagw1fbqj663gn0j30ce08qaaw.jpg" alt=""></p>
-<p>值得注意的是这两种导入方式都是导入到<code>当前连接用户</code>中。</p>
+            
+    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
+        <header class="collapse-post-header">
+            <h1 class="collapse-post-title">
+                <a  href="/2017/04/29/cookie-的分类/" itemprop="url">
+                    
+                        <span itemprop="name">Cookie</span>
+                    
+                </a>
+            </h1>
 
-            
-        </div>
+            <div class="collapse-post-meta">
+                <time  itemprop="dateCreated"
+                      datetime="2017-04-29T00:00:00+08:00"
+                      content="2017-04-29" >
+                    04-29
+                </time>
+            </div>
+        </header>
     </article>
 
-
+        
+    </section>
+    <nav class='pagination'>
+    
+    
+    <div class='clearfix'></div>
+</nav>
 
                         </div>
                         
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/01/14/Oracle数据库的备份与恢复/"
-           data-title="Oracle数据库的备份与恢复" data-url="http://zhenghe39.com/2017/01/14/Oracle数据库的备份与恢复/">
-      </div>
-    
-  </div>
-
 
 
                     </div>
                     
- 
+    
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
+                    
                 
                 
-                <ul class='sidebar-nav' >
-                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
-                    &nbsp&nbsp
-                    <li href="#site-info" data-toggle="tab" >站点概况</li>
-                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel post-toc active' id='post-toc'>
-                        <div class='highlight-title' style='display:none;' ></div>
-                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#备份"><span class="nav-menu-text">备份</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#备份表结构"><span class="nav-menu-text">备份表结构</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#备份表结构和数据"><span class="nav-menu-text">备份表结构和数据</span></a></li></ol></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#恢复"><span class="nav-menu-text">恢复</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#导入表结构"><span class="nav-menu-text">导入表结构</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#导入表结构和数据"><span class="nav-menu-text">导入表结构和数据</span></a></li></ol></li></ol>
-                    </div>
-                    
-                    <div class='nav-panel  ' id='site-info' >
+                    <div class='nav-panel active ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>

