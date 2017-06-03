@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-06-03T15:09:20.000Z</updated>
+  <updated>2017-06-03T15:09:58.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -20,10 +20,12 @@
     <link href="http://zhenghe39.com/2017/06/03/Spring-Boot-ConfigurationProperties-example/"/>
     <id>http://zhenghe39.com/2017/06/03/Spring-Boot-ConfigurationProperties-example/</id>
     <published>2017-06-03T14:55:18.000Z</published>
-    <updated>2017-06-03T15:09:20.000Z</updated>
+    <updated>2017-06-03T15:09:58.000Z</updated>
     
     <content type="html">&lt;p&gt;转载自&lt;a href=&quot;https://www.mkyong.com/spring-boot/spring-boot-configurationproperties-example/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://www.mkyong.com/spring-boot/spring-boot-configurationproperties-example/&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;Spring Boot &lt;code&gt;@ConfigurationProperties&lt;/code&gt; is letting developer maps the entire file into an object easily.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&quot;Simple-Properties-file&quot;&gt;&lt;a href=&quot;#Simple-Properties-file&quot; class=&quot;headerlink&quot; title=&quot;Simple Properties file&quot;&gt;&lt;/a&gt;Simple Properties file&lt;/h3&gt;&lt;p&gt;Normally, you use the &lt;code&gt;@Value&lt;/code&gt; annotation to inject the &lt;code&gt;.properties&lt;/code&gt; value one by one, this is good for small and simple structure &lt;code&gt;.properties&lt;/code&gt; files.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;global.properties:&lt;/em&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;email=test@mkyong.com&amp;#10;thread-pool=12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
