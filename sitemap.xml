@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhenghe39.com/2017/06/03/Spring-Boot-ConfigurationProperties-example/</loc>
+    
+    <lastmod>2017-06-03T15:07:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zhenghe39.com/2017/04/30/React-%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E8%AE%AF/</loc>
     
     <lastmod>2017-04-30T09:04:54.000Z</lastmod>
