@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-11-26T10:50:47.000Z</updated>
+  <updated>2017-12-05T14:00:50.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -16,11 +16,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>结构型模式总结</title>
+    <link href="http://zhenghe39.com/2017/12/05/2017-12-05/"/>
+    <id>http://zhenghe39.com/2017/12/05/2017-12-05/</id>
+    <published>2017-12-05T12:56:08.000Z</published>
+    <updated>2017-12-05T14:00:50.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;结构型模式不是对接口和实现进行组合(继承)，而是描述了如何对一些对象进行组合，从而实现新功能的一些方法。由于可以在运行时刻改变对象组合方式，故对象组合具有更大的灵活性，而这种机制用静态类组合式不可能实现的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;适配器模式&quot;&gt;&lt;a href=&quot;#适配器模式&quot; class=&quot;headerlink&quot; title=&quot;适配器模式&quot;&gt;&lt;/a&gt;适配器模式&lt;/h3&gt;&lt;p&gt;&lt;em&gt;实现方式一：多重继承&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-3B46CA37D26607D99ADBAE6F3340BC22.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;实现方式二：对象匹配器(依赖于对象组合)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-94648DECD404FE1B7CA954BD542582E2.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;你想使用一个已经存在的类，而它的接口不符合你的需求。&lt;/p&gt;
+&lt;h3 id=&quot;桥接模式&quot;&gt;&lt;a href=&quot;#桥接模式&quot; class=&quot;headerlink&quot; title=&quot;桥接模式&quot;&gt;&lt;/a&gt;桥接模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-196A77A93363761AEA1D0A19419F90C9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;你不希望在抽象和他的实现部分之间有一个固定的绑定关系。类的抽象以及它的实现都应该可以通过生成子类的方式加以扩充。&lt;/p&gt;
+&lt;h3 id=&quot;组合模式-Composite&quot;&gt;&lt;a href=&quot;#组合模式-Composite&quot; class=&quot;headerlink&quot; title=&quot;组合模式(Composite)&quot;&gt;&lt;/a&gt;组合模式(Composite)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-F6951F9DCF8077BB1AE092B55BA7DA11.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-202A7FA8CBB0F4C8668D5189D6F419CE.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.你想表示对象的部分-整体层次结构。&lt;br&gt;2.你希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。&lt;/p&gt;
+&lt;h3 id=&quot;装饰器模式&quot;&gt;&lt;a href=&quot;#装饰器模式&quot; class=&quot;headerlink&quot; title=&quot;装饰器模式&quot;&gt;&lt;/a&gt;装饰器模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-DE6457EF2537C45AC4E75B0DE6FE1BF9.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责&lt;/p&gt;
+&lt;h3 id=&quot;外观模式&quot;&gt;&lt;a href=&quot;#外观模式&quot; class=&quot;headerlink&quot; title=&quot;外观模式&quot;&gt;&lt;/a&gt;外观模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-47A6F2FC1590F87924473C8AC99D6F47.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-DCAAE900BA03D344C695CB4939BFD0EE.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.当你要为一个复杂子系统提供一个简单接口时。Facade可以提供一个简单的缺省视图，这一视图对大多数用户来说已经足够了，若需要更多定制的用户可以越过Facade层。&lt;br&gt;2.当你需要构建一个层次结构的子系统时，使用Facade模式定义子系统中每层的入口点。如果子系统间相互依赖，你可以让它们仅通过Facade通信，从而简化它们之间的依赖关系。&lt;/p&gt;
+&lt;h3 id=&quot;享元模式&quot;&gt;&lt;a href=&quot;#享元模式&quot; class=&quot;headerlink&quot; title=&quot;享元模式&quot;&gt;&lt;/a&gt;享元模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-EDB16EEF2EFFBC816A6E647FB2C33B8A.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-571DCF935D7E326F779F8FC9B3FF47E7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.一个应用使用了大量的对象(造成了很大的存储开销)&lt;br&gt;2.对象的大多数状态可变为外部状态。若删除对象的外部状态，那么可以用相对较少的共享对象取代多组对象&lt;/p&gt;
+&lt;h3 id=&quot;代理模式&quot;&gt;&lt;a href=&quot;#代理模式&quot; class=&quot;headerlink&quot; title=&quot;代理模式&quot;&gt;&lt;/a&gt;代理模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-05-7D513A62D5B1AA83E8F608637851A5C5.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.远程代理:为一个对象在不同的地址空间提供局部代表(类似Java的RMI实现)&lt;br&gt;2.虚代理:根据需要(延迟创建)开销很大的对象&lt;br&gt;3.保护代理:控制对原始对象的访问&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;结构型模式不是对接口和实现进行组合(继承)，而是描述了如何对一些对象进行组合，从而实现新功能的一些方法。由于可以在运行时刻改变对象组合方式，故对象组合具有更大的灵活性，而这种机制用静态类组合式不可能实现的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h
+    
+    </summary>
+    
+      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
+    
+    
+      <category term="设计模式" scheme="http://zhenghe39.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>创建型模式总结</title>
-    <link href="http://zhenghe39.com/2018/10/26/2017-11-26/"/>
-    <id>http://zhenghe39.com/2018/10/26/2017-11-26/</id>
-    <published>2018-10-26T08:36:26.000Z</published>
-    <updated>2017-11-26T10:50:47.000Z</updated>
+    <link href="http://zhenghe39.com/2017/11/26/2017-11-26/"/>
+    <id>http://zhenghe39.com/2017/11/26/2017-11-26/</id>
+    <published>2017-11-26T08:36:26.000Z</published>
+    <updated>2017-12-05T12:55:46.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;创建型模式抽象了对象的实例化过程，将一个对象的实例化委托给另外一个对象。将组装对象的工作分离出去，将使得对象更加关注实现自身的功能。这一点非常重要。&lt;br&gt;这些模式中有两个不断出现的主旋律。第一，它们将关于该系统使用哪些具体的类的信息封装起来。第二，它们隐藏了这些类的实例是如何被创建和配置在一起的。配置可以是静态的(即在编译时指定)，也可以是动态的(在运行时)。&lt;/p&gt;
@@ -992,38 +1040,6 @@
     
     
       <category term="Maven" scheme="http://zhenghe39.com/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OOP编程的五大原则</title>
-    <link href="http://zhenghe39.com/2016/11/20/OOP%E7%BC%96%E7%A8%8B%E7%9A%84%E4%BA%94%E5%A4%A7%E5%8E%9F%E5%88%99/"/>
-    <id>http://zhenghe39.com/2016/11/20/OOP编程的五大原则/</id>
-    <published>2016-11-20T07:07:19.000Z</published>
-    <updated>2017-01-27T14:48:50.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;SRP&quot;&gt;&lt;a href=&quot;#SRP&quot; class=&quot;headerlink&quot; title=&quot;SRP&quot;&gt;&lt;/a&gt;SRP&lt;/h3&gt;&lt;p&gt;SRP(Single Responsibility Principle):单一职责原则&lt;/p&gt;
-&lt;h3 id=&quot;LSP&quot;&gt;&lt;a href=&quot;#LSP&quot; class=&quot;headerlink&quot; title=&quot;LSP&quot;&gt;&lt;/a&gt;LSP&lt;/h3&gt;&lt;p&gt;LSP(Liskov Substitution):里氏替换原则&lt;/p&gt;
-&lt;p&gt;Java运行时多态(继承、接口)特性，可以将设计中的静态结构改为动态结构，维持设计的封闭性。“多态”由继承语义实现，那我们如何去度量继承关系的质量呢？，这时候就需要「里氏替换原则」了.&lt;/p&gt;
-&lt;p&gt;里氏替换原则：继承必须确保超类所拥有的行为在子类中仍然成立。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;举个栗子&lt;/strong&gt;：类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 &lt;/p&gt;
-&lt;h3 id=&quot;OCP&quot;&gt;&lt;a href=&quot;#OCP&quot; class=&quot;headerlink&quot; title=&quot;OCP&quot;&gt;&lt;/a&gt;OCP&lt;/h3&gt;&lt;p&gt;OCP(Closed for Modification;Open for Extension):开闭原则&lt;br&gt;&lt;strong&gt;为什么需要OCP呢？&lt;/strong&gt;&lt;br&gt;  你给系统封装了访问MySql数据库的类，使得系统支持MySql。某一天，需求增加了，要对SQL Server数据库进行支持，你可能觉得这很简单，类里加个Type参数，if-else区别处理就好。但是需求继续膨胀，SQLite、Oracle…都要支持，继续else-if,else-if，加着加着你突然发现原来运行正常的MySql出现了异常，debug发现原来耦合太多，改着改着把既有的改错了。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;如何OCP呢？&lt;/strong&gt;&lt;br&gt;  你抽离出数据库访问的接口类IDatabase，使得系统对数据的访问依赖接口而不是具体的实现类，让MySql数据库访问类实现IDatabase，间接使得系统支持了MySql。后面如果需要支持其他数据库，只要单独创建一个新类实现IDatabase接口即可，对既有的Mysql访问实现类不需要做任何改动(Closed for Modification).&lt;/p&gt;
-&lt;h3 id=&quot;DIP&quot;&gt;&lt;a href=&quot;#DIP&quot; class=&quot;headerlink&quot; title=&quot;DIP&quot;&gt;&lt;/a&gt;DIP&lt;/h3&gt;&lt;p&gt;DIP(Dependence Inversion Principle):依赖倒置&lt;br&gt;原则：要依赖于抽象，不要依赖于具体&lt;/p&gt;
-&lt;h3 id=&quot;ISP&quot;&gt;&lt;a href=&quot;#ISP&quot; class=&quot;headerlink&quot; title=&quot;ISP&quot;&gt;&lt;/a&gt;ISP&lt;/h3&gt;&lt;p&gt;ISP:接口隔离原则&lt;br&gt;原则：使用多个专门的接口比使用单一的总接口要好。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;SRP&quot;&gt;&lt;a href=&quot;#SRP&quot; class=&quot;headerlink&quot; title=&quot;SRP&quot;&gt;&lt;/a&gt;SRP&lt;/h3&gt;&lt;p&gt;SRP(Single Responsibility Principle):单一职责原则&lt;/p&gt;
-&lt;h3 id=&quot;LSP&quot;&gt;&lt;a hr
-    
-    </summary>
-    
-      <category term="参考资料" scheme="http://zhenghe39.com/categories/%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
-    
-    
-      <category term="OOP" scheme="http://zhenghe39.com/tags/OOP/"/>
     
   </entry>
   

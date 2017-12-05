@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title></title>
+        <title> 结构型模式总结 | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,78 +35,96 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-normal '>
+                    <div class='content-wrap content-wrap-post '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-     <section  class="collapse">
-        <span class="archive-move-on"></span>
-        <span class="archive-page-counter">
-          
-
-          
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
             
-          
-          好目前共计 69 篇日志。继续努力。
-        </span>
-        
-        
-            
-            
-            
-                
-                <div class="collapse-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
-                </div>
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2018/10/26/2017-11-26/" itemprop="url">
-                    
-                        <span itemprop="name">创建型模式总结</span>
-                    
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/12/05/2017-12-05/"  itemprop="url" >
+                    结构型模式总结
                 </a>
             </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2018-10-26T16:36:26+08:00"
-                      content="2018-10-26" >
-                    10-26
-                </time>
-            </div>
+            
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-12-05</time>
+                </div>
+            
         </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <blockquote>
+<p>结构型模式不是对接口和实现进行组合(继承)，而是描述了如何对一些对象进行组合，从而实现新功能的一些方法。由于可以在运行时刻改变对象组合方式，故对象组合具有更大的灵活性，而这种机制用静态类组合式不可能实现的。</p>
+</blockquote>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p><em>实现方式一：多重继承</em></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-3B46CA37D26607D99ADBAE6F3340BC22.jpg" alt=""></p>
+<p><em>实现方式二：对象匹配器(依赖于对象组合)</em></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-94648DECD404FE1B7CA954BD542582E2.jpg" alt=""></p>
+<p><strong>场景:</strong>你想使用一个已经存在的类，而它的接口不符合你的需求。</p>
+<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-196A77A93363761AEA1D0A19419F90C9.jpg" alt=""></p>
+<p><strong>场景:</strong>你不希望在抽象和他的实现部分之间有一个固定的绑定关系。类的抽象以及它的实现都应该可以通过生成子类的方式加以扩充。</p>
+<h3 id="组合模式-Composite"><a href="#组合模式-Composite" class="headerlink" title="组合模式(Composite)"></a>组合模式(Composite)</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-F6951F9DCF8077BB1AE092B55BA7DA11.jpg" alt=""></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-202A7FA8CBB0F4C8668D5189D6F419CE.jpg" alt=""></p>
+<p><strong>场景:</strong><br>1.你想表示对象的部分-整体层次结构。<br>2.你希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</p>
+<h3 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-DE6457EF2537C45AC4E75B0DE6FE1BF9.jpg" alt=""></p>
+<p><strong>场景:</strong>在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责</p>
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-47A6F2FC1590F87924473C8AC99D6F47.jpg" alt=""></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-DCAAE900BA03D344C695CB4939BFD0EE.jpg" alt=""></p>
+<p><strong>场景:</strong><br>1.当你要为一个复杂子系统提供一个简单接口时。Facade可以提供一个简单的缺省视图，这一视图对大多数用户来说已经足够了，若需要更多定制的用户可以越过Facade层。<br>2.当你需要构建一个层次结构的子系统时，使用Facade模式定义子系统中每层的入口点。如果子系统间相互依赖，你可以让它们仅通过Facade通信，从而简化它们之间的依赖关系。</p>
+<h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-EDB16EEF2EFFBC816A6E647FB2C33B8A.jpg" alt=""></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-571DCF935D7E326F779F8FC9B3FF47E7.jpg" alt=""></p>
+<p><strong>场景:</strong><br>1.一个应用使用了大量的对象(造成了很大的存储开销)<br>2.对象的大多数状态可变为外部状态。若删除对象的外部状态，那么可以用相对较少的共享对象取代多组对象</p>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-05-7D513A62D5B1AA83E8F608637851A5C5.jpg" alt=""></p>
+<p><strong>场景:</strong><br>1.远程代理:为一个对象在不同的地址空间提供局部代表(类似Java的RMI实现)<br>2.虚代理:根据需要(延迟创建)开销很大的对象<br>3.保护代理:控制对原始对象的访问</p>
+
+            
+        </div>
     </article>
 
-        
-    </section>
-    <nav class='pagination'>
-    
-    
-    <div class='clearfix'></div>
-</nav>
+
 
                         </div>
                         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/12/05/2017-12-05/"
+           data-title="结构型模式总结" data-url="http://zhenghe39.com/2017/12/05/2017-12-05/">
+      </div>
+    
+  </div>
+
 
 
                     </div>
                     
-    
+ 
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
-                    
                 
                 
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel active ' id='site-info' >
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#适配器模式"><span class="nav-menu-text">适配器模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#桥接模式"><span class="nav-menu-text">桥接模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#组合模式-Composite"><span class="nav-menu-text">组合模式(Composite)</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#装饰器模式"><span class="nav-menu-text">装饰器模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#外观模式"><span class="nav-menu-text">外观模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#享元模式"><span class="nav-menu-text">享元模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#代理模式"><span class="nav-menu-text">代理模式</span></a></li></ol>
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
@@ -189,12 +207,6 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/Http/' title=Http>Http</a>
-                    </li>
-                
-            
-                
-                    <li class="tagslist-item">
                         <a  href='/tags/Oracle/' title=Oracle>Oracle</a>
                     </li>
                 
@@ -213,7 +225,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/JDK/' title=JDK>JDK</a>
+                        <a  href='/tags/Http/' title=Http>Http</a>
+                    </li>
+                
+            
+                
+                    <li class="tagslist-item">
+                        <a  href='/tags/设计模式/' title=设计模式>设计模式</a>
                     </li>
                 
             
@@ -249,13 +267,13 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/编码/' title=编码>编码</a>
+                        <a  href='/tags/JSON/' title=JSON>JSON</a>
                     </li>
                 
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/JSON/' title=JSON>JSON</a>
+                        <a  href='/tags/JDK/' title=JDK>JDK</a>
                     </li>
                 
             
@@ -267,7 +285,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/设计模式/' title=设计模式>设计模式</a>
+                        <a  href='/tags/SpringBoot/' title=SpringBoot>SpringBoot</a>
                     </li>
                 
             
@@ -345,7 +363,7 @@
             
                 
                     <li class="tagslist-item">
-                        <a  href='/tags/SpringBoot/' title=SpringBoot>SpringBoot</a>
+                        <a  href='/tags/编码/' title=编码>编码</a>
                     </li>
                 
             
