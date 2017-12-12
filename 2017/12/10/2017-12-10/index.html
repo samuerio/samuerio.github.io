@@ -67,7 +67,8 @@
 <h3 id="观察者模式-发布-订阅模式"><a href="#观察者模式-发布-订阅模式" class="headerlink" title="观察者模式(发布-订阅模式)"></a>观察者模式(发布-订阅模式)</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-AD07A0FC4347C30B8293776C09606AE7.jpg" alt=""></p>
 <p><strong>场景:</strong>一个对象的状态改变需要通知其他对象进行各自状态的改变。(eg.Flux流容器框架Alt 事件和事件监听函数的绑定关系就是观察者模式)</p>
 <h3 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-517602671F0F6715064B8DB6053BED54.jpg" alt=""></p>
-<p><strong>角色说明:</strong><br>Handler:定义一个处理请求的接口，实现后继链(可选)。<br>ConcreteHandler:处理它所负责的请求，可访问它的后继者。如果可处理该请求，就处理之；否则将该请求转发它的后继者。</p>
+<p><strong>Handler:</strong>定义一个处理请求的接口，实现后继链(可选)。</p>
+<p><strong>ConcreteHandler:</strong>处理它所负责的请求，可访问它的后继者。如果可处理该请求，就处理之；否则将该请求转发它的后继者。</p>
 <p><strong>场景:</strong>有多个对象可以处理一个请求，哪个对象处理该请求由运行时刻自动确定。(eg.SpringBoot的拦截器的设计)</p>
 <h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><p><em>类图关系:</em></p>
 <p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-DE25A6433EBACE997873239F3C02FB3B.jpg" alt=""></p>
@@ -76,17 +77,25 @@
 <p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-1214367A2FF68B26C1343CE3BAA8C302.jpg" alt=""></p>
 <p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-17BD2517A390908FD6D15CE8F2EC20FF.jpg" alt=""></p>
 <p><strong>时序图流程:</strong><br>1.列表框告诉它的操纵者它被改变了<br>2.导控者从列表框中得到选中的选择项<br>3.导控者将该选择项传递给入口域</p>
-<p><strong>角色说明:</strong></p>
-<p><strong>Mediator(中介者):</strong>中介者定义一个接口用于各个同事(Colleague)对象通信<br><strong>ConcreteMediator(具体中介者):</strong>具体中介者通过协调各同事对象实现协作行为<br><strong>Colleague Class(同事类):</strong><br>–每一个同事类都知道它的中介者对象<br>–每一个同事在需要与其他的对象通信的时候，与它的中介者通信</p>
-<p><strong>场景:</strong><br>1.一组对象以定义良好但复杂的方式进行通信,产生的相互依赖关系结构混乱且难以理解。<br>2.一个对象引用其他很多对象并且直接与这些对象通信，导致难以复用该对象。<br>(<strong>eg.OAuth2体系中，authentication server就是中介者。</strong>)</p>
+<p><strong>Mediator(中介者):</strong>中介者定义一个接口用于各个同事(Colleague)对象通信</p>
+<p><strong>ConcreteMediator(具体中介者):</strong>具体中介者通过协调各同事对象实现协作行为</p>
+<p><strong>Colleague Class(同事类):</strong><br>–每一个同事类都知道它的中介者对象<br>–每一个同事在需要与其他的对象通信的时候，与它的中介者通信</p>
+<p><strong>场景:</strong><br>1.一组对象以定义良好但复杂的方式进行通信,产生的相互依赖关系结构混乱且难以理解。<br>2.一个对象引用其他很多对象并且直接与这些对象通信，导致难以复用该对象。<br>(eg.OAuth2体系中，authentication server就是中介者)</p>
 <h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-83F6CC13BB57C626F43EF194FE11D2D1.jpg" alt=""></p>
-<p><strong>角色说明:</strong><br>Command:声明执行操作的接口<br>ConcreteCommand:将一个接受者绑定一个动作，调用接受者相应的操作，以实现Execute<br>Client:创建一个具体命令并设定它的接收者<br>Invoker:要求该命令执行这个请求<br>Receiver:知道如何实施与执行一个请求相关的操作，任何类都可能作为一个接收者</p>
-<p><strong>场景:</strong><br>1.Command模式将调用操作的对象与知道如何实现该操作的对象解耦<br>2.需要抽象出待执行的操作以参数化某对象<br>(<strong>eg.AlipayClient将各种API请求封装为某种Request(Command)</strong>)</p>
+<p><strong>Command:</strong>声明执行操作的接口</p>
+<p><strong>ConcreteCommand:</strong>将一个接受者绑定一个动作，调用接受者相应的操作，以实现Execute</p>
+<p><strong>Client:</strong>创建一个具体命令并设定它的接收者</p>
+<p><strong>Invoker:</strong>要求该命令执行这个请求</p>
+<p><strong>Receiver:</strong>知道如何实施与执行一个请求相关的操作，任何类都可能作为一个接收者</p>
+<p><strong>场景:</strong><br>1.Command模式将调用操作的对象与知道如何实现该操作的对象解耦<br>2.需要抽象出待执行的操作以参数化某对象<br>(eg.AlipayClient将各种API请求封装为某种Request(Command))</p>
 <h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-F691D60381EE64726ED7E6770FFE97EC.jpg" alt=""></p>
 <p><strong>场景:</strong><br>1.许多类仅仅是行为有异，需要使用一个算法的不同变体。<br>2.算法使用客户端不应该知道的数据。可使用策略模式以避免暴露复杂的、与算法相关的数据结构。<br>3.一个类定义了多种行为，并且这些行为在这个类的操作中以多个条件语句的形式出现。将相关的条件分支移入它们各自的Strategy类中以替这些条件语句。</p>
 <h3 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-256A0D01AB7FEC2203E68A5311070D08.jpg" alt=""></p>
-<p><strong>角色说明:</strong></p>
-<p><strong>AbstractExpression:</strong>声明一个抽象的解释操作，这个接口为抽象语法中所以的节点所共享。<br><strong>TerminalExpression:</strong><br>1.实现与文法中的终结符相关联的解释操作<br>2.一个句子中的每个终结符需要该类的一个实例<br><strong>NonterminalExpression(类似描述and、or操作的表达式):</strong><br>1.对文法中的每一条规则R::=R1R2…RN都需要一个NonterminalExpression类<br>2.为从R1到RN的每个符号都维护一个AbstractExpression类型的实例变量<br>3.为文法中的非终结符实现解释(Interpret)操作。解释(Interpret)一般要递归地调用表示R1到RN的那些对象的解释操作。<br><strong>Context:</strong>包含解释器之外的一些全局信息。<br><strong>Client:</strong><br>1.构建(或被给定)表示该文法定义的语言中一个特定的句子的抽象语法树。该抽象语法树由NonterminalExpression和TerminalExpression的实例装配而成。<br>2.调用解释操作</p>
+<p><strong>AbstractExpression:</strong>声明一个抽象的解释操作，这个接口为抽象语法中所以的节点所共享。</p>
+<p><strong>TerminalExpression:</strong><br>1.实现与文法中的终结符相关联的解释操作<br>2.一个句子中的每个终结符需要该类的一个实例</p>
+<p><strong>NonterminalExpression(类似描述and、or操作的表达式):</strong><br>1.对文法中的每一条规则R::=R1R2…RN都需要一个NonterminalExpression类<br>2.为从R1到RN的每个符号都维护一个AbstractExpression类型的实例变量<br>3.为文法中的非终结符实现解释(Interpret)操作。解释(Interpret)一般要递归地调用表示R1到RN的那些对象的解释操作。</p>
+<p><strong>Context:</strong>包含解释器之外的一些全局信息。</p>
+<p><strong>Client:</strong><br>1.构建(或被给定)表示该文法定义的语言中一个特定的句子的抽象语法树。该抽象语法树由NonterminalExpression和TerminalExpression的实例装配而成。<br>2.调用解释操作</p>
 <p><strong>场景:</strong>当有一个语言需要解释执行，并且你可将该语言中的句子表示为一个抽象语法树时，可使用解释器模式(eg.PaaS平台上的SQL设计器可使用解释器模式)</p>
 <h3 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-3227952F7B41841A375DAEDA1354B833.jpg" alt=""></p>
 <p><strong>场景:</strong><br>1.支持一个聚合对象的内容而无需暴露它的内部表示<br>2.支持对聚合对象的多种遍历<br>(eg.JDK中的迭代器设计)</p>
@@ -96,14 +105,18 @@
 <p><strong>Caretaker:</strong><br>1.负责保存好备忘录<br>2.不能对备忘录的内容进行操作或检查</p>
 <p><strong>场景:</strong>保存一个对象在某一个时刻的部分状态，这样以后需要时它才能恢复到先前的状态</p>
 <h3 id="State模式"><a href="#State模式" class="headerlink" title="State模式"></a>State模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-E8C67208401D1E0C3615D0AD0A154373.jpg" alt=""></p>
-<p><strong>Context(环境，如TCPConnection):</strong>维护一个ConcreteState子类的实例，这个实例定义当前状态<br><strong>State(状态，如TCPState):</strong>定义一个接口以封装与Context的一个特定状态相关的行为<br><strong>ConcreteState subclasses(具体状态子类,如TCPEstalished，TCPListen，TCPClosed),建议弄成无状态的类:</strong>每一子类实现一个与Context的一个状态相关的行为</p>
+<p><strong>Context(环境，如TCPConnection):</strong>维护一个ConcreteState子类的实例，这个实例定义当前状态</p>
+<p><strong>State(状态，如TCPState):</strong>定义一个接口以封装与Context的一个特定状态相关的行为</p>
+<p><strong>ConcreteState subclasses(具体状态子类,如TCPEstalished，TCPListen，TCPClosed),建议弄成无状态的类:</strong>每一子类实现一个与Context的一个状态相关的行为</p>
 <p><strong>协作说明：</strong><br>1.Context将与状态相关的请求委托给当前的ConcreteState对象处理<br>2.Context可将自身作为一个参数传递给处理该请求的状态对象。这使得状态对象在必要时可访问Context<br>3.Context是客户使用的主要接口。客户可用状态来配置一个Context，一旦一个Context配置完毕，它的客户不再需要直接与状态对象打交道。<br>4.Context或ConcreteState子类都可决定哪个状态是另外哪一个的后继者，以及是在哪种条件下进行状态转换。</p>
 <p><strong>场景:</strong><br>1.一个对象的行为取决于它的状态，并且它必须在运行时刻根据状态改变它的行为。<br>2.一个操作中含有庞大的多分支的条件语句，且这些分支依赖于该对象的状态。<br>(eg.工作流的设计，Instance类似这里的Context，待办、在办、已办为这里的ConcreteState)</p>
 <h3 id="模板方法"><a href="#模板方法" class="headerlink" title="模板方法"></a>模板方法</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-D0999432D95A3EAAD5DBDBB650E6D837.jpg" alt=""></p>
 <p><strong>场景:</strong><br>1.定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。TemplateMethod使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。<br>2.模板方法只在特定点调用hook操作，这样就只允许在这些点进行扩展<br>(eg.React Component组将类的设计，将渲染函数render延迟到Component子类中)</p>
 <h3 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-E9CAD6934811880E062195E2E0E5E72A.jpg" alt=""></p>
-<p><strong>角色说明：</strong><br>Visitor(访问者，如NodeVisitor)<br>ConcreteVisitor(具体问题者，如TypeCheckingVisitor)<br>Element(元素，如Node)<br>ConcreteElement(具体元素，如AssignmentNode，VariableRefNode)</p>
-<p><strong>场景：</strong><br>1.一个对象结构包含很多类对象，你想对这些对象实施一些依赖于其具体类的操作。<br>2.需要对一个对象结构中的对象进行很多不同的且不相关的操作，而你想避免让这些操作“污染”这些对象的类。Visitor让你可以将相关操作集中起来定义在一个类中。<br>3.定义对象结构的类很少改变，但经常需要在此结构上定义新的操作。</p>
+<p><strong>Visitor:</strong>访问者，如NodeVisitor</p>
+<p><strong>ConcreteVisitor:</strong>具体问题者，如TypeCheckingVisitor<br>Element(元素，如Node)</p>
+<p><strong>ConcreteElement:</strong>具体元素，如AssignmentNode，VariableRefNode</p>
+<p><strong>场景:</strong><br>1.一个对象结构包含很多类对象，你想对这些对象实施一些依赖于其具体类的操作。<br>2.需要对一个对象结构中的对象进行很多不同的且不相关的操作，而你想避免让这些操作“污染”这些对象的类。Visitor让你可以将相关操作集中起来定义在一个类中。<br>3.定义对象结构的类很少改变，但经常需要在此结构上定义新的操作。</p>
 
             
         </div>
