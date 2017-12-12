@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://zhenghe39.com/"/>
-  <updated>2017-12-05T14:00:50.000Z</updated>
+  <updated>2017-12-12T14:15:02.000Z</updated>
   <id>http://zhenghe39.com/</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>行为型模式总结</title>
+    <link href="http://zhenghe39.com/2017/12/10/2017-12-10/"/>
+    <id>http://zhenghe39.com/2017/12/10/2017-12-10/</id>
+    <published>2017-12-10T10:30:03.000Z</published>
+    <updated>2017-12-12T14:15:02.000Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;行为模式描述了对象间的通信模式，刻画了运行时难以跟踪的复杂控制流，将你的注意力从控制流转移到对象间的联系方式上来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;观察者模式-发布-订阅模式&quot;&gt;&lt;a href=&quot;#观察者模式-发布-订阅模式&quot; class=&quot;headerlink&quot; title=&quot;观察者模式(发布-订阅模式)&quot;&gt;&lt;/a&gt;观察者模式(发布-订阅模式)&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-AD07A0FC4347C30B8293776C09606AE7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;一个对象的状态改变需要通知其他对象进行各自状态的改变。(eg.Flux流容器框架Alt 事件和事件监听函数的绑定关系就是观察者模式)&lt;/p&gt;
+&lt;h3 id=&quot;职责链模式&quot;&gt;&lt;a href=&quot;#职责链模式&quot; class=&quot;headerlink&quot; title=&quot;职责链模式&quot;&gt;&lt;/a&gt;职责链模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-517602671F0F6715064B8DB6053BED54.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;角色说明:&lt;/strong&gt;&lt;br&gt;Handler:定义一个处理请求的接口，实现后继链(可选)。&lt;br&gt;ConcreteHandler:处理它所负责的请求，可访问它的后继者。如果可处理该请求，就处理之；否则将该请求转发它的后继者。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;有多个对象可以处理一个请求，哪个对象处理该请求由运行时刻自动确定。(eg.SpringBoot的拦截器的设计)&lt;/p&gt;
+&lt;h3 id=&quot;中介者模式&quot;&gt;&lt;a href=&quot;#中介者模式&quot; class=&quot;headerlink&quot; title=&quot;中介者模式&quot;&gt;&lt;/a&gt;中介者模式&lt;/h3&gt;&lt;p&gt;&lt;em&gt;类图关系:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-DE25A6433EBACE997873239F3C02FB3B.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-9D7F71269A5BDF56ECF955E2E02C48E3.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;调用时序:&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-1214367A2FF68B26C1343CE3BAA8C302.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-17BD2517A390908FD6D15CE8F2EC20FF.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;时序图流程:&lt;/strong&gt;&lt;br&gt;1.列表框告诉它的操纵者它被改变了&lt;br&gt;2.导控者从列表框中得到选中的选择项&lt;br&gt;3.导控者将该选择项传递给入口域&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;角色说明:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Mediator(中介者):&lt;/strong&gt;中介者定义一个接口用于各个同事(Colleague)对象通信&lt;br&gt;&lt;strong&gt;ConcreteMediator(具体中介者):&lt;/strong&gt;具体中介者通过协调各同事对象实现协作行为&lt;br&gt;&lt;strong&gt;Colleague Class(同事类):&lt;/strong&gt;&lt;br&gt;–每一个同事类都知道它的中介者对象&lt;br&gt;–每一个同事在需要与其他的对象通信的时候，与它的中介者通信&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.一组对象以定义良好但复杂的方式进行通信,产生的相互依赖关系结构混乱且难以理解。&lt;br&gt;2.一个对象引用其他很多对象并且直接与这些对象通信，导致难以复用该对象。&lt;br&gt;(&lt;strong&gt;eg.OAuth2体系中，authentication server就是中介者。&lt;/strong&gt;)&lt;/p&gt;
+&lt;h3 id=&quot;命令模式&quot;&gt;&lt;a href=&quot;#命令模式&quot; class=&quot;headerlink&quot; title=&quot;命令模式&quot;&gt;&lt;/a&gt;命令模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-83F6CC13BB57C626F43EF194FE11D2D1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;角色说明:&lt;/strong&gt;&lt;br&gt;Command:声明执行操作的接口&lt;br&gt;ConcreteCommand:将一个接受者绑定一个动作，调用接受者相应的操作，以实现Execute&lt;br&gt;Client:创建一个具体命令并设定它的接收者&lt;br&gt;Invoker:要求该命令执行这个请求&lt;br&gt;Receiver:知道如何实施与执行一个请求相关的操作，任何类都可能作为一个接收者&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.Command模式将调用操作的对象与知道如何实现该操作的对象解耦&lt;br&gt;2.需要抽象出待执行的操作以参数化某对象&lt;br&gt;(&lt;strong&gt;eg.AlipayClient将各种API请求封装为某种Request(Command)&lt;/strong&gt;)&lt;/p&gt;
+&lt;h3 id=&quot;策略模式&quot;&gt;&lt;a href=&quot;#策略模式&quot; class=&quot;headerlink&quot; title=&quot;策略模式&quot;&gt;&lt;/a&gt;策略模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-F691D60381EE64726ED7E6770FFE97EC.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.许多类仅仅是行为有异，需要使用一个算法的不同变体。&lt;br&gt;2.算法使用客户端不应该知道的数据。可使用策略模式以避免暴露复杂的、与算法相关的数据结构。&lt;br&gt;3.一个类定义了多种行为，并且这些行为在这个类的操作中以多个条件语句的形式出现。将相关的条件分支移入它们各自的Strategy类中以替这些条件语句。&lt;/p&gt;
+&lt;h3 id=&quot;解释器模式&quot;&gt;&lt;a href=&quot;#解释器模式&quot; class=&quot;headerlink&quot; title=&quot;解释器模式&quot;&gt;&lt;/a&gt;解释器模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-10-256A0D01AB7FEC2203E68A5311070D08.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;角色说明:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AbstractExpression:&lt;/strong&gt;声明一个抽象的解释操作，这个接口为抽象语法中所以的节点所共享。&lt;br&gt;&lt;strong&gt;TerminalExpression:&lt;/strong&gt;&lt;br&gt;1.实现与文法中的终结符相关联的解释操作&lt;br&gt;2.一个句子中的每个终结符需要该类的一个实例&lt;br&gt;&lt;strong&gt;NonterminalExpression(类似描述and、or操作的表达式):&lt;/strong&gt;&lt;br&gt;1.对文法中的每一条规则R::=R1R2…RN都需要一个NonterminalExpression类&lt;br&gt;2.为从R1到RN的每个符号都维护一个AbstractExpression类型的实例变量&lt;br&gt;3.为文法中的非终结符实现解释(Interpret)操作。解释(Interpret)一般要递归地调用表示R1到RN的那些对象的解释操作。&lt;br&gt;&lt;strong&gt;Context:&lt;/strong&gt;包含解释器之外的一些全局信息。&lt;br&gt;&lt;strong&gt;Client:&lt;/strong&gt;&lt;br&gt;1.构建(或被给定)表示该文法定义的语言中一个特定的句子的抽象语法树。该抽象语法树由NonterminalExpression和TerminalExpression的实例装配而成。&lt;br&gt;2.调用解释操作&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;当有一个语言需要解释执行，并且你可将该语言中的句子表示为一个抽象语法树时，可使用解释器模式(eg.PaaS平台上的SQL设计器可使用解释器模式)&lt;/p&gt;
+&lt;h3 id=&quot;迭代器模式&quot;&gt;&lt;a href=&quot;#迭代器模式&quot; class=&quot;headerlink&quot; title=&quot;迭代器模式&quot;&gt;&lt;/a&gt;迭代器模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-12-3227952F7B41841A375DAEDA1354B833.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.支持一个聚合对象的内容而无需暴露它的内部表示&lt;br&gt;2.支持对聚合对象的多种遍历&lt;br&gt;(eg.JDK中的迭代器设计)&lt;/p&gt;
+&lt;h3 id=&quot;备忘录模式&quot;&gt;&lt;a href=&quot;#备忘录模式&quot; class=&quot;headerlink&quot; title=&quot;备忘录模式&quot;&gt;&lt;/a&gt;备忘录模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-12-6E826398AF1A65B55205E459438CC1BE.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Memento:&lt;/strong&gt;备忘录存储原发器对象的内部状态，原发器根据需要决定备忘录存储哪些内部状态&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Originator:&lt;/strong&gt;&lt;br&gt;1.创建一个备忘录，用以记录当前时刻它的内部状态&lt;br&gt;2.使用备忘录恢复内部状态&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Caretaker:&lt;/strong&gt;&lt;br&gt;1.负责保存好备忘录&lt;br&gt;2.不能对备忘录的内容进行操作或检查&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;保存一个对象在某一个时刻的部分状态，这样以后需要时它才能恢复到先前的状态&lt;/p&gt;
+&lt;h3 id=&quot;State模式&quot;&gt;&lt;a href=&quot;#State模式&quot; class=&quot;headerlink&quot; title=&quot;State模式&quot;&gt;&lt;/a&gt;State模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-12-E8C67208401D1E0C3615D0AD0A154373.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context(环境，如TCPConnection):&lt;/strong&gt;维护一个ConcreteState子类的实例，这个实例定义当前状态&lt;br&gt;&lt;strong&gt;State(状态，如TCPState):&lt;/strong&gt;定义一个接口以封装与Context的一个特定状态相关的行为&lt;br&gt;&lt;strong&gt;ConcreteState subclasses(具体状态子类,如TCPEstalished，TCPListen，TCPClosed),建议弄成无状态的类:&lt;/strong&gt;每一子类实现一个与Context的一个状态相关的行为&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;协作说明：&lt;/strong&gt;&lt;br&gt;1.Context将与状态相关的请求委托给当前的ConcreteState对象处理&lt;br&gt;2.Context可将自身作为一个参数传递给处理该请求的状态对象。这使得状态对象在必要时可访问Context&lt;br&gt;3.Context是客户使用的主要接口。客户可用状态来配置一个Context，一旦一个Context配置完毕，它的客户不再需要直接与状态对象打交道。&lt;br&gt;4.Context或ConcreteState子类都可决定哪个状态是另外哪一个的后继者，以及是在哪种条件下进行状态转换。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.一个对象的行为取决于它的状态，并且它必须在运行时刻根据状态改变它的行为。&lt;br&gt;2.一个操作中含有庞大的多分支的条件语句，且这些分支依赖于该对象的状态。&lt;br&gt;(eg.工作流的设计，Instance类似这里的Context，待办、在办、已办为这里的ConcreteState)&lt;/p&gt;
+&lt;h3 id=&quot;模板方法&quot;&gt;&lt;a href=&quot;#模板方法&quot; class=&quot;headerlink&quot; title=&quot;模板方法&quot;&gt;&lt;/a&gt;模板方法&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-12-D0999432D95A3EAAD5DBDBB650E6D837.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景:&lt;/strong&gt;&lt;br&gt;1.定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。TemplateMethod使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。&lt;br&gt;2.模板方法只在特定点调用hook操作，这样就只允许在这些点进行扩展&lt;br&gt;(eg.React Component组将类的设计，将渲染函数render延迟到Component子类中)&lt;/p&gt;
+&lt;h3 id=&quot;访问者模式&quot;&gt;&lt;a href=&quot;#访问者模式&quot; class=&quot;headerlink&quot; title=&quot;访问者模式&quot;&gt;&lt;/a&gt;访问者模式&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://okhcxnfdh.bkt.clouddn.com/2017-12-12-E9CAD6934811880E062195E2E0E5E72A.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;角色说明：&lt;/strong&gt;&lt;br&gt;Visitor(访问者，如NodeVisitor)&lt;br&gt;ConcreteVisitor(具体问题者，如TypeCheckingVisitor)&lt;br&gt;Element(元素，如Node)&lt;br&gt;ConcreteElement(具体元素，如AssignmentNode，VariableRefNode)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;场景：&lt;/strong&gt;&lt;br&gt;1.一个对象结构包含很多类对象，你想对这些对象实施一些依赖于其具体类的操作。&lt;br&gt;2.需要对一个对象结构中的对象进行很多不同的且不相关的操作，而你想避免让这些操作“污染”这些对象的类。Visitor让你可以将相关操作集中起来定义在一个类中。&lt;br&gt;3.定义对象结构的类很少改变，但经常需要在此结构上定义新的操作。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;行为模式描述了对象间的通信模式，刻画了运行时难以跟踪的复杂控制流，将你的注意力从控制流转移到对象间的联系方式上来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;观察者模式-发布-订阅模式&quot;&gt;&lt;a href=&quot;#观察者模式-发布-订阅模式&quot; 
+    
+    </summary>
+    
+      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
+    
+    
+      <category term="设计模式" scheme="http://zhenghe39.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>结构型模式总结</title>
@@ -1004,42 +1072,6 @@
     
     
       <category term="Javascript" scheme="http://zhenghe39.com/tags/Javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>构建Maven web项目并导入Eclipse</title>
-    <link href="http://zhenghe39.com/2016/12/04/%E6%9E%84%E5%BB%BAMaven-web%E9%A1%B9%E7%9B%AE%E5%B9%B6%E5%AF%BC%E5%85%A5Eclipse/"/>
-    <id>http://zhenghe39.com/2016/12/04/构建Maven-web项目并导入Eclipse/</id>
-    <published>2016-12-04T13:19:58.000Z</published>
-    <updated>2016-12-04T14:34:49.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;使用Maven-Archetype插件&quot;&gt;&lt;a href=&quot;#使用Maven-Archetype插件&quot; class=&quot;headerlink&quot; title=&quot;使用Maven Archetype插件&quot;&gt;&lt;/a&gt;使用Maven Archetype插件&lt;/h3&gt;&lt;p&gt;直接使用&lt;a href=&quot;http://maven.apache.org/archetype/maven-archetype-plugin/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Maven Archetype Plugin&lt;/a&gt;进行web项目骨架的生成&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mvn archetype:generate -DgroupId=com.samuerio.mavenweb -DartifactId=mavenweb-test -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Eclipse导入时选&lt;code&gt;Existing Maven Projects&lt;/code&gt;即可，Eclipse就能将其识别为Maven Web项目。最后调整项目的&lt;code&gt;Build Path&lt;/code&gt;,由默认的&lt;code&gt;mavenweb-test/target/classes&lt;/code&gt;调整为&lt;code&gt;mavenweb-test/src/main/webapp/WEB-INF/classes&lt;/code&gt;就大工完成了。&lt;/p&gt;
-&lt;h3 id=&quot;手动构建Maven-Web项目&quot;&gt;&lt;a href=&quot;#手动构建Maven-Web项目&quot; class=&quot;headerlink&quot; title=&quot;手动构建Maven Web项目&quot;&gt;&lt;/a&gt;手动构建Maven Web项目&lt;/h3&gt;&lt;p&gt;创建项目文件夹，并添加&lt;code&gt;pom.xml&lt;/code&gt;文件&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/006tNc79gw1faf3en27w0j30q2032dha.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;project&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;xmlns&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;http://maven.apache.org/POM/4.0.0&quot;&lt;/span&gt; &lt;span class=&quot;attribute&quot;&gt;xmlns:xsi&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;attribute&quot;&gt;xsi:schemaLocation&lt;/span&gt;=&lt;span class=&quot;value&quot;&gt;&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;modelVersion&lt;/span&gt;&amp;gt;&lt;/span&gt;4.0.0&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;modelVersion&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;com.samuerio.mavenweb&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;manual-mavenweb-test&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;packaging&lt;/span&gt;&amp;gt;&lt;/span&gt;war&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;packaging&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.0-SNAPSHOT&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;manual-mavenweb-test&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;url&lt;/span&gt;&amp;gt;&lt;/span&gt;http://maven.apache.org&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;url&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;dependencies&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;junit&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;junit&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;3.8.1&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;scope&lt;/span&gt;&amp;gt;&lt;/span&gt;test&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;scope&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;dependencies&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;build&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;finalName&lt;/span&gt;&amp;gt;&lt;/span&gt;manual-mavenweb-test&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;finalName&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;build&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;project&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;创建Maven Web的&lt;code&gt;src/main/java&lt;/code&gt; 、&lt;code&gt;src/main/resources&lt;/code&gt;、&lt;code&gt;src/test/java&lt;/code&gt;、&lt;code&gt;src/test/resources&lt;/code&gt;、&lt;code&gt;src/main/webapp&lt;/code&gt;等目录&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/006tNc79gw1faf3tosgnjj30h60ae3zj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;导入Eclipse&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Eclipse导入时选&lt;code&gt;Existing Maven Projects&lt;/code&gt;。以这种方式构建的Maven Web项目导入时Eclipse不会自动将其识别为Web项目，需要改其Eclipse的配置文件，好让IDE识别。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1.编辑.project文件&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;找到&lt;code&gt;&amp;lt;natures&amp;gt;&amp;lt;/natures&amp;gt;&lt;/code&gt;添加上,并刷新项目&lt;/p&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;nature&lt;/span&gt;&amp;gt;&lt;/span&gt;org.eclipse.wst.common.project.facet.core.nature&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;nature&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;title&quot;&gt;nature&lt;/span&gt;&amp;gt;&lt;/span&gt;org.eclipse.wst.common.modulecore.ModuleCoreNature&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;title&quot;&gt;nature&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;2.编辑项目的Project Facets&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;打开项目&lt;code&gt;properties&lt;/code&gt;，找到Project Facets,并勾选上右侧的Dynamic Web Module和Java&lt;br&gt;&lt;img src=&quot;http://ww2.sinaimg.cn/large/006tNc79gw1faf4f3hslzj317u0oyqdo.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;并点击底部的&lt;code&gt;Further configuration available...&lt;/code&gt;进行WebContent变量的配置(默认的为WebRoot将其调整为webapp路径即可)&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/006tNc79gw1faf4o0eaqwj30t20iygnq.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;最后同上面一样进行&lt;code&gt;Build Path&lt;/code&gt;调整即可。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;使用Maven-Archetype插件&quot;&gt;&lt;a href=&quot;#使用Maven-Archetype插件&quot; class=&quot;headerlink&quot; title=&quot;使用Maven Archetype插件&quot;&gt;&lt;/a&gt;使用Maven Archetype插件&lt;/h3&gt;&lt;p&gt;直接
-    
-    </summary>
-    
-      <category term="编程札记" scheme="http://zhenghe39.com/categories/%E7%BC%96%E7%A8%8B%E6%9C%AD%E8%AE%B0/"/>
-    
-    
-      <category term="Maven" scheme="http://zhenghe39.com/tags/Maven/"/>
     
   </entry>
   

@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title> content-type影响request.getParameter获取数据 | issUn </title>
+        <title> 行为型模式总结 | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -45,8 +45,8 @@
         <header class="post-header" >
             
             <h1 class="post-title"  itemprop="name headline" >
-                <a class="post-title-link" href="/2016/04/09/content-type的意义/"  itemprop="url" >
-                    content-type影响request.getParameter获取数据
+                <a class="post-title-link" href="/2017/12/10/2017-12-10/"  itemprop="url" >
+                    行为型模式总结
                 </a>
             </h1>
             
@@ -55,22 +55,55 @@
                         <img src="/favicon.ico" alt="issUn" >
                         <span>issUn</span>
                     </a>
-                    <span class="post-meta-time" >2016-04-09</time>
+                    <span class="post-meta-time" >2017-12-10</time>
                 </div>
             
         </header>
         <div class="post-body" itemprop="articleBody">
             
-                <p><a href="http://tool.oschina.net/commons" target="_blank" rel="external">Content-type</a>决定了文件类型以及数据的展示方式</p>
-<blockquote>
-<p>The purpose of the Content-Type field is to describe the data contained in the body fully enough that the receiving user agent can pick an appropriate agent or mechanism to present the data to the user, or otherwise deal with the data in an appropriate manner.<br>content-type</p>
+                <blockquote>
+<p>行为模式描述了对象间的通信模式，刻画了运行时难以跟踪的复杂控制流，将你的注意力从控制流转移到对象间的联系方式上来。</p>
 </blockquote>
-<p>Get请求的数据是附着在URL后（即位于HTTP协议头部），而Post提交的数据是放于HTTP包的包体。故content-type只会影响到Post提交的数据。</p>
-<a id="more"></a>
-<h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><p>application/x-www-form-urlencoded为「表单提交」，默认的<code>Ajax Post</code>提交也是按这种方式。</p>
-<h3 id="application-json"><a href="#application-json" class="headerlink" title="application/json"></a>application/json</h3><p>这种时候，只能从HTTP内容体里面获取提交的数据</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.ajax(actionUrl,&#123;</span><br><span class="line">                      method:<span class="string">'POST'</span>,</span><br><span class="line">                      data:<span class="built_in">JSON</span>.stringify(postData),<span class="comment">//这里必须序列化为JSON字符串</span></span><br><span class="line">                      contentType:<span class="string">'application/json; charset=utf-8'</span>,</span><br><span class="line">                      dataType:<span class="string">'json'</span>,</span><br><span class="line">                      success:<span class="function"><span class="keyword">function</span>(<span class="params">rs</span>)</span>&#123;</span><br><span class="line">                          <span class="keyword">if</span>(rs.success)&#123;</span><br><span class="line">                              resolve(rs.content);</span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                  &#125;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">readStringFromRequest</span><span class="params">(HttpServletRequest request,String encode)</span></span>&#123;</span><br><span class="line">	StringBuffer json = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	InputStream in = <span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		in = request.getInputStream();</span><br><span class="line">		InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(in,encode);</span><br><span class="line">		BufferedReader bufferReader = <span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">		</span><br><span class="line">		String line = bufferReader.readLine();</span><br><span class="line">		<span class="keyword">if</span>(StringUtils.isEmpty(line))&#123;</span><br><span class="line">			line = <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		do&#123;</span><br><span class="line">			json.append(line);</span><br><span class="line">			line = bufferReader.readLine();</span><br><span class="line">			<span class="keyword">if</span>(line != <span class="keyword">null</span>)&#123;</span><br><span class="line">				json.append(<span class="string">"\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">while</span>(line != <span class="keyword">null</span>);</span><br><span class="line">	&#125;<span class="keyword">catch</span>(IOException e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="观察者模式-发布-订阅模式"><a href="#观察者模式-发布-订阅模式" class="headerlink" title="观察者模式(发布-订阅模式)"></a>观察者模式(发布-订阅模式)</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-AD07A0FC4347C30B8293776C09606AE7.jpg" alt=""></p>
+<p><strong>场景:</strong>一个对象的状态改变需要通知其他对象进行各自状态的改变。(eg.Flux流容器框架Alt 事件和事件监听函数的绑定关系就是观察者模式)</p>
+<h3 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-517602671F0F6715064B8DB6053BED54.jpg" alt=""></p>
+<p><strong>角色说明:</strong><br>Handler:定义一个处理请求的接口，实现后继链(可选)。<br>ConcreteHandler:处理它所负责的请求，可访问它的后继者。如果可处理该请求，就处理之；否则将该请求转发它的后继者。</p>
+<p><strong>场景:</strong>有多个对象可以处理一个请求，哪个对象处理该请求由运行时刻自动确定。(eg.SpringBoot的拦截器的设计)</p>
+<h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><p><em>类图关系:</em></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-DE25A6433EBACE997873239F3C02FB3B.jpg" alt=""></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-9D7F71269A5BDF56ECF955E2E02C48E3.jpg" alt=""></p>
+<p><em>调用时序:</em></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-1214367A2FF68B26C1343CE3BAA8C302.jpg" alt=""></p>
+<p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-17BD2517A390908FD6D15CE8F2EC20FF.jpg" alt=""></p>
+<p><strong>时序图流程:</strong><br>1.列表框告诉它的操纵者它被改变了<br>2.导控者从列表框中得到选中的选择项<br>3.导控者将该选择项传递给入口域</p>
+<p><strong>角色说明:</strong></p>
+<p><strong>Mediator(中介者):</strong>中介者定义一个接口用于各个同事(Colleague)对象通信<br><strong>ConcreteMediator(具体中介者):</strong>具体中介者通过协调各同事对象实现协作行为<br><strong>Colleague Class(同事类):</strong><br>–每一个同事类都知道它的中介者对象<br>–每一个同事在需要与其他的对象通信的时候，与它的中介者通信</p>
+<p><strong>场景:</strong><br>1.一组对象以定义良好但复杂的方式进行通信,产生的相互依赖关系结构混乱且难以理解。<br>2.一个对象引用其他很多对象并且直接与这些对象通信，导致难以复用该对象。<br>(<strong>eg.OAuth2体系中，authentication server就是中介者。</strong>)</p>
+<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-83F6CC13BB57C626F43EF194FE11D2D1.jpg" alt=""></p>
+<p><strong>角色说明:</strong><br>Command:声明执行操作的接口<br>ConcreteCommand:将一个接受者绑定一个动作，调用接受者相应的操作，以实现Execute<br>Client:创建一个具体命令并设定它的接收者<br>Invoker:要求该命令执行这个请求<br>Receiver:知道如何实施与执行一个请求相关的操作，任何类都可能作为一个接收者</p>
+<p><strong>场景:</strong><br>1.Command模式将调用操作的对象与知道如何实现该操作的对象解耦<br>2.需要抽象出待执行的操作以参数化某对象<br>(<strong>eg.AlipayClient将各种API请求封装为某种Request(Command)</strong>)</p>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-F691D60381EE64726ED7E6770FFE97EC.jpg" alt=""></p>
+<p><strong>场景:</strong><br>1.许多类仅仅是行为有异，需要使用一个算法的不同变体。<br>2.算法使用客户端不应该知道的数据。可使用策略模式以避免暴露复杂的、与算法相关的数据结构。<br>3.一个类定义了多种行为，并且这些行为在这个类的操作中以多个条件语句的形式出现。将相关的条件分支移入它们各自的Strategy类中以替这些条件语句。</p>
+<h3 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-10-256A0D01AB7FEC2203E68A5311070D08.jpg" alt=""></p>
+<p><strong>角色说明:</strong></p>
+<p><strong>AbstractExpression:</strong>声明一个抽象的解释操作，这个接口为抽象语法中所以的节点所共享。<br><strong>TerminalExpression:</strong><br>1.实现与文法中的终结符相关联的解释操作<br>2.一个句子中的每个终结符需要该类的一个实例<br><strong>NonterminalExpression(类似描述and、or操作的表达式):</strong><br>1.对文法中的每一条规则R::=R1R2…RN都需要一个NonterminalExpression类<br>2.为从R1到RN的每个符号都维护一个AbstractExpression类型的实例变量<br>3.为文法中的非终结符实现解释(Interpret)操作。解释(Interpret)一般要递归地调用表示R1到RN的那些对象的解释操作。<br><strong>Context:</strong>包含解释器之外的一些全局信息。<br><strong>Client:</strong><br>1.构建(或被给定)表示该文法定义的语言中一个特定的句子的抽象语法树。该抽象语法树由NonterminalExpression和TerminalExpression的实例装配而成。<br>2.调用解释操作</p>
+<p><strong>场景:</strong>当有一个语言需要解释执行，并且你可将该语言中的句子表示为一个抽象语法树时，可使用解释器模式(eg.PaaS平台上的SQL设计器可使用解释器模式)</p>
+<h3 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-3227952F7B41841A375DAEDA1354B833.jpg" alt=""></p>
+<p><strong>场景:</strong><br>1.支持一个聚合对象的内容而无需暴露它的内部表示<br>2.支持对聚合对象的多种遍历<br>(eg.JDK中的迭代器设计)</p>
+<h3 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-6E826398AF1A65B55205E459438CC1BE.jpg" alt=""></p>
+<p><strong>Memento:</strong>备忘录存储原发器对象的内部状态，原发器根据需要决定备忘录存储哪些内部状态</p>
+<p><strong>Originator:</strong><br>1.创建一个备忘录，用以记录当前时刻它的内部状态<br>2.使用备忘录恢复内部状态</p>
+<p><strong>Caretaker:</strong><br>1.负责保存好备忘录<br>2.不能对备忘录的内容进行操作或检查</p>
+<p><strong>场景:</strong>保存一个对象在某一个时刻的部分状态，这样以后需要时它才能恢复到先前的状态</p>
+<h3 id="State模式"><a href="#State模式" class="headerlink" title="State模式"></a>State模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-E8C67208401D1E0C3615D0AD0A154373.jpg" alt=""></p>
+<p><strong>Context(环境，如TCPConnection):</strong>维护一个ConcreteState子类的实例，这个实例定义当前状态<br><strong>State(状态，如TCPState):</strong>定义一个接口以封装与Context的一个特定状态相关的行为<br><strong>ConcreteState subclasses(具体状态子类,如TCPEstalished，TCPListen，TCPClosed),建议弄成无状态的类:</strong>每一子类实现一个与Context的一个状态相关的行为</p>
+<p><strong>协作说明：</strong><br>1.Context将与状态相关的请求委托给当前的ConcreteState对象处理<br>2.Context可将自身作为一个参数传递给处理该请求的状态对象。这使得状态对象在必要时可访问Context<br>3.Context是客户使用的主要接口。客户可用状态来配置一个Context，一旦一个Context配置完毕，它的客户不再需要直接与状态对象打交道。<br>4.Context或ConcreteState子类都可决定哪个状态是另外哪一个的后继者，以及是在哪种条件下进行状态转换。</p>
+<p><strong>场景:</strong><br>1.一个对象的行为取决于它的状态，并且它必须在运行时刻根据状态改变它的行为。<br>2.一个操作中含有庞大的多分支的条件语句，且这些分支依赖于该对象的状态。<br>(eg.工作流的设计，Instance类似这里的Context，待办、在办、已办为这里的ConcreteState)</p>
+<h3 id="模板方法"><a href="#模板方法" class="headerlink" title="模板方法"></a>模板方法</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-D0999432D95A3EAAD5DBDBB650E6D837.jpg" alt=""></p>
+<p><strong>场景:</strong><br>1.定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。TemplateMethod使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。<br>2.模板方法只在特定点调用hook操作，这样就只允许在这些点进行扩展<br>(eg.React Component组将类的设计，将渲染函数render延迟到Component子类中)</p>
+<h3 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h3><p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-12-E9CAD6934811880E062195E2E0E5E72A.jpg" alt=""></p>
+<p><strong>角色说明：</strong><br>Visitor(访问者，如NodeVisitor)<br>ConcreteVisitor(具体问题者，如TypeCheckingVisitor)<br>Element(元素，如Node)<br>ConcreteElement(具体元素，如AssignmentNode，VariableRefNode)</p>
+<p><strong>场景：</strong><br>1.一个对象结构包含很多类对象，你想对这些对象实施一些依赖于其具体类的操作。<br>2.需要对一个对象结构中的对象进行很多不同的且不相关的操作，而你想避免让这些操作“污染”这些对象的类。Visitor让你可以将相关操作集中起来定义在一个类中。<br>3.定义对象结构的类很少改变，但经常需要在此结构上定义新的操作。</p>
 
             
         </div>
@@ -82,8 +115,8 @@
                         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/09/content-type的意义/"
-           data-title="content-type影响request.getParameter获取数据" data-url="http://zhenghe39.com/2016/04/09/content-type的意义/">
+      <div class="ds-thread" data-thread-key="2017/12/10/2017-12-10/"
+           data-title="行为型模式总结" data-url="http://zhenghe39.com/2017/12/10/2017-12-10/">
       </div>
     
   </div>
@@ -108,7 +141,7 @@
                     
                     <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
-                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#application-x-www-form-urlencoded"><span class="nav-menu-text">application/x-www-form-urlencoded</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#application-json"><span class="nav-menu-text">application/json</span></a></li></ol>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#观察者模式-发布-订阅模式"><span class="nav-menu-text">观察者模式(发布-订阅模式)</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#职责链模式"><span class="nav-menu-text">职责链模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#中介者模式"><span class="nav-menu-text">中介者模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#命令模式"><span class="nav-menu-text">命令模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#策略模式"><span class="nav-menu-text">策略模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#解释器模式"><span class="nav-menu-text">解释器模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#迭代器模式"><span class="nav-menu-text">迭代器模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#备忘录模式"><span class="nav-menu-text">备忘录模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#State模式"><span class="nav-menu-text">State模式</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#模板方法"><span class="nav-menu-text">模板方法</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#访问者模式"><span class="nav-menu-text">访问者模式</span></a></li></ol>
                     </div>
                     
                     <div class='nav-panel  ' id='site-info' >
