@@ -62,14 +62,23 @@
         <div class="post-body" itemprop="articleBody">
             
                 <h3 id="SRP"><a href="#SRP" class="headerlink" title="SRP"></a>SRP</h3><p>SRP(Single Responsibility Principle):单一职责原则</p>
+<p><strong>解释:</strong>一个类里面所做的事情是高度相关的(高内聚)，这样能将类的复杂性降低，实现什么职责都有清晰的定义。</p>
+<p><strong>举个栗子:</strong>：PublicUI中lockHolder对象，只负责锁的添加、删除、延迟执行锁关联的回调函数。</p>
 <h3 id="LSP"><a href="#LSP" class="headerlink" title="LSP"></a>LSP</h3><p>LSP(Liskov Substitution):里氏替换原则</p>
-<p>Java运行时多态(继承、接口)特性，可以将设计中的静态结构改为动态结构，维持设计的封闭性。“多态”由继承语义实现，那我们如何去度量继承关系的质量呢？，这时候就需要「里氏替换原则」了.</p>
-<p>里氏替换原则：继承必须确保超类所拥有的行为在子类中仍然成立。</p>
-<p><strong>举个栗子</strong>：类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 </p>
-<h3 id="OCP"><a href="#OCP" class="headerlink" title="OCP"></a>OCP</h3><p>OCP(Closed for Modification;Open for Extension):开闭原则<br><strong>为什么需要OCP呢？</strong><br>  你给系统封装了访问MySql数据库的类，使得系统支持MySql。某一天，需求增加了，要对SQL Server数据库进行支持，你可能觉得这很简单，类里加个Type参数，if-else区别处理就好。但是需求继续膨胀，SQLite、Oracle…都要支持，继续else-if,else-if，加着加着你突然发现原来运行正常的MySql出现了异常，debug发现原来耦合太多，改着改着把既有的改错了。</p>
-<p><strong>如何OCP呢？</strong><br>  你抽离出数据库访问的接口类IDatabase，使得系统对数据的访问依赖接口而不是具体的实现类，让MySql数据库访问类实现IDatabase，间接使得系统支持了MySql。后面如果需要支持其他数据库，只要单独创建一个新类实现IDatabase接口即可，对既有的Mysql访问实现类不需要做任何改动(Closed for Modification).</p>
-<h3 id="DIP"><a href="#DIP" class="headerlink" title="DIP"></a>DIP</h3><p>DIP(Dependence Inversion Principle):依赖倒置<br>原则：要依赖于抽象，不要依赖于具体</p>
-<h3 id="ISP"><a href="#ISP" class="headerlink" title="ISP"></a>ISP</h3><p>ISP:接口隔离原则<br>原则：使用多个专门的接口比使用单一的总接口要好。</p>
+<p><strong>解释:</strong>继承必须确保超类所拥有的行为在子类中仍然成立，也就是说子类可以扩展父类的功能，但不能改变父类原有的功能。</p>
+<p><strong>举个栗子:</strong>类“鸟”中有个方法fly，企鹅自然也继承了这个方法，可是企鹅不能飞阿，于是，我们在企鹅的类中覆盖了fly方法，告诉方法的调用者：企鹅是不会飞的。这完全符合常理。但是，这违反了LSP，企鹅是鸟的子类，可是企鹅却不能飞！需要注意的是，此处的“鸟”已经不再是生物学中的鸟了，它是软件中的一个类、一个抽象。 </p>
+<h3 id="OCP"><a href="#OCP" class="headerlink" title="OCP"></a>OCP</h3><p>OCP(Closed for Modification;Open for Extension):开闭原则</p>
+<p><strong>解释:</strong>一个软件实体类，模块和函数应该对扩展开放，对修改关闭。在软件的生命周期内，因为变化、升级和维护等原因，需要对软件原有的代码进行修改时，可能会给旧代码引入错误。因此，当软件需要变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。</p>
+<p><strong>举个栗子:</strong>在PayPlat项目中，若需要接入福铁H5支付，只要增加BeiziH5PayServiceImpl(实现了H5PayService接口)即可，不会影响旧的现在支付(IpaynowH5PayServiceImpl)和威富通支付(SwiftpassH5PayServiceImpl).</p>
+<h3 id="DIP"><a href="#DIP" class="headerlink" title="DIP"></a>DIP</h3><p>DIP(Dependence Inversion Principle):依赖倒置</p>
+<p><strong>解释:</strong>要依赖于抽象，不要依赖于具体，俗称针对接口编程。</p>
+<p><strong>具体做法:</strong><br>1.低层模块尽量都要有抽象类或接口。<br>2.变量的声明类型尽量是抽象类或接口。</p>
+<p><strong>举个栗子:</strong>无论主板，CPU，内存，硬盘都是针对接口设计的，如果是针对实现来设计，内存就要对应的某个品牌的主板，那就会出现换内存需要把主板也换了的尴尬。</p>
+<h3 id="ISP"><a href="#ISP" class="headerlink" title="ISP"></a>ISP</h3><p>ISP:接口隔离原则</p>
+<p><strong>解释:</strong>使用多个专门的接口比使用单一的总接口要好。</p>
+<h3 id="LoD"><a href="#LoD" class="headerlink" title="LoD"></a>LoD</h3><p>LoD(Law of Demeter):迪米特原则</p>
+<p><strong>解释:</strong>等同于「最少知识原则」（Principle of Least Knowledge），一个类应该对自己需要耦合或者调用的类知道得最少，这有点类似于接口隔离原则中的最小接口的概念。类的内部如何实现、如何复杂都与调用者或者依赖者没有关系，调用者或者依赖者只需要知道它需要它需要的方法即可，其他的一概不关心。</p>
+<p><strong>举个栗子:</strong>人可以命令一条狗行走（walk），但是不应该直接指挥狗的腿行走，应该由狗去指挥控制它的腿如何行走。其实后端网络接口路由的设计也适用这个原则，调用方使用后端接口所需要的参数越少越好，不然容易将业务的复杂度暴露到网络接口之外!!!</p>
 
             
         </div>
@@ -107,7 +116,7 @@
                     
                     <div class='nav-panel post-toc active' id='post-toc'>
                         <div class='highlight-title' style='display:none;' ></div>
-                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#SRP"><span class="nav-menu-text">SRP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#LSP"><span class="nav-menu-text">LSP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#OCP"><span class="nav-menu-text">OCP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#DIP"><span class="nav-menu-text">DIP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#ISP"><span class="nav-menu-text">ISP</span></a></li></ol>
+                        <ol class="nav-menu"><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#SRP"><span class="nav-menu-text">SRP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#LSP"><span class="nav-menu-text">LSP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#OCP"><span class="nav-menu-text">OCP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#DIP"><span class="nav-menu-text">DIP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#ISP"><span class="nav-menu-text">ISP</span></a></li><li class="nav-menu-item nav-menu-level-3"><a class="nav-menu-link" href="#LoD"><span class="nav-menu-text">LoD</span></a></li></ol>
                     </div>
                     
                     <div class='nav-panel  ' id='site-info' >
