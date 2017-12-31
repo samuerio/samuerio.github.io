@@ -27,7 +27,7 @@
 
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <title></title>
+        <title> 配置Nginx,不缓存单页应用的index.html | issUn </title>
     </head>
     <body lang='zh-Hans' >
         <div class='container' >
@@ -35,264 +35,76 @@
             <div class='headband'></div>
             <main id='main' class='main'>
                 <div class='main-inner'>
-                    <div class='content-wrap content-wrap-normal '>
+                    <div class='content-wrap content-wrap-post '>
                         <a id='btnOpenSideBar' class='icon icon-spread' href='#'  ></a>
                         <div id='content' class='content'>
                             
 
-     <section  class="collapse">
-        <span class="archive-move-on"></span>
-        <span class="archive-page-counter">
-          
-
-          
+    
+    <article class="post" itemscope itemtype="http://schema.org/Article" >
+        <header class="post-header" >
             
-          
-          好目前共计 72 篇日志。继续努力。
-        </span>
-        
-        
+            <h1 class="post-title"  itemprop="name headline" >
+                <a class="post-title-link" href="/2017/12/31/2017-12-31/"  itemprop="url" >
+                    配置Nginx,不缓存单页应用的index.html
+                </a>
+            </h1>
             
-            
-            
-                
-                <div class="collapse-title">
-                      <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+                <div class="post-meta">
+                    <a href = "/" class="post-meta-avatar">
+                        <img src="/favicon.ico" alt="issUn" >
+                        <span>issUn</span>
+                    </a>
+                    <span class="post-meta-time" >2017-12-31</time>
                 </div>
             
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/14/搭建svn服务器/" itemprop="url">
-                    
-                        <span itemprop="name">搭建svn服务器</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-14T19:46:49+08:00"
-                      content="2016-11-14" >
-                    11-14
-                </time>
-            </div>
         </header>
+        <div class="post-body" itemprop="articleBody">
+            
+                <p><img src="http://okhcxnfdh.bkt.clouddn.com/2017-12-31-002403.jpg" alt=""></p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">            listen  4111;</span><br><span class="line">            server_name localhost;</span><br><span class="line">            root    /opt/webapps/PublicMI</span><br><span class="line">            index   index.html;</span><br><span class="line">            ssi  on;</span><br><span class="line">            charset UTF-8;</span><br><span class="line"></span><br><span class="line">            access_log  /opt/logs/nginx/PublicMI-access.log main;</span><br><span class="line">            error_log   /opt/logs/nginx/PublicMI-error.log error;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                try_files $uri $uri/ /index.html;</span><br><span class="line">                expires -1;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            location /api/&#123;</span><br><span class="line">                proxy_pass http://localhost:8011/;</span><br><span class="line">                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>对于第一次访问静态资源。默认的Nginx配置是会返回Etag给浏览器，用于浏览器第二次请求该资源时带上Etag，Nginx比较Etag标签，若没变化，则返回304码，告诉浏览器去使用本地缓存。</p>
+
+            
+        </div>
     </article>
 
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/14/MongoDB-Java驱动的使用/" itemprop="url">
-                    
-                        <span itemprop="name">MongoDB-Java驱动的使用</span>
-                    
-                </a>
-            </h1>
 
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-14T19:33:54+08:00"
-                      content="2016-11-14" >
-                    11-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/14/meta标签/" itemprop="url">
-                    
-                        <span itemprop="name">Meta标签</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-14T18:27:59+08:00"
-                      content="2016-11-14" >
-                    11-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/14/Javascript常用UI操作/" itemprop="url">
-                    
-                        <span itemprop="name">Javascript常用UI操作</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-14T17:50:54+08:00"
-                      content="2016-11-14" >
-                    11-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/14/JS逻辑运算符小技巧/" itemprop="url">
-                    
-                        <span itemprop="name">JS逻辑运算符小技巧</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-14T16:29:42+08:00"
-                      content="2016-11-14" >
-                    11-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/14/常见Maven插件的使用/" itemprop="url">
-                    
-                        <span itemprop="name">常见Maven插件的使用</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-14T14:35:24+08:00"
-                      content="2016-11-14" >
-                    11-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/14/Brew用法/" itemprop="url">
-                    
-                        <span itemprop="name">Brew用法</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-14T14:25:42+08:00"
-                      content="2016-11-14" >
-                    11-14
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-            
-            
-            
-            
-            
-    <article class="collapse-post" itemscope itemtype="http://schema.org/Article">
-        <header class="collapse-post-header">
-            <h1 class="collapse-post-title">
-                <a  href="/2016/11/03/构建单页Web应用/" itemprop="url">
-                    
-                        <span itemprop="name">构建单页Web应用</span>
-                    
-                </a>
-            </h1>
-
-            <div class="collapse-post-meta">
-                <time  itemprop="dateCreated"
-                      datetime="2016-11-03T22:32:25+08:00"
-                      content="2016-11-03" >
-                    11-03
-                </time>
-            </div>
-        </header>
-    </article>
-
-        
-    </section>
-    <nav class='pagination'>
-    
-        <a href = '/archives/page/4/' class='alignleft prev'>上一页</a>
-    
-    
-            <a href = '/archives/page/6/' class='alignright next'>下一页</a>
-    
-    <div class='clearfix'></div>
-</nav>
 
                         </div>
                         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/12/31/2017-12-31/"
+           data-title="配置Nginx,不缓存单页应用的index.html" data-url="http://zhenghe39.com/2017/12/31/2017-12-31/">
+      </div>
+    
+  </div>
+
 
 
                     </div>
                     
-    
+ 
     <aside class="sidebar">
         <div class="sidebar-inner">
                 
-                    
                 
                 
+                <ul class='sidebar-nav' >
+                    <li class='active' href="#post-toc"  data-toggle="tab" >文章目录</li>
+                    &nbsp&nbsp
+                    <li href="#site-info" data-toggle="tab" >站点概况</li>
+                </ul>
                 
                 <div class='sidebar-nav-content'>
                     
-                    <div class='nav-panel active ' id='site-info' >
+                    <div class='nav-panel post-toc active' id='post-toc'>
+                        <div class='highlight-title' style='display:none;' ></div>
+                        
+                    </div>
+                    
+                    <div class='nav-panel  ' id='site-info' >
                         <div class='author'>
                             
                             <div class='author-img'></div>
